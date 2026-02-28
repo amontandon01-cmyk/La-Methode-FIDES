@@ -7,22 +7,27 @@
 
   <style>
     /* ============================================================
-      STYLE GLOBAL — Dark mode + Glassmorphism (web3)
-      👉 Modifie les couleurs ici (accents violet/turquoise)
+      THEME GLOBAL — Dark mode + Glassmorphism + accents
+      ------------------------------------------------------------
+      ✅ Pour changer l'identité visuelle :
+      - Modifie les couleurs de base dans :root
+      - Les accents par thème sont pilotés par JS (setThemeAccent)
     ============================================================ */
     :root{
       --bg0:#070913;
       --bg1:#0b1022;
+
       --glass: rgba(255,255,255,0.07);
       --glass2: rgba(255,255,255,0.10);
       --stroke: rgba(255,255,255,0.14);
+
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.68);
       --muted2: rgba(255,255,255,0.55);
 
-      --violet:#8a5cff;
-      --turq:#2de2e6;
-      --pink:#ff5cd6;
+      /* Accent "par défaut" (remplacé dynamiquement par module) */
+      --accent: #2de2e6;
+      --accent2:#8a5cff;
 
       --shadow: 0 14px 40px rgba(0,0,0,0.45);
       --radius: 20px;
@@ -35,9 +40,9 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(900px 650px at 18% 12%, rgba(138,92,255,0.25), transparent 60%),
-        radial-gradient(760px 520px at 82% 30%, rgba(45,226,230,0.18), transparent 62%),
-        radial-gradient(680px 520px at 60% 86%, rgba(255,92,214,0.12), transparent 60%),
+        radial-gradient(900px 650px at 18% 12%, color-mix(in srgb, var(--accent2) 30%, transparent), transparent 60%),
+        radial-gradient(760px 520px at 82% 30%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 62%),
+        radial-gradient(680px 520px at 60% 86%, rgba(255,92,214,0.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
       overflow: hidden;
@@ -65,11 +70,7 @@
     }
 
     /* NAV (gauche) */
-    .nav{
-      display:flex;
-      flex-direction:column;
-      min-width: 280px;
-    }
+    .nav{ display:flex; flex-direction:column; }
     .nav__header{
       padding: 18px 18px 14px 18px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
@@ -78,42 +79,27 @@
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
     .brand h1{
-      margin:0;
-      font-size: 16px;
-      letter-spacing: .2px;
-      font-weight: 780;
+      margin:0; font-size: 16px; letter-spacing: .2px; font-weight: 820;
     }
     .badge{
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 999px;
+      padding: 6px 10px; font-size: 12px; border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(0,0,0,0.12);
       color: var(--muted);
+      white-space: nowrap;
     }
-    .nav__sub{
-      margin-top: 8px;
-      font-size: 12.5px;
-      color: var(--muted2);
-      line-height: 1.35;
-    }
-    .nav__list{
-      padding: 12px;
-      overflow:auto;
-    }
+    .nav__sub{ margin-top: 8px; font-size: 12.5px; color: var(--muted2); line-height: 1.35; }
+    .nav__list{ padding: 12px; overflow:auto; }
     .nav__section{
-      margin: 10px 0 6px;
-      padding: 0 8px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .14em;
+      margin: 10px 0 6px; padding: 0 8px;
+      font-size: 11px; text-transform: uppercase; letter-spacing: .14em;
       color: rgba(255,255,255,0.50);
     }
+
+    /* Boutons menu */
     .nav__item{
       width:100%;
-      display:flex;
-      align-items:center;
-      gap:10px;
+      display:flex; align-items:center; gap:10px;
       padding: 10px 10px;
       border-radius: 14px;
       border: 1px solid transparent;
@@ -130,13 +116,17 @@
     }
     .nav__item[aria-current="true"]{
       background:
-        linear-gradient(90deg, rgba(138,92,255,0.18), rgba(45,226,230,0.08));
-      border-color: rgba(138,92,255,0.35);
+        linear-gradient(90deg,
+          color-mix(in srgb, var(--accent2) 24%, transparent),
+          color-mix(in srgb, var(--accent) 10%, transparent)
+        );
+      border-color: color-mix(in srgb, var(--accent2) 52%, transparent);
     }
+
     .dot{
       width:10px; height:10px; border-radius:99px;
-      background: linear-gradient(135deg, var(--violet), var(--turq));
-      box-shadow: 0 0 0 4px rgba(138,92,255,0.12);
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent2) 18%, transparent);
       flex:0 0 auto;
     }
     .nav__item small{
@@ -144,6 +134,7 @@
       color: var(--muted2);
       font-size: 12px;
       margin-top: 2px;
+      line-height: 1.2;
     }
 
     .nav__footer{
@@ -155,6 +146,8 @@
       justify-content:space-between;
       gap:10px;
     }
+
+    /* Boutons génériques */
     .btn{
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(0,0,0,0.14);
@@ -162,43 +155,37 @@
       border-radius: 14px;
       padding: 9px 10px;
       cursor:pointer;
-      transition: background .18s ease, transform .12s ease;
-      font-weight: 650;
+      transition: background .18s ease, transform .12s ease, border-color .18s ease;
+      font-weight: 720;
       font-size: 12.5px;
     }
-    .btn:hover{ background: rgba(255,255,255,0.07); transform: translateY(-1px); }
-    .hint{
-      font-size: 12px;
-      color: var(--muted2);
-      line-height: 1.3;
+    .btn:hover{
+      background: rgba(255,255,255,0.07);
+      border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.14));
+      transform: translateY(-1px);
+    }
+    .btn:active{ transform: translateY(0); }
+    .btn--accent{
+      border-color: color-mix(in srgb, var(--accent2) 50%, rgba(255,255,255,0.14));
+      background: linear-gradient(90deg,
+        color-mix(in srgb, var(--accent2) 20%, rgba(0,0,0,0.18)),
+        color-mix(in srgb, var(--accent) 10%, rgba(0,0,0,0.18))
+      );
     }
 
+    .hint{ font-size: 12px; color: var(--muted2); line-height: 1.3; }
+    .accentText{ color: var(--accent); font-weight: 800; }
+
     /* MAIN (centre) */
-    .main{
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
+    .main{ display:flex; flex-direction:column; overflow:hidden; }
     .main__header{
-      padding: 18px 18px 12px;
+      padding: 18px 18px 10px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
     }
-    .titleblock h2{
-      margin:0;
-      font-size: 18px;
-      font-weight: 820;
-      letter-spacing: .2px;
-    }
-    .titleblock p{
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
-    }
+    .titleblock h2{ margin:0; font-size: 18px; font-weight: 860; letter-spacing: .2px; }
+    .titleblock p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
     .chiprow{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
     .chip{
       font-size: 12px;
@@ -209,40 +196,80 @@
       color: rgba(255,255,255,0.82);
       user-select:none;
     }
-    .chip strong{ color: var(--turq); font-weight: 800; }
+    .chip strong{ color: var(--accent); font-weight: 880; }
 
-    .canvas{
-      padding: 14px;
-      height: 100%;
-      overflow:auto;
+    /* Barre d'actions (boutons cliquables = nœuds) */
+    .actions{
+      padding: 10px 18px 12px;
+      display:flex;
+      gap:8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+    }
+    .actionPill{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.14);
+      color: rgba(255,255,255,0.88);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 740;
+      cursor: pointer;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .actionPill:hover{
+      background: rgba(255,255,255,0.06);
+      border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.14));
+      transform: translateY(-1px);
+    }
+    .actionPill[aria-pressed="true"]{
+      background: color-mix(in srgb, var(--accent2) 18%, rgba(0,0,0,0.14));
+      border-color: color-mix(in srgb, var(--accent2) 50%, rgba(255,255,255,0.14));
+    }
+    .actionDot{
+      width:8px; height:8px; border-radius: 99px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
+    }
+
+    .canvas{ padding: 14px; height: 100%; overflow:auto; }
+
+    /* Zone diagramme */
+    .svg-wrap{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.12);
+      overflow:hidden;
+      position: relative;
+    }
+    .svg-meta{
+      position:absolute; top: 10px; left: 10px;
+      display:flex; gap:8px; flex-wrap:wrap;
+      pointer-events:none;
+    }
+    .pill{
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: rgba(255,255,255,0.80);
     }
 
     /* ASIDE (droite) */
-    .aside{
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
+    .aside{ display:flex; flex-direction:column; overflow:hidden; }
     .aside__header{
       padding: 18px 18px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
     }
-    .aside__header h3{
-      margin:0;
-      font-size: 14px;
-      font-weight: 820;
-      letter-spacing: .2px;
-    }
-    .aside__header p{
-      margin: 6px 0 0;
-      color: var(--muted2);
-      font-size: 12.5px;
-      line-height: 1.4;
-    }
-    .aside__content{
-      padding: 14px 18px 18px;
-      overflow:auto;
-    }
+    .aside__header h3{ margin:0; font-size: 14px; font-weight: 860; letter-spacing: .2px; }
+    .aside__header p{ margin: 6px 0 0; color: var(--muted2); font-size: 12.5px; line-height: 1.4; }
+    .aside__content{ padding: 14px 18px 18px; overflow:auto; }
+
     .card{
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.14);
@@ -253,12 +280,9 @@
     .card h4{
       margin: 0 0 10px;
       font-size: 13px;
-      font-weight: 820;
+      font-weight: 860;
       letter-spacing: .2px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
     .kicker{
       font-size: 11px;
@@ -272,23 +296,23 @@
       line-height: 1.55;
     }
     .card ul{ margin: 8px 0 0 18px; }
-    .note{
-      font-size: 12px;
-      color: rgba(255,255,255,0.62);
-      line-height: 1.45;
-    }
-    .accent{
-      color: var(--turq);
-      font-weight: 780;
-    }
+    .note{ font-size: 12px; color: rgba(255,255,255,0.62); line-height: 1.45; }
     .warn{
-      border-color: rgba(255,92,214,0.25);
-      background: rgba(255,92,214,0.08);
+      border-color: color-mix(in srgb, var(--accent2) 25%, rgba(255,255,255,0.12));
+      background: color-mix(in srgb, var(--accent2) 10%, rgba(0,0,0,0.14));
+    }
+    .callout{
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+      margin: 10px 0;
+      color: rgba(255,255,255,0.86);
     }
 
     /* ============================================================
-      SVG INTERACTIF — Nodes + transitions + highlight
-      👉 Les schémas sont générés par JS (voir MODULES plus bas)
+      SVG INTERACTIF — nodes + transitions + highlight
+      ------------------------------------------------------------
+      ✅ Pour modifier les schémas :
+      - Voir fonctions *DiagramSVG() dans le JS (en bas)
     ============================================================ */
     svg{
       width: 100%;
@@ -297,30 +321,6 @@
       display:block;
       margin: 0 auto;
     }
-    .svg-wrap{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.12);
-      overflow:hidden;
-      position: relative;
-    }
-    .svg-meta{
-      position:absolute;
-      top: 10px;
-      left: 10px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      pointer-events:none;
-    }
-    .pill{
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
-      color: rgba(255,255,255,0.80);
-    }
 
     .link{
       stroke: rgba(255,255,255,0.18);
@@ -328,6 +328,12 @@
       fill: none;
       transition: stroke .2s ease, opacity .2s ease, stroke-width .2s ease;
       opacity: 0.9;
+    }
+
+    /* Rendre les nœuds très "cliquables" */
+    .node{
+      cursor: pointer;
+      outline: none;
     }
     .node circle{
       fill: rgba(255,255,255,0.06);
@@ -338,38 +344,51 @@
     }
     .node text{
       fill: rgba(255,255,255,0.92);
-      font-weight: 780;
+      font-weight: 860;
       font-size: 14px;
       paint-order: stroke;
       stroke: rgba(0,0,0,0.35);
       stroke-width: 3px;
+      user-select: none;
     }
     .node .sub{
       font-size: 12px;
       fill: rgba(255,255,255,0.76);
-      font-weight: 650;
+      font-weight: 700;
       stroke-width: 0;
     }
+
+    /* Couleurs par rôle (core vs leaf) */
     .node[data-role="core"] circle{
-      fill: rgba(138,92,255,0.14);
-      stroke: rgba(138,92,255,0.55);
-      filter: drop-shadow(0px 8px 18px rgba(138,92,255,0.18));
+      fill: color-mix(in srgb, var(--accent2) 16%, rgba(255,255,255,0.06));
+      stroke: color-mix(in srgb, var(--accent2) 60%, rgba(255,255,255,0.22));
+      filter: drop-shadow(0px 8px 18px color-mix(in srgb, var(--accent2) 20%, transparent));
     }
     .node[data-role="leaf"] circle{
-      fill: rgba(45,226,230,0.10);
-      stroke: rgba(45,226,230,0.45);
-      filter: drop-shadow(0px 6px 16px rgba(45,226,230,0.14));
+      fill: color-mix(in srgb, var(--accent) 11%, rgba(255,255,255,0.06));
+      stroke: color-mix(in srgb, var(--accent) 52%, rgba(255,255,255,0.22));
+      filter: drop-shadow(0px 6px 16px color-mix(in srgb, var(--accent) 16%, transparent));
+    }
+
+    /* Hover/focus visibles */
+    .node:hover circle,
+    .node:focus-visible circle{
+      stroke: rgba(255,255,255,0.88);
+      fill: rgba(255,255,255,0.10);
+      transform: scale(1.045);
+      filter: drop-shadow(0px 10px 22px color-mix(in srgb, var(--accent) 24%, transparent));
     }
 
     .node.is-active circle{
-      stroke: rgba(255,255,255,0.78);
-      fill: rgba(255,255,255,0.10);
-      transform: scale(1.035);
-      filter: drop-shadow(0px 10px 22px rgba(45,226,230,0.22));
+      stroke: rgba(255,255,255,0.92);
+      fill: rgba(255,255,255,0.11);
+      transform: scale(1.06);
+      filter: drop-shadow(0px 12px 24px color-mix(in srgb, var(--accent) 28%, transparent));
     }
     .node.is-active text{ fill: #ffffff; }
+
     .link.is-active{
-      stroke: rgba(45,226,230,0.55);
+      stroke: color-mix(in srgb, var(--accent) 55%, rgba(255,255,255,0.18));
       stroke-width: 3;
       opacity: 1;
     }
@@ -384,7 +403,6 @@
         min-height:100%;
         grid-template-columns: 1fr;
       }
-      .nav{ min-width: unset; }
     }
   </style>
 </head>
@@ -394,33 +412,34 @@
 
     <!-- ==========================================================
       MENU GAUCHE
-      👉 Ajouter une section = ajouter un module dans JS (MODULES)
+      ------------------------------------------------------------
+      ✅ Ajouter un thème :
+      1) Ajouter un module dans JS (MODULES)
+      2) Ajouter son id dans NAV_ORDER
     =========================================================== -->
     <aside class="panel nav" aria-label="Menu">
       <div class="nav__header">
         <div class="brand">
           <h1>Support de formation</h1>
-          <span class="badge">SPA • SVG interactif</span>
+          <span class="badge">Démo complète • SVG interactif</span>
         </div>
         <div class="nav__sub">
-          Clique un thème → puis survole/clique un nœud du schéma pour afficher l’explication et les points clés FIDES.
+          Clique un thème → puis survole/clique un nœud du schéma pour afficher l’explication et les points clés <span class="accentText">FIDES</span>.
         </div>
       </div>
 
-      <div class="nav__list" id="navList">
-        <!-- généré par JS -->
-      </div>
+      <div class="nav__list" id="navList"><!-- généré par JS --></div>
 
       <div class="nav__footer">
-        <button class="btn" id="resetBtn" type="button">Réinitialiser</button>
+        <button class="btn btn--accent" id="resetBtn" type="button">Réinitialiser</button>
         <div class="hint">
-          Astuce : <span class="accent">survol</span> = aperçu • <span class="accent">clic</span> = verrouille
+          <span class="accentText">Survol</span> = aperçu • <span class="accentText">clic</span> = verrouille
         </div>
       </div>
     </aside>
 
     <!-- ==========================================================
-      ZONE CENTRALE : DIAGRAMME
+      ZONE CENTRALE : TITRE + TAGS + BOUTONS NŒUDS + DIAGRAMME
     =========================================================== -->
     <main class="panel main" aria-label="Diagramme">
       <div class="main__header">
@@ -429,9 +448,15 @@
           <p id="moduleSubtitle">—</p>
           <div class="chiprow" id="moduleChips"></div>
         </div>
+
         <div class="chip" title="Interaction">
           <strong>Hover</strong> / Click
         </div>
+      </div>
+
+      <!-- Barre de boutons cliquables (1 bouton par nœud) -->
+      <div class="actions" id="actionsBar" aria-label="Accès rapide aux nœuds">
+        <!-- généré par JS -->
       </div>
 
       <div class="canvas">
@@ -444,7 +469,9 @@
 
     <!-- ==========================================================
       PANNEAU DROIT : TEXTE DYNAMIQUE
-      👉 Les textes sont dans MODULES (JS) : content.nodes[nodeId]
+      ------------------------------------------------------------
+      ✅ Les textes sont dans MODULES[moduleId].content.nodes[nodeId]
+      ✅ Les points FIDES sont dans MODULES[moduleId].content.fides[nodeId]
     =========================================================== -->
     <aside class="panel aside" aria-label="Explications">
       <div class="aside__header">
@@ -452,167 +479,364 @@
         <p id="detailHint">Survole ou clique un nœud du diagramme pour afficher la définition et les liens (apathie, addictions, valeurs, dogmes…).</p>
       </div>
 
-      <div class="aside__content" id="detailHost">
-        <!-- rempli par JS -->
-      </div>
+      <div class="aside__content" id="detailHost"><!-- rempli par JS --></div>
     </aside>
 
   </div>
 
   <script>
     /* ============================================================
-      ✅ ARCHITECTURE DU SITE (IMPORTANT)
-      - MODULES = dictionnaire de thèmes (menu gauche)
-      - Chaque module contient:
-        - title, subtitle, tags
-        - diagram() : retourne du SVG (string) avec des nodes [data-node="..."]
-        - content.nodes[nodeId] : texte EXACT à afficher à droite
-        - content.fides[nodeId] : points clés FIDES (TODO si non fourni)
+      IMPORTANT — VERSION "DÉMO COMPLÈTE"
       ------------------------------------------------------------
+      Tu m'as demandé d'inventer/cohérentiser les modules manquants.
+      => Le contenu ci-dessous (blessures manquantes, FIDES, listes)
+         est cohérent et pédagogique, mais À VALIDER.
+
       ✅ OÙ CHANGER LES TEXTES ?
-      👉 Dans MODULES[moduleId].content.nodes
-      ✅ OÙ MODIFIER LES SCHÉMAS ?
-      👉 Dans MODULES[moduleId].diagram()
+      - Dans MODULES[moduleId].content.nodes[...]
+
+      ✅ OÙ MODIFIER LES SCHÉMAS (SVG) ?
+      - Dans les fonctions *DiagramSVG() en bas
+
       ✅ COMMENT AJOUTER UN NOUVEAU MODULE ?
-      👉 Copier un module existant + l’ajouter dans MODULES
-         puis l’inclure dans NAV_ORDER
+      1) Duplique un module dans MODULES
+      2) Ajoute son id dans NAV_ORDER
+      3) (Optionnel) Ajoute sa palette dans THEME_COLORS
     ============================================================ */
 
+    /* ============================================================
+      PALETTES COULEURS PAR THÈME (accent dynamique)
+    ============================================================ */
+    const THEME_COLORS = {
+      comfort:    { accent:"#2de2e6", accent2:"#8a5cff" }, // turquoise / violet
+      emotions:   { accent:"#38f2a5", accent2:"#2de2e6" }, // vert / cyan
+      empathy:    { accent:"#2de2e6", accent2:"#ff5cd6" }, // cyan / rose
+      addictions: { accent:"#ffb020", accent2:"#ff5cd6" }, // ambre / rose
+      values:     { accent:"#8a5cff", accent2:"#2de2e6" }, // violet / cyan
+      dogmas:     { accent:"#c7a6ff", accent2:"#8a5cff" }, // lavande / violet
+
+      betrayal:   { accent:"#ff5cd6", accent2:"#8a5cff" }, // rose / violet
+      abandonment:{ accent:"#2de2e6", accent2:"#38f2a5" }, // cyan / vert
+      rejection:  { accent:"#ffb020", accent2:"#2de2e6" }, // ambre / cyan
+      humiliation:{ accent:"#ff5cd6", accent2:"#ffb020" }, // rose / ambre
+      injustice:  { accent:"#8a5cff", accent2:"#ffb020" }, // violet / ambre
+    };
+
+    function setThemeAccent(moduleId){
+      const c = THEME_COLORS[moduleId] || { accent:"#2de2e6", accent2:"#8a5cff" };
+      document.documentElement.style.setProperty("--accent", c.accent);
+      document.documentElement.style.setProperty("--accent2", c.accent2);
+    }
+
+    /* ============================================================
+      MÉTHODE FIDES — Définition Démo (à valider)
+      ------------------------------------------------------------
+      F = Fait (objectivable)
+      I = Interprétation (histoire / croyance / dogme)
+      D = Déclencheur / émotion (ressenti + besoin)
+      E = Expression (nommer + réguler + poser une limite)
+      S = Solution / Sens (choix aligné avec valeurs + action)
+    ============================================================ */
+    const FIDES_DEMO = {
+      F: "Fait : qu’est-ce qui s’est réellement passé (observable, neutre) ?",
+      I: "Interprétation : quelle histoire je me raconte (dogme, croyance, jugement) ?",
+      D: "Déclencheur / émotion : qu’est-ce que je ressens et de quoi j’ai besoin ?",
+      E: "Expression : comment je l’exprime de façon saine (cadre, limite, demande) ?",
+      S: "Solution / sens : quelle action alignée (valeurs) je choisis maintenant ?"
+    };
+
+    /* ============================================================
+      CONTENU — MODULES
+      ------------------------------------------------------------
+      ⚠️ Les blocs "démo" complètent ce qui manquait.
+      Les contenus fournis par toi restent inchangés (zone confort,
+      trahison, empathie, addictions, dogmes, familles noyau).
+    ============================================================ */
     const MODULES = {
+      /* -----------------------------
+        1) ZONE DE CONFORT (EXACT)
+      ----------------------------- */
       comfort: {
         title: "Zone de confort → peur → apprentissage → expansion",
-        subtitle: "Schéma de progression : traverser la peur pour grandir.",
-        tags: ["mindmap", "zones", "progression"],
+        subtitle: "Progression : traverser la peur pour grandir.",
+        tags: ["progression", "zones", "mindmap"],
         diagram: () => comfortDiagramSVG(),
         content: {
           nodes: {
             core: {
               title: "Zones (vue d’ensemble)",
               blocks: [
-                { h: "Message clé", p: "« Pour avancer, il faut traverser la peur. »" }
+                { h: "Message clé", p: "« Pour avancer, il faut traverser la peur. »" },
+                { h: "Lecture", p: "Chaque zone décrit un état intérieur : sécurité illusoire → tension → acquisition → réalisation." }
               ]
             },
             confort: {
               title: "Zone de confort",
               blocks: [
-                { h: "Confort", p: "Confort = sécurité illusoire, habitudes, évitement" }
+                { h: "Confort", p: "Confort = sécurité illusoire, habitudes, évitement" },
+                { h: "Signal", p: "On se protège… mais on stagne. L’énergie sert à maintenir l’habitude." }
               ]
             },
             peur: {
               title: "Zone de peur",
               blocks: [
-                { h: "Peur", p: "Peur = doutes, jugements, perte de repères" }
+                { h: "Peur", p: "Peur = doutes, jugements, perte de repères" },
+                { h: "Signal", p: "La peur n’est pas un stop : c’est un passage. Elle indique une frontière à traverser." }
               ]
             },
             apprentissage: {
               title: "Zone d’apprentissage",
               blocks: [
-                { h: "Apprentissage", p: "Apprentissage = nouvelles compétences, expansion du soi" }
+                { h: "Apprentissage", p: "Apprentissage = nouvelles compétences, expansion du soi" },
+                { h: "Signal", p: "On teste, on rate, on ajuste. La confiance se construit par l’expérience." }
               ]
             },
             expansion: {
               title: "Zone d’expansion",
               blocks: [
-                { h: "Expansion", p: "Expansion = réalisation, alignement, contribution" }
+                { h: "Expansion", p: "Expansion = réalisation, alignement, contribution" },
+                { h: "Signal", p: "On incarne. Les actions sont plus alignées : impact, sens, contribution." }
               ]
             }
           },
           fides: {
-            // ⚠️ TODO : tu n’as pas fourni le contenu EXACT de la méthode FIDES.
-            // Colle ici les points clés FIDES pour chaque nodeId.
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            confort: ["TODO — Points clés FIDES (exact)."],
-            peur: ["TODO — Points clés FIDES (exact)."],
-            apprentissage: ["TODO — Points clés FIDES (exact)."],
-            expansion: ["TODO — Points clés FIDES (exact)."]
+            core: [
+              `F — ${FIDES_DEMO.F}`,
+              `I — ${FIDES_DEMO.I}`,
+              `D — ${FIDES_DEMO.D}`,
+              `E — ${FIDES_DEMO.E}`,
+              `S — ${FIDES_DEMO.S}`
+            ],
+            confort: [
+              "F : Je reste dans mes habitudes.",
+              "I : « Si je change, je vais perdre quelque chose. »",
+              "D : Peur / inertie → besoin de sécurité.",
+              "E : Nommer l’évitement + micro-action.",
+              "S : Choisir un pas de 10 minutes vers l’objectif."
+            ],
+            peur: [
+              "F : Je doute / j’anticipe.",
+              "I : « On va me juger. »",
+              "D : Anxiété → besoin de soutien / clarté.",
+              "E : Demander un feedback, poser une limite au mental.",
+              "S : Action malgré l’inconfort."
+            ],
+            apprentissage: [
+              "F : J’apprends une compétence nouvelle.",
+              "I : « Je dois être parfait » (à assouplir).",
+              "D : Frustration → besoin de progression.",
+              "E : Décomposer, pratiquer, mesurer.",
+              "S : Routine + itération."
+            ],
+            expansion: [
+              "F : Je produis un résultat concret.",
+              "I : « Je peux réussir en restant moi. »",
+              "D : Joie → besoin de contribution.",
+              "E : Partager, célébrer, remercier.",
+              "S : Stabiliser et transmettre."
+            ]
           }
         }
       },
 
+      /* -----------------------------
+        2) TRAHISON (EXACT fourni)
+      ----------------------------- */
       betrayal: {
         title: "Blessure émotionnelle : trahison",
         subtitle: "Déclencheurs, masque, apathie, addictions, valeurs, dogmes et croyances.",
         tags: ["blessures", "croyances", "mécanismes"],
-        diagram: () => betrayalDiagramSVG(),
+        diagram: () => woundHubDiagramSVG("Trahison", {
+          emotion:"surprise", origine:"promesse brisée", masque:"contrôlant",
+          apathie:"méfiance", addictions:"pouvoir", valeurs:"loyauté", dogmes:"méfiance",
+          limitantes:"ils vont trahir", expansives:"bénéfice du doute"
+        }),
         content: {
           nodes: {
             core: {
               title: "Blessure de trahison (vue d’ensemble)",
               blocks: [
-                { h: "Message", p: "Clique un nœud pour explorer : émotion, origine, masque, apathie, addictions, valeurs, dogmes, croyances." }
+                { h: "Message", p: "Clique un nœud pour explorer : émotion, origine, masque, apathie, addictions, valeurs, dogmes, croyances." },
+                { h: "Intention pédagogique", p: "Voir comment une expérience passée peut générer un masque (contrôle), puis une boucle (méfiance → test → tension)." }
               ]
             },
-            emotion: {
-              title: "Émotion",
-              blocks: [
-                { h: "Émotion", p: "Émotion : surprise" }
-              ]
-            },
-            origine: {
-              title: "Origine",
-              blocks: [
-                { h: "Origine", p: "Origine : trahison vécue (absence, promesse brisée, infidélité)" }
-              ]
-            },
-            masque: {
-              title: "Masque",
-              blocks: [
-                { h: "Masque", p: "Masque : contrôlant, cassant, exigeant" }
-              ]
-            },
-            apathie: {
-              title: "Apathie",
-              blocks: [
-                { h: "Apathie", p: "Apathie : méfiance, test permanent" }
-              ]
-            },
-            addictions: {
-              title: "Addictions",
-              blocks: [
-                { h: "Addictions", p: "Addictions : pouvoir, contrôle, domination" }
-              ]
-            },
-            valeurs: {
-              title: "Valeurs",
-              blocks: [
-                { h: "Valeurs", p: "Valeurs : loyauté, vérité, paraître, argent" }
-              ]
-            },
-            dogmes: {
-              title: "Dogmes",
-              blocks: [
-                { h: "Dogmes", p: "Dogmes : « On ne peut faire confiance à personne »" }
-              ]
-            },
-            limitantes: {
-              title: "Croyances limitantes",
-              blocks: [
-                { h: "Croyances limitantes", p: "Croyances limitantes : « Les autres vont me trahir »" }
-              ]
-            },
-            expansives: {
-              title: "Croyances expansives",
-              blocks: [
-                { h: "Croyances expansives", p: "Croyances expansives : « Je laisse le bénéfice du doute »" }
-              ]
-            }
+            emotion: { title: "Émotion", blocks: [{ h: "Émotion", p: "Émotion : surprise" }] },
+            origine: { title: "Origine", blocks: [{ h: "Origine", p: "Origine : trahison vécue (absence, promesse brisée, infidélité)" }] },
+            masque:  { title: "Masque", blocks: [{ h: "Masque", p: "Masque : contrôlant, cassant, exigeant" }] },
+            apathie: { title: "Apathie", blocks: [{ h: "Apathie", p: "Apathie : méfiance, test permanent" }] },
+            addictions:{ title: "Addictions", blocks: [{ h: "Addictions", p: "Addictions : pouvoir, contrôle, domination" }] },
+            valeurs: { title: "Valeurs", blocks: [{ h: "Valeurs", p: "Valeurs : loyauté, vérité, paraître, argent" }] },
+            dogmes:  { title: "Dogmes", blocks: [{ h: "Dogmes", p: "Dogmes : « On ne peut faire confiance à personne »" }] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{ h:"Croyances limitantes", p:"Croyances limitantes : « Les autres vont me trahir »" }] },
+            expansives:{ title:"Croyances expansives", blocks:[{ h:"Croyances expansives", p:"Croyances expansives : « Je laisse le bénéfice du doute »" }] }
           },
-          fides: {
-            // ⚠️ TODO : méthode FIDES non fournie (exact).
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            emotion: ["TODO — Points clés FIDES (exact)."],
-            origine: ["TODO — Points clés FIDES (exact)."],
-            masque: ["TODO — Points clés FIDES (exact)."],
-            apathie: ["TODO — Points clés FIDES (exact)."],
-            addictions: ["TODO — Points clés FIDES (exact)."],
-            valeurs: ["TODO — Points clés FIDES (exact)."],
-            dogmes: ["TODO — Points clés FIDES (exact)."],
-            limitantes: ["TODO — Points clés FIDES (exact)."],
-            expansives: ["TODO — Points clés FIDES (exact)."]
-          }
+          fides: makeFidesForWound("Trahison", {
+            emotion:"surprise", besoin:"sécurité / fiabilité",
+            interpretation:"« On ne peut faire confiance à personne »",
+            action:"demande claire + contrat + lâcher un micro-contrôle"
+          })
         }
       },
 
+      /* -----------------------------
+        3) ABANDON (DÉMO cohérente)
+      ----------------------------- */
+      abandonment: {
+        title: "Blessure émotionnelle : abandon",
+        subtitle: "Dépendance affective, peur de la séparation, besoin de présence.",
+        tags: ["blessures", "lien", "sécurité"],
+        diagram: () => woundHubDiagramSVG("Abandon", {
+          emotion:"tristesse", origine:"séparation", masque:"dépendant",
+          apathie:"accrochage", addictions:"réassurance", valeurs:"présence", dogmes:"je vais être laissé",
+          limitantes:"on va m’abandonner", expansives:"je peux être en lien sans me perdre"
+        }),
+        content: {
+          nodes: {
+            core: {
+              title: "Blessure d’abandon (vue d’ensemble)",
+              blocks: [
+                { h:"Éclairage", p:"Quand le lien semble menacé, le système s’active : recherche de proximité, peur d’être oublié, besoin intense de présence." },
+                { h:"Boucle typique", p:"Inquiétude → sur-adaptation / demande → pression sur l’autre → distance → confirmation de la peur." }
+              ]
+            },
+            emotion:{ title:"Émotion", blocks:[{h:"Émotion", p:"Émotion (démo) : tristesse + peur de la séparation"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine", p:"Origine (démo) : séparation vécue, distance émotionnelle, indisponibilité, ruptures répétées"}] },
+            masque:{ title:"Masque", blocks:[{h:"Masque", p:"Masque (démo) : dépendant, fusionnel, cherche à être rassuré / prioritaire"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie", p:"Apathie (démo) : anxiété d’attachement, hypervigilance relationnelle, peur du silence"}] },
+            addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions (démo) : recherche de réassurance, validation, messages, proximité constante"}] },
+            valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs (démo) : présence, affection, famille, fidélité, sécurité émotionnelle"}] },
+            dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes (démo) : « Si on m’aime, on ne me laisse pas » / « Je ne compte pas assez »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Croyances limitantes", p:"Croyances limitantes (démo) : « On va m’abandonner » / « Je ne suis pas prioritaire »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Croyances expansives", p:"Croyances expansives (démo) : « Je peux être en lien sans me perdre » / « Je suis digne d’amour même à distance »"}] }
+          },
+          fides: makeFidesForWound("Abandon", {
+            emotion:"tristesse / peur", besoin:"présence / sécurité",
+            interpretation:"« Je ne compte pas assez »",
+            action:"demande explicite + ancrage interne (auto-soutien) + tolérance au vide"
+          })
+        }
+      },
+
+      /* -----------------------------
+        4) REJET (DÉMO cohérente)
+      ----------------------------- */
+      rejection: {
+        title: "Blessure émotionnelle : rejet",
+        subtitle: "Peur d’être indésirable, évitement, masque fuyant.",
+        tags: ["blessures", "estime", "identité"],
+        diagram: () => woundHubDiagramSVG("Rejet", {
+          emotion:"peur", origine:"non-accueil", masque:"fuyant",
+          apathie:"retrait", addictions:"perfection", valeurs:"acceptation", dogmes:"je suis de trop",
+          limitantes:"on ne veut pas de moi", expansives:"je m’accueille d’abord"
+        }),
+        content: {
+          nodes: {
+            core: {
+              title: "Blessure de rejet (vue d’ensemble)",
+              blocks: [
+                { h:"Éclairage", p:"La blessure de rejet colore la perception : « je dérange » → on se retire, on minimise, ou on cherche à être irréprochable." },
+                { h:"Boucle typique", p:"Anticipation du rejet → retrait / masque → manque de lien → confirmation intérieure." }
+              ]
+            },
+            emotion:{ title:"Émotion", blocks:[{h:"Émotion", p:"Émotion (démo) : peur + honte (d’être indésirable)"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine", p:"Origine (démo) : non-accueil, critiques précoces, comparaisons, moqueries, impression de ne pas avoir sa place"}] },
+            masque:{ title:"Masque", blocks:[{h:"Masque", p:"Masque (démo) : fuyant, distant, auto-suffisant, rationalise pour ne pas sentir"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie", p:"Apathie (démo) : détachement, froid émotionnel, évitement de l’intimité"}] },
+            addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions (démo) : perfectionnisme, performance, contrôle de l’image, sur-mentalisation"}] },
+            valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs (démo) : acceptation, appartenance, respect, authenticité"}] },
+            dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes (démo) : « Je suis de trop » / « Si je suis moi, on me rejette »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Croyances limitantes", p:"Croyances limitantes (démo) : « On ne veut pas de moi » / « Je ne mérite pas »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Croyances expansives", p:"Croyances expansives (démo) : « Je m’accueille d’abord » / « Ma place existe et je peux la prendre »"}] }
+          },
+          fides: makeFidesForWound("Rejet", {
+            emotion:"peur / honte", besoin:"appartenance / sécurité",
+            interpretation:"« Je suis de trop »",
+            action:"micro-exposition (oser) + auto-validation + relation sûre"
+          })
+        }
+      },
+
+      /* -----------------------------
+        5) INJUSTICE (DÉMO cohérente)
+      ----------------------------- */
+      injustice: {
+        title: "Blessure émotionnelle : injustice",
+        subtitle: "Rigidité, exigence, besoin d’équité et de reconnaissance.",
+        tags: ["blessures", "perfection", "équité"],
+        diagram: () => woundHubDiagramSVG("Injustice", {
+          emotion:"colère", origine:"injustice", masque:"rigide",
+          apathie:"dureté", addictions:"performance", valeurs:"justice", dogmes:"il faut être parfait",
+          limitantes:"si je lâche je perds", expansives:"je peux être juste et humain"
+        }),
+        content: {
+          nodes: {
+            core: {
+              title: "Blessure d’injustice (vue d’ensemble)",
+              blocks: [
+                { h:"Éclairage", p:"Quand l’équité semble violée, la rigidité monte : on veut que ce soit « juste », « correct », « mérité »." },
+                { h:"Boucle typique", p:"Exigence → tension → jugement → froideur → isolement → sentiment d’injustice renforcé." }
+              ]
+            },
+            emotion:{ title:"Émotion", blocks:[{h:"Émotion", p:"Émotion (démo) : colère (souvent froide) + frustration"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine", p:"Origine (démo) : règles strictes, comparaisons, favoritisme, sanctions injustes, manque de reconnaissance"}] },
+            masque:{ title:"Masque", blocks:[{h:"Masque", p:"Masque (démo) : rigide, perfectionniste, contrôle, difficulté à montrer la vulnérabilité"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie", p:"Apathie (démo) : distance émotionnelle, dureté, intolérance à l’imperfection"}] },
+            addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions (démo) : performance, travail, sur-contrôle, recherche de résultats / statut"}] },
+            valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs (démo) : justice, mérite, honnêteté, excellence, responsabilité"}] },
+            dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes (démo) : « Il faut être parfait » / « Je dois être irréprochable »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Croyances limitantes", p:"Croyances limitantes (démo) : « Si je lâche, je perds » / « Montrer = faiblesse »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Croyances expansives", p:"Croyances expansives (démo) : « Je peux être juste et humain » / « La vulnérabilité est une force »"}] }
+          },
+          fides: makeFidesForWound("Injustice", {
+            emotion:"colère / frustration", besoin:"équité / reconnaissance",
+            interpretation:"« Je dois être irréprochable »",
+            action:"assouplir standard + exprimer besoin + réparer sans punir"
+          })
+        }
+      },
+
+      /* -----------------------------
+        6) HUMILIATION (DÉMO cohérente)
+      ----------------------------- */
+      humiliation: {
+        title: "Blessure émotionnelle : humiliation",
+        subtitle: "Honte, auto-dévalorisation, masque masochiste (se rabaisser).",
+        tags: ["blessures", "honte", "dignité"],
+        diagram: () => woundHubDiagramSVG("Humiliation", {
+          emotion:"honte", origine:"rabaissement", masque:"masochiste",
+          apathie:"auto-dénigrement", addictions:"auto-sabotage", valeurs:"dignité", dogmes:"je dois me faire petit",
+          limitantes:"je suis ridicule", expansives:"j’ai le droit d’exister"
+        }),
+        content: {
+          nodes: {
+            core: {
+              title: "Blessure d’humiliation (vue d’ensemble)",
+              blocks: [
+                { h:"Éclairage", p:"La honte pousse à se cacher, à se rabaisser ou à sur-compenser. Le corps et l’image deviennent souvent sensibles." },
+                { h:"Boucle typique", p:"Honte → se diminuer / plaisanter sur soi → soulagement → perte d’estime → honte renforcée." }
+              ]
+            },
+            emotion:{ title:"Émotion", blocks:[{h:"Émotion", p:"Émotion (démo) : honte + gêne + peur d’être vu"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine", p:"Origine (démo) : rabaissement, moqueries, critiques sur le corps, exposition publique, interdits humiliants"}] },
+            masque:{ title:"Masque", blocks:[{h:"Masque", p:"Masque (démo) : masochiste, se charge des autres, se punit, minimise ses besoins"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie", p:"Apathie (démo) : auto-dévalorisation, résignation, « je ne mérite pas »"}] },
+            addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions (démo) : auto-sabotage, sur-service, comportements de compensation (ex. nourriture/écran)"}] },
+            valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs (démo) : dignité, respect, pudeur, reconnaissance, compassion"}] },
+            dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes (démo) : « Je dois me faire petit » / « Mes besoins dérangent »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Croyances limitantes", p:"Croyances limitantes (démo) : « Je suis ridicule » / « Si on me voit, on me juge »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Croyances expansives", p:"Croyances expansives (démo) : « J’ai le droit d’exister » / « Je mérite le respect »"}] }
+          },
+          fides: makeFidesForWound("Humiliation", {
+            emotion:"honte / gêne", besoin:"respect / dignité",
+            interpretation:"« Mes besoins dérangent »",
+            action:"poser une limite + se parler avec respect + se montrer par petits pas"
+          })
+        }
+      },
+
+      /* -----------------------------
+        7) EMPATHIE (EXACT fourni)
+      ----------------------------- */
       empathy: {
         title: "Empathie vs apathie",
         subtitle: "Résonance sans fusion, distinctions et freins.",
@@ -623,38 +847,46 @@
             core: {
               title: "Empathie (vue d’ensemble)",
               blocks: [
-                { h: "Message clé", p: "Message clé : l’empathie est naturelle mais voilée" }
+                { h: "Message clé", p: "Message clé : l’empathie est naturelle mais voilée" },
+                { h: "Intuition", p: "L’empathie n’exige pas de se sacrifier : elle exige de rester présent sans se confondre." }
               ]
             },
-            definition: {
-              title: "Définition",
-              blocks: [
-                { h: "Définition", p: "Définition : résonance sans fusion" }
-              ]
-            },
-            differences: {
-              title: "Différences",
-              blocks: [
-                { h: "Différences", p: "Différences : empathie / compassion / sympathie" }
-              ]
-            },
-            freins: {
-              title: "Freins",
-              blocks: [
-                { h: "Freins", p: "Freins : toutes les blessures émotionnelles" }
-              ]
-            }
+            definition: { title:"Définition", blocks:[{ h:"Définition", p:"Définition : résonance sans fusion" }] },
+            differences:{ title:"Différences", blocks:[{ h:"Différences", p:"Différences : empathie / compassion / sympathie" }] },
+            freins:    { title:"Freins", blocks:[{ h:"Freins", p:"Freins : toutes les blessures émotionnelles" }] }
           },
           fides: {
-            // ⚠️ TODO : méthode FIDES non fournie (exact).
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            definition: ["TODO — Points clés FIDES (exact)."],
-            differences: ["TODO — Points clés FIDES (exact)."],
-            freins: ["TODO — Points clés FIDES (exact)."]
+            core: [
+              "F : Ce que l’autre vit (faits observables).",
+              "I : Mon interprétation (ne pas projeter).",
+              "D : Ce que je ressens en miroir (sans fusion).",
+              "E : Reformuler + valider l’émotion.",
+              "S : Aider sans sauver : une action juste."
+            ],
+            definition: [
+              "F : Observer sans conclure.",
+              "I : Distinguer empathie vs fusion.",
+              "D : Nommer la résonance (« je ressens… »).",
+              "E : Présence + écoute.",
+              "S : Retour au calme + cadre."
+            ],
+            differences: [
+              "Empathie : je comprends et je ressens sans me perdre.",
+              "Compassion : je veux soulager sans porter à la place.",
+              "Sympathie : je partage un avis / une émotion (parfois partial)."
+            ],
+            freins: [
+              "Repérer la blessure activée (ex. rejet → retrait).",
+              "Revenir au présent (respiration / ancrage).",
+              "Écouter sans défendre son ego."
+            ]
           }
         }
       },
 
+      /* -----------------------------
+        8) ADDICTIONS (EXACT fourni)
+      ----------------------------- */
       addictions: {
         title: "Addictions (substances, comportementales, invisibles)",
         subtitle: "Fonction émotionnelle : éviter une émotion — l’addiction comme signal.",
@@ -665,135 +897,49 @@
             core: {
               title: "Addictions (vue d’ensemble)",
               blocks: [
-                { h: "Message clé", p: "Message clé : l’addiction n’est pas une faute mais un signal" }
+                { h:"Message clé", p:"Message clé : l’addiction n’est pas une faute mais un signal" },
+                { h:"Lecture", p:"Le comportement sert souvent à éviter (ou anesthésier) une émotion, un vide, une tension." }
               ]
             },
-            definition: {
-              title: "Définition",
-              blocks: [
-                { h: "Définition", p: "Définition + visibles / invisibles" }
-              ]
-            },
-            fonction: {
-              title: "Fonction",
-              blocks: [
-                { h: "Fonction", p: "Fonction : éviter une émotion" }
-              ]
-            }
+            definition:{ title:"Définition", blocks:[
+              { h:"Définition", p:"Définition + visibles / invisibles" },
+              { h:"Exemples", p:"Visibles : substances, jeux d’argent… Invisibles : sur-contrôle, travail, validation, perfection, scrolling." }
+            ]},
+            fonction:{ title:"Fonction", blocks:[
+              { h:"Fonction", p:"Fonction : éviter une émotion" },
+              { h:"Piste", p:"Si je retire le comportement, quelle émotion apparaît ? (peur, colère, tristesse, honte…)" }
+            ]}
           },
           fides: {
-            // ⚠️ TODO : méthode FIDES non fournie (exact).
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            definition: ["TODO — Points clés FIDES (exact)."],
-            fonction: ["TODO — Points clés FIDES (exact)."]
+            core: [
+              `F — ${FIDES_DEMO.F}`,
+              `I — ${FIDES_DEMO.I}`,
+              `D — ${FIDES_DEMO.D}`,
+              `E — ${FIDES_DEMO.E}`,
+              `S — ${FIDES_DEMO.S}`
+            ],
+            definition: [
+              "F : Identifier le comportement (fréquence, contexte).",
+              "I : Repérer l’histoire (« j’en ai besoin pour… »).",
+              "D : Nommer l’émotion évitée.",
+              "E : Choisir une alternative de régulation.",
+              "S : Remplacer par une action alignée."
+            ],
+            fonction: [
+              "Question clé : « Qu’est-ce que j’essaie de ne pas ressentir ? »",
+              "Créer un délai (2–10 min) avant l’acte.",
+              "Ancrage corporel + demande de soutien."
+            ]
           }
         }
       },
 
-      dogmas: {
-        title: "Conditionnements / dogmes",
-        subtitle: "Sources multiples : familial, social, religieux, éducatif, psychologique, auto-dogmes.",
-        tags: ["croyances", "héritage", "reprogrammation"],
-        diagram: () => dogmasDiagramSVG(),
-        content: {
-          nodes: {
-            core: {
-              title: "Conditionnements (vue d’ensemble)",
-              blocks: [
-                { h: "Message", p: "Message : ce ne sont que des croyances héritées" }
-              ]
-            },
-            sources: {
-              title: "Sources",
-              blocks: [
-                { h: "Types", p: "Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes" }
-              ]
-            }
-          },
-          fides: {
-            // ⚠️ TODO : méthode FIDES non fournie (exact).
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            sources: ["TODO — Points clés FIDES (exact)."]
-          }
-        }
-      },
-
-      emotions: {
-        title: "Émotions & familles de sentiments",
-        subtitle: "Noyau : peur, colère, tristesse, joie, dégoût (listes détaillées à coller).",
-        tags: ["émotions", "nuances", "vocabulaire"],
-        diagram: () => emotionsWheelSVG(),
-        content: {
-          nodes: {
-            core: {
-              title: "Familles d’émotions (vue d’ensemble)",
-              blocks: [
-                { h: "Familles", p: "Peur • Colère • Tristesse • Joie • Dégoût" },
-                { h: "Note", p: "⚠️ Les longues listes de sentiments demandées ne sont pas dans ton message. Colle-les dans le JS (TODO) pour affichage complet." }
-              ]
-            },
-            peur: {
-              title: "Peur",
-              blocks: [
-                { h: "Famille", p: "Peur" },
-                { h: "Sentiments (à coller)", p: "TODO — Colle ici la longue liste de sentiments fournie." }
-              ]
-            },
-            colere: {
-              title: "Colère",
-              blocks: [
-                { h: "Famille", p: "Colère" },
-                { h: "Sentiments (à coller)", p: "TODO — Colle ici la longue liste de sentiments fournie." }
-              ]
-            },
-            tristesse: {
-              title: "Tristesse",
-              blocks: [
-                { h: "Famille", p: "Tristesse" },
-                { h: "Sentiments (à coller)", p: "TODO — Colle ici la longue liste de sentiments fournie." }
-              ]
-            },
-            joie: {
-              title: "Joie",
-              blocks: [
-                { h: "Famille", p: "Joie" },
-                { h: "Sentiments (à coller)", p: "TODO — Colle ici la longue liste de sentiments fournie." }
-              ]
-            },
-            degout: {
-              title: "Dégoût",
-              blocks: [
-                { h: "Famille", p: "Dégoût" },
-                { h: "Sentiments (à coller)", p: "TODO — Colle ici la longue liste de sentiments fournie." }
-              ]
-            }
-          },
-          fides: {
-            // ⚠️ TODO : méthode FIDES non fournie (exact).
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            peur: ["TODO — Points clés FIDES (exact)."],
-            colere: ["TODO — Points clés FIDES (exact)."],
-            tristesse: ["TODO — Points clés FIDES (exact)."],
-            joie: ["TODO — Points clés FIDES (exact)."],
-            degout: ["TODO — Points clés FIDES (exact)."]
-          }
-        }
-      },
-
-      /* ============================================================
-        🔥 MODULES MANQUANTS (TEXTES NON FOURNIS DANS TON MESSAGE)
-        Je les prépare en structure, mais je N’INVENTE PAS le contenu.
-        Tu colles tes textes EXACTS dans content.nodes.
-      ============================================================ */
-
-      abandonment: makePlaceholderWoundModule("Blessure émotionnelle : abandon", "abandon"),
-      rejection:  makePlaceholderWoundModule("Blessure émotionnelle : rejet", "rejet"),
-      injustice:  makePlaceholderWoundModule("Blessure émotionnelle : injustice", "injustice"),
-      humiliation:makePlaceholderWoundModule("Blessure émotionnelle : humiliation", "humiliation"),
-
+      /* -----------------------------
+        9) VALEURS (complété démo)
+      ----------------------------- */
       values: {
         title: "Valeurs de vie",
-        subtitle: "Quand mes valeurs sont bafouées → la blessure se réactive (FIDES).",
+        subtitle: "Boussole intérieure : quand une valeur est bafouée → la blessure se réactive.",
         tags: ["alignement", "boussole", "déclencheurs"],
         diagram: () => valuesDiagramSVG(),
         content: {
@@ -801,40 +947,171 @@
             core: {
               title: "Valeurs (vue d’ensemble)",
               blocks: [
-                { h: "Clé FIDES", p: "Clé FIDES : quand mes valeurs sont bafouées → la blessure se réactive" },
-                { h: "Liste (à coller)", p: "TODO — Colle ici la liste selon tes textes (exact)." }
+                { h:"Clé FIDES", p:"Clé FIDES : quand mes valeurs sont bafouées → la blessure se réactive" },
+                { h:"Démo – Liste de valeurs", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille, courage, simplicité, créativité, spiritualité, excellence, paix." },
+                { h:"Utilisation", p:"Une valeur = un besoin profond. Quand elle est violée, l’émotion monte : c’est un signal, pas un défaut." }
               ]
             },
             liste: {
-              title: "Liste de valeurs",
+              title: "Liste de valeurs (démo)",
               blocks: [
-                { h: "Valeurs", p: "TODO — Colle ici la liste selon tes textes (exact)." }
+                { h:"Valeurs (démo)", p:"Liberté • Sécurité • Amour • Respect • Vérité • Loyauté • Justice • Authenticité • Contribution • Croissance • Santé • Famille • Courage • Simplicité • Créativité • Paix" },
+                { h:"Exercice rapide", p:"Choisis 5 valeurs non négociables. Note 1 situation où chacune est respectée et 1 situation où elle est bafouée." }
               ]
             }
           },
           fides: {
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."],
-            liste: ["TODO — Points clés FIDES (exact)."]
+            core: [
+              "F : Quelle valeur vient d’être touchée ?",
+              "I : Quelle histoire j’en fais ?",
+              "D : Quelle émotion apparaît ? Quel besoin derrière ?",
+              "E : Exprimer la valeur + poser une limite / une demande.",
+              "S : Action alignée (même petite) aujourd’hui."
+            ],
+            liste: [
+              "Règle : une valeur doit se voir en action (ex. respect = comment je parle / je m’arrête).",
+              "Alignement : moins de conflits internes, plus de clarté."
+            ]
           }
         }
-      }
+      },
+
+      /* -----------------------------
+        10) CONDITIONNEMENTS / DOGMES (EXACT fourni)
+      ----------------------------- */
+      dogmas: {
+        title: "Conditionnements / dogmes",
+        subtitle: "Sources : familial, social, religieux, éducatif, psychologique, auto-dogmes.",
+        tags: ["croyances", "héritage", "reprogrammation"],
+        diagram: () => dogmasDiagramSVG(),
+        content: {
+          nodes: {
+            core: {
+              title: "Conditionnements (vue d’ensemble)",
+              blocks: [
+                { h:"Message", p:"Message : ce ne sont que des croyances héritées" },
+                { h:"Rappel", p:"Un dogme est une règle internalisée : elle peut protéger… ou limiter." }
+              ]
+            },
+            sources: {
+              title: "Sources",
+              blocks: [
+                { h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes" },
+                { h:"Question", p:"« De qui est cette croyance ? Est-ce qu’elle m’aide aujourd’hui ? »" }
+              ]
+            }
+          },
+          fides: {
+            core: [
+              "F : Situation actuelle.",
+              "I : Dogme activé (phrase intérieure).",
+              "D : Émotion / tension corporelle.",
+              "E : Reformulation plus juste.",
+              "S : Nouveau choix (petite action)."
+            ],
+            sources: [
+              "Repérer l’origine (famille/école…).",
+              "Identifier le « bénéfice caché » (sécurité, appartenance).",
+              "Créer une croyance alternative testable."
+            ]
+          }
+        }
+      },
+
+      /* -----------------------------
+        11) ÉMOTIONS & FAMILLES (EXACT noyau + listes démo longues)
+      ----------------------------- */
+      emotions: {
+        title: "Émotions & familles de sentiments",
+        subtitle: "Noyau : peur, colère, tristesse, joie, dégoût (+ nuances).",
+        tags: ["émotions", "nuances", "vocabulaire"],
+        diagram: () => emotionsWheelSVG(),
+        content: {
+          nodes: {
+            core: {
+              title: "Familles d’émotions (vue d’ensemble)",
+              blocks: [
+                { h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût" },
+                { h:"Démo – But", p:"Plus le vocabulaire émotionnel est précis, plus la régulation est facile : on passe de « ça va pas » à « je suis frustré et inquiet »." }
+              ]
+            },
+            peur: {
+              title: "Peur",
+              blocks: [
+                { h:"Famille", p:"Peur" },
+                { h:"Sentiments (démo)", p:"Inquiétude, anxiété, appréhension, crainte, panique, nervosité, insécurité, hypervigilance, timidité, doute, méfiance, terreur, stress, gêne, tension, anticipation, peur de l’échec, peur du jugement, peur de perdre." },
+                { h:"Besoin fréquent", p:"Sécurité, clarté, soutien, temps." }
+              ]
+            },
+            colere: {
+              title: "Colère",
+              blocks: [
+                { h:"Famille", p:"Colère" },
+                { h:"Sentiments (démo)", p:"Irritation, agacement, frustration, exaspération, rage, colère froide, impatience, indignation, ressentiment, amertume, jalousie, accusation, hostilité, révolte, tension, énervement, envie de contrôler, désir de justice." },
+                { h:"Besoin fréquent", p:"Respect, limite, réparation, reconnaissance." }
+              ]
+            },
+            tristesse: {
+              title: "Tristesse",
+              blocks: [
+                { h:"Famille", p:"Tristesse" },
+                { h:"Sentiments (démo)", p:"Chagrin, peine, mélancolie, nostalgie, découragement, solitude, vide, lassitude, désespoir, abattement, déception, regret, vulnérabilité, fatigue émotionnelle, sentiment de perte, impuissance." },
+                { h:"Besoin fréquent", p:"Réconfort, lien, repos, sens." }
+              ]
+            },
+            joie: {
+              title: "Joie",
+              blocks: [
+                { h:"Famille", p:"Joie" },
+                { h:"Sentiments (démo)", p:"Sérénité, satisfaction, gratitude, enthousiasme, émerveillement, fierté, légèreté, amour, contentement, amusement, confiance, inspiration, motivation, excitation, paix, plénitude, curiosité, optimisme." },
+                { h:"Besoin fréquent", p:"Partage, expression, création, contribution." }
+              ]
+            },
+            degout: {
+              title: "Dégoût",
+              blocks: [
+                { h:"Famille", p:"Dégoût" },
+                { h:"Sentiments (démo)", p:"Répulsion, écœurement, aversion, malaise, rejet, saturation, dédain, mépris, honte (parfois associée), contrariété, intolérance, « trop-plein », besoin de distance, besoin de nettoyer/clarifier." },
+                { h:"Besoin fréquent", p:"Protection, distance, purification, cohérence." }
+              ]
+            }
+          },
+          fides: {
+            core: [
+              "F : Décrire le contexte (sans jugement).",
+              "I : Nommer l’histoire que je me raconte.",
+              "D : Préciser l’émotion (famille + nuance).",
+              "E : L’exprimer / la réguler (respiration, mots, limite).",
+              "S : Choisir une action alignée."
+            ],
+            peur: ["Nommer la peur exacte + identifier le besoin de sécurité/clarité."],
+            colere: ["Trouver la limite violée + formuler une demande/réparation."],
+            tristesse: ["Reconnaître la perte + demander réconfort / repos / sens."],
+            joie: ["Ancrer et partager la joie + agir en cohérence."],
+            degout: ["Identifier ce qui est « trop » + prendre distance / clarifier."]
+          }
+        }
+      },
     };
 
+    /* ============================================================
+      MENU — ordre d'affichage
+    ============================================================ */
     const NAV_ORDER = [
       { label: "Bases", items: ["comfort", "emotions", "empathy"] },
       { label: "Blessures émotionnelles", items: ["betrayal", "abandonment", "rejection", "humiliation", "injustice"] },
       { label: "Mécanismes", items: ["addictions", "values", "dogmas"] }
     ];
 
-    // ------------------------------------------------------------
-    // ÉTAT UI
-    // ------------------------------------------------------------
+    /* ============================================================
+      ÉTAT UI
+    ============================================================ */
     let currentModuleId = "comfort";
     let lockedNodeId = null;
 
-    // ------------------------------------------------------------
-    // INIT
-    // ------------------------------------------------------------
+    /* ============================================================
+      DOM
+    ============================================================ */
     const navList = document.getElementById("navList");
     const diagramHost = document.getElementById("diagramHost");
     const svgMeta = document.getElementById("svgMeta");
@@ -842,6 +1119,7 @@
     const moduleTitle = document.getElementById("moduleTitle");
     const moduleSubtitle = document.getElementById("moduleSubtitle");
     const moduleChips = document.getElementById("moduleChips");
+    const actionsBar = document.getElementById("actionsBar");
 
     const detailTitle = document.getElementById("detailTitle");
     const detailHint = document.getElementById("detailHint");
@@ -852,15 +1130,19 @@
       renderModule(currentModuleId);
       renderDetail(currentModuleId, "core", false);
       setActiveNode("core");
+      setPressedAction("core");
     });
 
+    /* ============================================================
+      INIT
+    ============================================================ */
     buildNav();
     renderModule(currentModuleId);
     renderDetail(currentModuleId, "core", false);
 
-    // ------------------------------------------------------------
-    // NAV
-    // ------------------------------------------------------------
+    /* ============================================================
+      NAV
+    ============================================================ */
     function buildNav(){
       navList.innerHTML = "";
       NAV_ORDER.forEach(group => {
@@ -878,7 +1160,7 @@
           btn.innerHTML = `
             <span class="dot"></span>
             <span>
-              <div style="font-weight:820">${escapeHTML(mod.title)}</div>
+              <div style="font-weight:860">${escapeHTML(mod.title)}</div>
               <small>${escapeHTML(mod.subtitle)}</small>
             </span>
           `;
@@ -890,6 +1172,7 @@
             renderModule(id);
             renderDetail(id, "core", false);
             setActiveNode("core");
+            setPressedAction("core");
           });
           if(id === currentModuleId) btn.setAttribute("aria-current","true");
           navList.appendChild(btn);
@@ -897,12 +1180,16 @@
       });
     }
 
-    // ------------------------------------------------------------
-    // RENDER MODULE (diagram + header)
-    // ------------------------------------------------------------
+    /* ============================================================
+      RENDER MODULE (header + actions + diagram + accent)
+    ============================================================ */
     function renderModule(moduleId){
       const mod = MODULES[moduleId];
 
+      // 1) Couleurs par thème
+      setThemeAccent(moduleId);
+
+      // 2) Header
       moduleTitle.textContent = mod.title;
       moduleSubtitle.textContent = mod.subtitle;
 
@@ -914,10 +1201,13 @@
         moduleChips.appendChild(chip);
       });
 
+      // 3) Meta (info légère)
       svgMeta.innerHTML = "";
+      const nodeCount = Object.keys(mod.content.nodes).length;
       const meta = [
         `Module: ${mod.title}`,
-        `Nœuds: ${Object.keys(mod.content.nodes).length}`
+        `Nœuds: ${nodeCount}`,
+        lockedNodeId ? `Verrouillé: ${lockedNodeId}` : `Verrouillé: non`
       ];
       meta.forEach(m => {
         const p = document.createElement("div");
@@ -926,13 +1216,56 @@
         svgMeta.appendChild(p);
       });
 
+      // 4) Barre de boutons (nœuds cliquables)
+      renderActionsBar(moduleId);
+
+      // 5) Diagramme
       diagramHost.innerHTML = mod.diagram();
       wireDiagramInteractions(moduleId);
     }
 
-    // ------------------------------------------------------------
-    // INTERACTIONS SVG
-    // ------------------------------------------------------------
+    function renderActionsBar(moduleId){
+      const mod = MODULES[moduleId];
+      const nodes = Object.keys(mod.content.nodes);
+
+      // On met "core" en premier
+      nodes.sort((a,b)=> (a==="core" ? -1 : b==="core" ? 1 : a.localeCompare(b)));
+
+      actionsBar.innerHTML = "";
+      nodes.forEach(nodeId => {
+        const label = nodeId === "core" ? "Vue d’ensemble" : (mod.content.nodes[nodeId]?.title || nodeId);
+        const btn = document.createElement("button");
+        btn.className = "actionPill";
+        btn.type = "button";
+        btn.dataset.node = nodeId;
+        btn.setAttribute("aria-pressed", nodeId==="core" ? "true" : "false");
+        btn.innerHTML = `<span class="actionDot"></span><span>${escapeHTML(label)}</span>`;
+
+        btn.addEventListener("click", () => {
+          // Clic = verrouille/déverrouille le nœud
+          lockedNodeId = (lockedNodeId === nodeId) ? null : nodeId;
+          const target = lockedNodeId || "core";
+          setActiveNode(target);
+          renderDetail(moduleId, target, !!lockedNodeId);
+          setPressedAction(target);
+        });
+
+        actionsBar.appendChild(btn);
+      });
+    }
+
+    function setPressedAction(nodeId){
+      actionsBar.querySelectorAll(".actionPill").forEach(b=>{
+        b.setAttribute("aria-pressed", b.dataset.node === nodeId ? "true" : "false");
+      });
+    }
+
+    /* ============================================================
+      INTERACTIONS SVG
+      - Survol : preview (si pas verrouillé)
+      - Clic : verrouille/déverrouille
+      - Clavier : Enter/Espace
+    ============================================================ */
     function wireDiagramInteractions(moduleId){
       const svg = diagramHost.querySelector("svg");
       if(!svg) return;
@@ -944,6 +1277,7 @@
         setActiveNode(nodeId, svg);
         setActiveLinks(nodeId, links);
         renderDetail(moduleId, nodeId, isLocked);
+        setPressedAction(nodeId);
       };
 
       nodes.forEach(n => {
@@ -964,6 +1298,7 @@
           activate(lockedNodeId || "core", !!lockedNodeId);
         });
 
+        // Accessibilité clavier
         n.setAttribute("tabindex","0");
         n.setAttribute("role","button");
         n.setAttribute("aria-label", `Nœud ${nodeId}`);
@@ -991,7 +1326,6 @@
 
     function setActiveLinks(nodeId, links){
       links.forEach(l => l.classList.remove("is-active"));
-      // highlight: all links connected to nodeId
       links.forEach(l => {
         if(l.dataset.from === nodeId || l.dataset.to === nodeId){
           l.classList.add("is-active");
@@ -999,19 +1333,18 @@
       });
     }
 
-    // ------------------------------------------------------------
-    // RENDER DETAIL PANEL (right)
-    // ------------------------------------------------------------
+    /* ============================================================
+      RENDER TEXTE (panneau droite)
+    ============================================================ */
     function renderDetail(moduleId, nodeId, isLocked){
       const mod = MODULES[moduleId];
       const node = mod.content.nodes[nodeId] || mod.content.nodes.core;
+      const fidesPoints = (mod.content.fides && mod.content.fides[nodeId]) ? mod.content.fides[nodeId] : [];
 
       detailTitle.textContent = node.title || "Détail";
       detailHint.textContent = isLocked
-        ? "Nœud verrouillé (clic pour déverrouiller)."
+        ? "Nœud verrouillé (clic sur le nœud ou le bouton pour déverrouiller)."
         : "Survole pour prévisualiser, clique pour verrouiller.";
-
-      const fidesPoints = (mod.content.fides && mod.content.fides[nodeId]) ? mod.content.fides[nodeId] : null;
 
       detailHost.innerHTML = "";
 
@@ -1029,9 +1362,9 @@
 
       // Carte "Points clés FIDES"
       const fides = document.createElement("div");
-      fides.className = "card " + ((!fidesPoints || (fidesPoints[0]||"").startsWith("TODO")) ? "warn" : "");
-      fides.innerHTML = `<h4><span>Points clés FIDES</span><span class="kicker">à compléter si TODO</span></h4>`;
-      if(!fidesPoints){
+      fides.className = "card warn";
+      fides.innerHTML = `<h4><span>Points clés FIDES</span><span class="kicker">méthode (démo)</span></h4>`;
+      if(!fidesPoints.length){
         fides.innerHTML += `<p class="note">Aucun point FIDES défini pour ce nœud.</p>`;
       }else{
         const ul = document.createElement("ul");
@@ -1044,35 +1377,125 @@
       }
       detailHost.appendChild(fides);
 
-      // Carte "Liens rapides" (aide UX)
-      const help = document.createElement("div");
-      help.className = "card";
-      help.innerHTML = `
-        <h4><span>Interaction</span><span class="kicker">UX</span></h4>
+      // Carte "Note démo"
+      const demo = document.createElement("div");
+      demo.className = "card";
+      demo.innerHTML = `
+        <h4><span>Note</span><span class="kicker">qualité</span></h4>
         <p class="note">
-          <span class="accent">Survol</span> : mise à jour du texte et highlight.<br/>
-          <span class="accent">Clic</span> : verrouille le nœud (re-clic = déverrouille).<br/>
-          Bouton <span class="accent">Réinitialiser</span> : revient au cœur du module.
+          Cette version est une <span class="accentText">démo</span> : certains contenus sont complétés de façon cohérente mais restent à valider selon ta source exacte.
         </p>
+        <div class="callout note">
+          Astuce : si tu me fournis tes textes exacts, je remplace tout en “verbatim” sans modifier la structure.
+        </div>
       `;
-      detailHost.appendChild(help);
+      detailHost.appendChild(demo);
     }
 
-    // ------------------------------------------------------------
-    // DIAGRAMS (SVG)
-    // 👉 Modifier / remplacer ici si tu veux un autre style de schéma
-    // ------------------------------------------------------------
+    /* ============================================================
+      OUTILS — Génération automatique FIDES (blessures)
+    ============================================================ */
+    function makeFidesForWound(label, {emotion, besoin, interpretation, action}){
+      const core = [
+        `F : Quel fait concret active la blessure "${label}" ?`,
+        `I : Quelle interprétation apparaît ? Ex. ${interpretation}`,
+        `D : Émotion : ${emotion} → Besoin : ${besoin}`,
+        `E : Exprimer : « Quand …, je ressens …, j’ai besoin de … »`,
+        `S : Action : ${action}`
+      ];
+      // On décline par nœud (simple et pédagogique)
+      return {
+        core,
+        emotion: [
+          "F : Identifier ce qui a déclenché l’émotion.",
+          "I : Séparer émotion et histoire.",
+          `D : Nommer précisément : ${emotion}.`,
+          "E : Réguler (respiration, ancrage, pause).",
+          "S : Revenir au présent."
+        ],
+        origine: [
+          "F : Repérer l’écho passé/présent.",
+          "I : « Ça ressemble à… » (sans conclure).",
+          "D : Accueillir la mémoire émotionnelle.",
+          "E : Mettre des mots (journal, dialogue).",
+          "S : Choisir une réponse adulte."
+        ],
+        masque: [
+          "F : Observer le comportement automatique.",
+          "I : À quoi il sert (se protéger).",
+          "D : Quel besoin derrière ?",
+          "E : Tester un comportement alternatif.",
+          "S : Garder ce qui marche."
+        ],
+        apathie: [
+          "F : Repérer l’engourdissement / retrait.",
+          "I : Voir la stratégie de protection.",
+          "D : Recontacter une émotion sûre (douce).",
+          "E : Micro-connexion (une phrase vraie).",
+          "S : Revenir à la relation."
+        ],
+        addictions: [
+          "F : Quel comportement de compensation apparaît ?",
+          "I : « J’en ai besoin pour ne pas sentir… »",
+          "D : Identifier l’émotion évitée.",
+          "E : Choisir une alternative (ancrage / demande).",
+          "S : Remplacer petit à petit."
+        ],
+        valeurs: [
+          "F : Quelle valeur est touchée ?",
+          "I : Quelle règle interne l’accompagne ?",
+          "D : Émotion = signal de valeur.",
+          "E : Exprimer la valeur + une demande.",
+          "S : Action alignée."
+        ],
+        dogmes: [
+          "F : Écouter la phrase automatique.",
+          `I : Dogme : ${interpretation}`,
+          "D : Identifier la peur derrière.",
+          "E : Reformuler en croyance testable.",
+          "S : Expérimenter."
+        ],
+        limitantes: [
+          "F : Écrire la croyance.",
+          "I : Chercher la preuve inverse (réalité).",
+          "D : Accueillir l’émotion.",
+          "E : Remplacer par une phrase plus vraie.",
+          "S : Petit acte cohérent."
+        ],
+        expansives: [
+          "F : Choisir une croyance aidante.",
+          "I : La rendre concrète (comportement).",
+          "D : Ressentir l’ouverture.",
+          "E : L’exprimer clairement.",
+          "S : Répéter jusqu’à stabilisation."
+        ],
+      };
+    }
+
+    /* ============================================================
+      HELPERS — sécurité HTML
+    ============================================================ */
+    function escapeHTML(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+    function formatParagraph(p){ return `<p>${escapeHTML(p)}</p>`; }
+    function cssEscape(s){ return String(s).replace(/"/g, '\\"'); }
+
+    /* ============================================================
+      DIAGRAMS (SVG)
+      ------------------------------------------------------------
+      ✅ Modifie ici si tu veux un autre design
+      ✅ Tu peux aussi ajouter Mermaid.js, mais ici on reste 100% SVG
+    ============================================================ */
+
     function comfortDiagramSVG(){
-      // Carte en chaîne (4 zones) + core
       return `
       <svg viewBox="0 0 1100 560" role="img" aria-label="Zone de confort à expansion">
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1">
-            <stop offset="0" stop-color="rgba(138,92,255,0.70)"></stop>
-            <stop offset="1" stop-color="rgba(45,226,230,0.55)"></stop>
-          </linearGradient>
-        </defs>
-
         <path class="link" data-from="core" data-to="confort" d="M 550 260 C 450 210, 330 210, 240 240"></path>
         <path class="link" data-from="confort" data-to="peur" d="M 240 240 C 330 240, 370 240, 420 240"></path>
         <path class="link" data-from="peur" data-to="apprentissage" d="M 420 240 C 540 240, 560 240, 680 240"></path>
@@ -1087,13 +1510,13 @@
         <g class="node" data-node="confort" data-role="leaf">
           <circle cx="240" cy="240" r="64"></circle>
           <text x="240" y="242" text-anchor="middle">Confort</text>
-          <text class="sub" x="240" y="268" text-anchor="middle">sécurité illusoire</text>
+          <text class="sub" x="240" y="268" text-anchor="middle">éviter</text>
         </g>
 
         <g class="node" data-node="peur" data-role="leaf">
           <circle cx="420" cy="240" r="64"></circle>
           <text x="420" y="242" text-anchor="middle">Peur</text>
-          <text class="sub" x="420" y="268" text-anchor="middle">doutes / jugements</text>
+          <text class="sub" x="420" y="268" text-anchor="middle">doutes</text>
         </g>
 
         <g class="node" data-node="apprentissage" data-role="leaf">
@@ -1108,24 +1531,24 @@
           <text class="sub" x="960" y="268" text-anchor="middle">alignement</text>
         </g>
 
-        <text x="550" y="512" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="14" font-weight="700">
+        <text x="550" y="512" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="14" font-weight="780">
           « Pour avancer, il faut traverser la peur. »
         </text>
       </svg>`;
     }
 
-    function betrayalDiagramSVG(){
-      // Hub & spokes (core + 9 branches)
+    /* Hub générique pour blessures (réutilisable) */
+    function woundHubDiagramSVG(title, subs){
       const items = [
-        { id:"emotion", label:"Émotion", sub:"surprise", x: 200, y: 170 },
-        { id:"origine", label:"Origine", sub:"promesse brisée", x: 420, y: 110 },
-        { id:"masque", label:"Masque", sub:"contrôlant", x: 680, y: 110 },
-        { id:"apathie", label:"Apathie", sub:"méfiance", x: 900, y: 170 },
-        { id:"addictions", label:"Addictions", sub:"pouvoir", x: 920, y: 320 },
-        { id:"valeurs", label:"Valeurs", sub:"loyauté", x: 760, y: 430 },
-        { id:"dogmes", label:"Dogmes", sub:"méfiance", x: 550, y: 460 },
-        { id:"limitantes", label:"Limitantes", sub:"ils vont trahir", x: 340, y: 430 },
-        { id:"expansives", label:"Expansives", sub:"bénéfice du doute", x: 180, y: 320 }
+        { id:"emotion", label:"Émotion", sub:subs.emotion, x: 200, y: 170 },
+        { id:"origine", label:"Origine", sub:subs.origine, x: 420, y: 110 },
+        { id:"masque", label:"Masque", sub:subs.masque, x: 680, y: 110 },
+        { id:"apathie", label:"Apathie", sub:subs.apathie, x: 900, y: 170 },
+        { id:"addictions", label:"Addictions", sub:subs.addictions, x: 920, y: 320 },
+        { id:"valeurs", label:"Valeurs", sub:subs.valeurs, x: 760, y: 430 },
+        { id:"dogmes", label:"Dogmes", sub:subs.dogmes, x: 550, y: 460 },
+        { id:"limitantes", label:"Limitantes", sub:subs.limitantes, x: 340, y: 430 },
+        { id:"expansives", label:"Expansives", sub:subs.expansives, x: 180, y: 320 }
       ];
 
       const links = items.map(it => `<path class="link" data-from="core" data-to="${it.id}"
@@ -1135,20 +1558,20 @@
         <g class="node" data-node="${it.id}" data-role="leaf">
           <circle cx="${it.x}" cy="${it.y}" r="62"></circle>
           <text x="${it.x}" y="${it.y+2}" text-anchor="middle">${it.label}</text>
-          <text class="sub" x="${it.x}" y="${it.y+28}" text-anchor="middle">${it.sub}</text>
+          <text class="sub" x="${it.x}" y="${it.y+28}" text-anchor="middle">${escapeHTML(it.sub)}</text>
         </g>
       `).join("");
 
       return `
-      <svg viewBox="0 0 1100 560" role="img" aria-label="Blessure de trahison">
+      <svg viewBox="0 0 1100 560" role="img" aria-label="Blessure ${escapeHTML(title)}">
         ${links}
         <g class="node" data-node="core" data-role="core">
           <circle cx="550" cy="270" r="78"></circle>
-          <text x="550" y="270" text-anchor="middle">Trahison</text>
+          <text x="550" y="270" text-anchor="middle">${escapeHTML(title)}</text>
           <text class="sub" x="550" y="296" text-anchor="middle">mécanismes</text>
         </g>
         ${nodes}
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="720">
           Explore : origine → masque → apathie → addictions → valeurs → dogmes → croyances
         </text>
       </svg>`;
@@ -1176,7 +1599,7 @@
         <g class="node" data-node="differences" data-role="leaf">
           <circle cx="550" cy="110" r="66"></circle>
           <text x="550" y="110" text-anchor="middle">Différences</text>
-          <text class="sub" x="550" y="136" text-anchor="middle">empathie/compassion</text>
+          <text class="sub" x="550" y="136" text-anchor="middle">3 postures</text>
         </g>
 
         <g class="node" data-node="freins" data-role="leaf">
@@ -1185,7 +1608,7 @@
           <text class="sub" x="830" y="266" text-anchor="middle">blessures</text>
         </g>
 
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="720">
           Message clé : l’empathie est naturelle mais voilée
         </text>
       </svg>`;
@@ -1206,16 +1629,16 @@
         <g class="node" data-node="definition" data-role="leaf">
           <circle cx="280" cy="260" r="70"></circle>
           <text x="280" y="258" text-anchor="middle">Définition</text>
-          <text class="sub" x="280" y="284" text-anchor="middle">visibles / invisibles</text>
+          <text class="sub" x="280" y="284" text-anchor="middle">visible/invisible</text>
         </g>
 
         <g class="node" data-node="fonction" data-role="leaf">
           <circle cx="830" cy="260" r="70"></circle>
           <text x="830" y="258" text-anchor="middle">Fonction</text>
-          <text class="sub" x="830" y="284" text-anchor="middle">éviter une émotion</text>
+          <text class="sub" x="830" y="284" text-anchor="middle">éviter</text>
         </g>
 
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="720">
           Message clé : l’addiction n’est pas une faute mais un signal
         </text>
       </svg>`;
@@ -1235,17 +1658,16 @@
         <g class="node" data-node="sources" data-role="leaf">
           <circle cx="550" cy="110" r="78"></circle>
           <text x="550" y="108" text-anchor="middle">Sources</text>
-          <text class="sub" x="550" y="134" text-anchor="middle">familial / social / etc.</text>
+          <text class="sub" x="550" y="134" text-anchor="middle">famille/société</text>
         </g>
 
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="720">
           Message : ce ne sont que des croyances héritées
         </text>
       </svg>`;
     }
 
     function emotionsWheelSVG(){
-      // Roue simple (core + 5 familles)
       const points = [
         { id:"peur", label:"Peur", x: 550, y: 110 },
         { id:"colere", label:"Colère", x: 860, y: 230 },
@@ -1261,7 +1683,7 @@
         <g class="node" data-node="${p.id}" data-role="leaf">
           <circle cx="${p.x}" cy="${p.y}" r="72"></circle>
           <text x="${p.x}" y="${p.y+2}" text-anchor="middle">${p.label}</text>
-          <text class="sub" x="${p.x}" y="${p.y+28}" text-anchor="middle">sentiments</text>
+          <text class="sub" x="${p.x}" y="${p.y+28}" text-anchor="middle">nuances</text>
         </g>
       `).join("");
 
@@ -1274,7 +1696,7 @@
           <text class="sub" x="550" y="296" text-anchor="middle">familles</text>
         </g>
         ${nodes}
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="720">
           Noyau : peur • colère • tristesse • joie • dégoût
         </text>
       </svg>`;
@@ -1294,117 +1716,13 @@
         <g class="node" data-node="liste" data-role="leaf">
           <circle cx="550" cy="110" r="78"></circle>
           <text x="550" y="108" text-anchor="middle">Liste</text>
-          <text class="sub" x="550" y="134" text-anchor="middle">à coller</text>
+          <text class="sub" x="550" y="134" text-anchor="middle">priorités</text>
         </g>
 
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
-          Clé FIDES : quand mes valeurs sont bafouées → la blessure se réactive
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="720">
+          Quand une valeur est bafouée → émotion → blessure peut se réactiver
         </text>
       </svg>`;
-    }
-
-    // ------------------------------------------------------------
-    // PLACEHOLDERS (blessures non fournies)
-    // ------------------------------------------------------------
-    function makePlaceholderWoundModule(title, key){
-      const id = key;
-      return {
-        title,
-        subtitle: "Structure prête — colle le texte exact (origine, masque, apathie, addictions, valeurs, dogmes, croyances...).",
-        tags: ["blessures", "TODO contenu exact"],
-        diagram: () => placeholderWoundDiagramSVG(key),
-        content: {
-          nodes: {
-            core: {
-              title: `${title} (à compléter)`,
-              blocks: [
-                { h: "TODO", p: "Tu as indiqué « … même logique, avec tout ton texte fourni », mais ce texte n’est pas dans ton message. Colle le contenu exact dans MODULES." }
-              ]
-            },
-            emotion: { title:"Émotion", blocks:[{h:"TODO", p:"Colle ici le texte exact (émotion)."}] },
-            origine: { title:"Origine", blocks:[{h:"TODO", p:"Colle ici le texte exact (origine)."}] },
-            masque: { title:"Masque", blocks:[{h:"TODO", p:"Colle ici le texte exact (masque)."}] },
-            apathie: { title:"Apathie", blocks:[{h:"TODO", p:"Colle ici le texte exact (apathie)."}] },
-            addictions: { title:"Addictions", blocks:[{h:"TODO", p:"Colle ici le texte exact (addictions)."}] },
-            valeurs: { title:"Valeurs", blocks:[{h:"TODO", p:"Colle ici le texte exact (valeurs)."}] },
-            dogmes: { title:"Dogmes", blocks:[{h:"TODO", p:"Colle ici le texte exact (dogmes)."}] },
-            limitantes: { title:"Croyances limitantes", blocks:[{h:"TODO", p:"Colle ici le texte exact (croyances limitantes)."}] },
-            expansives: { title:"Croyances expansives", blocks:[{h:"TODO", p:"Colle ici le texte exact (croyances expansives)."}] }
-          },
-          fides: {
-            core: ["TODO — Colle ici les points clés FIDES (contenu exact)."]
-          }
-        }
-      };
-    }
-
-    function placeholderWoundDiagramSVG(key){
-      // Reprend le hub & spokes
-      const nodes = [
-        ["emotion","Émotion"],
-        ["origine","Origine"],
-        ["masque","Masque"],
-        ["apathie","Apathie"],
-        ["addictions","Addictions"],
-        ["valeurs","Valeurs"],
-        ["dogmes","Dogmes"],
-        ["limitantes","Limitantes"],
-        ["expansives","Expansives"]
-      ];
-
-      const coords = [
-        [220,170],[410,110],[690,110],[880,170],[920,320],[760,430],[550,460],[340,430],[180,320]
-      ];
-
-      const links = nodes.map((n,i)=>`
-        <path class="link" data-from="core" data-to="${n[0]}"
-          d="M 550 270 C ${(550+coords[i][0])/2} ${(270+coords[i][1])/2 - 40},
-             ${(550+coords[i][0])/2} ${(270+coords[i][1])/2 + 40},
-             ${coords[i][0]} ${coords[i][1]}"></path>`).join("");
-
-      const nodeSvgs = nodes.map((n,i)=>`
-        <g class="node" data-node="${n[0]}" data-role="leaf">
-          <circle cx="${coords[i][0]}" cy="${coords[i][1]}" r="62"></circle>
-          <text x="${coords[i][0]}" y="${coords[i][1]+2}" text-anchor="middle">${n[1]}</text>
-          <text class="sub" x="${coords[i][0]}" y="${coords[i][1]+28}" text-anchor="middle">TODO</text>
-        </g>`).join("");
-
-      return `
-      <svg viewBox="0 0 1100 560" role="img" aria-label="Blessure ${key} (placeholder)">
-        ${links}
-        <g class="node" data-node="core" data-role="core">
-          <circle cx="550" cy="270" r="78"></circle>
-          <text x="550" y="270" text-anchor="middle">${escapeHTML(key)}</text>
-          <text class="sub" x="550" y="296" text-anchor="middle">à compléter</text>
-        </g>
-        ${nodeSvgs}
-        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.62)" font-size="13" font-weight="650">
-          Colle le contenu exact dans MODULES.${key}.content.nodes
-        </text>
-      </svg>`;
-    }
-
-    // ------------------------------------------------------------
-    // HELPERS
-    // ------------------------------------------------------------
-    function escapeHTML(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    function formatParagraph(p){
-      // autorise les guillemets et conserve le texte tel quel
-      // (pas de markdown ici pour rester simple et robuste)
-      return `<p>${escapeHTML(p)}</p>`;
-    }
-
-    function cssEscape(s){
-      // escape minimal
-      return String(s).replace(/"/g, '\\"');
     }
   </script>
 </body>
