@@ -9,8 +9,8 @@
     /* ============================================================
       DESIGN SYSTEM — Dark + Glass + Accent dynamique
       ------------------------------------------------------------
-      ✅ Change les couleurs globales ici
       ✅ Les accents par thème sont pilotés par JS (setThemeAccent)
+      ✅ Zoom diagramme = variable CSS --diagramZoom (contrôlé en JS)
     ============================================================ */
     :root{
       --bg0:#070913;
@@ -23,7 +23,6 @@
       --muted: rgba(255,255,255,0.68);
       --muted2: rgba(255,255,255,0.55);
 
-      /* Accent (remplacé par thème) */
       --accent: #2de2e6;
       --accent2:#8a5cff;
 
@@ -31,7 +30,6 @@
       --radius: 20px;
       --radius2: 26px;
 
-      /* Zoom diagramme (contrôlé en JS) */
       --diagramZoom: 1;
     }
 
@@ -50,21 +48,45 @@
     }
 
     /* ============================================================
-      LAYOUT — 2 MODES :
-      - mode-home   : 3 colonnes (menu thèmes + contenu + panneau)
-      - mode-module : focus (diagramme + panneau), menu caché
+      SCROLLBARS — intégrées au design (Chrome/Edge/Safari + Firefox)
+    ============================================================ */
+    *{
+      scrollbar-width: thin; /* Firefox */
+      scrollbar-color: color-mix(in srgb, var(--accent) 55%, rgba(255,255,255,0.25))
+                      rgba(0,0,0,0.25);
+    }
+    ::-webkit-scrollbar{ width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track{
+      background: rgba(0,0,0,0.22);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb{
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--accent2) 55%, rgba(255,255,255,0.15)),
+        color-mix(in srgb, var(--accent) 55%, rgba(255,255,255,0.15))
+      );
+      border: 2px solid rgba(0,0,0,0.25);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--accent2) 70%, rgba(255,255,255,0.18)),
+        color-mix(in srgb, var(--accent) 70%, rgba(255,255,255,0.18))
+      );
+    }
+
+    /* ============================================================
+      LAYOUT — 2 modes
+      - mode-home   : accueil catégories + cartes thèmes (léger)
+      - mode-module : focus module (diagramme + aside)
     ============================================================ */
     .app{
       height: 100%;
       display: grid;
-      grid-template-columns: 320px 1fr 420px;
+      grid-template-columns: 1fr 420px;
       gap: 14px;
       padding: 14px;
     }
-    body.mode-module .app{
-      grid-template-columns: 1fr 420px;
-    }
-
     .panel{
       background: var(--glass);
       border: 1px solid var(--stroke);
@@ -76,98 +98,15 @@
     }
 
     /* ============================================================
-      NAV (thèmes) — visible uniquement en HOME
-    ============================================================ */
-    .nav{ display:flex; flex-direction:column; }
-    body.mode-module .nav{ display:none; }
-
-    .nav__header{
-      padding: 18px 18px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-    }
-    .brand{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-    }
-    .brand h1{ margin:0; font-size: 16px; font-weight: 860; }
-    .badge{
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.12);
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .nav__sub{
-      margin-top: 8px;
-      font-size: 12.5px;
-      color: var(--muted2);
-      line-height: 1.35;
-    }
-
-    .nav__list{ padding: 12px; overflow:auto; }
-    .nav__section{
-      margin: 10px 0 6px;
-      padding: 0 8px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      color: rgba(255,255,255,0.50);
-    }
-
-    .nav__item{
-      width:100%;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 10px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      text-align:left;
-      transition: transform .12s ease, background .18s ease, border-color .18s ease;
-    }
-    .nav__item:hover{
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.08);
-      transform: translateY(-1px);
-    }
-    .nav__item[aria-current="true"]{
-      background: linear-gradient(90deg,
-        color-mix(in srgb, var(--accent2) 24%, transparent),
-        color-mix(in srgb, var(--accent) 10%, transparent)
-      );
-      border-color: color-mix(in srgb, var(--accent2) 52%, transparent);
-    }
-    .dot{
-      width:10px; height:10px; border-radius:99px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent2) 18%, transparent);
-      flex:0 0 auto;
-    }
-    .nav__item small{
-      display:block;
-      color: var(--muted2);
-      font-size: 12px;
-      margin-top: 2px;
-      line-height: 1.2;
-    }
-
-    /* ============================================================
-      MAIN — contient 2 vues :
-      - homeView   : grille de cartes thèmes
-      - moduleView : diagramme + nœuds + zoom
+      MAIN
     ============================================================ */
     .main{ display:flex; flex-direction:column; overflow:hidden; }
-
     .main__header{
       padding: 18px 18px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
       display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
     }
-    .titleblock h2{ margin:0; font-size: 18px; font-weight: 880; }
+    .titleblock h2{ margin:0; font-size: 18px; font-weight: 900; letter-spacing:.2px; }
     .titleblock p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
 
     .chiprow{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
@@ -182,7 +121,11 @@
     }
     .chip strong{ color: var(--accent); font-weight: 900; }
 
-    /* Topbar module : retour + select + zoom */
+    .canvas{ padding: 14px; height: 100%; overflow:auto; }
+
+    /* ============================================================
+      TOPBAR (module) — retour + select + zoom + progression
+    ============================================================ */
     .topbar{
       padding: 10px 18px;
       display:flex;
@@ -192,8 +135,9 @@
       border-bottom: 1px solid rgba(255,255,255,0.10);
       background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
     }
-    .topbar__left{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .topbar__right{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .topbar__left, .topbar__right{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
 
     .btn{
       border: 1px solid rgba(255,255,255,0.14);
@@ -203,7 +147,7 @@
       padding: 9px 10px;
       cursor:pointer;
       transition: background .18s ease, transform .12s ease, border-color .18s ease;
-      font-weight: 760;
+      font-weight: 780;
       font-size: 12.5px;
     }
     .btn:hover{
@@ -218,6 +162,16 @@
         color-mix(in srgb, var(--accent) 10%, rgba(0,0,0,0.18))
       );
     }
+    .progressPill{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.14);
+      color: rgba(255,255,255,0.82);
+      white-space: nowrap;
+    }
+    .progressPill strong{ color: var(--accent); font-weight: 900; }
 
     select{
       border: 1px solid rgba(255,255,255,0.14);
@@ -225,12 +179,122 @@
       color: rgba(255,255,255,0.88);
       border-radius: 14px;
       padding: 9px 10px;
-      font-weight: 720;
+      font-weight: 740;
       font-size: 12.5px;
       outline: none;
     }
 
-    /* Barre nœuds (dans module) */
+    /* ============================================================
+      HOME — catégories + cartes thèmes (moins chargé)
+    ============================================================ */
+    .homeTop{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .categoryRow{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .categoryBtn{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.14);
+      color: rgba(255,255,255,0.88);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 820;
+      cursor:pointer;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .categoryBtn:hover{
+      background: rgba(255,255,255,0.06);
+      border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.14));
+      transform: translateY(-1px);
+    }
+    .categoryBtn[aria-pressed="true"]{
+      background: color-mix(in srgb, var(--accent2) 18%, rgba(0,0,0,0.14));
+      border-color: color-mix(in srgb, var(--accent2) 50%, rgba(255,255,255,0.14));
+    }
+    .categoryDot{
+      width:8px; height:8px; border-radius:99px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+
+    .homeGrid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .themeCard{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.14);
+      border-radius: 18px;
+      padding: 14px;
+      cursor:pointer;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease;
+      position: relative;
+      overflow:hidden;
+      min-height: 92px;
+    }
+    .themeCard:hover{
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12));
+      background: rgba(255,255,255,0.05);
+    }
+    .themeCard h3{
+      margin:0;
+      font-size: 14px;
+      font-weight: 920;
+      line-height: 1.25;
+    }
+    .themeCard p{
+      margin:6px 0 0;
+      color: rgba(255,255,255,0.70);
+      font-size: 12.5px;
+      line-height:1.35;
+    }
+    .themeCard .mini{
+      margin-top:10px;
+      display:flex; gap:8px; flex-wrap:wrap;
+      color: rgba(255,255,255,0.70);
+      font-size: 12px;
+    }
+    .tag{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      padding: 5px 9px;
+      border-radius: 999px;
+    }
+
+    /* Thèmes visités */
+    .themeCard.is-visited{
+      border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.14));
+    }
+    .themeCard.is-visited::after{
+      content: "✓ vu";
+      position:absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 11px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.88);
+      background: color-mix(in srgb, var(--accent) 20%, rgba(0,0,0,0.25));
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 5px 8px;
+      border-radius: 999px;
+    }
+
+    /* ============================================================
+      MODULE — nœuds cliquables (pills)
+    ============================================================ */
     .actions{
       padding: 10px 18px 12px;
       display:flex;
@@ -245,7 +309,7 @@
       border-radius: 999px;
       padding: 7px 10px;
       font-size: 12px;
-      font-weight: 760;
+      font-weight: 820;
       cursor: pointer;
       transition: transform .12s ease, background .18s ease, border-color .18s ease;
       display:flex; align-items:center; gap:8px;
@@ -264,37 +328,39 @@
       background: linear-gradient(135deg, var(--accent2), var(--accent));
       box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
     }
-
-    .canvas{ padding: 14px; height: 100%; overflow:auto; }
+    .actionCheck{
+      margin-left: 4px;
+      font-size: 12px;
+      opacity: 0.92;
+      color: rgba(255,255,255,0.85);
+    }
+    .actionPill.is-visited{
+      border-color: color-mix(in srgb, var(--accent) 45%, rgba(255,255,255,0.14));
+      background: color-mix(in srgb, var(--accent) 10%, rgba(0,0,0,0.14));
+    }
 
     /* ============================================================
-      DIAGRAM WRAPPER — clé pour le responsive :
-      - on évite l’écrasement : le SVG a une largeur min.
-      - si écran petit : on SCROLL dans la zone (c’est voulu).
-      - zoom : CSS variable --diagramZoom
+      DIAGRAM — anti-écrasement + zoom + scroll
     ============================================================ */
     .svg-wrap{
       border-radius: var(--radius2);
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.12);
-      overflow:auto; /* <-- IMPORTANT: pas d’écrasement, on scroll */
+      overflow:auto; /* ✅ scroll si besoin plutôt que compresser */
       position: relative;
     }
     .svg-stage{
       padding: 10px;
-      width: max-content; /* <-- le contenu peut dépasser */
+      width: max-content;
       transform: scale(var(--diagramZoom));
       transform-origin: top left;
     }
-
-    /* Le SVG ne doit pas devenir minuscule */
     svg{
-      width: 1100px;           /* base lisible */
+      width: 1100px;      /* taille native lisible */
       max-width: 1100px;
       height: auto;
       display:block;
     }
-
     .diagram-caption{
       padding: 10px 12px 12px;
       font-size: clamp(13px, 1.2vw, 15px);
@@ -304,9 +370,7 @@
     }
     .diagram-caption strong{ color: var(--accent); font-weight: 900; }
 
-    /* ============================================================
-      SVG INTERACTIF — nœuds plus clairs + hover
-    ============================================================ */
+    /* SVG nodes */
     .link{
       stroke: rgba(255,255,255,0.18);
       stroke-width: 2;
@@ -337,10 +401,9 @@
     .node .sub{
       font-size: 12px;
       fill: rgba(255,255,255,0.76);
-      font-weight: 750;
+      font-weight: 760;
       stroke-width: 0;
     }
-
     .node[data-role="core"] circle{
       fill: color-mix(in srgb, var(--accent2) 16%, rgba(255,255,255,0.06));
       stroke: color-mix(in srgb, var(--accent2) 60%, rgba(255,255,255,0.22));
@@ -351,16 +414,15 @@
       stroke: color-mix(in srgb, var(--accent) 52%, rgba(255,255,255,0.22));
       filter: drop-shadow(0px 6px 16px color-mix(in srgb, var(--accent) 16%, transparent));
     }
-
     .node:hover circle,
     .node:focus-visible circle{
-      stroke: rgba(255,255,255,0.92);
+      stroke: rgba(255,255,255,0.96);
       fill: rgba(255,255,255,0.10);
       transform: scale(1.06);
       filter: drop-shadow(0px 12px 24px color-mix(in srgb, var(--accent) 28%, transparent));
     }
     .node.is-active circle{
-      stroke: rgba(255,255,255,0.96);
+      stroke: rgba(255,255,255,0.98);
       fill: rgba(255,255,255,0.12);
       transform: scale(1.07);
       filter: drop-shadow(0px 14px 28px color-mix(in srgb, var(--accent) 32%, transparent));
@@ -371,8 +433,15 @@
       opacity: 1;
     }
 
+    /* Nœuds visités (SVG) */
+    .node.is-visited circle{
+      stroke: color-mix(in srgb, var(--accent) 75%, rgba(255,255,255,0.22));
+      fill: color-mix(in srgb, var(--accent) 14%, rgba(255,255,255,0.06));
+      opacity: 0.96;
+    }
+
     /* ============================================================
-      ASIDE (panneau droite) — texte
+      ASIDE — texte
     ============================================================ */
     .aside{ display:flex; flex-direction:column; overflow:hidden; }
     .aside__header{
@@ -418,63 +487,32 @@
     }
     .card ul{ margin: 8px 0 0 18px; }
     .note{ font-size: 12px; color: rgba(255,255,255,0.62); line-height: 1.45; }
+    .callout{
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+      margin: 10px 0;
+      color: rgba(255,255,255,0.86);
+    }
 
     /* ============================================================
-      HOME VIEW — cartes de thèmes (moins chargé)
+      UTILITAIRES
     ============================================================ */
-    .homeGrid{
-      padding: 16px;
-      display:grid;
-      gap: 12px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .themeCard{
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.14);
-      border-radius: 18px;
-      padding: 14px;
-      cursor:pointer;
-      transition: transform .12s ease, background .18s ease, border-color .18s ease;
-      position: relative;
-      overflow:hidden;
-    }
-    .themeCard:hover{
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12));
-      background: rgba(255,255,255,0.05);
-    }
-    .themeCard h3{ margin:0; font-size: 14px; font-weight: 920; }
-    .themeCard p{ margin:6px 0 0; color: rgba(255,255,255,0.70); font-size: 12.5px; line-height:1.35; }
-    .themeCard .mini{
-      margin-top:10px;
-      display:flex; gap:8px; flex-wrap:wrap;
-      color: rgba(255,255,255,0.70);
-      font-size: 12px;
-    }
-    .tag{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      padding: 5px 9px;
-      border-radius: 999px;
-    }
-
     .hidden{ display:none !important; }
 
     /* ============================================================
-      RESPONSIVE — sur petits écrans : tout en colonne
-      + SVG width réduite mais toujours scrollable
+      RESPONSIVE — on force “1 colonne” plus tôt (moins chargé)
+      ------------------------------------------------------------
+      Tu avais dit : "en 110% de zoom je n'ai plus qu'une colonne c'est top"
+      -> on déclenche cette UX naturellement sur plus de tailles.
     ============================================================ */
-    @media (max-width: 1180px){
+    @media (max-width: 1500px){
       body{ overflow:auto; }
       .app{
         height:auto;
         min-height:100%;
         grid-template-columns: 1fr;
       }
-      body.mode-module .app{
-        grid-template-columns: 1fr;
-      }
-      svg{ width: 980px; } /* encore lisible, scroll horizontal */
+      svg{ width: 980px; }
       .homeGrid{ grid-template-columns: 1fr; }
     }
     @media (max-width: 520px){
@@ -486,45 +524,25 @@
 <body class="mode-home">
   <div class="app">
 
-    <!-- ==========================================================
-      NAV: visible seulement en mode-home
-      (liste compacte des thèmes)
-    =========================================================== -->
-    <aside class="panel nav" aria-label="Menu">
-      <div class="nav__header">
-        <div class="brand">
-          <h1>Support de formation</h1>
-          <span class="badge">Accueil → Module Focus</span>
-        </div>
-        <div class="nav__sub">
-          Choisis un thème pour <strong style="color:var(--accent)">entrer</strong> dans le module.
-        </div>
-      </div>
-
-      <div class="nav__list" id="navList"></div>
-    </aside>
-
-    <!-- ==========================================================
-      MAIN
-      - HOME VIEW : cartes thèmes
-      - MODULE VIEW : diagramme focus
-    =========================================================== -->
+    <!-- ================================
+      MAIN (Accueil + Module)
+    ================================= -->
     <main class="panel main" aria-label="Contenu">
       <div class="main__header">
         <div class="titleblock">
           <h2 id="mainTitle">Accueil</h2>
-          <p id="mainSubtitle">Sélectionne un thème : l’interface bascule en mode focus (moins chargé).</p>
+          <p id="mainSubtitle">Choisis une catégorie, puis un thème. Ensuite tu es en mode focus (moins chargé).</p>
           <div class="chiprow" id="mainChips"></div>
         </div>
-
-        <div class="chip" title="Principe UX"><strong>Focus</strong> par module</div>
+        <div class="chip"><strong>Focus</strong> par module</div>
       </div>
 
-      <!-- TOPBAR MODULE (cachée en home) -->
+      <!-- TOPBAR (uniquement en module) -->
       <div class="topbar hidden" id="moduleTopbar">
         <div class="topbar__left">
-          <button class="btn btn--accent" id="backBtn" type="button">← Retour aux thèmes</button>
+          <button class="btn btn--accent" id="backBtn" type="button">← Retour</button>
           <select id="moduleSelect" aria-label="Changer de thème"></select>
+          <span class="progressPill" id="progressPill"><strong>0</strong>/<span>0</span> nœuds vus</span>
         </div>
         <div class="topbar__right">
           <button class="btn" id="zoomOutBtn" type="button">−</button>
@@ -533,12 +551,15 @@
         </div>
       </div>
 
-      <!-- NŒUDS (caché en home) -->
+      <!-- Nœuds (uniquement en module) -->
       <div class="actions hidden" id="actionsBar"></div>
 
       <div class="canvas">
         <!-- HOME VIEW -->
         <section id="homeView">
+          <div class="homeTop">
+            <div class="categoryRow" id="categoryRow"></div>
+          </div>
           <div class="homeGrid" id="homeGrid"></div>
         </section>
 
@@ -552,13 +573,13 @@
       </div>
     </main>
 
-    <!-- ==========================================================
-      ASIDE: texte dynamique
-    =========================================================== -->
+    <!-- ================================
+      ASIDE (Explications)
+    ================================= -->
     <aside class="panel aside" aria-label="Explications">
       <div class="aside__header">
         <h3 id="detailTitle">Bienvenue</h3>
-        <p id="detailHint">Choisis un thème pour afficher le schéma et les explications.</p>
+        <p id="detailHint">Choisis une catégorie puis un thème.</p>
       </div>
       <div class="aside__content" id="detailHost"></div>
     </aside>
@@ -567,19 +588,12 @@
 
   <script>
     /* ============================================================
-      COMMENT AJOUTER / MODIFIER ?
+      CONFIG / THEME COLORS
       ------------------------------------------------------------
-      1) Textes : MODULES[moduleId].content.nodes[nodeId]
-      2) Points FIDES : MODULES[moduleId].content.fides[nodeId]
-      3) Schémas : fonctions *DiagramSVG() en bas
-      4) Ajouter un module :
-         - ajouter entrée dans MODULES
-         - ajouter id dans NAV_ORDER
-         - (optionnel) définir couleurs dans THEME_COLORS
-    ============================================================ */
-
-    /* ============================================================
-      COULEURS PAR THÈME (accent dynamique)
+      ✅ Ajouter un module :
+      1) Ajouter entrée dans MODULES
+      2) Ajouter son id dans CATEGORIES (ou NAV_ORDER)
+      3) (Optionnel) définir couleurs dans THEME_COLORS
     ============================================================ */
     const THEME_COLORS = {
       comfort:    { accent:"#2de2e6", accent2:"#8a5cff" },
@@ -602,7 +616,65 @@
     }
 
     /* ============================================================
-      FIDES — version démo (tu peux remplacer par ta définition)
+      VISITED STATE (localStorage) — pour savoir où tu as déjà cliqué
+      - modules : thèmes déjà ouverts
+      - nodes   : nœuds déjà consultés (par module)
+    ============================================================ */
+    const LS_KEY = "fides_training_visited_v2";
+
+    function loadVisited(){
+      try{ return JSON.parse(localStorage.getItem(LS_KEY)) || { modules:{}, nodes:{} }; }
+      catch{ return { modules:{}, nodes:{} }; }
+    }
+    function saveVisited(state){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+
+    let VISITED = loadVisited();
+
+    function markModuleVisited(moduleId){
+      VISITED.modules[moduleId] = true;
+      saveVisited(VISITED);
+      applyVisitedStyles();
+    }
+    function markNodeVisited(moduleId, nodeId){
+      if(!VISITED.nodes[moduleId]) VISITED.nodes[moduleId] = {};
+      VISITED.nodes[moduleId][nodeId] = true;
+      saveVisited(VISITED);
+      applyVisitedStyles();
+      updateProgressPill(moduleId);
+    }
+    function isNodeVisited(moduleId, nodeId){
+      return !!(VISITED.nodes[moduleId] && VISITED.nodes[moduleId][nodeId]);
+    }
+
+    function applyVisitedStyles(){
+      // Home cards (thèmes)
+      document.querySelectorAll(".themeCard[data-module]").forEach(card=>{
+        card.classList.toggle("is-visited", !!VISITED.modules[card.dataset.module]);
+      });
+
+      // Pills nœuds
+      document.querySelectorAll(".actionPill[data-node]").forEach(pill=>{
+        const nodeId = pill.dataset.node;
+        pill.classList.toggle("is-visited", isNodeVisited(currentModuleId, nodeId));
+        // petit check visuel
+        const check = pill.querySelector(".actionCheck");
+        if(check){
+          check.textContent = isNodeVisited(currentModuleId, nodeId) ? "✓" : "";
+        }
+      });
+
+      // SVG nodes
+      const svg = document.querySelector("#diagramHost svg");
+      if(svg){
+        svg.querySelectorAll(".node[data-node]").forEach(n=>{
+          const nodeId = n.dataset.node;
+          n.classList.toggle("is-visited", isNodeVisited(currentModuleId, nodeId));
+        });
+      }
+    }
+
+    /* ============================================================
+      FIDES (démo) — remplaçable facilement
     ============================================================ */
     const FIDES_DEMO = {
       F: "Fait : qu’est-ce qui s’est réellement passé (observable, neutre) ?",
@@ -613,86 +685,31 @@
     };
 
     function makeFidesForWound(label, {emotion, besoin, interpretation, action}){
-      const core = [
-        `F : Quel fait concret active la blessure "${label}" ?`,
-        `I : Quelle interprétation apparaît ? Ex. ${interpretation}`,
-        `D : Émotion : ${emotion} → Besoin : ${besoin}`,
-        `E : Exprimer : « Quand …, je ressens …, j’ai besoin de … »`,
-        `S : Action : ${action}`
-      ];
       return {
-        core,
-        emotion: [
-          "F : Identifier le déclencheur.",
-          "I : Séparer émotion et histoire.",
-          `D : Nommer : ${emotion}.`,
-          "E : Réguler (pause / respiration).",
-          "S : Revenir au présent."
+        core: [
+          `F : Quel fait concret active "${label}" ?`,
+          `I : Interprétation : ${interpretation}`,
+          `D : Émotion : ${emotion} → Besoin : ${besoin}`,
+          `E : Dire : « Quand …, je ressens …, j’ai besoin de … »`,
+          `S : Action : ${action}`
         ],
-        origine: [
-          "F : Repérer l’écho passé/présent.",
-          "I : « Ça ressemble à… » (sans conclure).",
-          "D : Accueillir la mémoire émotionnelle.",
-          "E : Mettre des mots.",
-          "S : Réponse adulte."
-        ],
-        masque: [
-          "F : Observer le comportement automatique.",
-          "I : À quoi il sert (protection).",
-          "D : Besoin derrière.",
-          "E : Tester une alternative.",
-          "S : Stabiliser."
-        ],
-        apathie: [
-          "F : Repérer retrait/engourdissement.",
-          "I : Voir la stratégie de protection.",
-          "D : Recontacter une émotion sûre.",
-          "E : Micro-connexion.",
-          "S : Retour au lien."
-        ],
-        addictions: [
-          "F : Identifier la compensation.",
-          "I : Repérer l’histoire qui justifie.",
-          "D : Nommer l’émotion évitée.",
-          "E : Alternative de régulation.",
-          "S : Remplacement progressif."
-        ],
-        valeurs: [
-          "F : Quelle valeur est touchée ?",
-          "I : Quelle règle interne ?",
-          "D : Émotion = signal de valeur.",
-          "E : Exprimer valeur + demande.",
-          "S : Action alignée."
-        ],
-        dogmes: [
-          "F : Écouter la phrase automatique.",
-          `I : Dogme : ${interpretation}`,
-          "D : Peur derrière.",
-          "E : Reformuler en croyance testable.",
-          "S : Expérimenter."
-        ],
-        limitantes: [
-          "F : Écrire la croyance.",
-          "I : Chercher preuve inverse.",
-          "D : Accueillir l’émotion.",
-          "E : Remplacer par plus vrai.",
-          "S : Petit acte cohérent."
-        ],
-        expansives: [
-          "F : Choisir une croyance aidante.",
-          "I : La rendre concrète (comportement).",
-          "D : Ressentir l’ouverture.",
-          "E : L’exprimer clairement.",
-          "S : Répéter."
-        ],
+        emotion: ["Nommer l’émotion précisément.", "Respirer / se recentrer.", "Revenir au présent."],
+        origine: ["Repérer l’écho passé/présent.", "Mettre des mots.", "Choisir une réponse adulte."],
+        masque: ["Observer la protection automatique.", "Tester une alternative.", "Stabiliser."],
+        apathie: ["Repérer le retrait.", "Micro-connexion.", "Retour au lien."],
+        addictions: ["Identifier la compensation.", "Nommer l’émotion évitée.", "Remplacement progressif."],
+        valeurs: ["Valeur touchée → émotion signal.", "Exprimer / poser limite.", "Action alignée."],
+        dogmes: ["Identifier la phrase interne.", "Reformuler testable.", "Expérimenter."],
+        limitantes: ["Écrire la croyance.", "Chercher preuve inverse.", "Petit acte cohérent."],
+        expansives: ["Choisir la croyance aidante.", "L’incarner en action.", "Répéter."],
       };
     }
 
     /* ============================================================
-      MODULES — contenu (démo complète)
+      MODULES
       ------------------------------------------------------------
-      ⚠️ Les contenus marqués "démo" restent à valider si tu veux
-      une version 100% conforme à tes textes.
+      ⚠️ Certaines parties sont "démo cohérente".
+      Tu peux remplacer les textes dans content.nodes facilement.
     ============================================================ */
     const MODULES = {
       comfort: {
@@ -700,44 +717,29 @@
         subtitle: "Progression : traverser la peur pour grandir.",
         tags: ["progression", "zones", "mindmap"],
         caption: "Message clé : « Pour avancer, il faut traverser la peur. »",
-        diagram: () => comfortDiagramSVG(), // <-- schéma corrigé (courbe + spacing)
+        diagram: () => comfortDiagramSVG(),
         content: {
           nodes: {
-            core: {
-              title: "Zones (vue d’ensemble)",
-              blocks: [
-                { h:"Message clé", p:"« Pour avancer, il faut traverser la peur. »" },
-                { h:"Lecture", p:"Chaque zone décrit un état intérieur : sécurité illusoire → tension → acquisition → réalisation." }
-              ]
-            },
-            confort: {
-              title: "Zone de confort",
-              blocks: [
-                { h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement" },
-                { h:"Signal", p:"On se protège… mais on stagne. L’énergie sert à maintenir l’habitude." }
-              ]
-            },
-            peur: {
-              title: "Zone de peur",
-              blocks: [
-                { h:"Peur", p:"Peur = doutes, jugements, perte de repères" },
-                { h:"Signal", p:"La peur n’est pas un stop : c’est un passage." }
-              ]
-            },
-            apprentissage: {
-              title: "Zone d’apprentissage",
-              blocks: [
-                { h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi" },
-                { h:"Signal", p:"On teste, on ajuste. La confiance se construit par l’expérience." }
-              ]
-            },
-            expansion: {
-              title: "Zone d’expansion",
-              blocks: [
-                { h:"Expansion", p:"Expansion = réalisation, alignement, contribution" },
-                { h:"Signal", p:"On incarne : impact, sens, contribution." }
-              ]
-            }
+            core: { title:"Zones (vue d’ensemble)", blocks:[
+              {h:"Message clé", p:"« Pour avancer, il faut traverser la peur. »"},
+              {h:"Lecture", p:"Sécurité illusoire → tension → acquisition → réalisation."}
+            ]},
+            confort:{ title:"Zone de confort", blocks:[
+              {h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"},
+              {h:"Signal", p:"On se protège… mais on stagne."}
+            ]},
+            peur:{ title:"Zone de peur", blocks:[
+              {h:"Peur", p:"Peur = doutes, jugements, perte de repères"},
+              {h:"Signal", p:"La peur est un passage, pas un stop."}
+            ]},
+            apprentissage:{ title:"Zone d’apprentissage", blocks:[
+              {h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"},
+              {h:"Signal", p:"On teste, on ajuste, on progresse."}
+            ]},
+            expansion:{ title:"Zone d’expansion", blocks:[
+              {h:"Expansion", p:"Expansion = réalisation, alignement, contribution"},
+              {h:"Signal", p:"On incarne : impact et sens."}
+            ]}
           },
           fides: {
             core: [
@@ -753,7 +755,7 @@
 
       betrayal: {
         title: "Blessure émotionnelle : trahison",
-        subtitle: "Déclencheurs, masque, apathie, addictions, valeurs, dogmes, croyances.",
+        subtitle: "Masque, apathie, addictions, valeurs, dogmes, croyances.",
         tags: ["blessures", "croyances", "mécanismes"],
         caption: "Explore : origine → masque → apathie → addictions → valeurs → dogmes → croyances.",
         diagram: () => woundHubDiagramSVG("Trahison", {
@@ -764,8 +766,8 @@
         content: {
           nodes: {
             core:{ title:"Blessure de trahison (vue d’ensemble)", blocks:[
-              { h:"Émotion", p:"Émotion : surprise" },
-              { h:"Dogme", p:"« On ne peut faire confiance à personne »" }
+              {h:"Dogme", p:"« On ne peut faire confiance à personne »"},
+              {h:"Boucle", p:"Méfiance → test → tension → confirmation."}
             ]},
             emotion:{ title:"Émotion", blocks:[{h:"Émotion", p:"Émotion : surprise"}] },
             origine:{ title:"Origine", blocks:[{h:"Origine", p:"Origine : trahison vécue (absence, promesse brisée, infidélité)"}] },
@@ -774,8 +776,8 @@
             addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions : pouvoir, contrôle, domination"}] },
             valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs : loyauté, vérité, paraître, argent"}] },
             dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes : « On ne peut faire confiance à personne »"}] },
-            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Croyances limitantes", p:"« Les autres vont me trahir »"}] },
-            expansives:{ title:"Croyances expansives", blocks:[{h:"Croyances expansives", p:"« Je laisse le bénéfice du doute »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes", p:"« Les autres vont me trahir »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Expansives", p:"« Je laisse le bénéfice du doute »"}] },
           },
           fides: makeFidesForWound("Trahison", {
             emotion:"surprise", besoin:"sécurité / fiabilité",
@@ -787,9 +789,9 @@
 
       abandonment: {
         title: "Blessure émotionnelle : abandon",
-        subtitle: "Peur de la séparation, besoin de présence (démo cohérente).",
+        subtitle: "Peur de séparation, besoin de présence (démo).",
         tags: ["blessures", "lien", "sécurité"],
-        caption: "Boucle typique : inquiétude → pression → distance → confirmation.",
+        caption: "Boucle : inquiétude → pression → distance → confirmation.",
         diagram: () => woundHubDiagramSVG("Abandon", {
           emotion:"tristesse", origine:"séparation", masque:"dépendant",
           apathie:"accrochage", addictions:"réassurance", valeurs:"présence", dogmes:"je vais être laissé",
@@ -798,14 +800,13 @@
         content: {
           nodes: {
             core:{ title:"Blessure d’abandon (vue d’ensemble)", blocks:[
-              { h:"Éclairage", p:"Quand le lien semble menacé : recherche de proximité, peur d’être oublié, besoin intense de présence." },
-              { h:"Boucle", p:"Inquiétude → sur-adaptation/demande → pression → distance → confirmation." }
+              {h:"Éclairage", p:"Quand le lien semble menacé : recherche de proximité et peur d’être oublié."}
             ]},
             emotion:{ title:"Émotion", blocks:[{h:"Émotion (démo)", p:"Tristesse + peur de séparation"}] },
-            origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Séparations, indisponibilité émotionnelle, ruptures répétées"}] },
-            masque:{ title:"Masque", blocks:[{h:"Masque (démo)", p:"Fusionnel / dépendant, cherche la réassurance"}] },
-            apathie:{ title:"Apathie", blocks:[{h:"Apathie (démo)", p:"Anxiété d’attachement, hypervigilance relationnelle"}] },
-            addictions:{ title:"Addictions", blocks:[{h:"Addictions (démo)", p:"Validation, messages, besoin de proximité constante"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Séparations, indisponibilité émotionnelle"}] },
+            masque:{ title:"Masque", blocks:[{h:"Masque (démo)", p:"Fusionnel / dépendant, recherche de réassurance"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie (démo)", p:"Hypervigilance relationnelle, anxiété d’attachement"}] },
+            addictions:{ title:"Addictions", blocks:[{h:"Addictions (démo)", p:"Validation, messages, proximité constante"}] },
             valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs (démo)", p:"Présence, affection, famille, fidélité"}] },
             dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes (démo)", p:"« Si on m’aime, on ne me laisse pas »"}] },
             limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes (démo)", p:"« On va m’abandonner »"}] },
@@ -821,7 +822,7 @@
 
       rejection: {
         title: "Blessure émotionnelle : rejet",
-        subtitle: "Peur d’être indésirable, évitement (démo cohérente).",
+        subtitle: "Peur d’être indésirable, évitement (démo).",
         tags: ["blessures", "estime", "identité"],
         caption: "Boucle : anticipation → retrait → manque de lien → confirmation.",
         diagram: () => woundHubDiagramSVG("Rejet", {
@@ -832,13 +833,13 @@
         content: {
           nodes: {
             core:{ title:"Blessure de rejet (vue d’ensemble)", blocks:[
-              { h:"Éclairage", p:"« Je dérange » → retrait, minimisation, ou recherche d’être irréprochable." }
+              {h:"Éclairage", p:"« Je dérange » → retrait ou perfectionnisme pour être accepté."}
             ]},
             emotion:{ title:"Émotion", blocks:[{h:"Émotion (démo)", p:"Peur + honte (d’être indésirable)"}] },
-            origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Critiques précoces, moqueries, comparaisons"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Critiques, moqueries, comparaisons"}] },
             masque:{ title:"Masque", blocks:[{h:"Masque (démo)", p:"Fuyant/distant, rationalise pour ne pas sentir"}] },
-            apathie:{ title:"Apathie", blocks:[{h:"Apathie (démo)", p:"Détachement, froideur, évitement de l’intimité"}] },
-            addictions:{ title:"Addictions", blocks:[{h:"Addictions (démo)", p:"Perfectionnisme, performance, contrôle de l’image"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie (démo)", p:"Détachement, évitement de l’intimité"}] },
+            addictions:{ title:"Addictions", blocks:[{h:"Addictions (démo)", p:"Perfection, performance, contrôle de l’image"}] },
             valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs (démo)", p:"Appartenance, respect, authenticité"}] },
             dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes (démo)", p:"« Si je suis moi, on me rejette »"}] },
             limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes (démo)", p:"« On ne veut pas de moi »"}] },
@@ -854,7 +855,7 @@
 
       humiliation: {
         title: "Blessure émotionnelle : humiliation",
-        subtitle: "Honte, se rabaisser, dignité (démo cohérente).",
+        subtitle: "Honte, se rabaisser, dignité (démo).",
         tags: ["blessures", "honte", "dignité"],
         caption: "Boucle : honte → se diminuer → soulagement → perte d’estime → honte.",
         diagram: () => woundHubDiagramSVG("Humiliation", {
@@ -865,12 +866,12 @@
         content: {
           nodes: {
             core:{ title:"Blessure d’humiliation (vue d’ensemble)", blocks:[
-              { h:"Éclairage", p:"La honte pousse à se cacher, se rabaisser ou sur-compenser. Sensibilité à l’image et au corps." }
+              {h:"Éclairage", p:"La honte pousse à se cacher, se rabaisser ou sur-compenser."}
             ]},
             emotion:{ title:"Émotion", blocks:[{h:"Émotion (démo)", p:"Honte + gêne + peur d’être vu"}] },
-            origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Moqueries, critiques, exposition publique, interdits humiliants"}] },
+            origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Moqueries, critiques, exposition publique"}] },
             masque:{ title:"Masque", blocks:[{h:"Masque (démo)", p:"Se punit, minimise ses besoins, porte les autres"}] },
-            apathie:{ title:"Apathie", blocks:[{h:"Apathie (démo)", p:"Résignation, auto-dévalorisation"}] },
+            apathie:{ title:"Apathie", blocks:[{h:"Apathie (démo)", p:"Auto-dévalorisation, résignation"}] },
             addictions:{ title:"Addictions", blocks:[{h:"Addictions (démo)", p:"Auto-sabotage, sur-service, compensations"}] },
             valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs (démo)", p:"Respect, dignité, compassion"}] },
             dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes (démo)", p:"« Mes besoins dérangent »"}] },
@@ -887,7 +888,7 @@
 
       injustice: {
         title: "Blessure émotionnelle : injustice",
-        subtitle: "Rigidité, exigence, équité (démo cohérente).",
+        subtitle: "Rigidité, exigence, équité (démo).",
         tags: ["blessures", "équité", "exigence"],
         caption: "Boucle : exigence → tension → jugement → distance → isolement.",
         diagram: () => woundHubDiagramSVG("Injustice", {
@@ -898,7 +899,7 @@
         content: {
           nodes: {
             core:{ title:"Blessure d’injustice (vue d’ensemble)", blocks:[
-              { h:"Éclairage", p:"Quand l’équité semble violée, la rigidité monte : « juste, correct, mérité »." }
+              {h:"Éclairage", p:"Quand l’équité semble violée, la rigidité monte : « juste, correct, mérité »."}
             ]},
             emotion:{ title:"Émotion", blocks:[{h:"Émotion (démo)", p:"Colère (souvent froide) + frustration"}] },
             origine:{ title:"Origine", blocks:[{h:"Origine (démo)", p:"Favoritisme, sanctions injustes, manque de reconnaissance"}] },
@@ -927,21 +928,15 @@
         content: {
           nodes: {
             core:{ title:"Empathie (vue d’ensemble)", blocks:[
-              { h:"Définition", p:"Définition : résonance sans fusion" },
-              { h:"Freins", p:"Freins : toutes les blessures émotionnelles" }
+              {h:"Définition", p:"Définition : résonance sans fusion"},
+              {h:"Freins", p:"Freins : toutes les blessures émotionnelles"}
             ]},
-            definition:{ title:"Définition", blocks:[{h:"Définition", p:"Définition : résonance sans fusion"}] },
-            differences:{ title:"Différences", blocks:[{h:"Différences", p:"Différences : empathie / compassion / sympathie"}] },
-            freins:{ title:"Freins", blocks:[{h:"Freins", p:"Freins : toutes les blessures émotionnelles"}] }
+            definition:{ title:"Définition", blocks:[{h:"Définition", p:"Résonance sans fusion"}] },
+            differences:{ title:"Différences", blocks:[{h:"Différences", p:"Empathie / compassion / sympathie"}] },
+            freins:{ title:"Freins", blocks:[{h:"Freins", p:"Toutes les blessures émotionnelles"}] }
           },
           fides:{
-            core:[
-              "F : Observer sans projeter.",
-              "I : Distinguer empathie vs fusion.",
-              "D : Nommer ce que je ressens en miroir.",
-              "E : Reformuler + valider l’émotion.",
-              "S : Aider sans sauver."
-            ]
+            core:["F : Observer sans projeter.","I : Distinguer empathie vs fusion.","D : Nommer la résonance.","E : Reformuler + valider.","S : Aider sans sauver."]
           }
         }
       },
@@ -955,55 +950,45 @@
         content: {
           nodes: {
             core:{ title:"Addictions (vue d’ensemble)", blocks:[
-              { h:"Message clé", p:"Message clé : l’addiction n’est pas une faute mais un signal" },
-              { h:"Fonction", p:"Fonction : éviter une émotion" }
+              {h:"Message clé", p:"L’addiction n’est pas une faute mais un signal"},
+              {h:"Fonction", p:"Éviter une émotion"}
             ]},
             definition:{ title:"Définition", blocks:[
-              {h:"Définition", p:"Définition + visibles / invisibles"},
-              {h:"Exemples", p:"Visibles : substances… Invisibles : sur-contrôle, travail, validation, scrolling."}
+              {h:"Définition", p:"Visibles / invisibles (démo)"},
+              {h:"Exemples", p:"Substances, jeux… / sur-contrôle, travail, validation, scrolling"}
             ]},
             fonction:{ title:"Fonction", blocks:[
-              {h:"Fonction", p:"Fonction : éviter une émotion"},
-              {h:"Question", p:"Si je retire le comportement, quelle émotion apparaît ?"}
+              {h:"Fonction", p:"Éviter une émotion"},
+              {h:"Question", p:"Si j’arrête, qu’est-ce que je ressens ?"}
             ]}
           },
-          fides:{
-            core:[
-              `F — ${FIDES_DEMO.F}`,
-              `I — ${FIDES_DEMO.I}`,
-              `D — ${FIDES_DEMO.D}`,
-              `E — ${FIDES_DEMO.E}`,
-              `S — ${FIDES_DEMO.S}`
-            ]
-          }
+          fides:{ core:[
+            `F — ${FIDES_DEMO.F}`,
+            `I — ${FIDES_DEMO.I}`,
+            `D — ${FIDES_DEMO.D}`,
+            `E — ${FIDES_DEMO.E}`,
+            `S — ${FIDES_DEMO.S}`
+          ]}
         }
       },
 
       values: {
         title: "Valeurs de vie",
-        subtitle: "Quand mes valeurs sont bafouées → la blessure se réactive.",
+        subtitle: "Valeur bafouée → émotion → blessure peut se réactiver.",
         tags: ["alignement", "boussole", "déclencheurs"],
-        caption: "Clé : identifier la valeur touchée → émotion → action alignée.",
+        caption: "Clé : identifier la valeur touchée → action alignée.",
         diagram: () => valuesDiagramSVG(),
         content: {
           nodes: {
             core:{ title:"Valeurs (vue d’ensemble)", blocks:[
-              { h:"Clé FIDES", p:"Clé FIDES : quand mes valeurs sont bafouées → la blessure se réactive" },
-              { h:"Liste (démo)", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille." }
+              {h:"Clé", p:"Quand mes valeurs sont bafouées → la blessure se réactive"},
+              {h:"Liste (démo)", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille"}
             ]},
             liste:{ title:"Liste de valeurs (démo)", blocks:[
-              {h:"Valeurs", p:"Liberté • Sécurité • Amour • Respect • Vérité • Loyauté • Justice • Authenticité • Contribution • Croissance • Santé • Famille"}
+              {h:"Exercice", p:"Choisis 5 valeurs non négociables et 1 exemple où chacune est respectée."}
             ]}
           },
-          fides:{
-            core:[
-              "F : Quelle valeur vient d’être touchée ?",
-              "I : Quelle règle interne s’active ?",
-              "D : Quelle émotion apparaît ?",
-              "E : Exprimer valeur + limite/demande.",
-              "S : Action alignée."
-            ]
-          }
+          fides:{ core:["F : valeur touchée ?","I : règle interne ?","D : émotion ?","E : exprimer/limite","S : action alignée"] }
         }
       },
 
@@ -1016,22 +1001,14 @@
         content: {
           nodes: {
             core:{ title:"Conditionnements (vue d’ensemble)", blocks:[
-              {h:"Message", p:"Message : ce ne sont que des croyances héritées"},
+              {h:"Message", p:"Ce ne sont que des croyances héritées"},
               {h:"Question", p:"« De qui est cette croyance ? Est-ce qu’elle m’aide aujourd’hui ? »"}
             ]},
             sources:{ title:"Sources", blocks:[
               {h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes"}
             ]}
           },
-          fides:{
-            core:[
-              "F : Situation actuelle.",
-              "I : Dogme activé (phrase intérieure).",
-              "D : Émotion/tension.",
-              "E : Reformulation plus juste.",
-              "S : Nouveau choix."
-            ]
-          }
+          fides:{ core:["F : situation","I : dogme","D : émotion/tension","E : reformuler","S : nouveau choix"] }
         }
       },
 
@@ -1044,42 +1021,41 @@
         content: {
           nodes: {
             core:{ title:"Familles d’émotions", blocks:[
-              {h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût"}
+              {h:"Noyau", p:"Peur • Colère • Tristesse • Joie • Dégoût"}
             ]},
-            peur:{ title:"Peur", blocks:[{h:"Nuances (démo)", p:"Inquiétude, anxiété, appréhension, panique, doute, méfiance…"}] },
-            colere:{ title:"Colère", blocks:[{h:"Nuances (démo)", p:"Irritation, frustration, rage, indignation, ressentiment…"}] },
-            tristesse:{ title:"Tristesse", blocks:[{h:"Nuances (démo)", p:"Chagrin, peine, mélancolie, solitude, vide, regret…"}] },
-            joie:{ title:"Joie", blocks:[{h:"Nuances (démo)", p:"Sérénité, gratitude, enthousiasme, fierté, inspiration…"}] },
-            degout:{ title:"Dégoût", blocks:[{h:"Nuances (démo)", p:"Aversion, répulsion, saturation, malaise, mépris…"}] }
+            peur:{ title:"Peur", blocks:[{h:"Nuances (démo)", p:"Inquiétude, anxiété, appréhension, panique, doute…"}] },
+            colere:{ title:"Colère", blocks:[{h:"Nuances (démo)", p:"Irritation, frustration, rage, indignation…"}] },
+            tristesse:{ title:"Tristesse", blocks:[{h:"Nuances (démo)", p:"Peine, chagrin, mélancolie, solitude…"}] },
+            joie:{ title:"Joie", blocks:[{h:"Nuances (démo)", p:"Sérénité, gratitude, enthousiasme, fierté…"}] },
+            degout:{ title:"Dégoût", blocks:[{h:"Nuances (démo)", p:"Aversion, répulsion, saturation, malaise…"}] }
           },
-          fides:{
-            core:[
-              "F : Décrire le contexte.",
-              "I : Nommer l’histoire.",
-              "D : Préciser l’émotion (famille + nuance).",
-              "E : Exprimer / réguler.",
-              "S : Action alignée."
-            ]
-          }
+          fides:{ core:["F : contexte","I : histoire","D : émotion précise","E : réguler/exprim.","S : action alignée"] }
         }
       },
     };
 
-    const NAV_ORDER = [
-      { label: "Bases", items: ["comfort", "emotions", "empathy"] },
-      { label: "Blessures émotionnelles", items: ["betrayal", "abandonment", "rejection", "humiliation", "injustice"] },
-      { label: "Mécanismes", items: ["addictions", "values", "dogmas"] }
+    /* ============================================================
+      CATÉGORIES (Accueil)
+      ------------------------------------------------------------
+      -> Accueil = peu chargé : catégories → thèmes filtrés
+    ============================================================ */
+    const CATEGORIES = [
+      { id:"all", label:"Tous", items: Object.keys(MODULES) },
+      { id:"bases", label:"Bases", items: ["comfort","emotions","empathy"] },
+      { id:"wounds", label:"Blessures", items: ["betrayal","abandonment","rejection","humiliation","injustice"] },
+      { id:"mech", label:"Mécanismes", items: ["addictions","values","dogmas"] }
     ];
 
     /* ============================================================
       ÉTAT UI
     ============================================================ */
-    let viewMode = "home";          // "home" | "module"
+    let viewMode = "home";
     let currentModuleId = "comfort";
     let lockedNodeId = null;
+    let activeCategoryId = "bases";
 
-    // Zoom (évite l’illisible sur mobile)
-    let zoom = 1;
+    /* Zoom : tu disais que 75% navigateur rendait bien -> on démarre léger à 95% */
+    let zoom = 0.95;
     const ZOOM_MIN = 0.85;
     const ZOOM_MAX = 1.35;
     const ZOOM_STEP = 0.1;
@@ -1087,26 +1063,26 @@
     /* ============================================================
       DOM
     ============================================================ */
-    const navList = document.getElementById("navList");
-    const homeGrid = document.getElementById("homeGrid");
-
     const homeView = document.getElementById("homeView");
     const moduleView = document.getElementById("moduleView");
+
+    const mainTitle = document.getElementById("mainTitle");
+    const mainSubtitle = document.getElementById("mainSubtitle");
+    const mainChips = document.getElementById("mainChips");
+
+    const categoryRow = document.getElementById("categoryRow");
+    const homeGrid = document.getElementById("homeGrid");
 
     const moduleTopbar = document.getElementById("moduleTopbar");
     const moduleSelect = document.getElementById("moduleSelect");
     const backBtn = document.getElementById("backBtn");
+    const progressPill = document.getElementById("progressPill");
 
     const zoomOutBtn = document.getElementById("zoomOutBtn");
     const zoomInBtn = document.getElementById("zoomInBtn");
     const zoomResetBtn = document.getElementById("zoomResetBtn");
 
     const actionsBar = document.getElementById("actionsBar");
-
-    const mainTitle = document.getElementById("mainTitle");
-    const mainSubtitle = document.getElementById("mainSubtitle");
-    const mainChips = document.getElementById("mainChips");
-
     const diagramHost = document.getElementById("diagramHost");
     const diagramCaption = document.getElementById("diagramCaption");
 
@@ -1115,22 +1091,17 @@
     const detailHost = document.getElementById("detailHost");
 
     /* ============================================================
-      INIT
+      EVENTS
     ============================================================ */
-    buildNav();
-    buildHomeCards();
-    buildModuleSelect();
-    renderHomeAside();
-
     backBtn.addEventListener("click", goHome);
-
-    zoomOutBtn.addEventListener("click", () => setZoom(zoom - ZOOM_STEP));
-    zoomInBtn.addEventListener("click", () => setZoom(zoom + ZOOM_STEP));
-    zoomResetBtn.addEventListener("click", () => setZoom(1));
 
     moduleSelect.addEventListener("change", () => {
       enterModule(moduleSelect.value);
     });
+
+    zoomOutBtn.addEventListener("click", () => setZoom(zoom - ZOOM_STEP));
+    zoomInBtn.addEventListener("click", () => setZoom(zoom + ZOOM_STEP));
+    zoomResetBtn.addEventListener("click", () => setZoom(1));
 
     /* ============================================================
       VIEW SWITCH
@@ -1138,8 +1109,6 @@
     function goHome(){
       viewMode = "home";
       lockedNodeId = null;
-      document.body.classList.remove("mode-module");
-      document.body.classList.add("mode-home");
 
       homeView.classList.remove("hidden");
       moduleView.classList.add("hidden");
@@ -1147,14 +1116,18 @@
       actionsBar.classList.add("hidden");
 
       mainTitle.textContent = "Accueil";
-      mainSubtitle.textContent = "Sélectionne un thème : l’interface bascule en mode focus (moins chargé).";
-      mainChips.innerHTML = `<div class="chip"><strong>1</strong> Choix thème</div><div class="chip"><strong>2</strong> Focus module</div><div class="chip"><strong>3</strong> Exploration nœuds</div>`;
+      mainSubtitle.textContent = "Choisis une catégorie, puis un thème. Ensuite tu es en mode focus (moins chargé).";
+      mainChips.innerHTML = `
+        <div class="chip"><strong>1</strong> Catégorie</div>
+        <div class="chip"><strong>2</strong> Thème</div>
+        <div class="chip"><strong>3</strong> Nœuds</div>
+      `;
 
-      // Accent neutre (ou garder dernier)
       setThemeAccent("comfort");
-
       renderHomeAside();
-      updateNavCurrent(null);
+      renderCategoryButtons();
+      renderHomeCards(activeCategoryId);
+      applyVisitedStyles();
     }
 
     function enterModule(moduleId){
@@ -1162,22 +1135,43 @@
       currentModuleId = moduleId;
       lockedNodeId = null;
 
-      document.body.classList.remove("mode-home");
-      document.body.classList.add("mode-module");
-
       homeView.classList.add("hidden");
       moduleView.classList.remove("hidden");
       moduleTopbar.classList.remove("hidden");
       actionsBar.classList.remove("hidden");
 
-      // zoom = 1 au départ (tu peux adapter par module si tu veux)
-      setZoom(1);
+      // Accent + contenu module
+      setThemeAccent(moduleId);
 
-      renderModule(moduleId);
+      // Zoom initial "light" (évite l'effet "trop dense")
+      setZoom(0.95);
+
+      // select
+      moduleSelect.value = moduleId;
+
+      // header
+      const mod = MODULES[moduleId];
+      mainTitle.textContent = mod.title;
+      mainSubtitle.textContent = mod.subtitle;
+      mainChips.innerHTML = (mod.tags||[]).map(t=>`<div class="chip">${escapeHTML(t)}</div>`).join("");
+
+      // diagram
+      diagramHost.innerHTML = mod.diagram();
+      diagramCaption.innerHTML = `<strong>Module :</strong> ${escapeHTML(mod.caption || "")}`;
+
+      // nodes pills
+      renderActionsBar(moduleId);
+
+      // wire svg interactions
+      wireDiagramInteractions(moduleId);
+
+      // aside detail
       renderDetail(moduleId, "core", false);
 
-      moduleSelect.value = moduleId;
-      updateNavCurrent(moduleId);
+      // visited
+      markModuleVisited(moduleId);
+      applyVisitedStyles();
+      updateProgressPill(moduleId);
     }
 
     function setZoom(v){
@@ -1187,44 +1181,45 @@
     }
 
     /* ============================================================
-      NAV + HOME CARDS
+      HOME UI
     ============================================================ */
-    function buildNav(){
-      navList.innerHTML = "";
-      NAV_ORDER.forEach(group => {
-        const section = document.createElement("div");
-        section.className = "nav__section";
-        section.textContent = group.label;
-        navList.appendChild(section);
+    function renderCategoryButtons(){
+      categoryRow.innerHTML = "";
+      CATEGORIES.forEach(cat=>{
+        const btn = document.createElement("button");
+        btn.className = "categoryBtn";
+        btn.type = "button";
+        btn.dataset.category = cat.id;
+        btn.setAttribute("aria-pressed", cat.id === activeCategoryId ? "true" : "false");
+        btn.innerHTML = `<span class="categoryDot"></span><span>${escapeHTML(cat.label)}</span>`;
 
-        group.items.forEach(id => {
-          const mod = MODULES[id];
-          const btn = document.createElement("button");
-          btn.className = "nav__item";
-          btn.type = "button";
-          btn.dataset.module = id;
-          btn.innerHTML = `
-            <span class="dot"></span>
-            <span>
-              <div style="font-weight:900">${escapeHTML(mod.title)}</div>
-              <small>${escapeHTML(mod.subtitle)}</small>
-            </span>
-          `;
-          btn.addEventListener("click", () => enterModule(id));
-          navList.appendChild(btn);
+        btn.addEventListener("click", () => {
+          activeCategoryId = cat.id;
+          // léger feedback couleur au survol catégorie
+          // (on garde accent comfort en home)
+          setThemeAccent("comfort");
+          renderCategoryButtons();
+          renderHomeCards(activeCategoryId);
+          renderHomeAside();
+          applyVisitedStyles();
         });
+
+        categoryRow.appendChild(btn);
       });
     }
 
-    function buildHomeCards(){
+    function renderHomeCards(categoryId){
+      const cat = CATEGORIES.find(c=>c.id===categoryId) || CATEGORIES[0];
+      const ids = [...new Set(cat.items)].filter(id => MODULES[id]); // sécurité
+
       homeGrid.innerHTML = "";
-      // On aplatit l’ordre
-      const ids = NAV_ORDER.flatMap(g => g.items);
       ids.forEach(id => {
         const mod = MODULES[id];
 
         const card = document.createElement("div");
         card.className = "themeCard";
+        card.dataset.module = id;
+
         card.addEventListener("mouseenter", () => setThemeAccent(id));
         card.addEventListener("mouseleave", () => setThemeAccent("comfort"));
         card.addEventListener("click", () => enterModule(id));
@@ -1238,57 +1233,52 @@
         `;
         homeGrid.appendChild(card);
       });
-      // chips home
-      mainChips.innerHTML = `<div class="chip"><strong>Accueil</strong> léger</div><div class="chip">cartes thèmes</div><div class="chip">focus ensuite</div>`;
     }
 
-    function buildModuleSelect(){
-      moduleSelect.innerHTML = "";
-      const ids = NAV_ORDER.flatMap(g => g.items);
-      ids.forEach(id => {
-        const opt = document.createElement("option");
-        opt.value = id;
-        opt.textContent = MODULES[id].title;
-        moduleSelect.appendChild(opt);
-      });
-    }
+    function renderHomeAside(){
+      // résumé progression globale
+      const totalModules = Object.keys(MODULES).length;
+      const visitedModules = Object.keys(VISITED.modules || {}).length;
 
-    function updateNavCurrent(moduleId){
-      document.querySelectorAll(".nav__item").forEach(x => {
-        x.setAttribute("aria-current", x.dataset.module === moduleId ? "true" : "false");
-      });
+      detailTitle.textContent = "Bienvenue";
+      detailHint.textContent = "Commence léger : catégorie → thème → exploration.";
+
+      detailHost.innerHTML = `
+        <div class="card">
+          <h4><span>Comment utiliser</span><span class="kicker">simple</span></h4>
+          <ul>
+            <li><strong>Accueil</strong> : choisis une catégorie, puis un thème.</li>
+            <li><strong>Module</strong> : survole pour aperçu, clique pour verrouiller.</li>
+            <li><strong>Repères</strong> : ✓ indique ce que tu as déjà exploré.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h4><span>Progression</span><span class="kicker">global</span></h4>
+          <p class="note">
+            Thèmes vus : <strong style="color:var(--accent)">${visitedModules}</strong> / ${totalModules}
+          </p>
+          <div class="callout note">
+            Tu peux tester avec Mélanie : cherchez 1 thème → explorez 3 nœuds → regardez si le format est fluide.
+          </div>
+        </div>
+
+        <div class="card">
+          <h4><span>FIDES (démo)</span><span class="kicker">méthode</span></h4>
+          <ul>
+            <li><strong>F</strong> — ${escapeHTML(FIDES_DEMO.F)}</li>
+            <li><strong>I</strong> — ${escapeHTML(FIDES_DEMO.I)}</li>
+            <li><strong>D</strong> — ${escapeHTML(FIDES_DEMO.D)}</li>
+            <li><strong>E</strong> — ${escapeHTML(FIDES_DEMO.E)}</li>
+            <li><strong>S</strong> — ${escapeHTML(FIDES_DEMO.S)}</li>
+          </ul>
+        </div>
+      `;
     }
 
     /* ============================================================
-      RENDER MODULE (focus)
+      MODULE UI — pills nodes
     ============================================================ */
-    function renderModule(moduleId){
-      const mod = MODULES[moduleId];
-      setThemeAccent(moduleId);
-
-      mainTitle.textContent = mod.title;
-      mainSubtitle.textContent = mod.subtitle;
-
-      // tags
-      mainChips.innerHTML = "";
-      (mod.tags || []).forEach(t => {
-        const chip = document.createElement("div");
-        chip.className = "chip";
-        chip.textContent = t;
-        mainChips.appendChild(chip);
-      });
-
-      // diagram
-      diagramHost.innerHTML = mod.diagram();
-      diagramCaption.innerHTML = `<strong>Module :</strong> ${escapeHTML(mod.caption || "")}`;
-
-      // actions (nœuds)
-      renderActionsBar(moduleId);
-
-      // wire svg hover/click
-      wireDiagramInteractions(moduleId);
-    }
-
     function renderActionsBar(moduleId){
       const mod = MODULES[moduleId];
       const nodeIds = Object.keys(mod.content.nodes)
@@ -1303,12 +1293,19 @@
         btn.type = "button";
         btn.dataset.node = nodeId;
         btn.setAttribute("aria-pressed", nodeId==="core" ? "true" : "false");
-        btn.innerHTML = `<span class="actionDot"></span><span>${escapeHTML(label)}</span>`;
+
+        btn.innerHTML = `
+          <span class="actionDot"></span>
+          <span>${escapeHTML(label)}</span>
+          <span class="actionCheck"></span>
+        `;
 
         btn.addEventListener("click", () => {
-          // clic = verrouille/déverrouille
+          markNodeVisited(moduleId, nodeId);
+
           lockedNodeId = (lockedNodeId === nodeId) ? null : nodeId;
           const target = lockedNodeId || "core";
+
           setActiveNode(target);
           renderDetail(moduleId, target, !!lockedNodeId);
           setPressedAction(target);
@@ -1324,8 +1321,20 @@
       });
     }
 
+    function updateProgressPill(moduleId){
+      const mod = MODULES[moduleId];
+      const nodeIds = Object.keys(mod.content.nodes);
+      const total = nodeIds.length;
+      let seen = 0;
+      nodeIds.forEach(n => { if(isNodeVisited(moduleId, n)) seen++; });
+
+      // Structure de progressPill : "<strong>0</strong>/<span>0</span> nœuds vus"
+      progressPill.querySelector("strong").textContent = String(seen);
+      progressPill.querySelector("span").textContent = String(total);
+    }
+
     /* ============================================================
-      SVG INTERACTIONS
+      SVG interactions — hover preview + click lock
     ============================================================ */
     function wireDiagramInteractions(moduleId){
       const svg = diagramHost.querySelector("svg");
@@ -1355,6 +1364,8 @@
         });
 
         n.addEventListener("click", () => {
+          markNodeVisited(moduleId, nodeId);
+
           lockedNodeId = (lockedNodeId === nodeId) ? null : nodeId;
           activate(lockedNodeId || "core", !!lockedNodeId);
         });
@@ -1364,6 +1375,8 @@
         n.addEventListener("keydown", (e) => {
           if(e.key === "Enter" || e.key === " "){
             e.preventDefault();
+            markNodeVisited(moduleId, nodeId);
+
             lockedNodeId = (lockedNodeId === nodeId) ? null : nodeId;
             activate(lockedNodeId || "core", !!lockedNodeId);
           }
@@ -1380,6 +1393,7 @@
       svg.querySelectorAll(".node").forEach(n => n.classList.remove("is-active"));
       const target = svg.querySelector(`.node[data-node="${cssEscape(nodeId)}"]`);
       if(target) target.classList.add("is-active");
+      applyVisitedStyles();
     }
 
     function setActiveLinks(nodeId, links){
@@ -1392,43 +1406,8 @@
     }
 
     /* ============================================================
-      TEXTE (panneau droite)
+      ASIDE — texte dynamique
     ============================================================ */
-    function renderHomeAside(){
-      detailTitle.textContent = "Bienvenue";
-      detailHint.textContent = "Choisis un thème pour entrer dans le module en mode focus.";
-
-      detailHost.innerHTML = `
-        <div class="card">
-          <h4><span>Comment utiliser</span><span class="kicker">workflow</span></h4>
-          <ul>
-            <li>Choisir un thème (Accueil).</li>
-            <li>Explorer le schéma (survol = aperçu, clic = verrouillage).</li>
-            <li>Lire à droite : définition + liens + points FIDES.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h4><span>Pourquoi ce design</span><span class="kicker">pédagogie</span></h4>
-          <p class="note">
-            On réduit la surcharge : <strong>un seul module à la fois</strong>.
-            Sur mobile, les diagrammes restent lisibles grâce au <strong>scroll</strong> et au <strong>zoom</strong>.
-          </p>
-        </div>
-
-        <div class="card">
-          <h4><span>FIDES (démo)</span><span class="kicker">méthode</span></h4>
-          <ul>
-            <li><strong>F</strong> — ${escapeHTML(FIDES_DEMO.F)}</li>
-            <li><strong>I</strong> — ${escapeHTML(FIDES_DEMO.I)}</li>
-            <li><strong>D</strong> — ${escapeHTML(FIDES_DEMO.D)}</li>
-            <li><strong>E</strong> — ${escapeHTML(FIDES_DEMO.E)}</li>
-            <li><strong>S</strong> — ${escapeHTML(FIDES_DEMO.S)}</li>
-          </ul>
-        </div>
-      `;
-    }
-
     function renderDetail(moduleId, nodeId, isLocked){
       const mod = MODULES[moduleId];
       const node = mod.content.nodes[nodeId] || mod.content.nodes.core;
@@ -1441,7 +1420,6 @@
 
       detailHost.innerHTML = "";
 
-      // Explication
       const expl = document.createElement("div");
       expl.className = "card";
       expl.innerHTML = `<h4><span>Explication</span><span class="kicker">${escapeHTML(moduleId)} • ${escapeHTML(nodeId)}</span></h4>`;
@@ -1453,7 +1431,6 @@
       });
       detailHost.appendChild(expl);
 
-      // FIDES
       const fides = document.createElement("div");
       fides.className = "card";
       fides.innerHTML = `<h4><span>Points clés FIDES</span><span class="kicker">démo</span></h4>`;
@@ -1470,14 +1447,12 @@
       }
       detailHost.appendChild(fides);
 
-      // Aide interaction
       const help = document.createElement("div");
       help.className = "card";
       help.innerHTML = `
-        <h4><span>Interaction</span><span class="kicker">UX</span></h4>
+        <h4><span>Repères</span><span class="kicker">UX</span></h4>
         <p class="note">
-          <strong>Survol</strong> = aperçu • <strong>Clic</strong> = verrouillage •
-          <strong>Zoom</strong> = lisibilité (mobile).
+          ✓ = déjà exploré • Survol = aperçu • Clic = verrouille • Zoom = lisibilité.
         </p>
       `;
       detailHost.appendChild(help);
@@ -1497,32 +1472,32 @@
     function cssEscape(s){ return String(s).replace(/"/g, '\\"'); }
 
     /* ============================================================
+      MODULE SELECT (topbar)
+    ============================================================ */
+    function buildModuleSelect(){
+      moduleSelect.innerHTML = "";
+      Object.keys(MODULES).forEach(id => {
+        const opt = document.createElement("option");
+        opt.value = id;
+        opt.textContent = MODULES[id].title;
+        moduleSelect.appendChild(opt);
+      });
+    }
+
+    /* ============================================================
       DIAGRAMS (SVG)
       ------------------------------------------------------------
-      ✅ MODIF PRINCIPALE demandée :
-      - Zone de confort : plus “ligne écrasée”
-        -> disposition en courbe + spacing augmenté
-      - Texte clé déplacé en HTML (caption) donc lisible
+      ✅ Zone confort corrigée : courbe + spacing + caption HTML
     ============================================================ */
-
     function comfortDiagramSVG(){
-      // Disposition courbe : x espacés + y alternés (moins “ligne droite”)
-      // + flèches courbes (path) plus lisibles.
       return `
       <svg viewBox="0 0 1100 560" role="img" aria-label="Zone de confort à expansion">
-        <!-- Liens (courbes) -->
-        <path class="link" data-from="confort" data-to="peur"
-          d="M 180 300 C 260 210, 330 210, 420 280"></path>
-        <path class="link" data-from="peur" data-to="apprentissage"
-          d="M 420 280 C 520 350, 590 350, 680 280"></path>
-        <path class="link" data-from="apprentissage" data-to="expansion"
-          d="M 680 280 C 780 210, 860 210, 940 300"></path>
+        <path class="link" data-from="confort" data-to="peur" d="M 180 300 C 260 210, 330 210, 420 280"></path>
+        <path class="link" data-from="peur" data-to="apprentissage" d="M 420 280 C 520 350, 590 350, 680 280"></path>
+        <path class="link" data-from="apprentissage" data-to="expansion" d="M 680 280 C 780 210, 860 210, 940 300"></path>
 
-        <!-- Cœur -->
-        <path class="link" data-from="core" data-to="peur"
-          d="M 550 160 C 510 220, 470 240, 420 280"></path>
-        <path class="link" data-from="core" data-to="apprentissage"
-          d="M 550 160 C 590 220, 630 240, 680 280"></path>
+        <path class="link" data-from="core" data-to="peur" d="M 550 160 C 510 220, 470 240, 420 280"></path>
+        <path class="link" data-from="core" data-to="apprentissage" d="M 550 160 C 590 220, 630 240, 680 280"></path>
 
         <g class="node" data-node="core" data-role="core">
           <circle cx="550" cy="160" r="78"></circle>
@@ -1530,17 +1505,16 @@
           <text class="sub" x="550" y="186" text-anchor="middle">traverser la peur</text>
         </g>
 
-        <!-- Étapes -->
         <g class="node" data-node="confort" data-role="leaf">
           <circle cx="180" cy="300" r="72"></circle>
           <text x="180" y="300" text-anchor="middle">Confort</text>
-          <text class="sub" x="180" y="326" text-anchor="middle">sécurité illusoire</text>
+          <text class="sub" x="180" y="326" text-anchor="middle">habitudes</text>
         </g>
 
         <g class="node" data-node="peur" data-role="leaf">
           <circle cx="420" cy="280" r="72"></circle>
           <text x="420" y="280" text-anchor="middle">Peur</text>
-          <text class="sub" x="420" y="306" text-anchor="middle">doutes / jugements</text>
+          <text class="sub" x="420" y="306" text-anchor="middle">doutes</text>
         </g>
 
         <g class="node" data-node="apprentissage" data-role="leaf">
@@ -1555,10 +1529,8 @@
           <text class="sub" x="940" y="326" text-anchor="middle">alignement</text>
         </g>
 
-        <!-- Repères -->
-        <text x="550" y="520" text-anchor="middle"
-          fill="rgba(255,255,255,0.55)" font-size="13" font-weight="760">
-          Astuce : sur petit écran, utilise le scroll horizontal + zoom.
+        <text x="550" y="520" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13" font-weight="760">
+          Astuce : scroll horizontal + zoom si nécessaire.
         </text>
       </svg>`;
     }
@@ -1575,7 +1547,6 @@
         { id:"limitantes", label:"Limitantes", sub:subs.limitantes, x: 340, y: 430 },
         { id:"expansives", label:"Expansives", sub:subs.expansives, x: 180, y: 320 }
       ];
-
       const links = items.map(it => `<path class="link" data-from="core" data-to="${it.id}"
         d="M 550 270 C ${(550+it.x)/2} ${(270+it.y)/2 - 40}, ${(550+it.x)/2} ${(270+it.y)/2 + 40}, ${it.x} ${it.y}"></path>`).join("");
 
@@ -1601,7 +1572,7 @@
 
     function empathyDiagramSVG(){
       return `
-      <svg viewBox="0 0 1100 560" role="img" aria-label="Empathie vs apathie">
+      <svg viewBox="0 0 1100 560" role="img" aria-label="Empathie">
         <path class="link" data-from="core" data-to="definition" d="M 550 260 C 470 190, 360 190, 290 240"></path>
         <path class="link" data-from="core" data-to="differences" d="M 550 260 C 550 180, 550 140, 550 110"></path>
         <path class="link" data-from="core" data-to="freins" d="M 550 260 C 640 190, 760 190, 830 240"></path>
@@ -1660,7 +1631,7 @@
 
     function dogmasDiagramSVG(){
       return `
-      <svg viewBox="0 0 1100 560" role="img" aria-label="Conditionnements et dogmes">
+      <svg viewBox="0 0 1100 560" role="img" aria-label="Dogmes">
         <path class="link" data-from="core" data-to="sources" d="M 550 260 C 550 180, 550 140, 550 110"></path>
 
         <g class="node" data-node="core" data-role="core">
@@ -1698,7 +1669,7 @@
       `).join("");
 
       return `
-      <svg viewBox="0 0 1100 560" role="img" aria-label="Familles d'émotions">
+      <svg viewBox="0 0 1100 560" role="img" aria-label="Émotions">
         ${links}
         <g class="node" data-node="core" data-role="core">
           <circle cx="550" cy="270" r="86"></circle>
@@ -1711,7 +1682,7 @@
 
     function valuesDiagramSVG(){
       return `
-      <svg viewBox="0 0 1100 560" role="img" aria-label="Valeurs de vie">
+      <svg viewBox="0 0 1100 560" role="img" aria-label="Valeurs">
         <path class="link" data-from="core" data-to="liste" d="M 550 260 C 550 180, 550 140, 550 110"></path>
 
         <g class="node" data-node="core" data-role="core">
@@ -1729,8 +1700,9 @@
     }
 
     /* ============================================================
-      BOOT : rester en home au chargement
+      INIT
     ============================================================ */
+    buildModuleSelect();
     goHome();
   </script>
 </body>
