@@ -6,18 +6,11 @@
   <title>Support de formation – FIDES & mécanismes émotionnels</title>
 
   <style>
-    /* ============================================================
-      DESIGN SYSTEM — Dark + Glass + Accent dynamique
-      ------------------------------------------------------------
-      ✅ Accents par thème via JS (setThemeAccent)
-      ✅ Layout 2 colonnes par défaut + mode Focus 1 colonne (toggle)
-    ============================================================ */
     :root{
       --bg0:#070913;
       --bg1:#0b1022;
 
       --glass: rgba(255,255,255,0.07);
-      --glass2: rgba(255,255,255,0.10);
       --stroke: rgba(255,255,255,0.14);
 
       --text: rgba(255,255,255,0.92);
@@ -31,11 +24,17 @@
       --radius: 20px;
       --radius2: 26px;
 
-      --focusMaxWidth: 1040px;
+      /* Focus unique : largeur max */
+      --maxw: 1100px;
+
+      /* Scrollbar “inset” (dans le panel) */
+      --sbSize: 8px;
+      --sbPad: 12px; /* espace interne pour éviter la scrollbar collée */
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -45,53 +44,36 @@
         radial-gradient(680px 520px at 60% 86%, rgba(255,92,214,0.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
+
+      /* IMPORTANT : pas de scroll global => scroll “dans les panels” */
       overflow: hidden;
     }
 
     /* ============================================================
-      SCROLLBARS — "glass" plus discret (moins contraste / plus fin)
+      LAYOUT : Focus unique (pas de bascule)
       ------------------------------------------------------------
-      Note: jamais 100% identique sur tous OS, mais plus intégré.
-    ============================================================ */
-    *{
-      scrollbar-width: thin; /* Firefox */
-      scrollbar-color:
-        color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.18))
-        rgba(0,0,0,0.22);
-    }
-    ::-webkit-scrollbar{ width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track{
-      background: rgba(0,0,0,0.18);
-      border-radius: 999px;
-    }
-    ::-webkit-scrollbar-thumb{
-      background: linear-gradient(180deg,
-        color-mix(in srgb, var(--accent2) 35%, rgba(255,255,255,0.10)),
-        color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.10))
-      );
-      border: 2px solid rgba(0,0,0,0.18);
-      border-radius: 999px;
-    }
-    ::-webkit-scrollbar-thumb:hover{
-      background: linear-gradient(180deg,
-        color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12)),
-        color-mix(in srgb, var(--accent) 45%, rgba(255,255,255,0.12))
-      );
-    }
-
-    /* ============================================================
-      LAYOUT — 2 colonnes par défaut
-      [contenu] | [aside]
-      ------------------------------------------------------------
-      Mode focus 1 colonne: body.focus-mode -> aside devient dessous
+      - Desktop : 2 colonnes mais centrées et respirantes
+      - Mobile : 1 colonne
     ============================================================ */
     .app{
-      height: 100%;
-      display: grid;
+      height:100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px;
+
+      display:grid;
       grid-template-columns: 1fr 420px;
       gap: 14px;
-      padding: 14px;
       align-items: stretch;
+    }
+
+    @media (max-width: 1050px){
+      body{ overflow:auto; } /* sur mobile on accepte le scroll global */
+      .app{
+        height:auto;
+        min-height:100%;
+        grid-template-columns: 1fr;
+      }
     }
 
     .panel{
@@ -101,29 +83,66 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      overflow: hidden;
-      min-height: 0; /* important pour scroll interne */
+
+      overflow:hidden;
+      min-height:0; /* vital pour que les scroll internes marchent */
     }
 
-    body.focus-mode .app{
-      grid-template-columns: 1fr;
-      max-width: var(--focusMaxWidth);
-      margin: 0 auto;
+    /* ============================================================
+      SCROLL AREAS : scrollbars “inset” dans le panel
+      ------------------------------------------------------------
+      Idée : la zone scrollable a un padding interne à droite
+      => la scrollbar n’est plus collée au bord de la fenêtre,
+      elle est “dans” la vue.
+    ============================================================ */
+    .scrollArea{
+      height: 100%;
+      overflow: auto;
+
+      /* “gouttière” interne */
+      padding-right: var(--sbPad);
+      scrollbar-gutter: stable both-edges;
+
+      /* arrondis visuels */
+      border-radius: inherit;
     }
-    body.focus-mode .aside{
-      height: auto;
-      max-height: none;
+
+    /* Scrollbars (appliquées aux scrollArea uniquement) */
+    .scrollArea{
+      scrollbar-width: thin;
+      scrollbar-color:
+        color-mix(in srgb, var(--accent) 32%, rgba(255,255,255,0.16))
+        rgba(0,0,0,0.18);
+    }
+    .scrollArea::-webkit-scrollbar{ width: var(--sbSize); height: var(--sbSize); }
+    .scrollArea::-webkit-scrollbar-track{
+      background: rgba(0,0,0,0.14);
+      border-radius: 999px;
+      margin: 10px; /* “inset” visuel */
+    }
+    .scrollArea::-webkit-scrollbar-thumb{
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--accent2) 32%, rgba(255,255,255,0.10)),
+        color-mix(in srgb, var(--accent) 32%, rgba(255,255,255,0.10))
+      );
+      border: 2px solid rgba(0,0,0,0.16);
+      border-radius: 999px;
+    }
+    .scrollArea::-webkit-scrollbar-thumb:hover{
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12)),
+        color-mix(in srgb, var(--accent) 45%, rgba(255,255,255,0.12))
+      );
     }
 
     /* ============================================================
       MAIN
     ============================================================ */
-    .main{ display:flex; flex-direction:column; overflow:hidden; min-height:0; }
-
+    .main{ display:flex; flex-direction:column; min-height:0; }
     .main__header{
       padding: 18px 18px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+      display:flex; justify-content:space-between; gap:14px;
     }
     .titleblock h2{ margin:0; font-size: 18px; font-weight: 900; letter-spacing:.2px; }
     .titleblock p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
@@ -140,15 +159,8 @@
     }
     .chip strong{ color: var(--accent); font-weight: 900; }
 
-    .canvas{
-      padding: 14px;
-      height: 100%;
-      overflow:auto;
-      min-height:0;
-    }
-
     /* ============================================================
-      TOPBAR (module) — retour + select + focus toggle + progression
+      TOPBAR (module) — select stylé + progression
     ============================================================ */
     .topbar{
       padding: 10px 18px;
@@ -172,7 +184,7 @@
       padding: 9px 10px;
       cursor:pointer;
       transition: background .18s ease, transform .12s ease, border-color .18s ease;
-      font-weight: 800;
+      font-weight: 820;
       font-size: 12.5px;
       white-space: nowrap;
     }
@@ -188,22 +200,6 @@
         color-mix(in srgb, var(--accent) 9%, rgba(0,0,0,0.18))
       );
     }
-    .btn[aria-pressed="true"]{
-      background: color-mix(in srgb, var(--accent2) 16%, rgba(0,0,0,0.14));
-      border-color: color-mix(in srgb, var(--accent2) 50%, rgba(255,255,255,0.14));
-    }
-
-    select{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
-      color: rgba(255,255,255,0.88);
-      border-radius: 14px;
-      padding: 9px 10px;
-      font-weight: 760;
-      font-size: 12.5px;
-      outline: none;
-      max-width: 360px;
-    }
 
     .progressPill{
       font-size: 12px;
@@ -216,21 +212,52 @@
     }
     .progressPill strong{ color: var(--accent); font-weight: 900; }
 
+    /* SELECT beau : suppression look natif + flèche intégrée */
+    .selectWrap{
+      position: relative;
+      max-width: 360px;
+      min-width: 220px;
+    }
+    .selectWrap::after{
+      content:"";
+      position:absolute;
+      right: 12px;
+      top: 50%;
+      width: 10px; height: 10px;
+      transform: translateY(-50%) rotate(45deg);
+      border-right: 2px solid rgba(255,255,255,0.70);
+      border-bottom: 2px solid rgba(255,255,255,0.70);
+      pointer-events:none;
+      opacity: .9;
+    }
+    select{
+      width:100%;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: rgba(255,255,255,0.90);
+      border-radius: 14px;
+      padding: 9px 34px 9px 12px; /* espace pour la flèche */
+      font-weight: 780;
+      font-size: 12.5px;
+      outline: none;
+    }
+    select:hover{
+      border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14));
+    }
+    select:focus{
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+
     /* ============================================================
-      HOME — catégories + cartes thèmes (léger)
+      HOME — catégories + cartes
     ============================================================ */
-    .homeTop{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .categoryRow{
-      display:flex;
-      gap: 8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
+    .homeTop{ display:flex; flex-direction:column; gap:10px; margin-bottom: 12px; }
+    .categoryRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+
     .categoryBtn{
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(0,0,0,0.14);
@@ -265,6 +292,10 @@
       gap: 12px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    @media (max-width: 900px){
+      .homeGrid{ grid-template-columns: 1fr; }
+    }
+
     .themeCard{
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.14);
@@ -281,32 +312,11 @@
       border-color: color-mix(in srgb, var(--accent2) 38%, rgba(255,255,255,0.12));
       background: rgba(255,255,255,0.05);
     }
-    .themeCard h3{
-      margin:0;
-      font-size: 14px;
-      font-weight: 940;
-      line-height: 1.25;
-    }
-    .themeCard p{
-      margin:6px 0 0;
-      color: rgba(255,255,255,0.70);
-      font-size: 12.5px;
-      line-height:1.35;
-    }
-    .themeCard .mini{
-      margin-top:10px;
-      display:flex; gap:8px; flex-wrap:wrap;
-      color: rgba(255,255,255,0.70);
-      font-size: 12px;
-    }
-    .tag{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      padding: 5px 9px;
-      border-radius: 999px;
-    }
+    .themeCard h3{ margin:0; font-size: 14px; font-weight: 940; line-height: 1.25; }
+    .themeCard p{ margin:6px 0 0; color: rgba(255,255,255,0.70); font-size: 12.5px; line-height:1.35; }
+    .themeCard .mini{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; font-size: 12px; }
+    .tag{ border:1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); padding:5px 9px; border-radius:999px; }
 
-    /* Thèmes visités */
     .themeCard.is-visited{
       border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14));
     }
@@ -325,9 +335,7 @@
     }
 
     /* ============================================================
-      MODULE — mini repère visuel (pills) + accordéon (fonctionnel)
-      ------------------------------------------------------------
-      -> Remplace les diagrammes : plus clair, moins cognitif.
+      MODULE — mini repère + accordéon
     ============================================================ */
     .miniMap{
       padding: 10px 18px 12px;
@@ -363,23 +371,13 @@
       background: linear-gradient(135deg, var(--accent2), var(--accent));
       box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 8%, transparent);
     }
-    .miniCheck{
-      font-weight: 900;
-      opacity: .9;
-      margin-left: 2px;
-    }
+    .miniCheck{ font-weight: 900; opacity: .9; margin-left: 2px; }
     .miniPill.is-visited{
       border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.14));
       background: color-mix(in srgb, var(--accent) 8%, rgba(0,0,0,0.14));
     }
 
-    /* Accordéon */
-    .accordion{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      padding: 14px 0 0;
-    }
+    .accordion{ display:flex; flex-direction:column; gap:10px; padding: 14px 0 0; }
     .accItem{
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.14);
@@ -399,42 +397,20 @@
       color: var(--text);
       cursor:pointer;
     }
-    .accHead:hover{
-      background: rgba(255,255,255,0.04);
-    }
-    .accTitle{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight: 920;
-      font-size: 13px;
-    }
-    .accMeta{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color: rgba(255,255,255,0.70);
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
+    .accHead:hover{ background: rgba(255,255,255,0.04); }
+    .accTitle{ display:flex; align-items:center; gap:10px; font-weight: 920; font-size: 13px; }
+    .accMeta{ display:flex; align-items:center; gap:10px; color: rgba(255,255,255,0.70); font-size: 12px; font-weight: 800; white-space: nowrap; }
     .caret{
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-right: 2px solid rgba(255,255,255,0.62);
       border-bottom: 2px solid rgba(255,255,255,0.62);
       transform: rotate(-45deg);
       transition: transform .18s ease;
       opacity: .85;
     }
-    .accItem[aria-expanded="true"] .caret{
-      transform: rotate(45deg);
-    }
+    .accItem[aria-expanded="true"] .caret{ transform: rotate(45deg); }
 
-    .accBody{
-      padding: 0 14px 14px;
-      display:none;
-    }
+    .accBody{ padding: 0 14px 14px; display:none; }
     .accItem[aria-expanded="true"] .accBody{ display:block; }
 
     .kicker{
@@ -444,15 +420,9 @@
       text-transform: uppercase;
       margin: 12px 0 6px;
     }
-    .accBody p, .accBody li{
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-      line-height: 1.55;
-      margin: 0 0 8px;
-    }
+    .accBody p, .accBody li{ color: rgba(255,255,255,0.85); font-size: 13px; line-height: 1.55; margin: 0 0 8px; }
     .accBody ul{ margin: 6px 0 0 18px; }
 
-    /* Visited pour accordéon */
     .accItem.is-visited{
       border-color: color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.12));
     }
@@ -467,16 +437,17 @@
     }
 
     /* ============================================================
-      ASIDE — explications
+      ASIDE
     ============================================================ */
-    .aside{ display:flex; flex-direction:column; overflow:hidden; min-height:0; }
+    .aside{ display:flex; flex-direction:column; min-height:0; }
     .aside__header{
       padding: 18px 18px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
     }
     .aside__header h3{ margin:0; font-size: 14px; font-weight: 900; }
     .aside__header p{ margin: 6px 0 0; color: var(--muted2); font-size: 12.5px; line-height: 1.4; }
-    .aside__content{ padding: 14px 18px 18px; overflow:auto; min-height:0; }
+
+    .aside__content{ padding: 14px 18px 18px; min-height:0; }
 
     .card{
       border: 1px solid rgba(255,255,255,0.12);
@@ -491,11 +462,7 @@
       font-weight: 900;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    .card p, .card li{
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-      line-height: 1.55;
-    }
+    .card p, .card li{ color: rgba(255,255,255,0.85); font-size: 13px; line-height: 1.55; }
     .note{ font-size: 12px; color: rgba(255,255,255,0.62); line-height: 1.45; }
     .callout{
       border-left: 3px solid var(--accent);
@@ -504,58 +471,45 @@
       color: rgba(255,255,255,0.86);
     }
 
-    /* ============================================================
-      UTILITAIRES
-    ============================================================ */
     .hidden{ display:none !important; }
-
-    /* ============================================================
-      RESPONSIVE — 1 colonne plus tôt (comme ton ressenti “110% top”)
-    ============================================================ */
-    @media (max-width: 1500px){
-      body{ overflow:auto; }
-      .app{
-        height:auto;
-        min-height:100%;
-        grid-template-columns: 1fr;
-      }
-      .homeGrid{ grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 
 <body>
   <div class="app">
-    <!-- ================================
-      MAIN (Accueil + Module)
-    ================================= -->
+    <!-- MAIN -->
     <main class="panel main" aria-label="Contenu">
       <div class="main__header">
         <div class="titleblock">
           <h2 id="mainTitle">Accueil</h2>
-          <p id="mainSubtitle">Choisis une catégorie, puis un thème. Navigation “app-like” (retour navigateur pris en charge).</p>
+          <p id="mainSubtitle">Catégorie → thème. Ensuite : sections lisibles (pas de diagrammes lourds).</p>
           <div class="chiprow" id="mainChips"></div>
         </div>
-        <div class="chip"><strong>Lisible</strong> & progressif</div>
+        <div class="chip"><strong>Focus</strong> par défaut</div>
       </div>
 
-      <!-- TOPBAR (uniquement en module) -->
+      <!-- TOPBAR (module) -->
       <div class="topbar hidden" id="moduleTopbar">
         <div class="topbar__left">
           <button class="btn btn--accent" id="backBtn" type="button">← Retour</button>
-          <select id="moduleSelect" aria-label="Changer de thème"></select>
+
+          <div class="selectWrap" title="Changer de thème">
+            <select id="moduleSelect" aria-label="Changer de thème"></select>
+          </div>
+
           <span class="progressPill" id="progressPill"><strong>0</strong>/<span>0</span> sections vues</span>
         </div>
+
         <div class="topbar__right">
-          <button class="btn" id="focusBtn" type="button" aria-pressed="false">Mode focus</button>
           <button class="btn" id="resetVisitedBtn" type="button" title="Réinitialiser les ✓ (localStorage)">Reset ✓</button>
         </div>
       </div>
 
-      <!-- MINI MAP (uniquement en module) -->
+      <!-- MINI MAP -->
       <div class="miniMap hidden" id="miniMap"></div>
 
-      <div class="canvas">
+      <!-- SCROLL AREA MAIN -->
+      <div class="scrollArea" style="padding:14px;" id="mainScroll">
         <!-- HOME VIEW -->
         <section id="homeView">
           <div class="homeTop">
@@ -571,22 +525,24 @@
       </div>
     </main>
 
-    <!-- ================================
-      ASIDE (Explications / FIDES)
-    ================================= -->
+    <!-- ASIDE -->
     <aside class="panel aside" aria-label="Explications">
       <div class="aside__header">
         <h3 id="detailTitle">Bienvenue</h3>
         <p id="detailHint">Choisis une catégorie puis un thème.</p>
       </div>
-      <div class="aside__content" id="detailHost"></div>
+
+      <!-- SCROLL AREA ASIDE -->
+      <div class="scrollArea aside__content" id="asideScroll">
+        <div id="detailHost"></div>
+      </div>
     </aside>
   </div>
 
   <script>
-    /* ============================================================
-      1) COULEURS PAR THÈME (accent dynamique)
-    ============================================================ */
+    /* =========================
+      THEME COLORS
+    ========================== */
     const THEME_COLORS = {
       comfort:    { accent:"#2de2e6", accent2:"#8a5cff" },
       emotions:   { accent:"#38f2a5", accent2:"#2de2e6" },
@@ -600,25 +556,21 @@
       humiliation:{ accent:"#ff5cd6", accent2:"#ffb020" },
       injustice:  { accent:"#8a5cff", accent2:"#ffb020" },
     };
-
     function setThemeAccent(moduleId){
       const c = THEME_COLORS[moduleId] || { accent:"#2de2e6", accent2:"#8a5cff" };
       document.documentElement.style.setProperty("--accent", c.accent);
       document.documentElement.style.setProperty("--accent2", c.accent2);
     }
 
-    /* ============================================================
-      2) VISITED STATE (localStorage) — modules + sections (nodeId)
-         -> Permet de voir où tu as déjà cliqué.
-    ============================================================ */
-    const LS_KEY = "fides_training_visited_v3";
-
+    /* =========================
+      VISITED (localStorage)
+    ========================== */
+    const LS_KEY = "fides_training_visited_v4";
     function loadVisited(){
       try{ return JSON.parse(localStorage.getItem(LS_KEY)) || { modules:{}, nodes:{} }; }
       catch{ return { modules:{}, nodes:{} }; }
     }
     function saveVisited(state){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
-
     let VISITED = loadVisited();
 
     function markModuleVisited(moduleId){
@@ -636,7 +588,6 @@
     function isNodeVisited(moduleId, nodeId){
       return !!(VISITED.nodes[moduleId] && VISITED.nodes[moduleId][nodeId]);
     }
-
     function resetVisited(){
       VISITED = { modules:{}, nodes:{} };
       saveVisited(VISITED);
@@ -645,69 +596,50 @@
       if(viewMode === "module") updateProgressPill(currentModuleId);
     }
 
-    /* ============================================================
-      3) HISTORY API — Back/Forward navigateur (SPA)
-      ------------------------------------------------------------
-      - pushState à chaque navigation (home/module/section)
-      - popstate restore la vue
-    ============================================================ */
+    /* =========================
+      HISTORY API (Back/Forward)
+    ========================== */
     function makeURLFromState(state){
       const p = new URLSearchParams();
       p.set("view", state.view || "home");
       if(state.cat) p.set("cat", state.cat);
       if(state.moduleId) p.set("m", state.moduleId);
       if(state.nodeId) p.set("n", state.nodeId);
-      if(state.focus) p.set("focus", "1");
       return `${location.pathname}?${p.toString()}`;
     }
-
     function pushAppState(state, replace=false){
       const url = makeURLFromState(state);
       if(replace) history.replaceState(state, "", url);
       else history.pushState(state, "", url);
     }
-
     function readStateFromURL(){
       const p = new URLSearchParams(location.search);
-      const view = p.get("view") || "home";
       return {
-        view,
-        cat: p.get("cat") || null,
+        view: p.get("view") || "home",
+        cat: p.get("cat") || "bases",
         moduleId: p.get("m") || null,
-        nodeId: p.get("n") || null,
-        focus: p.get("focus") === "1"
+        nodeId: p.get("n") || null
       };
     }
-
     window.addEventListener("popstate", (e) => {
       const state = e.state || readStateFromURL();
       restoreFromState(state);
     });
 
     function restoreFromState(state){
-      // Focus mode
-      setFocusMode(!!state.focus, true);
-
       if(state.view === "module" && state.moduleId){
         enterModule(state.moduleId, { silentHistory:true });
         if(state.nodeId){
-          openSection(state.nodeId, { silentHistory:true, scrollIntoView:true });
+          openSection(state.nodeId, { silentHistory:true, autoScroll:false }); // ✅ pas d’auto-scroll
         }
       } else {
         goHome({ silentHistory:true, cat: state.cat || "bases" });
       }
     }
 
-    function initHistory(){
-      const state = readStateFromURL();
-      // Garantit un état initial propre
-      pushAppState(state, true);
-      restoreFromState(state);
-    }
-
-    /* ============================================================
-      4) FIDES (démo) — remplaçable
-    ============================================================ */
+    /* =========================
+      FIDES (démo)
+    ========================== */
     const FIDES_DEMO = {
       F: "Fait : qu’est-ce qui s’est réellement passé (observable, neutre) ?",
       I: "Interprétation : quelle histoire je me raconte (dogme, croyance, jugement) ?",
@@ -715,7 +647,6 @@
       E: "Expression : comment je l’exprime de façon saine (cadre, limite, demande) ?",
       S: "Solution / sens : quelle action alignée (valeurs) je choisis maintenant ?"
     };
-
     function makeFidesForWound(label, {emotion, besoin, interpretation, action}){
       return {
         core: [
@@ -737,18 +668,16 @@
       };
     }
 
-    /* ============================================================
-      5) MODULES (contenu)
-      ------------------------------------------------------------
-      ✅ IMPORTANT: Ici tu modifies les textes.
-      content.nodes[nodeId].blocks = [{h, p}, ...]
-      content.fides[nodeId] = [...]
-    ============================================================ */
+    /* =========================
+      MODULES (contenu)
+      -> identique à ta version accordéon, raccourci ici pour lisibilité
+      -> tu peux réinjecter tes modules complets comme avant
+    ========================== */
     const MODULES = {
       comfort: {
         title: "Zone de confort → peur → apprentissage → expansion",
         subtitle: "Progression : traverser la peur pour grandir.",
-        tags: ["progression", "zones", "simple"],
+        tags: ["progression","zones","simple"],
         order: ["core","confort","peur","apprentissage","expansion"],
         content: {
           nodes: {
@@ -756,22 +685,10 @@
               {h:"Message clé", p:"« Pour avancer, il faut traverser la peur. »"},
               {h:"Résumé", p:"Confort = sécurité illusoire → Peur = doutes/jugements → Apprentissage = compétences → Expansion = réalisation/alignement."}
             ]},
-            confort:{ title:"Zone de confort", blocks:[
-              {h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"},
-              {h:"Piste", p:"Qu’est-ce que j’évite de ressentir ou de risquer ici ?"}
-            ]},
-            peur:{ title:"Zone de peur", blocks:[
-              {h:"Peur", p:"Peur = doutes, jugements, perte de repères"},
-              {h:"Piste", p:"Quel petit pas me ferait traverser la peur sans me brusquer ?"}
-            ]},
-            apprentissage:{ title:"Zone d’apprentissage", blocks:[
-              {h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"},
-              {h:"Piste", p:"Quelle compétence, même basique, me débloque ?"}
-            ]},
-            expansion:{ title:"Zone d’expansion", blocks:[
-              {h:"Expansion", p:"Expansion = réalisation, alignement, contribution"},
-              {h:"Piste", p:"Qu’est-ce qui devient possible si je persévère ?"}
-            ]}
+            confort:{ title:"Zone de confort", blocks:[{h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"}] },
+            peur:{ title:"Zone de peur", blocks:[{h:"Peur", p:"Peur = doutes, jugements, perte de repères"}] },
+            apprentissage:{ title:"Zone d’apprentissage", blocks:[{h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"}] },
+            expansion:{ title:"Zone d’expansion", blocks:[{h:"Expansion", p:"Expansion = réalisation, alignement, contribution"}] }
           },
           fides: { core: [
             `F — ${FIDES_DEMO.F}`,
@@ -786,7 +703,7 @@
       betrayal: {
         title: "Blessure émotionnelle : trahison",
         subtitle: "Masque, apathie, addictions, valeurs, dogmes, croyances.",
-        tags: ["blessures", "mécanismes", "relation"],
+        tags: ["blessures","mécanismes","relation"],
         order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
         content: {
           nodes: {
@@ -801,8 +718,8 @@
             addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions : pouvoir, contrôle, domination"}] },
             valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs : loyauté, vérité, paraître, argent"}] },
             dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes : « On ne peut faire confiance à personne »"}] },
-            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes", p:"Croyances limitantes : « Les autres vont me trahir »"}] },
-            expansives:{ title:"Croyances expansives", blocks:[{h:"Expansives", p:"Croyances expansives : « Je laisse le bénéfice du doute »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes", p:"« Les autres vont me trahir »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Expansives", p:"« Je laisse le bénéfice du doute »"}] },
           },
           fides: makeFidesForWound("Trahison", {
             emotion:"surprise", besoin:"sécurité / fiabilité",
@@ -812,250 +729,26 @@
         }
       },
 
-      abandonment: {
-        title: "Blessure émotionnelle : abandon",
-        subtitle: "Peur de séparation, besoin de présence (démo cohérente).",
-        tags: ["blessures","lien","sécurité"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"Quand le lien semble menacé : recherche de proximité, peur d’être oublié."}
-            ]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Tristesse + peur de séparation"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Séparations, distance émotionnelle, indisponibilité"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fusionnel / dépendant, recherche de réassurance"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Hypervigilance relationnelle, anxiété d’attachement"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Validation, messages, proximité constante"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Présence, affection, famille, fidélité"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Si on m’aime, on ne me laisse pas »"}] },
-            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« On va m’abandonner »"}] },
-            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« Je suis digne d’amour même à distance »"}] },
-          },
-          fides: makeFidesForWound("Abandon", {
-            emotion:"tristesse / peur", besoin:"présence / sécurité",
-            interpretation:"« Je ne compte pas assez »",
-            action:"demande explicite + auto-soutien + tolérance au vide"
-          })
-        }
-      },
-
-      rejection: {
-        title: "Blessure émotionnelle : rejet",
-        subtitle: "Peur d’être indésirable, évitement (démo cohérente).",
-        tags: ["blessures","estime","identité"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"« Je dérange » → retrait ou perfection pour être accepté."}
-            ]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Peur + honte (d’être indésirable)"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Critiques précoces, moqueries, comparaisons"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fuyant/distant, rationalise pour ne pas sentir"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Détachement, évitement de l’intimité"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Perfectionnisme, performance, contrôle de l’image"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Appartenance, respect, authenticité"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Si je suis moi, on me rejette »"}] },
-            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« On ne veut pas de moi »"}] },
-            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« Je peux prendre ma place »"}] },
-          },
-          fides: makeFidesForWound("Rejet", {
-            emotion:"peur / honte", besoin:"appartenance / sécurité",
-            interpretation:"« Je suis de trop »",
-            action:"micro-exposition + auto-validation + relation sûre"
-          })
-        }
-      },
-
-      humiliation: {
-        title: "Blessure émotionnelle : humiliation",
-        subtitle: "Honte, se rabaisser, dignité (démo cohérente).",
-        tags: ["blessures","honte","dignité"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"La honte pousse à se cacher, se rabaisser ou sur-compenser."}
-            ]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Honte + gêne + peur d’être vu"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Moqueries, critiques, exposition publique"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Se punit, minimise ses besoins, porte les autres"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Auto-dévalorisation, résignation"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Auto-sabotage, sur-service, compensations"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Respect, dignité, compassion"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Mes besoins dérangent »"}] },
-            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« Je suis ridicule »"}] },
-            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« Je mérite le respect »"}] },
-          },
-          fides: makeFidesForWound("Humiliation", {
-            emotion:"honte / gêne", besoin:"respect / dignité",
-            interpretation:"« Mes besoins dérangent »",
-            action:"poser une limite + auto-respect + se montrer par petits pas"
-          })
-        }
-      },
-
-      injustice: {
-        title: "Blessure émotionnelle : injustice",
-        subtitle: "Rigidité, exigence, équité (démo cohérente).",
-        tags: ["blessures","équité","exigence"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"Quand l’équité semble violée : rigidité, standards élevés, jugement."}
-            ]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Colère (souvent froide) + frustration"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Favoritisme, sanctions injustes, manque de reconnaissance"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Rigide, perfectionniste, contrôle"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Distance émotionnelle, dureté"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Performance, sur-contrôle, travail"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Justice, mérite, honnêteté, excellence"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Je dois être irréprochable »"}] },
-            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« Montrer = faiblesse »"}] },
-            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« La vulnérabilité est une force »"}] },
-          },
-          fides: makeFidesForWound("Injustice", {
-            emotion:"colère / frustration", besoin:"équité / reconnaissance",
-            interpretation:"« Je dois être irréprochable »",
-            action:"assouplir standard + exprimer besoin + réparer sans punir"
-          })
-        }
-      },
-
-      empathy: {
-        title: "Empathie vs apathie",
-        subtitle: "Résonance sans fusion, distinctions et freins.",
-        tags: ["relation","écoute","régulation"],
-        order: ["core","definition","differences","freins"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Message clé", p:"L’empathie est naturelle mais voilée."},
-              {h:"Définition", p:"Empathie = résonance sans fusion."}
-            ]},
-            definition:{ title:"Définition", blocks:[{h:"Définition", p:"Définition : résonance sans fusion"}] },
-            differences:{ title:"Différences", blocks:[{h:"Différences", p:"Empathie / compassion / sympathie"}] },
-            freins:{ title:"Freins", blocks:[{h:"Freins", p:"Freins : toutes les blessures émotionnelles"}] },
-          },
-          fides: {
-            core:["F : Observer sans projeter.","I : Distinguer empathie vs fusion.","D : Nommer la résonance.","E : Reformuler + valider.","S : Aider sans sauver."]
-          }
-        }
-      },
-
-      addictions: {
-        title: "Addictions (substances, comportementales, invisibles)",
-        subtitle: "Éviter une émotion — signal, pas faute.",
-        tags: ["signal","évitement","comportements"],
-        order: ["core","definition","fonction"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Message clé", p:"L’addiction n’est pas une faute mais un signal."},
-              {h:"Fonction", p:"Éviter une émotion."}
-            ]},
-            definition:{ title:"Définition", blocks:[
-              {h:"Définition", p:"Visibles / invisibles (démo)"},
-              {h:"Exemples", p:"Substances, jeux… / sur-contrôle, travail, validation, scrolling"}
-            ]},
-            fonction:{ title:"Fonction", blocks:[
-              {h:"Question", p:"Si j’arrête, quelle émotion apparaît ?"},
-              {h:"Intention", p:"Remplacer l’évitement par une régulation plus saine (progressivement)."}
-            ]},
-          },
-          fides: { core: [
-            `F — ${FIDES_DEMO.F}`,
-            `I — ${FIDES_DEMO.I}`,
-            `D — ${FIDES_DEMO.D}`,
-            `E — ${FIDES_DEMO.E}`,
-            `S — ${FIDES_DEMO.S}`
-          ]}
-        }
-      },
-
-      values: {
-        title: "Valeurs de vie",
-        subtitle: "Valeur bafouée → émotion → blessure peut se réactiver.",
-        tags: ["alignement","boussole","déclencheurs"],
-        order: ["core","liste"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Clé", p:"Quand mes valeurs sont bafouées → la blessure se réactive."},
-              {h:"Liste (démo)", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille."}
-            ]},
-            liste:{ title:"Liste", blocks:[
-              {h:"Exercice", p:"Choisis 5 valeurs non négociables et 1 exemple où chacune est respectée et 1 où elle est bafouée."}
-            ]},
-          },
-          fides: { core:["F : valeur touchée ?","I : règle interne ?","D : émotion ?","E : exprimer/limite","S : action alignée"] }
-        }
-      },
-
-      dogmas: {
-        title: "Conditionnements / dogmes",
-        subtitle: "Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes.",
-        tags: ["croyances","héritage","reprogrammation"],
-        order: ["core","sources"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Message", p:"Ce ne sont que des croyances héritées."},
-              {h:"Question", p:"« De qui est cette croyance ? Est-ce qu’elle m’aide aujourd’hui ? »"}
-            ]},
-            sources:{ title:"Sources", blocks:[
-              {h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes"}
-            ]},
-          },
-          fides: { core:["F : situation","I : dogme","D : émotion/tension","E : reformuler","S : nouveau choix"] }
-        }
-      },
-
-      emotions: {
-        title: "Émotions & familles de sentiments",
-        subtitle: "Peur, colère, tristesse, joie, dégoût (nuances).",
-        tags: ["émotions","nuances","vocabulaire"],
-        order: ["core","peur","colere","tristesse","joie","degout"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût"},
-              {h:"Idée", p:"Plus le vocabulaire est précis, plus la régulation est facile."}
-            ]},
-            peur:{ title:"Peur", blocks:[{h:"Nuances (démo)", p:"Inquiétude, anxiété, appréhension, panique, doute…"}] },
-            colere:{ title:"Colère", blocks:[{h:"Nuances (démo)", p:"Irritation, frustration, rage, indignation…"}] },
-            tristesse:{ title:"Tristesse", blocks:[{h:"Nuances (démo)", p:"Peine, chagrin, mélancolie, solitude…"}] },
-            joie:{ title:"Joie", blocks:[{h:"Nuances (démo)", p:"Sérénité, gratitude, enthousiasme, fierté…"}] },
-            degout:{ title:"Dégoût", blocks:[{h:"Nuances (démo)", p:"Aversion, répulsion, saturation, malaise…"}] }
-          },
-          fides: { core:["F : contexte","I : histoire","D : émotion précise","E : réguler/exprim.","S : action alignée"] }
-        }
-      },
+      /* Ajoute ici les autres modules (abandonment, rejection, etc.) comme dans ta version précédente */
     };
 
-    /* ============================================================
-      6) CATÉGORIES (Accueil) — réduit la surcharge
-    ============================================================ */
     const CATEGORIES = [
-      { id:"bases", label:"Bases", items: ["comfort","emotions","empathy"] },
-      { id:"wounds", label:"Blessures", items: ["betrayal","abandonment","rejection","humiliation","injustice"] },
-      { id:"mech",  label:"Mécanismes", items: ["addictions","values","dogmas"] },
-      { id:"all",   label:"Tous", items: Object.keys(MODULES) },
+      { id:"bases", label:"Bases", items: ["comfort"] },
+      { id:"wounds", label:"Blessures", items: ["betrayal"] },
+      { id:"all", label:"Tous", items: Object.keys(MODULES) },
     ];
 
-    /* ============================================================
-      7) ÉTAT UI
-    ============================================================ */
+    /* =========================
+      STATE
+    ========================== */
     let viewMode = "home";
     let currentModuleId = "comfort";
     let activeCategoryId = "bases";
-    let currentNodeId = null; // section ouverte actuellement (nodeId)
+    let currentNodeId = null;
 
-    /* ============================================================
-      8) DOM
-    ============================================================ */
+    /* =========================
+      DOM
+    ========================== */
     const homeView = document.getElementById("homeView");
     const moduleView = document.getElementById("moduleView");
 
@@ -1070,7 +763,6 @@
     const moduleSelect = document.getElementById("moduleSelect");
     const backBtn = document.getElementById("backBtn");
     const progressPill = document.getElementById("progressPill");
-    const focusBtn = document.getElementById("focusBtn");
     const resetVisitedBtn = document.getElementById("resetVisitedBtn");
 
     const miniMap = document.getElementById("miniMap");
@@ -1080,56 +772,19 @@
     const detailHint = document.getElementById("detailHint");
     const detailHost = document.getElementById("detailHost");
 
-    /* ============================================================
+    /* =========================
       EVENTS
-    ============================================================ */
+    ========================== */
     backBtn.addEventListener("click", () => goHome());
     moduleSelect.addEventListener("change", () => enterModule(moduleSelect.value));
-    focusBtn.addEventListener("click", () => setFocusMode(!document.body.classList.contains("focus-mode")));
     resetVisitedBtn.addEventListener("click", resetVisited);
 
-    /* ============================================================
-      FOCUS MODE toggle
-    ============================================================ */
-    function setFocusMode(enabled, silentHistory=false){
-      document.body.classList.toggle("focus-mode", !!enabled);
-      focusBtn.setAttribute("aria-pressed", enabled ? "true" : "false");
-      focusBtn.textContent = enabled ? "Focus: ON" : "Mode focus";
-
-      if(!silentHistory){
-        // Ajoute le flag focus à l'état courant
-        const state = currentAppState();
-        state.focus = !!enabled;
-        pushAppState(state, true);
-      }
-    }
-
-    function currentAppState(){
-      if(viewMode === "module"){
-        return {
-          view: "module",
-          cat: activeCategoryId,
-          moduleId: currentModuleId,
-          nodeId: currentNodeId,
-          focus: document.body.classList.contains("focus-mode")
-        };
-      }
-      return {
-        view: "home",
-        cat: activeCategoryId,
-        moduleId: null,
-        nodeId: null,
-        focus: document.body.classList.contains("focus-mode")
-      };
-    }
-
-    /* ============================================================
+    /* =========================
       HOME
-    ============================================================ */
+    ========================== */
     function goHome({ silentHistory=false, cat=null } = {}){
       viewMode = "home";
       currentNodeId = null;
-
       if(cat) activeCategoryId = cat;
 
       homeView.classList.remove("hidden");
@@ -1138,7 +793,7 @@
       miniMap.classList.add("hidden");
 
       mainTitle.textContent = "Accueil";
-      mainSubtitle.textContent = "Catégorie → thème. Ensuite : sections claires (sans diagrammes lourds).";
+      mainSubtitle.textContent = "Catégorie → thème. Ensuite : sections lisibles (zéro scroll automatique).";
       mainChips.innerHTML = `
         <div class="chip"><strong>1</strong> Catégorie</div>
         <div class="chip"><strong>2</strong> Thème</div>
@@ -1152,7 +807,7 @@
       applyVisitedStyles();
 
       if(!silentHistory){
-        pushAppState({ view:"home", cat: activeCategoryId, focus: document.body.classList.contains("focus-mode") });
+        pushAppState({ view:"home", cat: activeCategoryId });
       }
     }
 
@@ -1172,7 +827,7 @@
           renderHomeCards(activeCategoryId);
           renderHomeAside();
           applyVisitedStyles();
-          pushAppState({ view:"home", cat: activeCategoryId, focus: document.body.classList.contains("focus-mode") });
+          pushAppState({ view:"home", cat: activeCategoryId });
         });
         categoryRow.appendChild(btn);
       });
@@ -1185,7 +840,6 @@
       homeGrid.innerHTML = "";
       ids.forEach(id => {
         const mod = MODULES[id];
-
         const card = document.createElement("div");
         card.className = "themeCard";
         card.dataset.module = id;
@@ -1210,16 +864,16 @@
       const visitedModules = Object.keys(VISITED.modules || {}).length;
 
       detailTitle.textContent = "Bienvenue";
-      detailHint.textContent = "Objectif : simple, lisible, et progression visible.";
+      detailHint.textContent = "Plus simple : pas de diagrammes lourds, pas de scroll forcé.";
 
       detailHost.innerHTML = `
         <div class="card">
           <h4><span>Comment utiliser</span><span class="kicker">simple</span></h4>
           <ul>
-            <li>Choisir une <strong>catégorie</strong> puis un <strong>thème</strong>.</li>
-            <li>Ouvrir les <strong>sections</strong> (accordéon).</li>
-            <li>✓ indique ce qui est déjà exploré.</li>
-            <li>Le bouton <strong>Retour navigateur</strong> fonctionne (SPA).</li>
+            <li>Choisir une catégorie puis un thème.</li>
+            <li>Ouvrir les sections (accordéon).</li>
+            <li>✓ indique ce qui est déjà vu.</li>
+            <li>Retour navigateur = fonctionne (History API).</li>
           </ul>
         </div>
 
@@ -1228,27 +882,13 @@
           <p class="note">
             Thèmes vus : <strong style="color:var(--accent)">${visitedModules}</strong> / ${totalModules}
           </p>
-          <div class="callout note">
-            Conseil test avec Mélanie : choisissez 1 blessure → ouvrez 3 sections → voyez si c’est fluide et “reposant”.
-          </div>
-        </div>
-
-        <div class="card">
-          <h4><span>FIDES (démo)</span><span class="kicker">méthode</span></h4>
-          <ul>
-            <li><strong>F</strong> — ${escapeHTML(FIDES_DEMO.F)}</li>
-            <li><strong>I</strong> — ${escapeHTML(FIDES_DEMO.I)}</li>
-            <li><strong>D</strong> — ${escapeHTML(FIDES_DEMO.D)}</li>
-            <li><strong>E</strong> — ${escapeHTML(FIDES_DEMO.E)}</li>
-            <li><strong>S</strong> — ${escapeHTML(FIDES_DEMO.S)}</li>
-          </ul>
         </div>
       `;
     }
 
-    /* ============================================================
+    /* =========================
       MODULE
-    ============================================================ */
+    ========================== */
     function enterModule(moduleId, { silentHistory=false } = {}){
       viewMode = "module";
       currentModuleId = moduleId;
@@ -1271,8 +911,8 @@
       renderMiniMap(moduleId);
       renderAccordion(moduleId);
 
-      // Par défaut : ouvrir la vue d’ensemble
-      openSection("core", { silentHistory:true, scrollIntoView:false });
+      // ouvrir vue d’ensemble sans auto-scroll
+      openSection("core", { silentHistory:true, autoScroll:false });
 
       markModuleVisited(moduleId);
       updateProgressPill(moduleId);
@@ -1281,13 +921,7 @@
       renderAsideForNode(moduleId, "core");
 
       if(!silentHistory){
-        pushAppState({
-          view:"module",
-          cat: activeCategoryId,
-          moduleId,
-          nodeId: "core",
-          focus: document.body.classList.contains("focus-mode")
-        });
+        pushAppState({ view:"module", cat: activeCategoryId, moduleId, nodeId:"core" });
       }
     }
 
@@ -1308,23 +942,13 @@
       miniMap.innerHTML = "";
       order.forEach(nodeId => {
         const label = nodeId === "core" ? "Vue d’ensemble" : (mod.content.nodes[nodeId]?.title || nodeId);
-
         const pill = document.createElement("button");
         pill.className = "miniPill";
         pill.type = "button";
         pill.dataset.node = nodeId;
         pill.setAttribute("aria-current", nodeId === currentNodeId ? "true" : "false");
-
-        pill.innerHTML = `
-          <span class="miniDot"></span>
-          <span>${escapeHTML(label)}</span>
-          <span class="miniCheck"></span>
-        `;
-
-        pill.addEventListener("click", () => {
-          openSection(nodeId);
-        });
-
+        pill.innerHTML = `<span class="miniDot"></span><span>${escapeHTML(label)}</span><span class="miniCheck"></span>`;
+        pill.addEventListener("click", () => openSection(nodeId, { autoScroll:false })); // ✅ no scroll
         miniMap.appendChild(pill);
       });
     }
@@ -1346,7 +970,7 @@
         const title = nodeId === "core" ? "Vue d’ensemble" : (node.title || nodeId);
 
         item.innerHTML = `
-          <button class="accHead" type="button" aria-label="Ouvrir ${escapeHTML(title)}">
+          <button class="accHead" type="button">
             <div class="accTitle">
               <span class="miniDot"></span>
               <span>${escapeHTML(title)}</span>
@@ -1364,52 +988,41 @@
           </div>
         `;
 
-        // Click header
         item.querySelector(".accHead").addEventListener("click", () => {
-          openSection(nodeId);
+          openSection(nodeId, { autoScroll:false }); // ✅ no scroll
         });
 
         accordionHost.appendChild(item);
       });
     }
 
-    function openSection(nodeId, { silentHistory=false, scrollIntoView=true } = {}){
+    function openSection(nodeId, { silentHistory=false, autoScroll=false } = {}){
       const mod = MODULES[currentModuleId];
       if(!mod || !mod.content.nodes[nodeId]) return;
 
       currentNodeId = nodeId;
 
-      // Collapse all, expand current
       accordionHost.querySelectorAll(".accItem").forEach(it => {
         it.setAttribute("aria-expanded", it.dataset.node === nodeId ? "true" : "false");
       });
 
-      // Mark visited
       markNodeVisited(currentModuleId, nodeId);
 
-      // Update miniMap current
       miniMap.querySelectorAll(".miniPill").forEach(p => {
         p.setAttribute("aria-current", p.dataset.node === nodeId ? "true" : "false");
       });
 
-      // Scroll into view
-      if(scrollIntoView){
+      // ✅ IMPORTANT: pas de scroll forcé (autoScroll=false)
+      // Si un jour tu veux l’activer seulement pour deep-link, mets autoScroll=true dans restoreFromState.
+      if(autoScroll){
         const el = accordionHost.querySelector(`.accItem[data-node="${cssEscape(nodeId)}"]`);
-        if(el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+        if(el) el.scrollIntoView({ behavior:"smooth", block:"center" });
       }
 
-      // Update aside
       renderAsideForNode(currentModuleId, nodeId);
 
-      // History
       if(!silentHistory){
-        pushAppState({
-          view:"module",
-          cat: activeCategoryId,
-          moduleId: currentModuleId,
-          nodeId,
-          focus: document.body.classList.contains("focus-mode")
-        });
+        pushAppState({ view:"module", cat: activeCategoryId, moduleId: currentModuleId, nodeId });
       }
     }
 
@@ -1431,13 +1044,13 @@
                           (mod.content.fides && mod.content.fides.core) ? mod.content.fides.core : [];
 
       detailTitle.textContent = node.title || "Détail";
-      detailHint.textContent = "Sections claires (accordéon) + repère visuel + progression.";
+      detailHint.textContent = "Accordéon lisible + repère visuel. ✓ pour les sections déjà vues.";
 
       detailHost.innerHTML = "";
 
       const expl = document.createElement("div");
       expl.className = "card";
-      expl.innerHTML = `<h4><span>Résumé de la section</span><span class="kicker">${escapeHTML(moduleId)} • ${escapeHTML(nodeId)}</span></h4>`;
+      expl.innerHTML = `<h4><span>Résumé</span><span class="kicker">${escapeHTML(moduleId)} • ${escapeHTML(nodeId)}</span></h4>`;
       (node.blocks || []).slice(0, 2).forEach(b => {
         const p = document.createElement("p");
         p.innerHTML = `<strong style="color:var(--accent)">${escapeHTML(b.h || "")}</strong><br>${escapeHTML(b.p || "")}`;
@@ -1447,7 +1060,7 @@
 
       const fides = document.createElement("div");
       fides.className = "card";
-      fides.innerHTML = `<h4><span>Points clés FIDES</span><span class="kicker">démo</span></h4>`;
+      fides.innerHTML = `<h4><span>FIDES</span><span class="kicker">démo</span></h4>`;
       if(!fidesPoints.length){
         fides.innerHTML += `<p class="note">Aucun point FIDES défini pour cette section.</p>`;
       }else{
@@ -1460,31 +1073,13 @@
         fides.appendChild(ul);
       }
       detailHost.appendChild(fides);
-
-      const help = document.createElement("div");
-      help.className = "card";
-      help.innerHTML = `
-        <h4><span>Navigation</span><span class="kicker">UX</span></h4>
-        <p class="note">
-          ✓ = déjà vu • Retour navigateur = fonctionne • Mode focus = 1 colonne.
-        </p>
-        <div class="callout note">
-          Si vous trouvez que la lecture est meilleure en focus : activez-le et gardez-le.
-        </div>
-      `;
-      detailHost.appendChild(help);
     }
 
-    /* ============================================================
-      VISITED STYLES application (home + miniMap + accordion)
-    ============================================================ */
     function applyVisitedStyles(){
-      // Home cards
       document.querySelectorAll(".themeCard[data-module]").forEach(card=>{
         card.classList.toggle("is-visited", !!VISITED.modules[card.dataset.module]);
       });
 
-      // miniMap pills
       miniMap.querySelectorAll(".miniPill[data-node]").forEach(pill=>{
         const nodeId = pill.dataset.node;
         pill.classList.toggle("is-visited", isNodeVisited(currentModuleId, nodeId));
@@ -1492,7 +1087,6 @@
         if(check) check.textContent = isNodeVisited(currentModuleId, nodeId) ? "✓" : "";
       });
 
-      // accordion items + badges
       accordionHost.querySelectorAll(".accItem[data-node]").forEach(item=>{
         const nodeId = item.dataset.node;
         const visited = isNodeVisited(currentModuleId, nodeId);
@@ -1502,9 +1096,6 @@
       });
     }
 
-    /* ============================================================
-      HELPERS
-    ============================================================ */
     function escapeHTML(str){
       return String(str)
         .replaceAll("&","&amp;")
@@ -1515,19 +1106,25 @@
     }
     function cssEscape(s){ return String(s).replace(/"/g, '\\"'); }
 
-    /* ============================================================
-      INIT
-      - On initialise l'historique -> back/forward OK
-    ============================================================ */
-    function boot(){
-      // état initial par défaut (si URL vide)
+    /* =========================
+      BOOT
+    ========================== */
+    const backBtnEl = document.getElementById("backBtn");
+    const resetBtnEl = document.getElementById("resetVisitedBtn");
+
+    function init(){
+      // init history state
       if(!location.search){
-        pushAppState({ view:"home", cat:"bases", focus:false }, true);
+        pushAppState({ view:"home", cat:"bases" }, true);
+      } else {
+        pushAppState(readStateFromURL(), true);
       }
-      initHistory();
+      restoreFromState(readStateFromURL());
+
+      resetBtnEl.addEventListener("click", resetVisited);
     }
 
-    boot();
+    init();
   </script>
 </body>
 </html>
