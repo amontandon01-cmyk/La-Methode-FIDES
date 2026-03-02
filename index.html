@@ -6,6 +6,15 @@
   <title>Support de formation – FIDES & mécanismes émotionnels</title>
 
   <style>
+    /* ============================================================
+      DESIGN SYSTEM — Dark + Glass + Accent dynamique
+      ------------------------------------------------------------
+      ✅ Focus par défaut (layout centré, pas de toggle)
+      ✅ Scrollbars "inset" à l'intérieur des panneaux (pas collées à l'écran)
+      ✅ Menu déroulant (select) stylé
+      ✅ Mode B: 1 seule section ouverte à la fois
+    ============================================================ */
+
     :root{
       --bg0:#070913;
       --bg1:#0b1022;
@@ -24,12 +33,12 @@
       --radius: 20px;
       --radius2: 26px;
 
-      /* Focus unique : largeur max */
-      --maxw: 1100px;
+      /* Focus unique */
+      --maxw: 1180px;
 
-      /* Scrollbar “inset” (dans le panel) */
+      /* Scrollbar "inset" */
       --sbSize: 8px;
-      --sbPad: 12px; /* espace interne pour éviter la scrollbar collée */
+      --sbPad: 12px; /* gouttière interne */
     }
 
     *{ box-sizing:border-box; }
@@ -45,15 +54,14 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
 
-      /* IMPORTANT : pas de scroll global => scroll “dans les panels” */
+      /* IMPORTANT: pas de scroll global sur desktop => scroll dans panels */
       overflow: hidden;
     }
 
     /* ============================================================
-      LAYOUT : Focus unique (pas de bascule)
-      ------------------------------------------------------------
-      - Desktop : 2 colonnes mais centrées et respirantes
-      - Mobile : 1 colonne
+      LAYOUT : Focus par défaut (centré)
+      - Desktop : 2 colonnes (contenu + aside)
+      - Mobile  : 1 colonne (scroll global autorisé)
     ============================================================ */
     .app{
       height:100%;
@@ -68,7 +76,7 @@
     }
 
     @media (max-width: 1050px){
-      body{ overflow:auto; } /* sur mobile on accepte le scroll global */
+      body{ overflow:auto; }
       .app{
         height:auto;
         min-height:100%;
@@ -83,55 +91,49 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-
       overflow:hidden;
-      min-height:0; /* vital pour que les scroll internes marchent */
+      min-height:0;
     }
 
     /* ============================================================
-      SCROLL AREAS : scrollbars “inset” dans le panel
-      ------------------------------------------------------------
-      Idée : la zone scrollable a un padding interne à droite
-      => la scrollbar n’est plus collée au bord de la fenêtre,
-      elle est “dans” la vue.
+      SCROLL AREA : scrollbars "inset" DANS le panel
     ============================================================ */
     .scrollArea{
       height: 100%;
       overflow: auto;
 
-      /* “gouttière” interne */
+      /* Gouttière interne -> scrollbar pas collée au bord de l'écran */
       padding-right: var(--sbPad);
       scrollbar-gutter: stable both-edges;
 
-      /* arrondis visuels */
       border-radius: inherit;
     }
 
-    /* Scrollbars (appliquées aux scrollArea uniquement) */
+    /* Scrollbars uniquement sur .scrollArea */
     .scrollArea{
       scrollbar-width: thin;
       scrollbar-color:
-        color-mix(in srgb, var(--accent) 32%, rgba(255,255,255,0.16))
-        rgba(0,0,0,0.18);
+        color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.16))
+        rgba(0,0,0,0.16);
     }
     .scrollArea::-webkit-scrollbar{ width: var(--sbSize); height: var(--sbSize); }
     .scrollArea::-webkit-scrollbar-track{
       background: rgba(0,0,0,0.14);
       border-radius: 999px;
-      margin: 10px; /* “inset” visuel */
+      margin: 10px;
     }
     .scrollArea::-webkit-scrollbar-thumb{
       background: linear-gradient(180deg,
-        color-mix(in srgb, var(--accent2) 32%, rgba(255,255,255,0.10)),
-        color-mix(in srgb, var(--accent) 32%, rgba(255,255,255,0.10))
+        color-mix(in srgb, var(--accent2) 30%, rgba(255,255,255,0.10)),
+        color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.10))
       );
-      border: 2px solid rgba(0,0,0,0.16);
+      border: 2px solid rgba(0,0,0,0.14);
       border-radius: 999px;
     }
     .scrollArea::-webkit-scrollbar-thumb:hover{
       background: linear-gradient(180deg,
-        color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12)),
-        color-mix(in srgb, var(--accent) 45%, rgba(255,255,255,0.12))
+        color-mix(in srgb, var(--accent2) 42%, rgba(255,255,255,0.12)),
+        color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,0.12))
       );
     }
 
@@ -146,7 +148,6 @@
     }
     .titleblock h2{ margin:0; font-size: 18px; font-weight: 900; letter-spacing:.2px; }
     .titleblock p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
-
     .chiprow{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
     .chip{
       font-size: 12px;
@@ -159,9 +160,7 @@
     }
     .chip strong{ color: var(--accent); font-weight: 900; }
 
-    /* ============================================================
-      TOPBAR (module) — select stylé + progression
-    ============================================================ */
+    /* Topbar (module) */
     .topbar{
       padding: 10px 18px;
       display:flex;
@@ -212,11 +211,11 @@
     }
     .progressPill strong{ color: var(--accent); font-weight: 900; }
 
-    /* SELECT beau : suppression look natif + flèche intégrée */
+    /* Select stylé */
     .selectWrap{
       position: relative;
       max-width: 360px;
-      min-width: 220px;
+      min-width: 240px;
     }
     .selectWrap::after{
       content:"";
@@ -235,12 +234,11 @@
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(0,0,0,0.18);
       color: rgba(255,255,255,0.90);
       border-radius: 14px;
-      padding: 9px 34px 9px 12px; /* espace pour la flèche */
+      padding: 9px 34px 9px 12px;
       font-weight: 780;
       font-size: 12.5px;
       outline: none;
@@ -253,7 +251,7 @@
     }
 
     /* ============================================================
-      HOME — catégories + cartes
+      HOME — catégories + cartes (léger)
     ============================================================ */
     .homeTop{ display:flex; flex-direction:column; gap:10px; margin-bottom: 12px; }
     .categoryRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
@@ -335,7 +333,7 @@
     }
 
     /* ============================================================
-      MODULE — mini repère + accordéon
+      MODULE — mini repère + accordéon (Mode B)
     ============================================================ */
     .miniMap{
       padding: 10px 18px 12px;
@@ -409,7 +407,6 @@
       opacity: .85;
     }
     .accItem[aria-expanded="true"] .caret{ transform: rotate(45deg); }
-
     .accBody{ padding: 0 14px 14px; display:none; }
     .accItem[aria-expanded="true"] .accBody{ display:block; }
 
@@ -446,7 +443,6 @@
     }
     .aside__header h3{ margin:0; font-size: 14px; font-weight: 900; }
     .aside__header p{ margin: 6px 0 0; color: var(--muted2); font-size: 12.5px; line-height: 1.4; }
-
     .aside__content{ padding: 14px 18px 18px; min-height:0; }
 
     .card{
@@ -482,10 +478,10 @@
       <div class="main__header">
         <div class="titleblock">
           <h2 id="mainTitle">Accueil</h2>
-          <p id="mainSubtitle">Catégorie → thème. Ensuite : sections lisibles (pas de diagrammes lourds).</p>
+          <p id="mainSubtitle">Catégorie → thème. Ensuite : sections lisibles, sans scroll automatique.</p>
           <div class="chiprow" id="mainChips"></div>
         </div>
-        <div class="chip"><strong>Focus</strong> par défaut</div>
+        <div class="chip"><strong>Mode B</strong> (1 section ouverte)</div>
       </div>
 
       <!-- TOPBAR (module) -->
@@ -493,13 +489,12 @@
         <div class="topbar__left">
           <button class="btn btn--accent" id="backBtn" type="button">← Retour</button>
 
-          <div class="selectWrap" title="Changer de thème">
+          <div class="selectWrap">
             <select id="moduleSelect" aria-label="Changer de thème"></select>
           </div>
 
           <span class="progressPill" id="progressPill"><strong>0</strong>/<span>0</span> sections vues</span>
         </div>
-
         <div class="topbar__right">
           <button class="btn" id="resetVisitedBtn" type="button" title="Réinitialiser les ✓ (localStorage)">Reset ✓</button>
         </div>
@@ -508,7 +503,7 @@
       <!-- MINI MAP -->
       <div class="miniMap hidden" id="miniMap"></div>
 
-      <!-- SCROLL AREA MAIN -->
+      <!-- MAIN SCROLL AREA -->
       <div class="scrollArea" style="padding:14px;" id="mainScroll">
         <!-- HOME VIEW -->
         <section id="homeView">
@@ -532,7 +527,6 @@
         <p id="detailHint">Choisis une catégorie puis un thème.</p>
       </div>
 
-      <!-- SCROLL AREA ASIDE -->
       <div class="scrollArea aside__content" id="asideScroll">
         <div id="detailHost"></div>
       </div>
@@ -540,9 +534,18 @@
   </div>
 
   <script>
-    /* =========================
+    /* ============================================================
+      ✅ COMMENT MODIFIER LE CONTENU ?
+      - MODULES[moduleId].content.nodes[nodeId].blocks = [{h,p}, ...]
+      - MODULES[moduleId].content.fides[nodeId] = [...]
+      ✅ AJOUTER UN MODULE
+      - Ajouter MODULES.newId
+      - Ajouter newId dans CATEGORIES
+    ============================================================ */
+
+    /* -------------------------
       THEME COLORS
-    ========================== */
+    ------------------------- */
     const THEME_COLORS = {
       comfort:    { accent:"#2de2e6", accent2:"#8a5cff" },
       emotions:   { accent:"#38f2a5", accent2:"#2de2e6" },
@@ -556,16 +559,17 @@
       humiliation:{ accent:"#ff5cd6", accent2:"#ffb020" },
       injustice:  { accent:"#8a5cff", accent2:"#ffb020" },
     };
+
     function setThemeAccent(moduleId){
       const c = THEME_COLORS[moduleId] || { accent:"#2de2e6", accent2:"#8a5cff" };
       document.documentElement.style.setProperty("--accent", c.accent);
       document.documentElement.style.setProperty("--accent2", c.accent2);
     }
 
-    /* =========================
+    /* -------------------------
       VISITED (localStorage)
-    ========================== */
-    const LS_KEY = "fides_training_visited_v4";
+    ------------------------- */
+    const LS_KEY = "fides_training_visited_v5";
     function loadVisited(){
       try{ return JSON.parse(localStorage.getItem(LS_KEY)) || { modules:{}, nodes:{} }; }
       catch{ return { modules:{}, nodes:{} }; }
@@ -596,9 +600,9 @@
       if(viewMode === "module") updateProgressPill(currentModuleId);
     }
 
-    /* =========================
+    /* -------------------------
       HISTORY API (Back/Forward)
-    ========================== */
+    ------------------------- */
     function makeURLFromState(state){
       const p = new URLSearchParams();
       p.set("view", state.view || "home");
@@ -625,21 +629,20 @@
       const state = e.state || readStateFromURL();
       restoreFromState(state);
     });
-
     function restoreFromState(state){
       if(state.view === "module" && state.moduleId){
         enterModule(state.moduleId, { silentHistory:true });
         if(state.nodeId){
-          openSection(state.nodeId, { silentHistory:true, autoScroll:false }); // ✅ pas d’auto-scroll
+          openSection(state.nodeId, { silentHistory:true, autoScroll:false }); // ✅ pas de scroll auto
         }
       } else {
         goHome({ silentHistory:true, cat: state.cat || "bases" });
       }
     }
 
-    /* =========================
+    /* -------------------------
       FIDES (démo)
-    ========================== */
+    ------------------------- */
     const FIDES_DEMO = {
       F: "Fait : qu’est-ce qui s’est réellement passé (observable, neutre) ?",
       I: "Interprétation : quelle histoire je me raconte (dogme, croyance, jugement) ?",
@@ -668,11 +671,10 @@
       };
     }
 
-    /* =========================
-      MODULES (contenu)
-      -> identique à ta version accordéon, raccourci ici pour lisibilité
-      -> tu peux réinjecter tes modules complets comme avant
-    ========================== */
+    /* -------------------------
+      MODULES — version complète (démo cohérente)
+      (Tu peux remplacer par tes textes exacts ensuite)
+    ------------------------- */
     const MODULES = {
       comfort: {
         title: "Zone de confort → peur → apprentissage → expansion",
@@ -683,12 +685,20 @@
           nodes: {
             core: { title:"Vue d’ensemble", blocks:[
               {h:"Message clé", p:"« Pour avancer, il faut traverser la peur. »"},
-              {h:"Résumé", p:"Confort = sécurité illusoire → Peur = doutes/jugements → Apprentissage = compétences → Expansion = réalisation/alignement."}
+              {h:"Résumé", p:"Confort = sécurité illusoire, habitudes, évitement • Peur = doutes, jugements, perte de repères • Apprentissage = nouvelles compétences, expansion du soi • Expansion = réalisation, alignement, contribution"}
             ]},
-            confort:{ title:"Zone de confort", blocks:[{h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"}] },
-            peur:{ title:"Zone de peur", blocks:[{h:"Peur", p:"Peur = doutes, jugements, perte de repères"}] },
-            apprentissage:{ title:"Zone d’apprentissage", blocks:[{h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"}] },
-            expansion:{ title:"Zone d’expansion", blocks:[{h:"Expansion", p:"Expansion = réalisation, alignement, contribution"}] }
+            confort:{ title:"Zone de confort", blocks:[
+              {h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"}
+            ]},
+            peur:{ title:"Zone de peur", blocks:[
+              {h:"Peur", p:"Peur = doutes, jugements, perte de repères"}
+            ]},
+            apprentissage:{ title:"Zone d’apprentissage", blocks:[
+              {h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"}
+            ]},
+            expansion:{ title:"Zone d’expansion", blocks:[
+              {h:"Expansion", p:"Expansion = réalisation, alignement, contribution"}
+            ]}
           },
           fides: { core: [
             `F — ${FIDES_DEMO.F}`,
@@ -718,8 +728,8 @@
             addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions : pouvoir, contrôle, domination"}] },
             valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs : loyauté, vérité, paraître, argent"}] },
             dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes : « On ne peut faire confiance à personne »"}] },
-            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes", p:"« Les autres vont me trahir »"}] },
-            expansives:{ title:"Croyances expansives", blocks:[{h:"Expansives", p:"« Je laisse le bénéfice du doute »"}] },
+            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes", p:"Croyances limitantes : « Les autres vont me trahir »"}] },
+            expansives:{ title:"Croyances expansives", blocks:[{h:"Expansives", p:"Croyances expansives : « Je laisse le bénéfice du doute »"}] },
           },
           fides: makeFidesForWound("Trahison", {
             emotion:"surprise", besoin:"sécurité / fiabilité",
@@ -729,28 +739,242 @@
         }
       },
 
-      /* Ajoute ici les autres modules (abandonment, rejection, etc.) comme dans ta version précédente */
+      abandonment: {
+        title: "Blessure émotionnelle : abandon",
+        subtitle: "Peur de séparation, besoin de présence (démo cohérente).",
+        tags: ["blessures","lien","sécurité"],
+        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Éclairage", p:"Quand le lien semble menacé : recherche de proximité, peur d’être oublié."}
+            ]},
+            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Tristesse + peur de séparation"}] },
+            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Séparations, indisponibilité émotionnelle, ruptures répétées"}] },
+            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fusionnel / dépendant, recherche de réassurance"}] },
+            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Hypervigilance relationnelle, anxiété d’attachement"}] },
+            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Validation, messages, proximité constante"}] },
+            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Présence, affection, famille, fidélité"}] },
+            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Si on m’aime, on ne me laisse pas »"}] },
+            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« On va m’abandonner »"}] },
+            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« Je suis digne d’amour même à distance »"}] },
+          },
+          fides: makeFidesForWound("Abandon", {
+            emotion:"tristesse / peur", besoin:"présence / sécurité",
+            interpretation:"« Je ne compte pas assez »",
+            action:"demande explicite + auto-soutien + tolérance au vide"
+          })
+        }
+      },
+
+      rejection: {
+        title: "Blessure émotionnelle : rejet",
+        subtitle: "Peur d’être indésirable, évitement (démo cohérente).",
+        tags: ["blessures","estime","identité"],
+        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Éclairage", p:"« Je dérange » → retrait ou perfection pour être accepté."}
+            ]},
+            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Peur + honte (d’être indésirable)"}] },
+            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Critiques, moqueries, comparaisons"}] },
+            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fuyant/distant, rationalise pour ne pas sentir"}] },
+            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Détachement, évitement de l’intimité"}] },
+            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Perfectionnisme, performance, contrôle de l’image"}] },
+            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Appartenance, respect, authenticité"}] },
+            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Si je suis moi, on me rejette »"}] },
+            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« On ne veut pas de moi »"}] },
+            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« Je peux prendre ma place »"}] },
+          },
+          fides: makeFidesForWound("Rejet", {
+            emotion:"peur / honte", besoin:"appartenance / sécurité",
+            interpretation:"« Je suis de trop »",
+            action:"micro-exposition + auto-validation + relation sûre"
+          })
+        }
+      },
+
+      humiliation: {
+        title: "Blessure émotionnelle : humiliation",
+        subtitle: "Honte, se rabaisser, dignité (démo cohérente).",
+        tags: ["blessures","honte","dignité"],
+        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Éclairage", p:"La honte pousse à se cacher, se rabaisser ou sur-compenser."}
+            ]},
+            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Honte + gêne + peur d’être vu"}] },
+            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Moqueries, critiques, exposition publique"}] },
+            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Se punit, minimise ses besoins, porte les autres"}] },
+            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Auto-dévalorisation, résignation"}] },
+            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Auto-sabotage, sur-service, compensations"}] },
+            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Respect, dignité, compassion"}] },
+            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Mes besoins dérangent »"}] },
+            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« Je suis ridicule »"}] },
+            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« Je mérite le respect »"}] },
+          },
+          fides: makeFidesForWound("Humiliation", {
+            emotion:"honte / gêne", besoin:"respect / dignité",
+            interpretation:"« Mes besoins dérangent »",
+            action:"poser une limite + auto-respect + se montrer par petits pas"
+          })
+        }
+      },
+
+      injustice: {
+        title: "Blessure émotionnelle : injustice",
+        subtitle: "Rigidité, exigence, équité (démo cohérente).",
+        tags: ["blessures","équité","exigence"],
+        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Éclairage", p:"Quand l’équité semble violée : rigidité, standards élevés, jugement."}
+            ]},
+            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Colère (souvent froide) + frustration"}] },
+            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Favoritisme, sanctions injustes, manque de reconnaissance"}] },
+            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Rigide, perfectionniste, contrôle"}] },
+            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Distance émotionnelle, dureté"}] },
+            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Performance, sur-contrôle, travail"}] },
+            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Justice, mérite, honnêteté, excellence"}] },
+            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Je dois être irréprochable »"}] },
+            limitantes:{ title:"Croyances limitantes (démo)", blocks:[{h:"Limitantes", p:"« Montrer = faiblesse »"}] },
+            expansives:{ title:"Croyances expansives (démo)", blocks:[{h:"Expansives", p:"« La vulnérabilité est une force »"}] },
+          },
+          fides: makeFidesForWound("Injustice", {
+            emotion:"colère / frustration", besoin:"équité / reconnaissance",
+            interpretation:"« Je dois être irréprochable »",
+            action:"assouplir standard + exprimer besoin + réparer sans punir"
+          })
+        }
+      },
+
+      empathy: {
+        title: "Empathie vs apathie",
+        subtitle: "Résonance sans fusion, distinctions et freins.",
+        tags: ["relation","écoute","régulation"],
+        order: ["core","definition","differences","freins"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Message clé", p:"Message clé : l’empathie est naturelle mais voilée"},
+              {h:"Définition", p:"Définition : résonance sans fusion"},
+            ]},
+            definition:{ title:"Définition", blocks:[{h:"Définition", p:"Définition : résonance sans fusion"}] },
+            differences:{ title:"Différences", blocks:[{h:"Différences", p:"Différences : empathie / compassion / sympathie"}] },
+            freins:{ title:"Freins", blocks:[{h:"Freins", p:"Freins : toutes les blessures émotionnelles"}] },
+          },
+          fides:{
+            core:["F : Observer sans projeter.","I : Distinguer empathie vs fusion.","D : Nommer la résonance.","E : Reformuler + valider.","S : Aider sans sauver."]
+          }
+        }
+      },
+
+      addictions: {
+        title: "Addictions (substances, comportementales, invisibles)",
+        subtitle: "Éviter une émotion — signal, pas faute.",
+        tags: ["signal","évitement","comportements"],
+        order: ["core","definition","fonction"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Message clé", p:"Message clé : l’addiction n’est pas une faute mais un signal"},
+              {h:"Fonction", p:"Fonction : éviter une émotion"}
+            ]},
+            definition:{ title:"Définition", blocks:[
+              {h:"Définition", p:"Définition + visibles / invisibles"},
+              {h:"Exemples (démo)", p:"Visibles : substances, jeux… • Invisibles : sur-contrôle, travail, validation, scrolling"}
+            ]},
+            fonction:{ title:"Fonction", blocks:[
+              {h:"Fonction", p:"Fonction : éviter une émotion"},
+              {h:"Question", p:"Si je retire le comportement, quelle émotion apparaît ?"}
+            ]},
+          },
+          fides:{ core:[
+            `F — ${FIDES_DEMO.F}`,
+            `I — ${FIDES_DEMO.I}`,
+            `D — ${FIDES_DEMO.D}`,
+            `E — ${FIDES_DEMO.E}`,
+            `S — ${FIDES_DEMO.S}`
+          ]}
+        }
+      },
+
+      values: {
+        title: "Valeurs de vie",
+        subtitle: "Valeur bafouée → émotion → blessure peut se réactiver.",
+        tags: ["alignement","boussole","déclencheurs"],
+        order: ["core","liste"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Clé", p:"Clé FIDES : quand mes valeurs sont bafouées → la blessure se réactive"},
+              {h:"Liste (démo)", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille"}
+            ]},
+            liste:{ title:"Liste (démo)", blocks:[
+              {h:"Exercice", p:"Choisis 5 valeurs non négociables et 1 situation où chacune est respectée / bafouée."}
+            ]}
+          },
+          fides:{ core:["F : valeur touchée ?","I : règle interne ?","D : émotion ?","E : exprimer/limite","S : action alignée"] }
+        }
+      },
+
+      dogmas: {
+        title: "Conditionnements / dogmes",
+        subtitle: "Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes.",
+        tags: ["croyances","héritage","reprogrammation"],
+        order: ["core","sources"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Message", p:"Message : ce ne sont que des croyances héritées"},
+              {h:"Question", p:"« De qui est cette croyance ? Est-ce qu’elle m’aide aujourd’hui ? »"}
+            ]},
+            sources:{ title:"Sources", blocks:[
+              {h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes"}
+            ]}
+          },
+          fides:{ core:["F : situation","I : dogme","D : émotion/tension","E : reformuler","S : nouveau choix"] }
+        }
+      },
+
+      emotions: {
+        title: "Émotions & familles de sentiments",
+        subtitle: "Peur, colère, tristesse, joie, dégoût (nuances).",
+        tags: ["émotions","nuances","vocabulaire"],
+        order: ["core","peur","colere","tristesse","joie","degout"],
+        content: {
+          nodes: {
+            core:{ title:"Vue d’ensemble", blocks:[
+              {h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût"}
+            ]},
+            peur:{ title:"Peur", blocks:[{h:"Nuances (démo)", p:"Inquiétude, anxiété, appréhension, panique, doute…"}] },
+            colere:{ title:"Colère", blocks:[{h:"Nuances (démo)", p:"Irritation, frustration, rage, indignation…"}] },
+            tristesse:{ title:"Tristesse", blocks:[{h:"Nuances (démo)", p:"Peine, chagrin, mélancolie, solitude…"}] },
+            joie:{ title:"Joie", blocks:[{h:"Nuances (démo)", p:"Sérénité, gratitude, enthousiasme, fierté…"}] },
+            degout:{ title:"Dégoût", blocks:[{h:"Nuances (démo)", p:"Aversion, répulsion, saturation, malaise…"}] }
+          },
+          fides:{ core:["F : contexte","I : histoire","D : émotion précise","E : réguler/exprim.","S : action alignée"] }
+        }
+      },
     };
 
     const CATEGORIES = [
-      { id:"bases", label:"Bases", items: ["comfort"] },
-      { id:"wounds", label:"Blessures", items: ["betrayal"] },
-      { id:"all", label:"Tous", items: Object.keys(MODULES) },
+      { id:"bases",  label:"Bases", items: ["comfort","emotions","empathy"] },
+      { id:"wounds", label:"Blessures", items: ["betrayal","abandonment","rejection","humiliation","injustice"] },
+      { id:"mech",   label:"Mécanismes", items: ["addictions","values","dogmas"] },
+      { id:"all",    label:"Tous", items: Object.keys(MODULES) },
     ];
 
-    /* =========================
-      STATE
-    ========================== */
-    let viewMode = "home";
-    let currentModuleId = "comfort";
-    let activeCategoryId = "bases";
-    let currentNodeId = null;
-
-    /* =========================
+    /* -------------------------
       DOM
-    ========================== */
+    ------------------------- */
     const homeView = document.getElementById("homeView");
     const moduleView = document.getElementById("moduleView");
+    const moduleTopbar = document.getElementById("moduleTopbar");
+    const miniMap = document.getElementById("miniMap");
 
     const mainTitle = document.getElementById("mainTitle");
     const mainSubtitle = document.getElementById("mainSubtitle");
@@ -759,29 +983,35 @@
     const categoryRow = document.getElementById("categoryRow");
     const homeGrid = document.getElementById("homeGrid");
 
-    const moduleTopbar = document.getElementById("moduleTopbar");
     const moduleSelect = document.getElementById("moduleSelect");
     const backBtn = document.getElementById("backBtn");
-    const progressPill = document.getElementById("progressPill");
     const resetVisitedBtn = document.getElementById("resetVisitedBtn");
+    const progressPill = document.getElementById("progressPill");
 
-    const miniMap = document.getElementById("miniMap");
     const accordionHost = document.getElementById("accordionHost");
 
     const detailTitle = document.getElementById("detailTitle");
     const detailHint = document.getElementById("detailHint");
     const detailHost = document.getElementById("detailHost");
 
-    /* =========================
+    /* -------------------------
+      STATE
+    ------------------------- */
+    let viewMode = "home";
+    let currentModuleId = "comfort";
+    let activeCategoryId = "bases";
+    let currentNodeId = null;
+
+    /* -------------------------
       EVENTS
-    ========================== */
+    ------------------------- */
     backBtn.addEventListener("click", () => goHome());
     moduleSelect.addEventListener("change", () => enterModule(moduleSelect.value));
     resetVisitedBtn.addEventListener("click", resetVisited);
 
-    /* =========================
+    /* -------------------------
       HOME
-    ========================== */
+    ------------------------- */
     function goHome({ silentHistory=false, cat=null } = {}){
       viewMode = "home";
       currentNodeId = null;
@@ -793,7 +1023,7 @@
       miniMap.classList.add("hidden");
 
       mainTitle.textContent = "Accueil";
-      mainSubtitle.textContent = "Catégorie → thème. Ensuite : sections lisibles (zéro scroll automatique).";
+      mainSubtitle.textContent = "Catégorie → thème. Ensuite : sections lisibles, sans scroll automatique.";
       mainChips.innerHTML = `
         <div class="chip"><strong>1</strong> Catégorie</div>
         <div class="chip"><strong>2</strong> Thème</div>
@@ -864,7 +1094,7 @@
       const visitedModules = Object.keys(VISITED.modules || {}).length;
 
       detailTitle.textContent = "Bienvenue";
-      detailHint.textContent = "Plus simple : pas de diagrammes lourds, pas de scroll forcé.";
+      detailHint.textContent = "Plus simple : pas de diagrammes lourds, navigation app-like.";
 
       detailHost.innerHTML = `
         <div class="card">
@@ -873,7 +1103,7 @@
             <li>Choisir une catégorie puis un thème.</li>
             <li>Ouvrir les sections (accordéon).</li>
             <li>✓ indique ce qui est déjà vu.</li>
-            <li>Retour navigateur = fonctionne (History API).</li>
+            <li>Retour navigateur = fonctionne.</li>
           </ul>
         </div>
 
@@ -882,13 +1112,16 @@
           <p class="note">
             Thèmes vus : <strong style="color:var(--accent)">${visitedModules}</strong> / ${totalModules}
           </p>
+          <div class="callout note">
+            Astuce test : choisissez 1 blessure → ouvrez 3 sections → validez la fluidité.
+          </div>
         </div>
       `;
     }
 
-    /* =========================
+    /* -------------------------
       MODULE
-    ========================== */
+    ------------------------- */
     function enterModule(moduleId, { silentHistory=false } = {}){
       viewMode = "module";
       currentModuleId = moduleId;
@@ -911,7 +1144,7 @@
       renderMiniMap(moduleId);
       renderAccordion(moduleId);
 
-      // ouvrir vue d’ensemble sans auto-scroll
+      // ouvrir vue d’ensemble (sans scroll auto)
       openSection("core", { silentHistory:true, autoScroll:false });
 
       markModuleVisited(moduleId);
@@ -948,7 +1181,7 @@
         pill.dataset.node = nodeId;
         pill.setAttribute("aria-current", nodeId === currentNodeId ? "true" : "false");
         pill.innerHTML = `<span class="miniDot"></span><span>${escapeHTML(label)}</span><span class="miniCheck"></span>`;
-        pill.addEventListener("click", () => openSection(nodeId, { autoScroll:false })); // ✅ no scroll
+        pill.addEventListener("click", () => openSection(nodeId, { autoScroll:false }));
         miniMap.appendChild(pill);
       });
     }
@@ -988,10 +1221,7 @@
           </div>
         `;
 
-        item.querySelector(".accHead").addEventListener("click", () => {
-          openSection(nodeId, { autoScroll:false }); // ✅ no scroll
-        });
-
+        item.querySelector(".accHead").addEventListener("click", () => openSection(nodeId, { autoScroll:false }));
         accordionHost.appendChild(item);
       });
     }
@@ -1002,18 +1232,19 @@
 
       currentNodeId = nodeId;
 
+      // MODE B: une seule ouverte
       accordionHost.querySelectorAll(".accItem").forEach(it => {
         it.setAttribute("aria-expanded", it.dataset.node === nodeId ? "true" : "false");
       });
 
       markNodeVisited(currentModuleId, nodeId);
 
+      // miniMap current
       miniMap.querySelectorAll(".miniPill").forEach(p => {
         p.setAttribute("aria-current", p.dataset.node === nodeId ? "true" : "false");
       });
 
-      // ✅ IMPORTANT: pas de scroll forcé (autoScroll=false)
-      // Si un jour tu veux l’activer seulement pour deep-link, mets autoScroll=true dans restoreFromState.
+      // ✅ Pas de scroll automatique (autoScroll=false)
       if(autoScroll){
         const el = accordionHost.querySelector(`.accItem[data-node="${cssEscape(nodeId)}"]`);
         if(el) el.scrollIntoView({ behavior:"smooth", block:"center" });
@@ -1044,7 +1275,7 @@
                           (mod.content.fides && mod.content.fides.core) ? mod.content.fides.core : [];
 
       detailTitle.textContent = node.title || "Détail";
-      detailHint.textContent = "Accordéon lisible + repère visuel. ✓ pour les sections déjà vues.";
+      detailHint.textContent = "Sections lisibles, progression ✓, et retour navigateur fonctionnel.";
 
       detailHost.innerHTML = "";
 
@@ -1096,6 +1327,24 @@
       });
     }
 
+    /* -------------------------
+      INIT
+    ------------------------- */
+    function init(){
+      // état initial history
+      if(!location.search){
+        pushAppState({ view:"home", cat:"bases" }, true);
+      } else {
+        pushAppState(readStateFromURL(), true);
+      }
+      restoreFromState(readStateFromURL());
+    }
+
+    init();
+
+    /* -------------------------
+      HELPERS
+    ------------------------- */
     function escapeHTML(str){
       return String(str)
         .replaceAll("&","&amp;")
@@ -1105,26 +1354,6 @@
         .replaceAll("'","&#039;");
     }
     function cssEscape(s){ return String(s).replace(/"/g, '\\"'); }
-
-    /* =========================
-      BOOT
-    ========================== */
-    const backBtnEl = document.getElementById("backBtn");
-    const resetBtnEl = document.getElementById("resetVisitedBtn");
-
-    function init(){
-      // init history state
-      if(!location.search){
-        pushAppState({ view:"home", cat:"bases" }, true);
-      } else {
-        pushAppState(readStateFromURL(), true);
-      }
-      restoreFromState(readStateFromURL());
-
-      resetBtnEl.addEventListener("click", resetVisited);
-    }
-
-    init();
   </script>
 </body>
 </html>
