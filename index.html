@@ -9,12 +9,11 @@
     /* ============================================================
       DESIGN SYSTEM — Dark + Glass + Accent dynamique
       ------------------------------------------------------------
-      ✅ Focus par défaut (layout centré, pas de toggle)
-      ✅ Scrollbars "inset" à l'intérieur des panneaux (pas collées à l'écran)
-      ✅ Menu déroulant (select) stylé
+      ✅ Layout: 1 colonne (focus) par défaut, sans toggle
+      ✅ Scrollbars: inset / intégrées dans les panneaux
+      ✅ Dropdown: custom (plus de <select> natif "moche")
       ✅ Mode B: 1 seule section ouverte à la fois
     ============================================================ */
-
     :root{
       --bg0:#070913;
       --bg1:#0b1022;
@@ -33,12 +32,11 @@
       --radius: 20px;
       --radius2: 26px;
 
-      /* Focus unique */
-      --maxw: 1180px;
+      --maxw: 1080px;
 
-      /* Scrollbar "inset" */
+      /* Scrollbar inset */
       --sbSize: 8px;
-      --sbPad: 12px; /* gouttière interne */
+      --sbPad: 12px;
     }
 
     *{ box-sizing:border-box; }
@@ -48,20 +46,22 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
-        radial-gradient(900px 650px at 18% 12%, color-mix(in srgb, var(--accent2) 30%, transparent), transparent 60%),
-        radial-gradient(760px 520px at 82% 30%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 62%),
+        radial-gradient(900px 650px at 18% 12%, rgba(138,92,255,0.22), transparent 60%),
+        radial-gradient(760px 520px at 82% 30%, rgba(45,226,230,0.16), transparent 62%),
         radial-gradient(680px 520px at 60% 86%, rgba(255,92,214,0.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
 
-      /* IMPORTANT: pas de scroll global sur desktop => scroll dans panels */
+      /* Focus: pas de scroll global sur desktop */
       overflow: hidden;
     }
 
     /* ============================================================
-      LAYOUT : Focus par défaut (centré)
-      - Desktop : 2 colonnes (contenu + aside)
-      - Mobile  : 1 colonne (scroll global autorisé)
+      LAYOUT — 1 colonne (focus) par défaut
+      - Main panel: contenu + navigation
+      - Aside panel: explications (en dessous sur mobile)
+      ------------------------------------------------------------
+      ✅ Pas de "2 colonnes permanentes"
     ============================================================ */
     .app{
       height:100%;
@@ -70,18 +70,16 @@
       padding: 14px;
 
       display:grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-rows: 1fr auto;
       gap: 14px;
       align-items: stretch;
     }
 
-    @media (max-width: 1050px){
-      body{ overflow:auto; }
-      .app{
-        height:auto;
-        min-height:100%;
-        grid-template-columns: 1fr;
-      }
+    /* Sur grands écrans, on garde 1 colonne, mais on affiche l’aside en bas.
+       Si tu veux un “split” plus tard, on peut l’ajouter en option, mais là: focus strict. */
+    @media (max-width: 900px){
+      body{ overflow:auto; } /* mobile: scroll global ok */
+      .app{ height:auto; min-height:100%; }
     }
 
     .panel{
@@ -96,20 +94,15 @@
     }
 
     /* ============================================================
-      SCROLL AREA : scrollbars "inset" DANS le panel
+      SCROLL AREA — scrollbars intégrées dans les panneaux
     ============================================================ */
     .scrollArea{
       height: 100%;
-      overflow: auto;
-
-      /* Gouttière interne -> scrollbar pas collée au bord de l'écran */
+      overflow:auto;
       padding-right: var(--sbPad);
       scrollbar-gutter: stable both-edges;
-
       border-radius: inherit;
     }
-
-    /* Scrollbars uniquement sur .scrollArea */
     .scrollArea{
       scrollbar-width: thin;
       scrollbar-color:
@@ -138,7 +131,7 @@
     }
 
     /* ============================================================
-      MAIN
+      HEADER / TOPBAR
     ============================================================ */
     .main{ display:flex; flex-direction:column; min-height:0; }
     .main__header{
@@ -148,6 +141,7 @@
     }
     .titleblock h2{ margin:0; font-size: 18px; font-weight: 900; letter-spacing:.2px; }
     .titleblock p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
     .chiprow{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
     .chip{
       font-size: 12px;
@@ -160,7 +154,6 @@
     }
     .chip strong{ color: var(--accent); font-weight: 900; }
 
-    /* Topbar (module) */
     .topbar{
       padding: 10px 18px;
       display:flex;
@@ -211,47 +204,104 @@
     }
     .progressPill strong{ color: var(--accent); font-weight: 900; }
 
-    /* Select stylé */
-    .selectWrap{
+    /* ============================================================
+      CUSTOM DROPDOWN (remplace <select>)
+    ============================================================ */
+    .dd{
       position: relative;
-      max-width: 360px;
-      min-width: 240px;
+      min-width: 260px;
+      max-width: 420px;
     }
-    .selectWrap::after{
-      content:"";
-      position:absolute;
-      right: 12px;
-      top: 50%;
-      width: 10px; height: 10px;
-      transform: translateY(-50%) rotate(45deg);
-      border-right: 2px solid rgba(255,255,255,0.70);
-      border-bottom: 2px solid rgba(255,255,255,0.70);
-      pointer-events:none;
-      opacity: .9;
-    }
-    select{
-      width:100%;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
+    .ddBtn{
+      width: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(0,0,0,0.18);
       color: rgba(255,255,255,0.90);
       border-radius: 14px;
-      padding: 9px 34px 9px 12px;
-      font-weight: 780;
+      padding: 9px 12px;
+      font-weight: 820;
       font-size: 12.5px;
-      outline: none;
+      cursor:pointer;
+      transition: border-color .18s ease, background .18s ease, transform .12s ease;
     }
-    select:hover{
+    .ddBtn:hover{
+      background: rgba(255,255,255,0.06);
       border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14));
+      transform: translateY(-1px);
     }
-    select:focus{
+    .ddBtn:focus{
+      outline: none;
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+    .ddChevron{
+      width: 10px; height: 10px;
+      border-right: 2px solid rgba(255,255,255,0.70);
+      border-bottom: 2px solid rgba(255,255,255,0.70);
+      transform: rotate(-45deg);
+      opacity: .9;
+      transition: transform .18s ease;
+      flex: 0 0 auto;
+    }
+    .dd[data-open="true"] .ddChevron{ transform: rotate(45deg); }
+
+    .ddMenu{
+      position:absolute;
+      left:0; right:0;
+      top: calc(100% + 8px);
+      z-index: 50;
+
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+
+      max-height: 320px;
+      overflow:auto;
+      padding: 6px;
+      display:none;
+    }
+    .dd[data-open="true"] .ddMenu{ display:block; }
+
+    .ddItem{
+      width:100%;
+      text-align:left;
+      border: 1px solid transparent;
+      background: transparent;
+      color: rgba(255,255,255,0.88);
+      border-radius: 12px;
+      padding: 10px 10px;
+      cursor:pointer;
+      font-weight: 760;
+      font-size: 12.5px;
+      transition: background .16s ease, border-color .16s ease, transform .12s ease;
+    }
+    .ddItem:hover{
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+    .ddItem[aria-selected="true"]{
+      background: color-mix(in srgb, var(--accent2) 14%, rgba(0,0,0,0.20));
+      border-color: color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12));
+    }
+    .ddSmall{
+      display:block;
+      margin-top: 3px;
+      color: rgba(255,255,255,0.62);
+      font-size: 11.5px;
+      font-weight: 650;
+      line-height: 1.2;
     }
 
     /* ============================================================
-      HOME — catégories + cartes (léger)
+      HOME
     ============================================================ */
     .homeTop{ display:flex; flex-direction:column; gap:10px; margin-bottom: 12px; }
     .categoryRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
@@ -315,16 +365,11 @@
     .themeCard .mini{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; font-size: 12px; }
     .tag{ border:1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); padding:5px 9px; border-radius:999px; }
 
-    .themeCard.is-visited{
-      border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14));
-    }
+    .themeCard.is-visited{ border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14)); }
     .themeCard.is-visited::after{
       content: "✓ vu";
-      position:absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 11px;
-      font-weight: 900;
+      position:absolute; top: 10px; right: 10px;
+      font-size: 11px; font-weight: 900;
       color: rgba(255,255,255,0.88);
       background: color-mix(in srgb, var(--accent) 14%, rgba(0,0,0,0.25));
       border: 1px solid rgba(255,255,255,0.12);
@@ -434,9 +479,12 @@
     }
 
     /* ============================================================
-      ASIDE
+      ASIDE (panel séparé, en bas)
     ============================================================ */
-    .aside{ display:flex; flex-direction:column; min-height:0; }
+    .aside{ min-height: 260px; max-height: 36vh; }
+    @media (max-width: 900px){
+      .aside{ max-height: none; }
+    }
     .aside__header{
       padding: 18px 18px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
@@ -473,39 +521,47 @@
 
 <body>
   <div class="app">
+
     <!-- MAIN -->
-    <main class="panel main" aria-label="Contenu">
+    <main class="panel main" aria-label="Contenu principal">
       <div class="main__header">
         <div class="titleblock">
           <h2 id="mainTitle">Accueil</h2>
-          <p id="mainSubtitle">Catégorie → thème. Ensuite : sections lisibles, sans scroll automatique.</p>
+          <p id="mainSubtitle">Catégorie → thème. Sections lisibles. Retour navigateur OK. Zéro diagrammes lourds.</p>
           <div class="chiprow" id="mainChips"></div>
         </div>
-        <div class="chip"><strong>Mode B</strong> (1 section ouverte)</div>
+        <div class="chip"><strong>Focus</strong> (1 colonne)</div>
       </div>
 
-      <!-- TOPBAR (module) -->
+      <!-- TOPBAR (module only) -->
       <div class="topbar hidden" id="moduleTopbar">
         <div class="topbar__left">
           <button class="btn btn--accent" id="backBtn" type="button">← Retour</button>
 
-          <div class="selectWrap">
-            <select id="moduleSelect" aria-label="Changer de thème"></select>
+          <!-- Custom dropdown -->
+          <div class="dd" id="moduleDropdown" data-open="false">
+            <button class="ddBtn" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span id="ddLabel">Choisir un thème</span>
+              <span class="ddChevron" aria-hidden="true"></span>
+            </button>
+            <div class="ddMenu scrollArea" id="ddMenu" role="listbox" tabindex="-1" aria-label="Thèmes">
+              <!-- rempli par JS -->
+            </div>
           </div>
 
           <span class="progressPill" id="progressPill"><strong>0</strong>/<span>0</span> sections vues</span>
         </div>
+
         <div class="topbar__right">
           <button class="btn" id="resetVisitedBtn" type="button" title="Réinitialiser les ✓ (localStorage)">Reset ✓</button>
         </div>
       </div>
 
-      <!-- MINI MAP -->
+      <!-- mini map -->
       <div class="miniMap hidden" id="miniMap"></div>
 
-      <!-- MAIN SCROLL AREA -->
+      <!-- Main scroll -->
       <div class="scrollArea" style="padding:14px;" id="mainScroll">
-        <!-- HOME VIEW -->
         <section id="homeView">
           <div class="homeTop">
             <div class="categoryRow" id="categoryRow"></div>
@@ -513,34 +569,33 @@
           <div class="homeGrid" id="homeGrid"></div>
         </section>
 
-        <!-- MODULE VIEW -->
         <section id="moduleView" class="hidden">
           <div class="accordion" id="accordionHost"></div>
         </section>
       </div>
     </main>
 
-    <!-- ASIDE -->
-    <aside class="panel aside" aria-label="Explications">
+    <!-- ASIDE (en bas, focus) -->
+    <aside class="panel aside" aria-label="Panneau explicatif">
       <div class="aside__header">
         <h3 id="detailTitle">Bienvenue</h3>
         <p id="detailHint">Choisis une catégorie puis un thème.</p>
       </div>
-
       <div class="scrollArea aside__content" id="asideScroll">
         <div id="detailHost"></div>
       </div>
     </aside>
+
   </div>
 
   <script>
     /* ============================================================
-      ✅ COMMENT MODIFIER LE CONTENU ?
-      - MODULES[moduleId].content.nodes[nodeId].blocks = [{h,p}, ...]
-      - MODULES[moduleId].content.fides[nodeId] = [...]
-      ✅ AJOUTER UN MODULE
-      - Ajouter MODULES.newId
-      - Ajouter newId dans CATEGORIES
+      NOTES IMPORTANTES
+      - Mode B: 1 seule section ouverte à la fois (accordéon)
+      - Pas de scroll auto au clic
+      - Back navigateur: History API
+      - Dropdown: custom (plus de <select>)
+      - Contenu: version démo cohérente (remplaçable par tes textes exacts)
     ============================================================ */
 
     /* -------------------------
@@ -559,7 +614,6 @@
       humiliation:{ accent:"#ff5cd6", accent2:"#ffb020" },
       injustice:  { accent:"#8a5cff", accent2:"#ffb020" },
     };
-
     function setThemeAccent(moduleId){
       const c = THEME_COLORS[moduleId] || { accent:"#2de2e6", accent2:"#8a5cff" };
       document.documentElement.style.setProperty("--accent", c.accent);
@@ -569,7 +623,7 @@
     /* -------------------------
       VISITED (localStorage)
     ------------------------- */
-    const LS_KEY = "fides_training_visited_v5";
+    const LS_KEY = "fides_training_visited_v6";
     function loadVisited(){
       try{ return JSON.parse(localStorage.getItem(LS_KEY)) || { modules:{}, nodes:{} }; }
       catch{ return { modules:{}, nodes:{} }; }
@@ -633,7 +687,7 @@
       if(state.view === "module" && state.moduleId){
         enterModule(state.moduleId, { silentHistory:true });
         if(state.nodeId){
-          openSection(state.nodeId, { silentHistory:true, autoScroll:false }); // ✅ pas de scroll auto
+          openSection(state.nodeId, { silentHistory:true, autoScroll:false });
         }
       } else {
         goHome({ silentHistory:true, cat: state.cat || "bases" });
@@ -672,8 +726,8 @@
     }
 
     /* -------------------------
-      MODULES — version complète (démo cohérente)
-      (Tu peux remplacer par tes textes exacts ensuite)
+      MODULES — complet (démo cohérente)
+      ⚠️ Remplace ensuite par tes textes exacts si besoin.
     ------------------------- */
     const MODULES = {
       comfort: {
@@ -687,18 +741,10 @@
               {h:"Message clé", p:"« Pour avancer, il faut traverser la peur. »"},
               {h:"Résumé", p:"Confort = sécurité illusoire, habitudes, évitement • Peur = doutes, jugements, perte de repères • Apprentissage = nouvelles compétences, expansion du soi • Expansion = réalisation, alignement, contribution"}
             ]},
-            confort:{ title:"Zone de confort", blocks:[
-              {h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"}
-            ]},
-            peur:{ title:"Zone de peur", blocks:[
-              {h:"Peur", p:"Peur = doutes, jugements, perte de repères"}
-            ]},
-            apprentissage:{ title:"Zone d’apprentissage", blocks:[
-              {h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"}
-            ]},
-            expansion:{ title:"Zone d’expansion", blocks:[
-              {h:"Expansion", p:"Expansion = réalisation, alignement, contribution"}
-            ]}
+            confort:{ title:"Zone de confort", blocks:[{h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"}] },
+            peur:{ title:"Zone de peur", blocks:[{h:"Peur", p:"Peur = doutes, jugements, perte de repères"}] },
+            apprentissage:{ title:"Zone d’apprentissage", blocks:[{h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"}] },
+            expansion:{ title:"Zone d’expansion", blocks:[{h:"Expansion", p:"Expansion = réalisation, alignement, contribution"}] }
           },
           fides: { core: [
             `F — ${FIDES_DEMO.F}`,
@@ -746,9 +792,7 @@
         order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
         content: {
           nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"Quand le lien semble menacé : recherche de proximité, peur d’être oublié."}
-            ]},
+            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"Quand le lien semble menacé : recherche de proximité, peur d’être oublié."}]},
             emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Tristesse + peur de séparation"}] },
             origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Séparations, indisponibilité émotionnelle, ruptures répétées"}] },
             masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fusionnel / dépendant, recherche de réassurance"}] },
@@ -774,9 +818,7 @@
         order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
         content: {
           nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"« Je dérange » → retrait ou perfection pour être accepté."}
-            ]},
+            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"« Je dérange » → retrait ou perfection pour être accepté."}]},
             emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Peur + honte (d’être indésirable)"}] },
             origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Critiques, moqueries, comparaisons"}] },
             masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fuyant/distant, rationalise pour ne pas sentir"}] },
@@ -802,9 +844,7 @@
         order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
         content: {
           nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"La honte pousse à se cacher, se rabaisser ou sur-compenser."}
-            ]},
+            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"La honte pousse à se cacher, se rabaisser ou sur-compenser."}]},
             emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Honte + gêne + peur d’être vu"}] },
             origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Moqueries, critiques, exposition publique"}] },
             masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Se punit, minimise ses besoins, porte les autres"}] },
@@ -830,9 +870,7 @@
         order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
         content: {
           nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Éclairage", p:"Quand l’équité semble violée : rigidité, standards élevés, jugement."}
-            ]},
+            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"Quand l’équité semble violée : rigidité, standards élevés, jugement."}]},
             emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Colère (souvent froide) + frustration"}] },
             origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Favoritisme, sanctions injustes, manque de reconnaissance"}] },
             masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Rigide, perfectionniste, contrôle"}] },
@@ -859,16 +897,14 @@
         content: {
           nodes: {
             core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Message clé", p:"Message clé : l’empathie est naturelle mais voilée"},
               {h:"Définition", p:"Définition : résonance sans fusion"},
+              {h:"Message clé", p:"Message clé : l’empathie est naturelle mais voilée"}
             ]},
             definition:{ title:"Définition", blocks:[{h:"Définition", p:"Définition : résonance sans fusion"}] },
             differences:{ title:"Différences", blocks:[{h:"Différences", p:"Différences : empathie / compassion / sympathie"}] },
             freins:{ title:"Freins", blocks:[{h:"Freins", p:"Freins : toutes les blessures émotionnelles"}] },
           },
-          fides:{
-            core:["F : Observer sans projeter.","I : Distinguer empathie vs fusion.","D : Nommer la résonance.","E : Reformuler + valider.","S : Aider sans sauver."]
-          }
+          fides:{ core:["F : Observer sans projeter.","I : Distinguer empathie vs fusion.","D : Nommer la résonance.","E : Reformuler + valider.","S : Aider sans sauver."] }
         }
       },
 
@@ -888,17 +924,10 @@
               {h:"Exemples (démo)", p:"Visibles : substances, jeux… • Invisibles : sur-contrôle, travail, validation, scrolling"}
             ]},
             fonction:{ title:"Fonction", blocks:[
-              {h:"Fonction", p:"Fonction : éviter une émotion"},
               {h:"Question", p:"Si je retire le comportement, quelle émotion apparaît ?"}
             ]},
           },
-          fides:{ core:[
-            `F — ${FIDES_DEMO.F}`,
-            `I — ${FIDES_DEMO.I}`,
-            `D — ${FIDES_DEMO.D}`,
-            `E — ${FIDES_DEMO.E}`,
-            `S — ${FIDES_DEMO.S}`
-          ]}
+          fides:{ core:[ `F — ${FIDES_DEMO.F}`, `I — ${FIDES_DEMO.I}`, `D — ${FIDES_DEMO.D}`, `E — ${FIDES_DEMO.E}`, `S — ${FIDES_DEMO.S}` ] }
         }
       },
 
@@ -910,12 +939,10 @@
         content: {
           nodes: {
             core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Clé", p:"Clé FIDES : quand mes valeurs sont bafouées → la blessure se réactive"},
+              {h:"Clé FIDES", p:"Quand mes valeurs sont bafouées → la blessure se réactive"},
               {h:"Liste (démo)", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille"}
             ]},
-            liste:{ title:"Liste (démo)", blocks:[
-              {h:"Exercice", p:"Choisis 5 valeurs non négociables et 1 situation où chacune est respectée / bafouée."}
-            ]}
+            liste:{ title:"Liste (démo)", blocks:[{h:"Exercice", p:"Choisis 5 valeurs non négociables et 1 situation où chacune est respectée / bafouée."}] }
           },
           fides:{ core:["F : valeur touchée ?","I : règle interne ?","D : émotion ?","E : exprimer/limite","S : action alignée"] }
         }
@@ -932,9 +959,7 @@
               {h:"Message", p:"Message : ce ne sont que des croyances héritées"},
               {h:"Question", p:"« De qui est cette croyance ? Est-ce qu’elle m’aide aujourd’hui ? »"}
             ]},
-            sources:{ title:"Sources", blocks:[
-              {h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes"}
-            ]}
+            sources:{ title:"Sources", blocks:[{h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes"}] }
           },
           fides:{ core:["F : situation","I : dogme","D : émotion/tension","E : reformuler","S : nouveau choix"] }
         }
@@ -947,9 +972,7 @@
         order: ["core","peur","colere","tristesse","joie","degout"],
         content: {
           nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût"}
-            ]},
+            core:{ title:"Vue d’ensemble", blocks:[{h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût"}] },
             peur:{ title:"Peur", blocks:[{h:"Nuances (démo)", p:"Inquiétude, anxiété, appréhension, panique, doute…"}] },
             colere:{ title:"Colère", blocks:[{h:"Nuances (démo)", p:"Irritation, frustration, rage, indignation…"}] },
             tristesse:{ title:"Tristesse", blocks:[{h:"Nuances (démo)", p:"Peine, chagrin, mélancolie, solitude…"}] },
@@ -983,12 +1006,16 @@
     const categoryRow = document.getElementById("categoryRow");
     const homeGrid = document.getElementById("homeGrid");
 
-    const moduleSelect = document.getElementById("moduleSelect");
     const backBtn = document.getElementById("backBtn");
     const resetVisitedBtn = document.getElementById("resetVisitedBtn");
     const progressPill = document.getElementById("progressPill");
-
     const accordionHost = document.getElementById("accordionHost");
+
+    // Dropdown
+    const moduleDropdown = document.getElementById("moduleDropdown");
+    const ddBtn = document.getElementById("ddBtn");
+    const ddLabel = document.getElementById("ddLabel");
+    const ddMenu = document.getElementById("ddMenu");
 
     const detailTitle = document.getElementById("detailTitle");
     const detailHint = document.getElementById("detailHint");
@@ -1006,8 +1033,30 @@
       EVENTS
     ------------------------- */
     backBtn.addEventListener("click", () => goHome());
-    moduleSelect.addEventListener("change", () => enterModule(moduleSelect.value));
     resetVisitedBtn.addEventListener("click", resetVisited);
+
+    // Dropdown open/close
+    ddBtn.addEventListener("click", () => toggleDropdown());
+    document.addEventListener("click", (e) => {
+      if(!moduleDropdown.contains(e.target)) closeDropdown();
+    });
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeDropdown();
+    });
+
+    function toggleDropdown(){
+      const open = moduleDropdown.getAttribute("data-open") === "true";
+      if(open) closeDropdown(); else openDropdown();
+    }
+    function openDropdown(){
+      moduleDropdown.setAttribute("data-open", "true");
+      ddBtn.setAttribute("aria-expanded", "true");
+      ddMenu.focus({ preventScroll:true });
+    }
+    function closeDropdown(){
+      moduleDropdown.setAttribute("data-open", "false");
+      ddBtn.setAttribute("aria-expanded", "false");
+    }
 
     /* -------------------------
       HOME
@@ -1023,7 +1072,7 @@
       miniMap.classList.add("hidden");
 
       mainTitle.textContent = "Accueil";
-      mainSubtitle.textContent = "Catégorie → thème. Ensuite : sections lisibles, sans scroll automatique.";
+      mainSubtitle.textContent = "Catégorie → thème. Sections lisibles. Retour navigateur OK.";
       mainChips.innerHTML = `
         <div class="chip"><strong>1</strong> Catégorie</div>
         <div class="chip"><strong>2</strong> Thème</div>
@@ -1047,12 +1096,10 @@
         const btn = document.createElement("button");
         btn.className = "categoryBtn";
         btn.type = "button";
-        btn.dataset.category = cat.id;
         btn.setAttribute("aria-pressed", cat.id === activeCategoryId ? "true" : "false");
         btn.innerHTML = `<span class="categoryDot"></span><span>${escapeHTML(cat.label)}</span>`;
         btn.addEventListener("click", () => {
           activeCategoryId = cat.id;
-          setThemeAccent("comfort");
           renderCategoryButtons();
           renderHomeCards(activeCategoryId);
           renderHomeAside();
@@ -1094,16 +1141,16 @@
       const visitedModules = Object.keys(VISITED.modules || {}).length;
 
       detailTitle.textContent = "Bienvenue";
-      detailHint.textContent = "Plus simple : pas de diagrammes lourds, navigation app-like.";
+      detailHint.textContent = "UX focus : simple, lisible, progression visible.";
 
       detailHost.innerHTML = `
         <div class="card">
           <h4><span>Comment utiliser</span><span class="kicker">simple</span></h4>
           <ul>
             <li>Choisir une catégorie puis un thème.</li>
-            <li>Ouvrir les sections (accordéon).</li>
+            <li>Ouvrir les sections (Mode B : une seule ouverte).</li>
             <li>✓ indique ce qui est déjà vu.</li>
-            <li>Retour navigateur = fonctionne.</li>
+            <li>Bouton retour navigateur = fonctionne.</li>
           </ul>
         </div>
 
@@ -1112,9 +1159,6 @@
           <p class="note">
             Thèmes vus : <strong style="color:var(--accent)">${visitedModules}</strong> / ${totalModules}
           </p>
-          <div class="callout note">
-            Astuce test : choisissez 1 blessure → ouvrez 3 sections → validez la fluidité.
-          </div>
         </div>
       `;
     }
@@ -1138,13 +1182,12 @@
       mainSubtitle.textContent = mod.subtitle;
       mainChips.innerHTML = (mod.tags||[]).map(t=>`<div class="chip">${escapeHTML(t)}</div>`).join("");
 
-      buildModuleSelect();
-      moduleSelect.value = moduleId;
+      renderDropdownItems();
+      setDropdownSelection(moduleId);
 
       renderMiniMap(moduleId);
       renderAccordion(moduleId);
 
-      // ouvrir vue d’ensemble (sans scroll auto)
       openSection("core", { silentHistory:true, autoScroll:false });
 
       markModuleVisited(moduleId);
@@ -1158,13 +1201,35 @@
       }
     }
 
-    function buildModuleSelect(){
-      moduleSelect.innerHTML = "";
-      Object.keys(MODULES).forEach(id => {
-        const opt = document.createElement("option");
-        opt.value = id;
-        opt.textContent = MODULES[id].title;
-        moduleSelect.appendChild(opt);
+    function renderDropdownItems(){
+      ddMenu.innerHTML = "";
+      const ids = Object.keys(MODULES);
+
+      ids.forEach(id => {
+        const mod = MODULES[id];
+        const btn = document.createElement("button");
+        btn.className = "ddItem";
+        btn.type = "button";
+        btn.setAttribute("role","option");
+        btn.dataset.module = id;
+        btn.setAttribute("aria-selected", id === currentModuleId ? "true" : "false");
+        btn.innerHTML = `
+          ${escapeHTML(mod.title)}
+          <span class="ddSmall">${escapeHTML(mod.subtitle)}</span>
+        `;
+        btn.addEventListener("click", () => {
+          closeDropdown();
+          enterModule(id);
+        });
+        ddMenu.appendChild(btn);
+      });
+    }
+
+    function setDropdownSelection(moduleId){
+      const mod = MODULES[moduleId];
+      ddLabel.textContent = mod ? mod.title : "Choisir un thème";
+      ddMenu.querySelectorAll(".ddItem").forEach(i=>{
+        i.setAttribute("aria-selected", i.dataset.module === moduleId ? "true" : "false");
       });
     }
 
@@ -1232,7 +1297,7 @@
 
       currentNodeId = nodeId;
 
-      // MODE B: une seule ouverte
+      // Mode B: une seule ouverte
       accordionHost.querySelectorAll(".accItem").forEach(it => {
         it.setAttribute("aria-expanded", it.dataset.node === nodeId ? "true" : "false");
       });
@@ -1244,7 +1309,7 @@
         p.setAttribute("aria-current", p.dataset.node === nodeId ? "true" : "false");
       });
 
-      // ✅ Pas de scroll automatique (autoScroll=false)
+      // Pas de scroll auto (autoScroll=false)
       if(autoScroll){
         const el = accordionHost.querySelector(`.accItem[data-node="${cssEscape(nodeId)}"]`);
         if(el) el.scrollIntoView({ behavior:"smooth", block:"center" });
@@ -1275,7 +1340,7 @@
                           (mod.content.fides && mod.content.fides.core) ? mod.content.fides.core : [];
 
       detailTitle.textContent = node.title || "Détail";
-      detailHint.textContent = "Sections lisibles, progression ✓, et retour navigateur fonctionnel.";
+      detailHint.textContent = "Lecture fluide, ✓ visible, retour navigateur OK.";
 
       detailHost.innerHTML = "";
 
@@ -1325,13 +1390,18 @@
         const badge = item.querySelector(`[data-badge="${cssEscape(nodeId)}"]`);
         if(badge) badge.textContent = visited ? "✓ vu" : " ";
       });
+
+      // dropdown selected styling
+      ddMenu.querySelectorAll(".ddItem").forEach(i=>{
+        i.setAttribute("aria-selected", i.dataset.module === currentModuleId ? "true" : "false");
+      });
+      setDropdownSelection(currentModuleId);
     }
 
     /* -------------------------
       INIT
     ------------------------- */
     function init(){
-      // état initial history
       if(!location.search){
         pushAppState({ view:"home", cat:"bases" }, true);
       } else {
@@ -1339,7 +1409,6 @@
       }
       restoreFromState(readStateFromURL());
     }
-
     init();
 
     /* -------------------------
