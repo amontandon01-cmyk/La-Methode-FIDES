@@ -5,38 +5,39 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>La méthode FIDES — Support</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./assets/css/base.css" />
-  <link rel="stylesheet" href="./assets/css/layout.css" />
-  <link rel="stylesheet" href="./assets/css/components.css" />
-  <link rel="stylesheet" href="./assets/css/scrollbar.css" />
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/scrollbar.css">
 </head>
 
 <body>
   <div class="app">
-    <header class="topbar">
-      <button id="logoBtn" class="logoBtn" type="button" aria-label="Accueil">
-        La méthode FIDES
-      </button>
+    <div class="panel">
 
-      <div class="titles">
-        <div id="pageTitle" class="pageTitle">La méthode FIDES</div>
-        <div id="pageSubtitle" class="pageSubtitle">Support de formation</div>
+      <header>
+        <div class="brand">
+          <button class="logoBtn" id="logoBtn" type="button" title="Accueil">
+            <img class="logo" src="image.png" alt="LA MÉTHODE FIDES">
+          </button>
+          <div class="titleBox">
+            <h1 id="pageTitle">Vue d’ensemble</h1>
+            <p id="pageSubtitle">Support de formation</p>
+          </div>
+        </div>
+
+        <button class="btn" id="menuBtn" type="button">Menu</button>
+      </header>
+
+      <div class="content">
+        <div class="backdrop" id="backdrop" data-open="false"></div>
+        <nav class="scrollArea" id="nav" data-open="false" aria-label="Menu"></nav>
+        <main class="scrollArea" id="main"></main>
       </div>
 
-      <button id="menuBtn" class="menuBtn" type="button" aria-label="Menu">
-        Menu
-      </button>
-    </header>
-
-    <div id="backdrop" class="backdrop" data-open="false"></div>
-
-    <aside id="nav" class="nav" data-open="false" aria-label="Navigation"></aside>
-
-    <main id="main" class="main" role="main"></main>
+    </div>
   </div>
 
-  <!-- JS -->
-  <script type="module" src="./assets/js/app.js"></script>
+  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
