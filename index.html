@@ -6,52 +6,42 @@
   <title>La méthode FIDES — Atlas</title>
 
   <style>
-    /* ============================================================
-      STYLE — SOBRE / PERF
-      - Couleurs plus neutres
-      - Peu d’animations
-      - Pas de blur (backdrop-filter) => gros gain perf
-      - Scrollbar intégrée au design
-    ============================================================ */
     :root{
-      /* Base */
+      /* FOND UNI (plus de dégradés) */
       --bg0:#0b0e14;
-      --bg1:#0f141c;
 
-      /* Surfaces */
+      /* Surfaces sobres */
       --panel: rgba(255,255,255,0.04);
-      --panel2: rgba(255,255,255,0.03);
+      --navbg: rgba(0,0,0,0.14);
+      --card: rgba(0,0,0,0.16);
       --stroke: rgba(255,255,255,0.10);
 
       /* Texte */
       --text: rgba(255,255,255,0.90);
-      --muted: rgba(255,255,255,0.62);
+      --muted: rgba(255,255,255,0.60);
 
-      /* Accent sobre */
-      --accent: #9aa7b7;     /* gris bleuté doux */
-      --accent2:#7f8a98;     /* secondaire */
+      /* Accent ultra sobre */
+      --accent: rgba(185,200,220,0.35);
 
-      --shadow: 0 10px 28px rgba(0,0,0,0.45);
-      --radius2: 22px;
+      --shadow: 0 10px 26px rgba(0,0,0,0.45);
+      --radius2: 20px;
       --radius: 16px;
-
       --maxw: 1180px;
 
-      /* Scrollbar inset */
+      /* Scrollbar inset (comme ton ancien esprit) */
       --sbSize: 8px;
       --sbPad: 12px;
+      --sbTrack: rgba(0,0,0,0.18);
+      --sbThumb1: rgba(205,215,235,0.22);
+      --sbThumb2: rgba(205,215,235,0.14);
     }
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
-
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background:
-        radial-gradient(900px 700px at 18% 10%, rgba(140,160,190,0.10), transparent 60%),
-        radial-gradient(800px 600px at 85% 30%, rgba(130,150,170,0.08), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+      background: var(--bg0);
       color: var(--text);
     }
 
@@ -72,63 +62,54 @@
       flex-direction:column;
     }
 
-    /* ============================================================
-      HEADER — logo + titre + menu
-    ============================================================ */
+    /* ============ HEADER ============ */
     header{
-      padding: 14px 16px;
+      padding: 12px 16px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       display:flex;
       justify-content:space-between;
-      gap: 14px;
       align-items:center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      gap: 12px;
+      background: rgba(0,0,0,0.10);
     }
 
     .brand{
       display:flex;
-      gap: 12px;
       align-items:center;
+      gap: 14px;
       min-width: 0;
     }
 
-    .logoBtn{
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.18);
-      border-radius: 14px;
-      padding: 8px 10px;
-      cursor:pointer;
+    /* Logo GRAND, sans gadget */
+    .logoWrap{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap: 12px;
     }
 
-    .logoBtn:hover{ border-color: rgba(255,255,255,0.14); }
-
     .logo{
-      height: 34px;
+      height: 62px; /* <-- plus grand */
       width: auto;
       display:block;
       object-fit: contain;
-      background: rgba(255,255,255,0.95);
-      border-radius: 10px;
-      padding: 6px 8px;
+      background: rgba(255,255,255,0.96);
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(0,0,0,0.10);
     }
 
     .titleBox{
       min-width: 0;
     }
-
     header h1{
       margin:0;
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 900;
       letter-spacing: .2px;
       white-space: nowrap;
       overflow:hidden;
       text-overflow: ellipsis;
     }
-
     header p{
       margin: 4px 0 0;
       color: var(--muted);
@@ -139,19 +120,13 @@
       text-overflow: ellipsis;
     }
 
-    .toolbar{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
+    /* Bouton menu : uniquement utile sur mobile */
     .btn{
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.18);
       color: var(--text);
       border-radius: 14px;
-      padding: 9px 10px;
+      padding: 9px 11px;
       cursor:pointer;
       font-weight: 820;
       font-size: 12.5px;
@@ -159,89 +134,57 @@
     }
     .btn:hover{ border-color: rgba(255,255,255,0.18); }
 
-    .btn--quiet{
-      background: rgba(0,0,0,0.10);
-      color: rgba(255,255,255,0.78);
-    }
-
-    /* ============================================================
-      LAYOUT — nav + main
-    ============================================================ */
+    /* ============ LAYOUT ============ */
     .content{
       display:grid;
-      grid-template-columns: 310px 1fr;
+      grid-template-columns: 320px 1fr;
       min-height:0;
       flex:1;
     }
-    @media (max-width: 980px){
-      .content{ grid-template-columns: 1fr; }
-    }
 
-    /* Scrollbar intégrée (comme ton ancien style, mais sobre) */
+    /* Scroll areas */
     .scrollArea{
       overflow:auto;
       padding-right: var(--sbPad);
       scrollbar-gutter: stable both-edges;
     }
+
+    /* Scrollbar intégrée (Firefox + Webkit) */
     .scrollArea{
       scrollbar-width: thin;
-      scrollbar-color: rgba(170,185,205,0.30) rgba(0,0,0,0.18);
+      scrollbar-color: rgba(205,215,235,0.28) var(--sbTrack);
     }
     .scrollArea::-webkit-scrollbar{ width: var(--sbSize); height: var(--sbSize); }
     .scrollArea::-webkit-scrollbar-track{
-      background: rgba(0,0,0,0.16);
+      background: var(--sbTrack);
       border-radius: 999px;
-      margin: 10px;
+      margin: 10px;               /* inset */
     }
     .scrollArea::-webkit-scrollbar-thumb{
-      background: linear-gradient(180deg, rgba(170,185,205,0.30), rgba(170,185,205,0.18));
-      border: 2px solid rgba(0,0,0,0.16);
+      background: linear-gradient(180deg, var(--sbThumb1), var(--sbThumb2));
+      border: 2px solid var(--sbTrack);
       border-radius: 999px;
     }
     .scrollArea::-webkit-scrollbar-thumb:hover{
-      background: linear-gradient(180deg, rgba(170,185,205,0.36), rgba(170,185,205,0.22));
+      background: linear-gradient(180deg,
+        rgba(205,215,235,0.30),
+        rgba(205,215,235,0.18)
+      );
     }
 
     nav{
       border-right: 1px solid rgba(255,255,255,0.08);
+      background: var(--navbg);
       padding: 14px;
       min-height:0;
-      background: rgba(0,0,0,0.10);
-    }
-    @media (max-width: 980px){
-      nav{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-width: 420px;
-        width: calc(100% - 56px);
-        transform: translateX(-110%);
-        transition: transform .14s ease;
-        border-right: 1px solid rgba(255,255,255,0.10);
-        z-index: 50;
-        box-shadow: 0 20px 70px rgba(0,0,0,0.60);
-        border-top-right-radius: 18px;
-        border-bottom-right-radius: 18px;
-      }
-      nav[data-open="true"]{ transform: translateX(0); }
     }
 
-    .backdrop{
-      display:none;
-    }
-    @media (max-width: 980px){
-      .backdrop{
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        z-index: 40;
-        display:none;
-      }
-      .backdrop[data-open="true"]{ display:block; }
+    main{
+      padding: 16px;
+      min-height:0;
     }
 
+    /* ============ NAV ============ */
     .navSection{
       margin-bottom: 14px;
       padding-bottom: 12px;
@@ -258,7 +201,7 @@
       width:100%;
       text-align:left;
       border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.12);
       color: rgba(255,255,255,0.90);
       border-radius: 14px;
       padding: 10px 10px;
@@ -272,8 +215,8 @@
       background: rgba(255,255,255,0.03);
     }
     .navItem[aria-current="page"]{
-      border-color: rgba(190,205,225,0.28);
-      background: rgba(190,205,225,0.08);
+      border-color: rgba(205,215,235,0.25);
+      background: rgba(205,215,235,0.08);
     }
     .navSmall{
       display:block;
@@ -284,19 +227,14 @@
       line-height: 1.25;
     }
 
-    main{
-      min-height:0;
-      padding: 16px;
-    }
-
+    /* ============ CONTENT ============ */
     .card{
       border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.12);
+      background: var(--card);
       border-radius: var(--radius);
       padding: 14px;
       margin-bottom: 12px;
     }
-
     .kicker{
       font-size: 11px;
       color: rgba(255,255,255,0.55);
@@ -317,14 +255,10 @@
     }
     ul{ margin: 8px 0 0 18px; }
 
-    /* Home tiles (sobre, quasi sans animation) */
     .mapGrid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-    }
-    @media (max-width: 980px){
-      .mapGrid{ grid-template-columns: 1fr; }
     }
     .mapTile{
       border: 1px solid rgba(255,255,255,0.10);
@@ -350,7 +284,6 @@
       line-height: 1.45;
     }
 
-    /* Blessures : grille stable */
     .woundGrid{
       display:grid;
       grid-template-columns: 1fr;
@@ -378,6 +311,46 @@
       font-size: 13.2px;
       line-height: 1.6;
     }
+
+    /* ============ MOBILE ============ */
+    .backdrop{
+      display:none;
+    }
+
+    @media (max-width: 980px){
+      .content{ grid-template-columns: 1fr; }
+
+      /* nav en drawer */
+      nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(420px, calc(100% - 56px));
+        transform: translateX(-110%);
+        transition: transform .14s ease;
+        z-index: 50;
+        border-right: 1px solid rgba(255,255,255,0.10);
+        box-shadow: 0 20px 70px rgba(0,0,0,0.60);
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+      }
+      nav[data-open="true"]{ transform: translateX(0); }
+
+      .backdrop{
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 40;
+        display:none;
+      }
+      .backdrop[data-open="true"]{ display:block; }
+    }
+
+    /* Sur desktop, on cache le bouton menu car inutile */
+    @media (min-width: 981px){
+      #menuBtn{ display:none; }
+    }
   </style>
 </head>
 
@@ -387,10 +360,9 @@
 
       <header>
         <div class="brand">
-          <!-- Logo cliquable = retour à l’accueil (sans bouton “retour”) -->
-          <button class="logoBtn" id="logoBtn" type="button" title="Accueil">
-            <img class="logo" src="image.png" alt="LA MÉTHODE FIDES">
-          </button>
+          <div class="logoWrap" id="logoBtn" title="Accueil" style="cursor:pointer;">
+            <img class="logo" src="image.png" alt="LA MÉTHODE FIDES" />
+          </div>
 
           <div class="titleBox">
             <h1 id="pageTitle">Carte du système</h1>
@@ -398,9 +370,7 @@
           </div>
         </div>
 
-        <div class="toolbar">
-          <button class="btn btn--quiet" id="menuBtn" type="button">Menu</button>
-        </div>
+        <button class="btn" id="menuBtn" type="button">Menu</button>
       </header>
 
       <div class="content">
@@ -413,15 +383,9 @@
   </div>
 
   <script>
-    /* ============================================================
-      ROUTING simple (hash) — pas de mentions “prototype”
-    ============================================================ */
-
     const PAGES = [
-      // Accueil
       { id:"home", type:"HOME", title:"Carte du système", subtitle:"Socles • Blessures • Référentiels" },
 
-      // SOCLES
       { id:"socle_confort", type:"SOCLE", title:"Le cercle de la zone de confort",
         subtitle:"Confort → Peur → Apprentissage → Expansion.",
         content: [
@@ -429,7 +393,7 @@
             "Zone de confort = sécurité illusoire, répétition des habitudes, évitement de l’inconfort.",
             "Zone de peur = doutes, jugements des autres, perte de repères.",
             "Zone d’apprentissage = nouvelles compétences, élargissement de soi, expérimentation.",
-            "Zone d’expansion = réalisation de soi, alignement avec sa valeur, contribution au monde.",
+            "Zone d’expansion = réalisation de soi, alignement avec sa valeur, contribution au monde."
           ]},
           { kicker:"Message clé", lead:"Pour avancer, il faut oser franchir la peur et passer par l’apprentissage.", text:
             "Sans ce passage, on reste prisonnier de l’illusion de sécurité."
@@ -471,156 +435,90 @@
         ]
       },
 
-      // BLESSURES (structure stable)
-      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion racine : surprise.",
-        grid: [
-          ["Émotion", "Surprise."],
-          ["Âge d’ancrage (indiqué)", "6–7 ans (première activation)."],
-          ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité."],
-          ["Masque / comportement", "Masque du contrôlant : cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise."],
-          ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
-          ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
-          ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
-          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
-          ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »"],
-          ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
-        ]
-      },
-
-      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion racine : peur.",
-        grid: [
-          ["Émotion", "Peur."],
-          ["Origine", "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui."],
-          ["Masque / comportement", "Masque du dépendant : fusion, peur de la solitude, besoin excessif de soutien. Peut dire qu’il se sent bien seul et n’a besoin de personne."],
-          ["Empathie (note)", "Confond souvent empathie et fusion ; donne trop pour éviter d’être abandonné."],
-          ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool — tout ce qui comble le vide intérieur."],
-          ["Valeurs de vie", "Amour, proximité, lien, chaleur humaine, partage."],
-          ["Conditionnements / dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
-          ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
-          ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. »"],
-        ]
-      },
-
       { id:"w_rejet", type:"BLESSURE", title:"Blessure : rejet", subtitle:"Émotion racine : tristesse.",
         grid: [
           ["Émotion", "Tristesse."],
-          ["Origine", "Très tôt (parfois indiqué : dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop."],
+          ["Origine", "Très tôt. Sentiment de ne pas avoir sa place, de déranger, d’être de trop."],
           ["Masque / comportement", "Masque du fuyant : se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger."],
           ["Empathie (note)", "Difficulté à s’ouvrir par peur d’être ignoré ; peut se couper des autres pour éviter de revivre le rejet."],
           ["Addictions", "Isolement, écrans, alimentation compulsive discrète (addictions solitaires)."],
           ["Valeurs de vie", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
           ["Conditionnements / dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
           ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. »"],
-          ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. »"],
+          ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. »"]
+        ]
+      },
+
+      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion racine : peur.",
+        grid: [
+          ["Émotion", "Peur."],
+          ["Origine", "Sentiment d’être laissé seul, manques affectifs dans l’enfance."],
+          ["Masque / comportement", "Masque du dépendant : fusion, peur de la solitude, besoin excessif de soutien."],
+          ["Empathie (note)", "Confond souvent empathie et fusion ; donne trop pour éviter d’être abandonné."],
+          ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool — tout ce qui comble le vide intérieur."],
+          ["Valeurs de vie", "Amour, proximité, lien, chaleur humaine, partage."],
+          ["Conditionnements / dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
+          ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
+          ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. »"]
         ]
       },
 
       { id:"w_humiliation", type:"BLESSURE", title:"Blessure : humiliation", subtitle:"Émotion racine : dégoût.",
         grid: [
           ["Émotion", "Dégoût."],
-          ["Origine", "Expérience de honte, dévalorisation, humiliation dans l’enfance ; souvent liée à l’éducation stricte / regard social ou familial."],
-          ["Masque / comportement", "Masque du masochiste : se rabaisser, se sacrifier, se punir ; culpabilité ; rend service au-delà de ses limites ; anticipe les besoins des autres sans accord."],
+          ["Origine", "Honte, dévalorisation, humiliation dans l’enfance."],
+          ["Masque / comportement", "Masque du masochiste : se rabaisser, se sacrifier, se punir."],
           ["Empathie (note)", "Freinée par la honte — peur de montrer sa vulnérabilité."],
-          ["Addictions", "Nourriture, sexualité, auto-sabotage ; excès pour compenser la honte."],
+          ["Addictions", "Nourriture, sexualité, auto-sabotage."],
           ["Valeurs de vie", "Respect, dignité, authenticité."],
           ["Conditionnements / dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
           ["Croyances limitantes", "« Je ne mérite pas d’être heureux. » « Je dois porter la honte. »"],
-          ["Croyances expansives", "« Je mérite le respect et la joie de vivre. » « Je peux exister avec dignité. »"],
+          ["Croyances expansives", "« Je mérite le respect et la joie de vivre. » « Je peux exister avec dignité. »"]
+        ]
+      },
+
+      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion racine : surprise.",
+        grid: [
+          ["Émotion", "Surprise."],
+          ["Origine", "Expérience de trahison réelle ou vécue comme telle."],
+          ["Masque / comportement", "Masque du contrôlant : cassant, exigeant. Besoin de vérifier, imposer."],
+          ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
+          ["Addictions", "Pouvoir, contrôle, réussite, domination."],
+          ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent."],
+          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. »"],
+          ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. »"],
+          ["Croyances expansives", "« Je me détache du résultat. » « Je laisse le bénéfice du doute. »"]
         ]
       },
 
       { id:"w_injustice", type:"BLESSURE", title:"Blessure : injustice", subtitle:"Émotion racine : colère intérieure.",
         grid: [
-          ["Émotion", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
-          ["Origine", "Éducation stricte, froide ; amour dépendant de la performance ; jugement/comparaison."],
-          ["Masque / comportement", "Masque du rigide : perfectionnisme, dureté avec soi/les autres ; besoin de justice ; refus de l’imperfection."],
+          ["Émotion", "Colère intérieure."],
+          ["Origine", "Éducation stricte, froide ; amour dépendant de la performance."],
+          ["Masque / comportement", "Masque du rigide : perfectionnisme, dureté, refus de l’imperfection."],
           ["Empathie (note)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
-          ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
+          ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle."],
           ["Valeurs de vie", "Justice, équité, intégrité, vérité."],
           ["Conditionnements / dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
-          ["Croyances limitantes", "« Je dois toujours prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
-          ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée et indépendante de mes performances. »"],
+          ["Croyances limitantes", "« Je dois prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
+          ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée. »"]
         ]
       },
 
-      // RÉFÉRENTIELS
       { id:"ref_emotions", type:"REF", title:"Référentiel : émotions & sentiments", subtitle:"Émotions racines + sentiments (nuances).",
         content: [
-          { kicker:"Émotions racines", lead:"Peur • Colère • Tristesse • Joie • Dégoût." },
-          { kicker:"Sentiments agréables / expansifs", bullets:[
-            "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement."
-          ]},
-          { kicker:"Peur & insécurité", bullets:[
-            "Anxiété, Inquiétude, Stress, Méfiance, Doute, Crainte, Panique, Impuissance, Inconfort, Tension, Sentiment d’insécurité."
-          ]},
-          { kicker:"Colère & frustration", bullets:[
-            "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût."
-          ]},
-          { kicker:"Tristesse & perte", bullets:[
-            "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures."
-          ]},
-          { kicker:"Injustice & humiliation", bullets:[
-            "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité, Injustice, Rigidité intérieure."
-          ]},
-          { kicker:"Ouverture & connexion", bullets:[
-            "Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré."
-          ]},
+          { kicker:"Émotions racines", lead:"Peur • Colère • Tristesse • Joie • Dégoût." }
         ]
-      },
-
-      { id:"ref_addictions", type:"REF", title:"Référentiel : addictions", subtitle:"Substances • comportementales • invisibles.",
-        content: [
-          { kicker:"Définition", lead:"Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)." },
-          { kicker:"Addictions aux substances", bullets:[
-            "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre."
-          ]},
-          { kicker:"Addictions comportementales", bullets:[
-            "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation."
-          ]},
-          { kicker:"Addictions plus invisibles", bullets:[
-            "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."
-          ]},
-        ]
-      },
-
-      { id:"ref_valeurs", type:"REF", title:"Référentiel : valeurs de vie", subtitle:"Piliers universels + exemples.",
-        content: [
-          { kicker:"Piliers universels", lead:"Santé • Famille/Proches • Argent/Sécurité financière • Amour/Relations." },
-          { kicker:"Exemples", bullets:[
-            "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.",
-            "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.",
-            "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, efficacité, ambition, reconnaissance, succès.",
-            "Santé, vitalité, bien-être, énergie, longévité, nature, beauté, plaisir de vivre.",
-            "Créativité, compétence, excellence, service, contribution, coopération, justice, égalité.",
-            "Foi, sagesse, espoir, paix intérieure, gratitude, transcendance, émerveillement, sens de la vie."
-          ]},
-        ]
-      },
-
-      { id:"ref_dogmes", type:"REF", title:"Référentiel : conditionnements & dogmes", subtitle:"Familiaux • sociaux • religieux • genre • éducatifs • psychologiques • intérieurs.",
-        content: [
-          { kicker:"Définition", lead:"Croyances héritées qui dictent nos comportements." },
-          { kicker:"Exemples (extraits)", bullets:[
-            "Familiaux : « Sois sage et tais-toi. » « On ne parle pas de nos problèmes à l’extérieur. »",
-            "Sociaux : « Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. »",
-            "Religieux : « Tu dois souffrir pour mériter. » « Le plaisir est un péché. »",
-            "Genre : « Un homme ne pleure pas. » « Une femme doit être parfaite. »",
-            "Éducatifs : « Si tu échoues, tu es nul. » « L’erreur est interdite. »",
-            "Psychologiques : « Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. »",
-            "Intérieurs : « Je dois être parfait. » « Je ne suis pas assez bien. »"
-          ]},
-        ]
-      },
+      }
     ];
 
     const NAV = [
       { section:"Carte", items:["home"] },
       { section:"Socles", items:["socle_confort","socle_apathie_empathie","socle_empathie"] },
       { section:"Blessures", items:["w_rejet","w_abandon","w_humiliation","w_trahison","w_injustice"] },
-      { section:"Référentiels", items:["ref_emotions","ref_addictions","ref_valeurs","ref_dogmes"] },
+      { section:"Référentiels", items:["ref_emotions"] },
     ];
 
-    // DOM
     const navEl = document.getElementById("nav");
     const mainEl = document.getElementById("main");
     const pageTitle = document.getElementById("pageTitle");
@@ -629,7 +527,6 @@
     const backdrop = document.getElementById("backdrop");
     const logoBtn = document.getElementById("logoBtn");
 
-    // Helpers
     const getPage = (id) => PAGES.find(p => p.id === id);
 
     function escapeHTML(str){
@@ -641,7 +538,6 @@
         .replaceAll("'","&#039;");
     }
 
-    // Router
     function getRoute(){
       return (location.hash || "#home").slice(1);
     }
@@ -649,7 +545,6 @@
       location.hash = "#" + id;
     }
 
-    // Mobile menu toggle
     function setMenu(open){
       navEl.setAttribute("data-open", open ? "true" : "false");
       backdrop.setAttribute("data-open", open ? "true" : "false");
@@ -662,10 +557,8 @@
     backdrop.addEventListener("click", () => setMenu(false));
     document.addEventListener("keydown", (e) => { if(e.key === "Escape") setMenu(false); });
 
-    // Logo click => home (sans bouton “retour”)
     logoBtn.addEventListener("click", () => go("home"));
 
-    // UI
     function renderNav(currentId){
       navEl.innerHTML = "";
       NAV.forEach(group => {
@@ -679,14 +572,8 @@
           btn.className = "navItem";
           btn.type = "button";
           btn.setAttribute("aria-current", id === currentId ? "page" : "false");
-          btn.innerHTML = `
-            ${escapeHTML(p.title)}
-            <span class="navSmall">${escapeHTML(p.subtitle || "")}</span>
-          `;
-          btn.addEventListener("click", () => {
-            go(id);
-            setMenu(false); // ferme menu sur mobile
-          });
+          btn.innerHTML = `${escapeHTML(p.title)}<span class="navSmall">${escapeHTML(p.subtitle || "")}</span>`;
+          btn.addEventListener("click", () => { go(id); setMenu(false); });
           wrap.appendChild(btn);
         });
 
@@ -698,7 +585,7 @@
       const tiles = [
         { title:"Socles", id:"socle_apathie_empathie", desc:"Pages fondatrices (lecture continue)." },
         { title:"Blessures émotionnelles", id:"w_rejet", desc:"Grille stable : émotion → origine → masque → apathie → addictions → valeurs → dogmes → croyances." },
-        { title:"Référentiels", id:"ref_emotions", desc:"Ressources : émotions/sentiments, addictions, valeurs, dogmes." },
+        { title:"Référentiels", id:"ref_emotions", desc:"Ressources : émotions/sentiments, etc." },
         { title:"Point de départ", id:"socle_confort", desc:"Confort → Peur → Apprentissage → Expansion." },
       ];
 
@@ -706,7 +593,7 @@
         <div class="card">
           <div class="kicker">Structure</div>
           <div class="lead">Socles • Blessures • Référentiels</div>
-          <p>Navigation par structure (et non par “catalogue”).</p>
+          <p>Navigation par structure.</p>
         </div>
 
         <div class="mapGrid">
@@ -737,7 +624,6 @@
           </div>
         `;
       }).join("");
-
       mainEl.innerHTML = blocks;
     }
 
@@ -748,7 +634,6 @@
           <div class="lead">${escapeHTML(page.title)}</div>
           <p>${escapeHTML(page.subtitle || "")}</p>
         </div>
-
         <div class="woundGrid">
           ${page.grid.map(([k,v]) => `
             <div class="row">
@@ -762,8 +647,7 @@
 
     function renderRef(page){
       const blocks = (page.content || []).map(b => {
-        const bullets = b.bullets?.length ? `<ul>${b.bullets.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>` : "";
-        const text = b.text ? `<p>${escapeHTML(b.text)}</p>` : "";
+        const bullets = b.bullets?.length ? `<ul>${b.bullets.map(x=>`<li     const text = b.text ? `<p>${escapeHTML(b.text)}</p>` : "";
         return `
           <div class="card">
             <div class="kicker">${escapeHTML(b.kicker || "Référentiel")}</div>
@@ -792,7 +676,6 @@
       else renderHome();
     }
 
-    // Init
     window.addEventListener("hashchange", render);
     if(!location.hash) location.hash = "#home";
     render();
