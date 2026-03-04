@@ -3,37 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Atlas – Apathie / Empathie & blessures émotionnelles</title>
+  <title>La méthode FIDES — Atlas</title>
 
   <style>
+    /* ============================================================
+      STYLE — SOBRE / PERF
+      - Couleurs plus neutres
+      - Peu d’animations
+      - Pas de blur (backdrop-filter) => gros gain perf
+      - Scrollbar intégrée au design
+    ============================================================ */
     :root{
-      --bg0:#070913;
-      --bg1:#0b1022;
-      --glass: rgba(255,255,255,0.07);
-      --stroke: rgba(255,255,255,0.14);
+      /* Base */
+      --bg0:#0b0e14;
+      --bg1:#0f141c;
 
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
+      /* Surfaces */
+      --panel: rgba(255,255,255,0.04);
+      --panel2: rgba(255,255,255,0.03);
+      --stroke: rgba(255,255,255,0.10);
 
-      --accent: #2de2e6;
-      --accent2:#8a5cff;
+      /* Texte */
+      --text: rgba(255,255,255,0.90);
+      --muted: rgba(255,255,255,0.62);
 
-      --shadow: 0 14px 40px rgba(0,0,0,0.45);
-      --radius2: 26px;
-      --radius: 18px;
+      /* Accent sobre */
+      --accent: #9aa7b7;     /* gris bleuté doux */
+      --accent2:#7f8a98;     /* secondaire */
 
-      --maxw: 1100px;
+      --shadow: 0 10px 28px rgba(0,0,0,0.45);
+      --radius2: 22px;
+      --radius: 16px;
+
+      --maxw: 1180px;
+
+      /* Scrollbar inset */
+      --sbSize: 8px;
+      --sbPad: 12px;
     }
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
-        radial-gradient(900px 650px at 18% 12%, rgba(138,92,255,0.22), transparent 60%),
-        radial-gradient(760px 520px at 82% 30%, rgba(45,226,230,0.16), transparent 62%),
-        radial-gradient(680px 520px at 60% 86%, rgba(255,92,214,0.10), transparent 60%),
+        radial-gradient(900px 700px at 18% 10%, rgba(140,160,190,0.10), transparent 60%),
+        radial-gradient(800px 600px at 85% 30%, rgba(130,150,170,0.08), transparent 62%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
     }
@@ -45,74 +62,114 @@
     }
 
     .panel{
-      background: var(--glass);
+      background: var(--panel);
       border: 1px solid var(--stroke);
       border-radius: var(--radius2);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       overflow:hidden;
       min-height: calc(100vh - 32px);
       display:flex;
       flex-direction:column;
     }
 
+    /* ============================================================
+      HEADER — logo + titre + menu
+    ============================================================ */
     header{
-      padding: 18px 18px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display:flex;
       justify-content:space-between;
       gap: 14px;
-      align-items:flex-start;
+      align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
     }
+
+    .brand{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      min-width: 0;
+    }
+
+    .logoBtn{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      border-radius: 14px;
+      padding: 8px 10px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logoBtn:hover{ border-color: rgba(255,255,255,0.14); }
+
+    .logo{
+      height: 34px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      background: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      padding: 6px 8px;
+    }
+
+    .titleBox{
+      min-width: 0;
+    }
+
     header h1{
       margin:0;
-      font-size: 18px;
-      font-weight: 920;
+      font-size: 16px;
+      font-weight: 900;
       letter-spacing: .2px;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
+
     header p{
-      margin: 6px 0 0;
+      margin: 4px 0 0;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.4;
-      max-width: 70ch;
+      font-size: 12.6px;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
 
     .toolbar{
       display:flex;
       gap:10px;
-      flex-wrap:wrap;
       align-items:center;
+      flex-wrap:wrap;
     }
+
     .btn{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.14);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.18);
       color: var(--text);
       border-radius: 14px;
       padding: 9px 10px;
       cursor:pointer;
-      transition: background .18s ease, transform .12s ease, border-color .18s ease;
       font-weight: 820;
       font-size: 12.5px;
       white-space: nowrap;
     }
-    .btn:hover{
-      background: rgba(255,255,255,0.07);
-      border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14));
-      transform: translateY(-1px);
-    }
-    .btn--accent{
-      border-color: color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.14));
-      background: linear-gradient(90deg,
-        color-mix(in srgb, var(--accent2) 18%, rgba(0,0,0,0.18)),
-        color-mix(in srgb, var(--accent) 9%, rgba(0,0,0,0.18))
-      );
+    .btn:hover{ border-color: rgba(255,255,255,0.18); }
+
+    .btn--quiet{
+      background: rgba(0,0,0,0.10);
+      color: rgba(255,255,255,0.78);
     }
 
+    /* ============================================================
+      LAYOUT — nav + main
+    ============================================================ */
     .content{
       display:grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 310px 1fr;
       min-height:0;
       flex:1;
     }
@@ -120,19 +177,75 @@
       .content{ grid-template-columns: 1fr; }
     }
 
+    /* Scrollbar intégrée (comme ton ancien style, mais sobre) */
+    .scrollArea{
+      overflow:auto;
+      padding-right: var(--sbPad);
+      scrollbar-gutter: stable both-edges;
+    }
+    .scrollArea{
+      scrollbar-width: thin;
+      scrollbar-color: rgba(170,185,205,0.30) rgba(0,0,0,0.18);
+    }
+    .scrollArea::-webkit-scrollbar{ width: var(--sbSize); height: var(--sbSize); }
+    .scrollArea::-webkit-scrollbar-track{
+      background: rgba(0,0,0,0.16);
+      border-radius: 999px;
+      margin: 10px;
+    }
+    .scrollArea::-webkit-scrollbar-thumb{
+      background: linear-gradient(180deg, rgba(170,185,205,0.30), rgba(170,185,205,0.18));
+      border: 2px solid rgba(0,0,0,0.16);
+      border-radius: 999px;
+    }
+    .scrollArea::-webkit-scrollbar-thumb:hover{
+      background: linear-gradient(180deg, rgba(170,185,205,0.36), rgba(170,185,205,0.22));
+    }
+
     nav{
-      border-right: 1px solid rgba(255,255,255,0.10);
+      border-right: 1px solid rgba(255,255,255,0.08);
       padding: 14px;
       min-height:0;
+      background: rgba(0,0,0,0.10);
     }
     @media (max-width: 980px){
-      nav{ border-right:none; border-bottom: 1px solid rgba(255,255,255,0.10); }
+      nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: 420px;
+        width: calc(100% - 56px);
+        transform: translateX(-110%);
+        transition: transform .14s ease;
+        border-right: 1px solid rgba(255,255,255,0.10);
+        z-index: 50;
+        box-shadow: 0 20px 70px rgba(0,0,0,0.60);
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+      }
+      nav[data-open="true"]{ transform: translateX(0); }
+    }
+
+    .backdrop{
+      display:none;
+    }
+    @media (max-width: 980px){
+      .backdrop{
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 40;
+        display:none;
+      }
+      .backdrop[data-open="true"]{ display:block; }
     }
 
     .navSection{
       margin-bottom: 14px;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
     .navTitle{
       font-size: 11px;
@@ -144,44 +257,41 @@
     .navItem{
       width:100%;
       text-align:left;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.10);
       color: rgba(255,255,255,0.90);
       border-radius: 14px;
       padding: 10px 10px;
       cursor:pointer;
       font-weight: 820;
       font-size: 12.8px;
-      transition: transform .12s ease, background .18s ease, border-color .18s ease;
       margin-bottom: 8px;
     }
     .navItem:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.05);
-      border-color: color-mix(in srgb, var(--accent) 26%, rgba(255,255,255,0.12));
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.03);
     }
     .navItem[aria-current="page"]{
-      background: color-mix(in srgb, var(--accent2) 16%, rgba(0,0,0,0.14));
-      border-color: color-mix(in srgb, var(--accent2) 55%, rgba(255,255,255,0.12));
+      border-color: rgba(190,205,225,0.28);
+      background: rgba(190,205,225,0.08);
     }
     .navSmall{
       display:block;
       margin-top: 3px;
-      color: rgba(255,255,255,0.62);
-      font-size: 11.5px;
+      color: rgba(255,255,255,0.60);
+      font-size: 11.4px;
       font-weight: 650;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     main{
       min-height:0;
       padding: 16px;
-      overflow:auto;
     }
 
     .card{
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.14);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.12);
       border-radius: var(--radius);
       padding: 14px;
       margin-bottom: 12px;
@@ -207,7 +317,7 @@
     }
     ul{ margin: 8px 0 0 18px; }
 
-    /* “Carte du système” */
+    /* Home tiles (sobre, quasi sans animation) */
     .mapGrid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -217,19 +327,15 @@
       .mapGrid{ grid-template-columns: 1fr; }
     }
     .mapTile{
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.14);
-      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.12);
+      border-radius: 16px;
       padding: 14px;
       cursor:pointer;
-      transition: transform .12s ease, background .18s ease, border-color .18s ease;
-      position: relative;
-      overflow:hidden;
     }
     .mapTile:hover{
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--accent2) 38%, rgba(255,255,255,0.12));
-      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.03);
     }
     .mapTile h3{
       margin:0;
@@ -256,7 +362,7 @@
       gap: 12px;
       padding: 12px;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.08);
       background: rgba(0,0,0,0.10);
     }
     @media (max-width: 740px){
@@ -265,19 +371,12 @@
     .label{
       font-weight: 950;
       font-size: 12.8px;
-      color: rgba(255,255,255,0.90);
+      color: rgba(255,255,255,0.88);
     }
     .value{
       color: rgba(255,255,255,0.84);
       font-size: 13.2px;
       line-height: 1.6;
-    }
-
-    .note{
-      color: rgba(255,255,255,0.62);
-      font-size: 12px;
-      line-height: 1.5;
-      margin-top: 8px;
     }
   </style>
 </head>
@@ -287,21 +386,27 @@
     <div class="panel">
 
       <header>
-        <div>
-          <h1 id="pageTitle">Carte du système</h1>
-          <p id="pageSubtitle">
-            Atlas structuré : socles → blessures → référentiels. (Prototype pour tester la clarté.)
-          </p>
+        <div class="brand">
+          <!-- Logo cliquable = retour à l’accueil (sans bouton “retour”) -->
+          <button class="logoBtn" id="logoBtn" type="button" title="Accueil">
+            <img class="logo" src="image.png" alt="LA MÉTHODE FIDES">
+          </button>
+
+          <div class="titleBox">
+            <h1 id="pageTitle">Carte du système</h1>
+            <p id="pageSubtitle">Socles • Blessures • Référentiels</p>
+          </div>
         </div>
+
         <div class="toolbar">
-          <button class="btn btn--accent" id="homeBtn" type="button">⟵ Carte</button>
-          <button class="btn" id="copyLinkBtn" type="button" title="Copier un lien vers la page">Copier lien</button>
+          <button class="btn btn--quiet" id="menuBtn" type="button">Menu</button>
         </div>
       </header>
 
       <div class="content">
-        <nav id="nav"></nav>
-        <main id="main"></main>
+        <div class="backdrop" id="backdrop" data-open="false"></div>
+        <nav class="scrollArea" id="nav" data-open="false" aria-label="Menu"></nav>
+        <main class="scrollArea" id="main"></main>
       </div>
 
     </div>
@@ -309,21 +414,16 @@
 
   <script>
     /* ============================================================
-      Prototype “Atlas”
-      - Accueil = Carte du système
-      - 3 types : SOCLES / BLESSURES / RÉFÉRENTIELS
-      - But : rendre la structure visible, sans “jeu” ni FIDES interactif.
-      - Contenu: repris de ton support (octobre 2025).
+      ROUTING simple (hash) — pas de mentions “prototype”
     ============================================================ */
 
     const PAGES = [
-      // HOME (carte)
-      { id:"home", type:"HOME", title:"Carte du système", subtitle:"Voir la structure globale (socles → blessures → référentiels).", accent:"#2de2e6", accent2:"#8a5cff" },
+      // Accueil
+      { id:"home", type:"HOME", title:"Carte du système", subtitle:"Socles • Blessures • Référentiels" },
 
       // SOCLES
       { id:"socle_confort", type:"SOCLE", title:"Le cercle de la zone de confort",
         subtitle:"Confort → Peur → Apprentissage → Expansion.",
-        accent:"#2de2e6", accent2:"#8a5cff",
         content: [
           { kicker:"But pédagogique", lead:"Montrer les différentes zones (confort, peur, apprentissage, expansion).", bullets:[
             "Zone de confort = sécurité illusoire, répétition des habitudes, évitement de l’inconfort.",
@@ -339,7 +439,6 @@
 
       { id:"socle_apathie_empathie", type:"SOCLE", title:"Blessures émotionnelles : apathie ↔ empathie",
         subtitle:"Apathie = fermeture émotionnelle protectrice ; empathie = réouverture.",
-        accent:"#38f2a5", accent2:"#2de2e6",
         content: [
           { kicker:"Point central", lead:"Quand une blessure s’active, l’apathie prend le dessus.", text:
             "Ici, l’apathie n’est pas une absence d’émotion au sens médical : c’est un état de fermeture émotionnelle qui se met en place quand une douleur ancienne se réveille."
@@ -355,7 +454,6 @@
 
       { id:"socle_empathie", type:"SOCLE", title:"L’empathie",
         subtitle:"Résonance sans fusion.",
-        accent:"#2de2e6", accent2:"#ff5cd6",
         content: [
           { kicker:"Définition", lead:"Capacité à se mettre en résonance avec l’émotion de l’autre, sans se confondre avec elle." },
           { kicker:"Différences", lead:"Empathie vs compassion / sympathie.", bullets:[
@@ -374,7 +472,7 @@
       },
 
       // BLESSURES (structure stable)
-      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion racine : surprise.", accent:"#ff5cd6", accent2:"#8a5cff",
+      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion racine : surprise.",
         grid: [
           ["Émotion", "Surprise."],
           ["Âge d’ancrage (indiqué)", "6–7 ans (première activation)."],
@@ -383,49 +481,46 @@
           ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
           ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
           ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
-          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. » (et autres formulations du support)."],
+          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
           ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »"],
           ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
-        ],
-        note:"Texte repris et condensé sans ajout, pour prototype de lisibilité."
+        ]
       },
 
-      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion racine : peur.", accent:"#2de2e6", accent2:"#38f2a5",
+      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion racine : peur.",
         grid: [
           ["Émotion", "Peur."],
           ["Origine", "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui."],
           ["Masque / comportement", "Masque du dépendant : fusion, peur de la solitude, besoin excessif de soutien. Peut dire qu’il se sent bien seul et n’a besoin de personne."],
-          ["Empathie (note du support)", "Confond souvent empathie et fusion ; donne trop pour éviter d’être abandonné."],
+          ["Empathie (note)", "Confond souvent empathie et fusion ; donne trop pour éviter d’être abandonné."],
           ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool — tout ce qui comble le vide intérieur."],
           ["Valeurs de vie", "Amour, proximité, lien, chaleur humaine, partage."],
           ["Conditionnements / dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
           ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
           ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. »"],
-        ],
-        note:"Texte repris du support, réordonné dans une grille stable."
+        ]
       },
 
-      { id:"w_rejet", type:"BLESSURE", title:"Blessure : rejet", subtitle:"Émotion racine : tristesse.", accent:"#ffb020", accent2:"#2de2e6",
+      { id:"w_rejet", type:"BLESSURE", title:"Blessure : rejet", subtitle:"Émotion racine : tristesse.",
         grid: [
           ["Émotion", "Tristesse."],
           ["Origine", "Très tôt (parfois indiqué : dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop."],
           ["Masque / comportement", "Masque du fuyant : se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger."],
-          ["Empathie (note du support)", "Difficulté à s’ouvrir par peur d’être ignoré ; peut se couper des autres pour éviter de revivre le rejet."],
+          ["Empathie (note)", "Difficulté à s’ouvrir par peur d’être ignoré ; peut se couper des autres pour éviter de revivre le rejet."],
           ["Addictions", "Isolement, écrans, alimentation compulsive discrète (addictions solitaires)."],
           ["Valeurs de vie", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
           ["Conditionnements / dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
-          ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations type « ce n’est pas grave », etc.)."],
+          ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. »"],
           ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. »"],
-        ],
-        note:"Prototype : garder la structure, sans interprétation."
+        ]
       },
 
-      { id:"w_humiliation", type:"BLESSURE", title:"Blessure : humiliation", subtitle:"Émotion racine : dégoût.", accent:"#ff5cd6", accent2:"#ffb020",
+      { id:"w_humiliation", type:"BLESSURE", title:"Blessure : humiliation", subtitle:"Émotion racine : dégoût.",
         grid: [
           ["Émotion", "Dégoût."],
           ["Origine", "Expérience de honte, dévalorisation, humiliation dans l’enfance ; souvent liée à l’éducation stricte / regard social ou familial."],
           ["Masque / comportement", "Masque du masochiste : se rabaisser, se sacrifier, se punir ; culpabilité ; rend service au-delà de ses limites ; anticipe les besoins des autres sans accord."],
-          ["Empathie (note du support)", "Freinée par la honte — peur de montrer sa vulnérabilité."],
+          ["Empathie (note)", "Freinée par la honte — peur de montrer sa vulnérabilité."],
           ["Addictions", "Nourriture, sexualité, auto-sabotage ; excès pour compenser la honte."],
           ["Valeurs de vie", "Respect, dignité, authenticité."],
           ["Conditionnements / dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
@@ -434,12 +529,12 @@
         ]
       },
 
-      { id:"w_injustice", type:"BLESSURE", title:"Blessure : injustice", subtitle:"Émotion racine : colère intérieure.", accent:"#8a5cff", accent2:"#ffb020",
+      { id:"w_injustice", type:"BLESSURE", title:"Blessure : injustice", subtitle:"Émotion racine : colère intérieure.",
         grid: [
           ["Émotion", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
           ["Origine", "Éducation stricte, froide ; amour dépendant de la performance ; jugement/comparaison."],
           ["Masque / comportement", "Masque du rigide : perfectionnisme, dureté avec soi/les autres ; besoin de justice ; refus de l’imperfection."],
-          ["Empathie (note du support)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
+          ["Empathie (note)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
           ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
           ["Valeurs de vie", "Justice, équité, intégrité, vérité."],
           ["Conditionnements / dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
@@ -449,9 +544,7 @@
       },
 
       // RÉFÉRENTIELS
-      { id:"ref_emotions", type:"REF", title:"Référentiel : émotions & sentiments",
-        subtitle:"Émotions racines + sentiments (nuances).",
-        accent:"#38f2a5", accent2:"#2de2e6",
+      { id:"ref_emotions", type:"REF", title:"Référentiel : émotions & sentiments", subtitle:"Émotions racines + sentiments (nuances).",
         content: [
           { kicker:"Émotions racines", lead:"Peur • Colère • Tristesse • Joie • Dégoût." },
           { kicker:"Sentiments agréables / expansifs", bullets:[
@@ -472,15 +565,10 @@
           { kicker:"Ouverture & connexion", bullets:[
             "Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré."
           ]},
-          { kicker:"Clé pédagogique", lead:"Les émotions de base sont les racines. Les sentiments sont les nuances prolongées.", text:
-            "On revient à l’émotion racine pour comprendre ce qui se joue quand une blessure se réactive."
-          }
         ]
       },
 
-      { id:"ref_addictions", type:"REF", title:"Référentiel : addictions",
-        subtitle:"Visibles, comportementales, invisibles.",
-        accent:"#ffb020", accent2:"#ff5cd6",
+      { id:"ref_addictions", type:"REF", title:"Référentiel : addictions", subtitle:"Substances • comportementales • invisibles.",
         content: [
           { kicker:"Définition", lead:"Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)." },
           { kicker:"Addictions aux substances", bullets:[
@@ -492,16 +580,13 @@
           { kicker:"Addictions plus invisibles", bullets:[
             "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."
           ]},
-          { kicker:"Message clé", lead:"L’addiction n’est pas une faute morale, mais un signe d’une émotion à reconnaître." }
         ]
       },
 
-      { id:"ref_valeurs", type:"REF", title:"Référentiel : valeurs de vie",
-        subtitle:"Piliers universels + exemples structurés.",
-        accent:"#8a5cff", accent2:"#2de2e6",
+      { id:"ref_valeurs", type:"REF", title:"Référentiel : valeurs de vie", subtitle:"Piliers universels + exemples.",
         content: [
-          { kicker:"Piliers universels (support)", lead:"Santé • Famille/Proches • Argent/Sécurité financière • Amour/Relations." },
-          { kicker:"Exemples (support)", bullets:[
+          { kicker:"Piliers universels", lead:"Santé • Famille/Proches • Argent/Sécurité financière • Amour/Relations." },
+          { kicker:"Exemples", bullets:[
             "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.",
             "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.",
             "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, efficacité, ambition, reconnaissance, succès.",
@@ -509,25 +594,21 @@
             "Créativité, compétence, excellence, service, contribution, coopération, justice, égalité.",
             "Foi, sagesse, espoir, paix intérieure, gratitude, transcendance, émerveillement, sens de la vie."
           ]},
-          { kicker:"Utilité dans le modèle", lead:"Les valeurs prioritaires sont celles qui, lorsqu’elles sont bafouées, réveillent la blessure." }
         ]
       },
 
-      { id:"ref_dogmes", type:"REF", title:"Référentiel : conditionnements & dogmes",
-        subtitle:"Familiaux, sociaux, religieux, genre, éducatifs, psychologiques, intérieurs.",
-        accent:"#c7a6ff", accent2:"#8a5cff",
+      { id:"ref_dogmes", type:"REF", title:"Référentiel : conditionnements & dogmes", subtitle:"Familiaux • sociaux • religieux • genre • éducatifs • psychologiques • intérieurs.",
         content: [
-          { kicker:"Définition", lead:"Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements." },
-          { kicker:"Exemples", bullets:[
-            "Familiaux : « Sois sage et tais-toi. » « On ne parle pas de nos problèmes à l’extérieur. » …",
-            "Sociaux/culturels : « Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » …",
-            "Religieux/spirituels : « Tu dois souffrir pour mériter. » « Le plaisir est un péché. » …",
-            "Genre/rôle : « Un homme ne pleure pas. » « Une femme doit être parfaite. » …",
-            "Éducatifs : « Si tu échoues, tu es nul. » « L’erreur est interdite. » …",
-            "Psychologiques : « Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » …",
-            "Intérieurs : « Je dois être parfait. » « Je ne suis pas assez bien. » …"
+          { kicker:"Définition", lead:"Croyances héritées qui dictent nos comportements." },
+          { kicker:"Exemples (extraits)", bullets:[
+            "Familiaux : « Sois sage et tais-toi. » « On ne parle pas de nos problèmes à l’extérieur. »",
+            "Sociaux : « Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. »",
+            "Religieux : « Tu dois souffrir pour mériter. » « Le plaisir est un péché. »",
+            "Genre : « Un homme ne pleure pas. » « Une femme doit être parfaite. »",
+            "Éducatifs : « Si tu échoues, tu es nul. » « L’erreur est interdite. »",
+            "Psychologiques : « Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. »",
+            "Intérieurs : « Je dois être parfait. » « Je ne suis pas assez bien. »"
           ]},
-          { kicker:"Message clé", lead:"Ce ne sont que des croyances héritées : les mettre en lumière rend la liberté intérieure possible." }
         ]
       },
     ];
@@ -544,16 +625,12 @@
     const mainEl = document.getElementById("main");
     const pageTitle = document.getElementById("pageTitle");
     const pageSubtitle = document.getElementById("pageSubtitle");
-    const homeBtn = document.getElementById("homeBtn");
-    const copyLinkBtn = document.getElementById("copyLinkBtn");
+    const menuBtn = document.getElementById("menuBtn");
+    const backdrop = document.getElementById("backdrop");
+    const logoBtn = document.getElementById("logoBtn");
 
     // Helpers
     const getPage = (id) => PAGES.find(p => p.id === id);
-
-    function setAccent(p){
-      document.documentElement.style.setProperty("--accent", p.accent || "#2de2e6");
-      document.documentElement.style.setProperty("--accent2", p.accent2 || "#8a5cff");
-    }
 
     function escapeHTML(str){
       return String(str)
@@ -564,13 +641,29 @@
         .replaceAll("'","&#039;");
     }
 
-    // Router (hash)
+    // Router
     function getRoute(){
       return (location.hash || "#home").slice(1);
     }
     function go(id){
       location.hash = "#" + id;
     }
+
+    // Mobile menu toggle
+    function setMenu(open){
+      navEl.setAttribute("data-open", open ? "true" : "false");
+      backdrop.setAttribute("data-open", open ? "true" : "false");
+    }
+
+    menuBtn.addEventListener("click", () => {
+      const open = navEl.getAttribute("data-open") === "true";
+      setMenu(!open);
+    });
+    backdrop.addEventListener("click", () => setMenu(false));
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") setMenu(false); });
+
+    // Logo click => home (sans bouton “retour”)
+    logoBtn.addEventListener("click", () => go("home"));
 
     // UI
     function renderNav(currentId){
@@ -590,7 +683,10 @@
             ${escapeHTML(p.title)}
             <span class="navSmall">${escapeHTML(p.subtitle || "")}</span>
           `;
-          btn.addEventListener("click", () => go(id));
+          btn.addEventListener("click", () => {
+            go(id);
+            setMenu(false); // ferme menu sur mobile
+          });
           wrap.appendChild(btn);
         });
 
@@ -600,19 +696,17 @@
 
     function renderHome(){
       const tiles = [
-        { title:"Socles", id:"socle_apathie_empathie", desc:"Les pages fondatrices (lecture continue, pas de fragmentation)." },
+        { title:"Socles", id:"socle_apathie_empathie", desc:"Pages fondatrices (lecture continue)." },
         { title:"Blessures émotionnelles", id:"w_rejet", desc:"Grille stable : émotion → origine → masque → apathie → addictions → valeurs → dogmes → croyances." },
         { title:"Référentiels", id:"ref_emotions", desc:"Ressources : émotions/sentiments, addictions, valeurs, dogmes." },
-        { title:"Point de départ recommandé", id:"socle_confort", desc:"Le mouvement Confort → Peur → Apprentissage → Expansion (toile de fond)." },
+        { title:"Point de départ", id:"socle_confort", desc:"Confort → Peur → Apprentissage → Expansion." },
       ];
 
       mainEl.innerHTML = `
         <div class="card">
-          <div class="kicker">Carte du système</div>
-          <div class="lead">Tu navigues par structure, pas par “thèmes”.</div>
-          <p>
-            Objectif du prototype : vérifier si cette architecture rend le sujet plus clair, sans “jeu” ni simplification.
-          </p>
+          <div class="kicker">Structure</div>
+          <div class="lead">Socles • Blessures • Référentiels</div>
+          <p>Navigation par structure (et non par “catalogue”).</p>
         </div>
 
         <div class="mapGrid">
@@ -622,16 +716,6 @@
               <p>${escapeHTML(t.desc)}</p>
             </div>
           `).join("")}
-        </div>
-
-        <div class="card" style="margin-top:12px;">
-          <div class="kicker">Règle d’or</div>
-          <div class="lead">Tout n’a pas le même statut.</div>
-          <ul>
-            <li><strong>Socles</strong> = ce qui organise la compréhension.</li>
-            <li><strong>Blessures</strong> = grille répétable, stable.</li>
-            <li><strong>Référentiels</strong> = ressources à consulter.</li>
-          </ul>
         </div>
       `;
 
@@ -660,10 +744,9 @@
     function renderBlessure(page){
       mainEl.innerHTML = `
         <div class="card">
-          <div class="kicker">Structure stable</div>
+          <div class="kicker">Blessure</div>
           <div class="lead">${escapeHTML(page.title)}</div>
           <p>${escapeHTML(page.subtitle || "")}</p>
-          ${page.note ? `<p class="note">${escapeHTML(page.note)}</p>` : ""}
         </div>
 
         <div class="woundGrid">
@@ -696,9 +779,8 @@
     function render(){
       const id = getRoute();
       const page = getPage(id) || getPage("home");
-      setAccent(page);
 
-      pageTitle.textContent = page.title || "Atlas";
+      pageTitle.textContent = page.title || "La méthode FIDES";
       pageSubtitle.textContent = page.subtitle || "";
 
       renderNav(page.id);
@@ -709,20 +791,6 @@
       else if(page.type === "REF") renderRef(page);
       else renderHome();
     }
-
-    // Toolbar
-    homeBtn.addEventListener("click", () => go("home"));
-    copyLinkBtn.addEventListener("click", async () => {
-      const url = location.href;
-      try{
-        await navigator.clipboard.writeText(url);
-        copyLinkBtn.textContent = "Lien copié ✓";
-        setTimeout(() => copyLinkBtn.textContent = "Copier lien", 1200);
-      } catch {
-        // fallback
-        prompt("Copie ce lien :", url);
-      }
-    });
 
     // Init
     window.addEventListener("hashchange", render);
