@@ -3,21 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Support de formation – FIDES & mécanismes émotionnels</title>
+  <title>Atlas – Apathie / Empathie & blessures émotionnelles</title>
 
   <style>
-    /* ============================================================
-      DESIGN SYSTEM — Dark + Glass + Accent dynamique
-      ------------------------------------------------------------
-      ✅ 1 seul panneau (pas d’explications de fonctionnement)
-      ✅ Scrollbars “inset” (intégrées dans la vue)
-      ✅ Dropdown custom (pas de <select> natif)
-      ✅ Mode B : 1 seule section ouverte à la fois
-    ============================================================ */
     :root{
       --bg0:#070913;
       --bg1:#0b1022;
-
       --glass: rgba(255,255,255,0.07);
       --stroke: rgba(255,255,255,0.14);
 
@@ -29,18 +20,13 @@
 
       --shadow: 0 14px 40px rgba(0,0,0,0.45);
       --radius2: 26px;
-      --radius: 20px;
+      --radius: 18px;
 
-      --maxw: 1080px;
-
-      /* Scrollbar inset */
-      --sbSize: 8px;
-      --sbPad: 12px;
+      --maxw: 1100px;
     }
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
-
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -50,28 +36,15 @@
         radial-gradient(680px 520px at 60% 86%, rgba(255,92,214,0.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       color: var(--text);
-
-      /* Desktop : pas de scroll global => scroll dans le panel */
-      overflow: hidden;
     }
 
-    /* ============================================================
-      LAYOUT — 1 seul panel centré (focus par défaut)
-    ============================================================ */
     .app{
-      height:100%;
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 14px;
-    }
-
-    @media (max-width: 900px){
-      body{ overflow:auto; }
-      .app{ height:auto; min-height:100%; }
+      padding: 16px;
     }
 
     .panel{
-      height: 100%;
       background: var(--glass);
       border: 1px solid var(--stroke);
       border-radius: var(--radius2);
@@ -79,80 +52,39 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       overflow:hidden;
-      min-height:0;
+      min-height: calc(100vh - 32px);
       display:flex;
       flex-direction:column;
     }
 
-    /* ============================================================
-      SCROLL AREA — scrollbars intégrées DANS la vue
-    ============================================================ */
-    .scrollArea{
-      height: 100%;
-      overflow:auto;
-      padding-right: var(--sbPad);
-      scrollbar-gutter: stable both-edges;
-      border-radius: inherit;
-    }
-
-    .scrollArea{
-      scrollbar-width: thin;
-      scrollbar-color:
-        color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.16))
-        rgba(0,0,0,0.16);
-    }
-    .scrollArea::-webkit-scrollbar{ width: var(--sbSize); height: var(--sbSize); }
-    .scrollArea::-webkit-scrollbar-track{
-      background: rgba(0,0,0,0.14);
-      border-radius: 999px;
-      margin: 10px;
-    }
-    .scrollArea::-webkit-scrollbar-thumb{
-      background: linear-gradient(180deg,
-        color-mix(in srgb, var(--accent2) 30%, rgba(255,255,255,0.10)),
-        color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.10))
-      );
-      border: 2px solid rgba(0,0,0,0.14);
-      border-radius: 999px;
-    }
-    .scrollArea::-webkit-scrollbar-thumb:hover{
-      background: linear-gradient(180deg,
-        color-mix(in srgb, var(--accent2) 42%, rgba(255,255,255,0.12)),
-        color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,0.12))
-      );
-    }
-
-    /* ============================================================
-      HEADER / TOPBAR
-      - Aucun texte d’explication de fonctionnement
-    ============================================================ */
-    .header{
+    header{
       padding: 18px 18px 12px;
       border-bottom: 1px solid rgba(255,255,255,0.10);
       display:flex;
       justify-content:space-between;
       gap: 14px;
+      align-items:flex-start;
     }
-    .header h1{
+    header h1{
       margin:0;
       font-size: 18px;
       font-weight: 920;
       letter-spacing: .2px;
     }
-    .header p{
+    header p{
       margin: 6px 0 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.4;
+      max-width: 70ch;
     }
 
-    .rightTools{
+    .toolbar{
       display:flex;
-      align-items:flex-start;
-      gap: 10px;
+      gap:10px;
       flex-wrap:wrap;
+      align-items:center;
     }
-
     .btn{
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(0,0,0,0.14);
@@ -178,120 +110,61 @@
       );
     }
 
-    /* Topbar module */
-    .topbar{
-      padding: 10px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+    .content{
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      min-height:0;
+      flex:1;
     }
-    .topbar__left, .topbar__right{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      min-width: 0;
+    @media (max-width: 980px){
+      .content{ grid-template-columns: 1fr; }
     }
 
-    .progressPill{
-      font-size: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.14);
-      color: rgba(255,255,255,0.82);
-      white-space: nowrap;
+    nav{
+      border-right: 1px solid rgba(255,255,255,0.10);
+      padding: 14px;
+      min-height:0;
     }
-    .progressPill strong{ color: var(--accent); font-weight: 900; }
+    @media (max-width: 980px){
+      nav{ border-right:none; border-bottom: 1px solid rgba(255,255,255,0.10); }
+    }
 
-    /* ============================================================
-      CUSTOM DROPDOWN (thèmes)
-    ============================================================ */
-    .dd{
-      position: relative;
-      min-width: 260px;
-      max-width: 520px;
+    .navSection{
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .ddBtn{
-      width: 100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
-      color: rgba(255,255,255,0.90);
-      border-radius: 14px;
-      padding: 9px 12px;
-      font-weight: 820;
-      font-size: 12.5px;
-      cursor:pointer;
-      transition: border-color .18s ease, background .18s ease, transform .12s ease;
+    .navTitle{
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin: 4px 0 10px;
     }
-    .ddBtn:hover{
-      background: rgba(255,255,255,0.06);
-      border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14));
-      transform: translateY(-1px);
-    }
-    .ddBtn:focus{
-      outline:none;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
-    }
-    .ddChevron{
-      width: 10px; height: 10px;
-      border-right: 2px solid rgba(255,255,255,0.70);
-      border-bottom: 2px solid rgba(255,255,255,0.70);
-      transform: rotate(-45deg);
-      opacity: .9;
-      transition: transform .18s ease;
-      flex: 0 0 auto;
-    }
-    .dd[data-open="true"] .ddChevron{ transform: rotate(45deg); }
-
-    .ddMenu{
-      position:absolute;
-      left:0; right:0;
-      top: calc(100% + 8px);
-      z-index: 50;
-
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 16px;
-      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
-
-      max-height: 340px;
-      overflow:auto;
-      padding: 6px;
-      display:none;
-    }
-    .dd[data-open="true"] .ddMenu{ display:block; }
-
-    .ddItem{
+    .navItem{
       width:100%;
       text-align:left;
-      border: 1px solid transparent;
-      background: transparent;
-      color: rgba(255,255,255,0.88);
-      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.12);
+      color: rgba(255,255,255,0.90);
+      border-radius: 14px;
       padding: 10px 10px;
       cursor:pointer;
-      font-weight: 780;
-      font-size: 12.5px;
-      transition: background .16s ease, border-color .16s ease, transform .12s ease;
+      font-weight: 820;
+      font-size: 12.8px;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease;
+      margin-bottom: 8px;
     }
-    .ddItem:hover{
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.10);
+    .navItem:hover{
       transform: translateY(-1px);
+      background: rgba(255,255,255,0.05);
+      border-color: color-mix(in srgb, var(--accent) 26%, rgba(255,255,255,0.12));
     }
-    .ddItem[aria-selected="true"]{
-      background: color-mix(in srgb, var(--accent2) 14%, rgba(0,0,0,0.20));
-      border-color: color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.12));
+    .navItem[aria-current="page"]{
+      background: color-mix(in srgb, var(--accent2) 16%, rgba(0,0,0,0.14));
+      border-color: color-mix(in srgb, var(--accent2) 55%, rgba(255,255,255,0.12));
     }
-    .ddSmall{
+    .navSmall{
       display:block;
       margin-top: 3px;
       color: rgba(255,255,255,0.62);
@@ -300,51 +173,50 @@
       line-height: 1.2;
     }
 
-    /* ============================================================
-      HOME — catégories + cartes
-    ============================================================ */
-    .homeTop{ display:flex; flex-direction:column; gap:10px; margin-bottom: 12px; }
-    .categoryRow{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    main{
+      min-height:0;
+      padding: 16px;
+      overflow:auto;
+    }
 
-    .categoryBtn{
-      border: 1px solid rgba(255,255,255,0.14);
+    .card{
+      border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.14);
-      color: rgba(255,255,255,0.88);
-      border-radius: 999px;
-      padding: 8px 10px;
-      font-size: 12px;
-      font-weight: 860;
-      cursor:pointer;
-      transition: transform .12s ease, background .18s ease, border-color .18s ease;
-      display:flex;
-      align-items:center;
-      gap: 8px;
-    }
-    .categoryBtn:hover{
-      background: rgba(255,255,255,0.06);
-      border-color: color-mix(in srgb, var(--accent) 25%, rgba(255,255,255,0.14));
-      transform: translateY(-1px);
-    }
-    .categoryBtn[aria-pressed="true"]{
-      background: color-mix(in srgb, var(--accent2) 16%, rgba(0,0,0,0.14));
-      border-color: color-mix(in srgb, var(--accent2) 50%, rgba(255,255,255,0.14));
-    }
-    .categoryDot{
-      width:8px; height:8px; border-radius:99px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 8%, transparent);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 12px;
     }
 
-    .homeGrid{
+    .kicker{
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .lead{
+      font-size: 14px;
+      font-weight: 900;
+      margin: 0 0 8px;
+      line-height: 1.35;
+    }
+    p, li{
+      color: rgba(255,255,255,0.86);
+      font-size: 13.2px;
+      line-height: 1.6;
+    }
+    ul{ margin: 8px 0 0 18px; }
+
+    /* “Carte du système” */
+    .mapGrid{
       display:grid;
-      gap: 12px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
-    @media (max-width: 900px){
-      .homeGrid{ grid-template-columns: 1fr; }
+    @media (max-width: 980px){
+      .mapGrid{ grid-template-columns: 1fr; }
     }
-
-    .themeCard{
+    .mapTile{
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.14);
       border-radius: 18px;
@@ -353,133 +225,60 @@
       transition: transform .12s ease, background .18s ease, border-color .18s ease;
       position: relative;
       overflow:hidden;
-      min-height: 92px;
     }
-    .themeCard:hover{
+    .mapTile:hover{
       transform: translateY(-2px);
       border-color: color-mix(in srgb, var(--accent2) 38%, rgba(255,255,255,0.12));
       background: rgba(255,255,255,0.05);
     }
-    .themeCard h3{ margin:0; font-size: 14px; font-weight: 940; line-height: 1.25; }
-    .themeCard p{ margin:6px 0 0; color: rgba(255,255,255,0.70); font-size: 12.5px; line-height:1.35; }
-    .themeCard .mini{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; font-size: 12px; }
-    .tag{ border:1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); padding:5px 9px; border-radius:999px; }
-
-    .themeCard.is-visited{ border-color: color-mix(in srgb, var(--accent) 28%, rgba(255,255,255,0.14)); }
-    .themeCard.is-visited::after{
-      content: "✓";
-      position:absolute; top: 10px; right: 10px;
-      font-size: 12px; font-weight: 1000;
-      color: rgba(255,255,255,0.92);
-      background: color-mix(in srgb, var(--accent) 14%, rgba(0,0,0,0.25));
-      border: 1px solid rgba(255,255,255,0.12);
-      width: 26px; height: 26px;
-      border-radius: 999px;
-      display:flex; align-items:center; justify-content:center;
+    .mapTile h3{
+      margin:0;
+      font-size: 14.5px;
+      font-weight: 940;
+      line-height: 1.25;
+    }
+    .mapTile p{
+      margin: 7px 0 0;
+      color: rgba(255,255,255,0.70);
+      font-size: 12.6px;
+      line-height: 1.45;
     }
 
-    /* ============================================================
-      MODULE — mini repère + accordéon (Mode B)
-    ============================================================ */
-    .miniMap{
-      padding: 10px 18px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items:center;
+    /* Blessures : grille stable */
+    .woundGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
     }
-    .miniPill{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.14);
-      color: rgba(255,255,255,0.88);
-      border-radius: 999px;
-      padding: 7px 10px;
+    .row{
+      display:grid;
+      grid-template-columns: 220px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.10);
+    }
+    @media (max-width: 740px){
+      .row{ grid-template-columns: 1fr; }
+    }
+    .label{
+      font-weight: 950;
+      font-size: 12.8px;
+      color: rgba(255,255,255,0.90);
+    }
+    .value{
+      color: rgba(255,255,255,0.84);
+      font-size: 13.2px;
+      line-height: 1.6;
+    }
+
+    .note{
+      color: rgba(255,255,255,0.62);
       font-size: 12px;
-      font-weight: 860;
-      cursor: pointer;
-      transition: transform .12s ease, background .18s ease, border-color .18s ease;
-      display:flex; align-items:center; gap:8px;
+      line-height: 1.5;
+      margin-top: 8px;
     }
-    .miniPill:hover{
-      background: rgba(255,255,255,0.06);
-      border-color: color-mix(in srgb, var(--accent) 25%, rgba(255,255,255,0.14));
-      transform: translateY(-1px);
-    }
-    .miniPill[aria-current="true"]{
-      background: color-mix(in srgb, var(--accent2) 14%, rgba(0,0,0,0.14));
-      border-color: color-mix(in srgb, var(--accent2) 45%, rgba(255,255,255,0.14));
-    }
-    .miniDot{
-      width:8px; height:8px; border-radius: 99px;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 8%, transparent);
-    }
-    .miniCheck{ font-weight: 900; opacity: .9; margin-left: 2px; }
-    .miniPill.is-visited{
-      border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,0.14));
-      background: color-mix(in srgb, var(--accent) 8%, rgba(0,0,0,0.14));
-    }
-
-    .accordion{ display:flex; flex-direction:column; gap:10px; padding: 14px 0 0; }
-    .accItem{
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.14);
-      border-radius: var(--radius);
-      overflow:hidden;
-    }
-    .accHead{
-      width: 100%;
-      text-align:left;
-      padding: 12px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      background: transparent;
-      border: none;
-      color: var(--text);
-      cursor:pointer;
-    }
-    .accHead:hover{ background: rgba(255,255,255,0.04); }
-    .accTitle{ display:flex; align-items:center; gap:10px; font-weight: 920; font-size: 13px; }
-    .accMeta{ display:flex; align-items:center; gap:10px; color: rgba(255,255,255,0.70); font-size: 12px; font-weight: 800; white-space: nowrap; }
-    .caret{
-      width: 10px; height: 10px;
-      border-right: 2px solid rgba(255,255,255,0.62);
-      border-bottom: 2px solid rgba(255,255,255,0.62);
-      transform: rotate(-45deg);
-      transition: transform .18s ease;
-      opacity: .85;
-    }
-    .accItem[aria-expanded="true"] .caret{ transform: rotate(45deg); }
-    .accBody{ padding: 0 14px 14px; display:none; }
-    .accItem[aria-expanded="true"] .accBody{ display:block; }
-
-    .kicker{
-      font-size: 11px;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      margin: 12px 0 6px;
-    }
-    .accBody p, .accBody li{ color: rgba(255,255,255,0.85); font-size: 13px; line-height: 1.55; margin: 0 0 8px; }
-    .accBody ul{ margin: 6px 0 0 18px; }
-
-    .accItem.is-visited{
-      border-color: color-mix(in srgb, var(--accent) 30%, rgba(255,255,255,0.12));
-    }
-    .visitBadge{
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: color-mix(in srgb, var(--accent) 12%, rgba(0,0,0,0.18));
-      color: rgba(255,255,255,0.82);
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .hidden{ display:none !important; }
   </style>
 </head>
 
@@ -487,53 +286,22 @@
   <div class="app">
     <div class="panel">
 
-      <!-- Header: juste titre + sous-titre contextuel -->
-      <div class="header">
+      <header>
         <div>
-          <h1 id="mainTitle">Accueil</h1>
-          <p id="mainSubtitle"></p>
-          <div class="chiprow" id="mainChips"></div>
+          <h1 id="pageTitle">Carte du système</h1>
+          <p id="pageSubtitle">
+            Atlas structuré : socles → blessures → référentiels. (Prototype pour tester la clarté.)
+          </p>
         </div>
-        <div class="rightTools">
-          <button class="btn" id="resetVisitedBtn" type="button" title="Réinitialiser les ✓">Reset ✓</button>
+        <div class="toolbar">
+          <button class="btn btn--accent" id="homeBtn" type="button">⟵ Carte</button>
+          <button class="btn" id="copyLinkBtn" type="button" title="Copier un lien vers la page">Copier lien</button>
         </div>
-      </div>
+      </header>
 
-      <!-- Topbar (module only) -->
-      <div class="topbar hidden" id="moduleTopbar">
-        <div class="topbar__left">
-          <button class="btn btn--accent" id="backBtn" type="button">← Retour</button>
-
-          <div class="dd" id="moduleDropdown" data-open="false">
-            <button class="ddBtn" id="ddBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
-              <span id="ddLabel">Choisir un thème</span>
-              <span class="ddChevron" aria-hidden="true"></span>
-            </button>
-            <div class="ddMenu scrollArea" id="ddMenu" role="listbox" tabindex="-1" aria-label="Thèmes"></div>
-          </div>
-
-          <span class="progressPill" id="progressPill"><strong>0</strong>/<span>0</span></span>
-        </div>
-        <div class="topbar__right">
-          <!-- volontairement minimal -->
-        </div>
-      </div>
-
-      <!-- mini map -->
-      <div class="miniMap hidden" id="miniMap"></div>
-
-      <!-- Main scroll -->
-      <div class="scrollArea" style="padding:14px;" id="mainScroll">
-        <section id="homeView">
-          <div class="homeTop">
-            <div class="categoryRow" id="categoryRow"></div>
-          </div>
-          <div class="homeGrid" id="homeGrid"></div>
-        </section>
-
-        <section id="moduleView" class="hidden">
-          <div class="accordion" id="accordionHost"></div>
-        </section>
+      <div class="content">
+        <nav id="nav"></nav>
+        <main id="main"></main>
       </div>
 
     </div>
@@ -541,733 +309,252 @@
 
   <script>
     /* ============================================================
-      OBJECTIF : UI intuitive => pas de textes explicatifs
-      - 1 panel
-      - Home: catégories + cartes
-      - Module: dropdown + miniMap + accordéon (Mode B) + compteur
-      - History: Back/Forward
-      - Visited ✓
+      Prototype “Atlas”
+      - Accueil = Carte du système
+      - 3 types : SOCLES / BLESSURES / RÉFÉRENTIELS
+      - But : rendre la structure visible, sans “jeu” ni FIDES interactif.
+      - Contenu: repris de ton support (octobre 2025).
     ============================================================ */
 
-    /* -------------------------
-      THEME COLORS
-    ------------------------- */
-    const THEME_COLORS = {
-      comfort:    { accent:"#2de2e6", accent2:"#8a5cff" },
-      emotions:   { accent:"#38f2a5", accent2:"#2de2e6" },
-      empathy:    { accent:"#2de2e6", accent2:"#ff5cd6" },
-      addictions: { accent:"#ffb020", accent2:"#ff5cd6" },
-      values:     { accent:"#8a5cff", accent2:"#2de2e6" },
-      dogmas:     { accent:"#c7a6ff", accent2:"#8a5cff" },
-      betrayal:   { accent:"#ff5cd6", accent2:"#8a5cff" },
-      abandonment:{ accent:"#2de2e6", accent2:"#38f2a5" },
-      rejection:  { accent:"#ffb020", accent2:"#2de2e6" },
-      humiliation:{ accent:"#ff5cd6", accent2:"#ffb020" },
-      injustice:  { accent:"#8a5cff", accent2:"#ffb020" },
-    };
-    function setThemeAccent(moduleId){
-      const c = THEME_COLORS[moduleId] || { accent:"#2de2e6", accent2:"#8a5cff" };
-      document.documentElement.style.setProperty("--accent", c.accent);
-      document.documentElement.style.setProperty("--accent2", c.accent2);
-    }
+    const PAGES = [
+      // HOME (carte)
+      { id:"home", type:"HOME", title:"Carte du système", subtitle:"Voir la structure globale (socles → blessures → référentiels).", accent:"#2de2e6", accent2:"#8a5cff" },
 
-    /* -------------------------
-      VISITED (localStorage)
-    ------------------------- */
-    const LS_KEY = "fides_training_visited_v7";
-    function loadVisited(){
-      try{ return JSON.parse(localStorage.getItem(LS_KEY)) || { modules:{}, nodes:{} }; }
-      catch{ return { modules:{}, nodes:{} }; }
-    }
-    function saveVisited(state){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
-    let VISITED = loadVisited();
-
-    function markModuleVisited(moduleId){
-      VISITED.modules[moduleId] = true;
-      saveVisited(VISITED);
-      applyVisitedStyles();
-    }
-    function markNodeVisited(moduleId, nodeId){
-      if(!VISITED.nodes[moduleId]) VISITED.nodes[moduleId] = {};
-      VISITED.nodes[moduleId][nodeId] = true;
-      saveVisited(VISITED);
-      applyVisitedStyles();
-      updateProgressPill(moduleId);
-    }
-    function isNodeVisited(moduleId, nodeId){
-      return !!(VISITED.nodes[moduleId] && VISITED.nodes[moduleId][nodeId]);
-    }
-    function resetVisited(){
-      VISITED = { modules:{}, nodes:{} };
-      saveVisited(VISITED);
-      applyVisitedStyles();
-      if(viewMode === "module") updateProgressPill(currentModuleId);
-    }
-
-    /* -------------------------
-      HISTORY API (Back/Forward)
-    ------------------------- */
-    function makeURLFromState(state){
-      const p = new URLSearchParams();
-      p.set("view", state.view || "home");
-      if(state.cat) p.set("cat", state.cat);
-      if(state.moduleId) p.set("m", state.moduleId);
-      if(state.nodeId) p.set("n", state.nodeId);
-      return `${location.pathname}?${p.toString()}`;
-    }
-    function pushAppState(state, replace=false){
-      const url = makeURLFromState(state);
-      if(replace) history.replaceState(state, "", url);
-      else history.pushState(state, "", url);
-    }
-    function readStateFromURL(){
-      const p = new URLSearchParams(location.search);
-      return {
-        view: p.get("view") || "home",
-        cat: p.get("cat") || "bases",
-        moduleId: p.get("m") || null,
-        nodeId: p.get("n") || null
-      };
-    }
-    window.addEventListener("popstate", (e) => {
-      const state = e.state || readStateFromURL();
-      restoreFromState(state);
-    });
-
-    /* -------------------------
-      DATA (modules)
-      - Identique à la version précédente "complète"
-    ------------------------- */
-    const FIDES_DEMO = {
-      F: "Fait : qu’est-ce qui s’est réellement passé (observable, neutre) ?",
-      I: "Interprétation : quelle histoire je me raconte (dogme, croyance, jugement) ?",
-      D: "Déclencheur / émotion : qu’est-ce que je ressens et de quoi j’ai besoin ?",
-      E: "Expression : comment je l’exprime de façon saine (cadre, limite, demande) ?",
-      S: "Solution / sens : quelle action alignée (valeurs) je choisis maintenant ?"
-    };
-
-    function makeFidesForWound(label, {emotion, besoin, interpretation, action}){
-      return {
-        core: [
-          `F : Quel fait concret active "${label}" ?`,
-          `I : Interprétation : ${interpretation}`,
-          `D : Émotion : ${emotion} → Besoin : ${besoin}`,
-          `E : Dire : « Quand …, je ressens …, j’ai besoin de … »`,
-          `S : Action : ${action}`
+      // SOCLES
+      { id:"socle_confort", type:"SOCLE", title:"Le cercle de la zone de confort",
+        subtitle:"Confort → Peur → Apprentissage → Expansion.",
+        accent:"#2de2e6", accent2:"#8a5cff",
+        content: [
+          { kicker:"But pédagogique", lead:"Montrer les différentes zones (confort, peur, apprentissage, expansion).", bullets:[
+            "Zone de confort = sécurité illusoire, répétition des habitudes, évitement de l’inconfort.",
+            "Zone de peur = doutes, jugements des autres, perte de repères.",
+            "Zone d’apprentissage = nouvelles compétences, élargissement de soi, expérimentation.",
+            "Zone d’expansion = réalisation de soi, alignement avec sa valeur, contribution au monde.",
+          ]},
+          { kicker:"Message clé", lead:"Pour avancer, il faut oser franchir la peur et passer par l’apprentissage.", text:
+            "Sans ce passage, on reste prisonnier de l’illusion de sécurité."
+          }
         ]
-      };
-    }
-
-    const MODULES = {
-      comfort: {
-        title: "Zone de confort → peur → apprentissage → expansion",
-        subtitle: "Traverser la peur pour grandir.",
-        tags: ["zones","progression"],
-        order: ["core","confort","peur","apprentissage","expansion"],
-        content: {
-          nodes: {
-            core: { title:"Vue d’ensemble", blocks:[
-              {h:"Message clé", p:"« Pour avancer, il faut traverser la peur. »"},
-              {h:"Résumé", p:"Confort = sécurité illusoire, habitudes, évitement • Peur = doutes, jugements, perte de repères • Apprentissage = nouvelles compétences, expansion du soi • Expansion = réalisation, alignement, contribution"}
-            ]},
-            confort:{ title:"Zone de confort", blocks:[{h:"Confort", p:"Confort = sécurité illusoire, habitudes, évitement"}] },
-            peur:{ title:"Zone de peur", blocks:[{h:"Peur", p:"Peur = doutes, jugements, perte de repères"}] },
-            apprentissage:{ title:"Zone d’apprentissage", blocks:[{h:"Apprentissage", p:"Apprentissage = nouvelles compétences, expansion du soi"}] },
-            expansion:{ title:"Zone d’expansion", blocks:[{h:"Expansion", p:"Expansion = réalisation, alignement, contribution"}] }
-          },
-          fides: { core: [
-            `F — ${FIDES_DEMO.F}`,
-            `I — ${FIDES_DEMO.I}`,
-            `D — ${FIDES_DEMO.D}`,
-            `E — ${FIDES_DEMO.E}`,
-            `S — ${FIDES_DEMO.S}`
-          ]}
-        }
       },
 
-      betrayal: {
-        title: "Blessure émotionnelle : trahison",
-        subtitle: "Masque, apathie, addictions, valeurs, dogmes, croyances.",
-        tags: ["blessure"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Dogme", p:"« On ne peut faire confiance à personne »"}]},
-            emotion:{ title:"Émotion", blocks:[{h:"Émotion", p:"Émotion : surprise"}] },
-            origine:{ title:"Origine", blocks:[{h:"Origine", p:"Origine : trahison vécue (absence, promesse brisée, infidélité)"}] },
-            masque:{ title:"Masque", blocks:[{h:"Masque", p:"Masque : contrôlant, cassant, exigeant"}] },
-            apathie:{ title:"Apathie", blocks:[{h:"Apathie", p:"Apathie : méfiance, test permanent"}] },
-            addictions:{ title:"Addictions", blocks:[{h:"Addictions", p:"Addictions : pouvoir, contrôle, domination"}] },
-            valeurs:{ title:"Valeurs", blocks:[{h:"Valeurs", p:"Valeurs : loyauté, vérité, paraître, argent"}] },
-            dogmes:{ title:"Dogmes", blocks:[{h:"Dogmes", p:"Dogmes : « On ne peut faire confiance à personne »"}] },
-            limitantes:{ title:"Croyances limitantes", blocks:[{h:"Limitantes", p:"« Les autres vont me trahir »"}] },
-            expansives:{ title:"Croyances expansives", blocks:[{h:"Expansives", p:"« Je laisse le bénéfice du doute »"}] },
+      { id:"socle_apathie_empathie", type:"SOCLE", title:"Blessures émotionnelles : apathie ↔ empathie",
+        subtitle:"Apathie = fermeture émotionnelle protectrice ; empathie = réouverture.",
+        accent:"#38f2a5", accent2:"#2de2e6",
+        content: [
+          { kicker:"Point central", lead:"Quand une blessure s’active, l’apathie prend le dessus.", text:
+            "Ici, l’apathie n’est pas une absence d’émotion au sens médical : c’est un état de fermeture émotionnelle qui se met en place quand une douleur ancienne se réveille."
           },
-          fides: makeFidesForWound("Trahison", {
-            emotion:"surprise", besoin:"sécurité / fiabilité",
-            interpretation:"« On ne peut faire confiance à personne »",
-            action:"demande claire + cadre + lâcher un micro-contrôle"
-          })
-        }
+          { kicker:"Fonction", lead:"Réaction inconsciente de protection / mode de survie émotionnel.", text:
+            "En reconnaissant cette fermeture et en la traversant avec bienveillance, on peut retrouver la connexion à soi, à l’autre et à la vie."
+          },
+          { kicker:"Finalité", lead:"Ouverture de conscience : acceptation de soi et de l’autre, sans jugement.", text:
+            "Quels que soient les comportements observés."
+          }
+        ]
       },
 
-      abandonment: {
-        title: "Blessure émotionnelle : abandon",
-        subtitle: "Peur de séparation, besoin de présence (démo).",
-        tags: ["blessure"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"Recherche de proximité, peur d’être oublié."}]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Tristesse + peur de séparation"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Séparations, indisponibilité émotionnelle"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fusionnel / dépendant"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Hypervigilance relationnelle"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Validation, messages, proximité constante"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Présence, affection, famille, fidélité"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Si on m’aime, on ne me laisse pas »"}] },
-            limitantes:{ title:"Limitantes (démo)", blocks:[{h:"Limitantes", p:"« On va m’abandonner »"}] },
-            expansives:{ title:"Expansives (démo)", blocks:[{h:"Expansives", p:"« Je suis digne d’amour même à distance »"}] },
-          },
-          fides: {}
-        }
+      { id:"socle_empathie", type:"SOCLE", title:"L’empathie",
+        subtitle:"Résonance sans fusion.",
+        accent:"#2de2e6", accent2:"#ff5cd6",
+        content: [
+          { kicker:"Définition", lead:"Capacité à se mettre en résonance avec l’émotion de l’autre, sans se confondre avec elle." },
+          { kicker:"Différences", lead:"Empathie vs compassion / sympathie.", bullets:[
+            "Empathie vs compassion : l’une ressent, l’autre agit.",
+            "Empathie vs sympathie : l’une écoute, l’autre se projette."
+          ]},
+          { kicker:"Freins à l’empathie", lead:"Les blessures émotionnelles voilent l’empathie.", bullets:[
+            "Rejet : envie de s’isoler / se couper.",
+            "Injustice : rigidité, contrôle de soi.",
+            "Trahison : méfiance / suspicion.",
+            "Humiliation : honte, fuite du contact.",
+            "Abandon : besoin de combler le vide avant d’écouter."
+          ]},
+          { kicker:"Message clé", lead:"L’empathie est naturelle, mais elle est voilée par nos blessures." }
+        ]
       },
 
-      rejection: {
-        title: "Blessure émotionnelle : rejet",
-        subtitle: "Peur d’être indésirable, évitement (démo).",
-        tags: ["blessure"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"Retrait ou perfection pour être accepté."}]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Peur + honte (d’être indésirable)"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Critiques, moqueries, comparaisons"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Fuyant/distant"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Détachement émotionnel"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Perfectionnisme, contrôle de l’image"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Appartenance, respect, authenticité"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Si je suis moi, on me rejette »"}] },
-            limitantes:{ title:"Limitantes (démo)", blocks:[{h:"Limitantes", p:"« On ne veut pas de moi »"}] },
-            expansives:{ title:"Expansives (démo)", blocks:[{h:"Expansives", p:"« Je peux prendre ma place »"}] },
-          },
-          fides: {}
-        }
+      // BLESSURES (structure stable)
+      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion racine : surprise.", accent:"#ff5cd6", accent2:"#8a5cff",
+        grid: [
+          ["Émotion", "Surprise."],
+          ["Âge d’ancrage (indiqué)", "6–7 ans (première activation)."],
+          ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité."],
+          ["Masque / comportement", "Masque du contrôlant : cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise."],
+          ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
+          ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
+          ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
+          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. » (et autres formulations du support)."],
+          ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »"],
+          ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
+        ],
+        note:"Texte repris et condensé sans ajout, pour prototype de lisibilité."
       },
 
-      humiliation: {
-        title: "Blessure émotionnelle : humiliation",
-        subtitle: "Honte, se rabaisser, dignité (démo).",
-        tags: ["blessure"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"Honte → se diminuer ou sur-compenser."}]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Honte + gêne"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Moqueries, critiques, exposition"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Se rabaisser, se punir"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Auto-dévalorisation"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Auto-sabotage, compensations"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Respect, dignité"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Mes besoins dérangent »"}] },
-            limitantes:{ title:"Limitantes (démo)", blocks:[{h:"Limitantes", p:"« Je suis ridicule »"}] },
-            expansives:{ title:"Expansives (démo)", blocks:[{h:"Expansives", p:"« Je mérite le respect »"}] },
-          },
-          fides: {}
-        }
+      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion racine : peur.", accent:"#2de2e6", accent2:"#38f2a5",
+        grid: [
+          ["Émotion", "Peur."],
+          ["Origine", "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui."],
+          ["Masque / comportement", "Masque du dépendant : fusion, peur de la solitude, besoin excessif de soutien. Peut dire qu’il se sent bien seul et n’a besoin de personne."],
+          ["Empathie (note du support)", "Confond souvent empathie et fusion ; donne trop pour éviter d’être abandonné."],
+          ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool — tout ce qui comble le vide intérieur."],
+          ["Valeurs de vie", "Amour, proximité, lien, chaleur humaine, partage."],
+          ["Conditionnements / dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
+          ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
+          ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. »"],
+        ],
+        note:"Texte repris du support, réordonné dans une grille stable."
       },
 
-      injustice: {
-        title: "Blessure émotionnelle : injustice",
-        subtitle: "Rigidité, exigence, équité (démo).",
-        tags: ["blessure"],
-        order: ["core","emotion","origine","masque","apathie","addictions","valeurs","dogmes","limitantes","expansives"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Éclairage", p:"Rigidité, standards élevés, jugement."}]},
-            emotion:{ title:"Émotion (démo)", blocks:[{h:"Émotion", p:"Colère froide + frustration"}] },
-            origine:{ title:"Origine (démo)", blocks:[{h:"Origine", p:"Favoritisme, sanctions injustes"}] },
-            masque:{ title:"Masque (démo)", blocks:[{h:"Masque", p:"Rigide, perfectionniste"}] },
-            apathie:{ title:"Apathie (démo)", blocks:[{h:"Apathie", p:"Distance émotionnelle"}] },
-            addictions:{ title:"Addictions (démo)", blocks:[{h:"Addictions", p:"Performance, sur-contrôle"}] },
-            valeurs:{ title:"Valeurs (démo)", blocks:[{h:"Valeurs", p:"Justice, mérite"}] },
-            dogmes:{ title:"Dogmes (démo)", blocks:[{h:"Dogmes", p:"« Je dois être irréprochable »"}] },
-            limitantes:{ title:"Limitantes (démo)", blocks:[{h:"Limitantes", p:"« Montrer = faiblesse »"}] },
-            expansives:{ title:"Expansives (démo)", blocks:[{h:"Expansives", p:"« La vulnérabilité est une force »"}] },
-          },
-          fides: {}
-        }
+      { id:"w_rejet", type:"BLESSURE", title:"Blessure : rejet", subtitle:"Émotion racine : tristesse.", accent:"#ffb020", accent2:"#2de2e6",
+        grid: [
+          ["Émotion", "Tristesse."],
+          ["Origine", "Très tôt (parfois indiqué : dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop."],
+          ["Masque / comportement", "Masque du fuyant : se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger."],
+          ["Empathie (note du support)", "Difficulté à s’ouvrir par peur d’être ignoré ; peut se couper des autres pour éviter de revivre le rejet."],
+          ["Addictions", "Isolement, écrans, alimentation compulsive discrète (addictions solitaires)."],
+          ["Valeurs de vie", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
+          ["Conditionnements / dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
+          ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations type « ce n’est pas grave », etc.)."],
+          ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. »"],
+        ],
+        note:"Prototype : garder la structure, sans interprétation."
       },
 
-      empathy: {
-        title: "Empathie vs apathie",
-        subtitle: "Résonance sans fusion.",
-        tags: ["relation"],
-        order: ["core","definition","differences","freins"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Définition", p:"Définition : résonance sans fusion"},
-              {h:"Message clé", p:"L’empathie est naturelle mais voilée"}
-            ]},
-            definition:{ title:"Définition", blocks:[{h:"Définition", p:"Résonance sans fusion"}] },
-            differences:{ title:"Différences", blocks:[{h:"Différences", p:"Empathie / compassion / sympathie"}] },
-            freins:{ title:"Freins", blocks:[{h:"Freins", p:"Toutes les blessures émotionnelles"}] },
-          },
-          fides: {}
-        }
+      { id:"w_humiliation", type:"BLESSURE", title:"Blessure : humiliation", subtitle:"Émotion racine : dégoût.", accent:"#ff5cd6", accent2:"#ffb020",
+        grid: [
+          ["Émotion", "Dégoût."],
+          ["Origine", "Expérience de honte, dévalorisation, humiliation dans l’enfance ; souvent liée à l’éducation stricte / regard social ou familial."],
+          ["Masque / comportement", "Masque du masochiste : se rabaisser, se sacrifier, se punir ; culpabilité ; rend service au-delà de ses limites ; anticipe les besoins des autres sans accord."],
+          ["Empathie (note du support)", "Freinée par la honte — peur de montrer sa vulnérabilité."],
+          ["Addictions", "Nourriture, sexualité, auto-sabotage ; excès pour compenser la honte."],
+          ["Valeurs de vie", "Respect, dignité, authenticité."],
+          ["Conditionnements / dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
+          ["Croyances limitantes", "« Je ne mérite pas d’être heureux. » « Je dois porter la honte. »"],
+          ["Croyances expansives", "« Je mérite le respect et la joie de vivre. » « Je peux exister avec dignité. »"],
+        ]
       },
 
-      addictions: {
-        title: "Addictions",
-        subtitle: "Signal, pas faute.",
-        tags: ["signal"],
-        order: ["core","definition","fonction"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Message clé", p:"L’addiction n’est pas une faute mais un signal"},
-              {h:"Fonction", p:"Éviter une émotion"}
-            ]},
-            definition:{ title:"Définition", blocks:[{h:"Définition", p:"Visibles / invisibles"}] },
-            fonction:{ title:"Fonction", blocks:[{h:"Question", p:"Si j’arrête, quelle émotion apparaît ?"}] },
-          },
-          fides: {}
-        }
+      { id:"w_injustice", type:"BLESSURE", title:"Blessure : injustice", subtitle:"Émotion racine : colère intérieure.", accent:"#8a5cff", accent2:"#ffb020",
+        grid: [
+          ["Émotion", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
+          ["Origine", "Éducation stricte, froide ; amour dépendant de la performance ; jugement/comparaison."],
+          ["Masque / comportement", "Masque du rigide : perfectionnisme, dureté avec soi/les autres ; besoin de justice ; refus de l’imperfection."],
+          ["Empathie (note du support)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
+          ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
+          ["Valeurs de vie", "Justice, équité, intégrité, vérité."],
+          ["Conditionnements / dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
+          ["Croyances limitantes", "« Je dois toujours prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
+          ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée et indépendante de mes performances. »"],
+        ]
       },
 
-      values: {
-        title: "Valeurs de vie",
-        subtitle: "Valeur bafouée → blessure réactivée.",
-        tags: ["alignement"],
-        order: ["core","liste"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[
-              {h:"Clé", p:"Quand mes valeurs sont bafouées → la blessure se réactive"},
-              {h:"Liste (démo)", p:"Liberté, sécurité, amour, respect, vérité, loyauté, justice, authenticité, contribution, croissance, santé, famille"}
-            ]},
-            liste:{ title:"Liste", blocks:[{h:"Exercice", p:"Choisis 5 valeurs non négociables."}] }
-          },
-          fides: {}
-        }
+      // RÉFÉRENTIELS
+      { id:"ref_emotions", type:"REF", title:"Référentiel : émotions & sentiments",
+        subtitle:"Émotions racines + sentiments (nuances).",
+        accent:"#38f2a5", accent2:"#2de2e6",
+        content: [
+          { kicker:"Émotions racines", lead:"Peur • Colère • Tristesse • Joie • Dégoût." },
+          { kicker:"Sentiments agréables / expansifs", bullets:[
+            "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement."
+          ]},
+          { kicker:"Peur & insécurité", bullets:[
+            "Anxiété, Inquiétude, Stress, Méfiance, Doute, Crainte, Panique, Impuissance, Inconfort, Tension, Sentiment d’insécurité."
+          ]},
+          { kicker:"Colère & frustration", bullets:[
+            "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût."
+          ]},
+          { kicker:"Tristesse & perte", bullets:[
+            "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures."
+          ]},
+          { kicker:"Injustice & humiliation", bullets:[
+            "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité, Injustice, Rigidité intérieure."
+          ]},
+          { kicker:"Ouverture & connexion", bullets:[
+            "Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré."
+          ]},
+          { kicker:"Clé pédagogique", lead:"Les émotions de base sont les racines. Les sentiments sont les nuances prolongées.", text:
+            "On revient à l’émotion racine pour comprendre ce qui se joue quand une blessure se réactive."
+          }
+        ]
       },
 
-      dogmas: {
-        title: "Conditionnements / dogmes",
-        subtitle: "Croyances héritées.",
-        tags: ["croyances"],
-        order: ["core","sources"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Message", p:"Ce ne sont que des croyances héritées"}] },
-            sources:{ title:"Sources", blocks:[{h:"Types", p:"Familiaux, sociaux, religieux, éducatifs, psychologiques, auto-dogmes"}] }
-          },
-          fides: {}
-        }
+      { id:"ref_addictions", type:"REF", title:"Référentiel : addictions",
+        subtitle:"Visibles, comportementales, invisibles.",
+        accent:"#ffb020", accent2:"#ff5cd6",
+        content: [
+          { kicker:"Définition", lead:"Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)." },
+          { kicker:"Addictions aux substances", bullets:[
+            "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre."
+          ]},
+          { kicker:"Addictions comportementales", bullets:[
+            "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation."
+          ]},
+          { kicker:"Addictions plus invisibles", bullets:[
+            "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."
+          ]},
+          { kicker:"Message clé", lead:"L’addiction n’est pas une faute morale, mais un signe d’une émotion à reconnaître." }
+        ]
       },
 
-      emotions: {
-        title: "Émotions & familles",
-        subtitle: "Peur, colère, tristesse, joie, dégoût.",
-        tags: ["émotions"],
-        order: ["core","peur","colere","tristesse","joie","degout"],
-        content: {
-          nodes: {
-            core:{ title:"Vue d’ensemble", blocks:[{h:"Familles", p:"Peur • Colère • Tristesse • Joie • Dégoût"}] },
-            peur:{ title:"Peur", blocks:[{h:"Nuances", p:"Inquiétude, anxiété, appréhension, panique, doute…"}] },
-            colere:{ title:"Colère", blocks:[{h:"Nuances", p:"Irritation, frustration, rage, indignation…"}] },
-            tristesse:{ title:"Tristesse", blocks:[{h:"Nuances", p:"Peine, chagrin, mélancolie, solitude…"}] },
-            joie:{ title:"Joie", blocks:[{h:"Nuances", p:"Sérénité, gratitude, enthousiasme, fierté…"}] },
-            degout:{ title:"Dégoût", blocks:[{h:"Nuances", p:"Aversion, répulsion, saturation, malaise…"}] }
-          },
-          fides: {}
-        }
+      { id:"ref_valeurs", type:"REF", title:"Référentiel : valeurs de vie",
+        subtitle:"Piliers universels + exemples structurés.",
+        accent:"#8a5cff", accent2:"#2de2e6",
+        content: [
+          { kicker:"Piliers universels (support)", lead:"Santé • Famille/Proches • Argent/Sécurité financière • Amour/Relations." },
+          { kicker:"Exemples (support)", bullets:[
+            "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.",
+            "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.",
+            "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, efficacité, ambition, reconnaissance, succès.",
+            "Santé, vitalité, bien-être, énergie, longévité, nature, beauté, plaisir de vivre.",
+            "Créativité, compétence, excellence, service, contribution, coopération, justice, égalité.",
+            "Foi, sagesse, espoir, paix intérieure, gratitude, transcendance, émerveillement, sens de la vie."
+          ]},
+          { kicker:"Utilité dans le modèle", lead:"Les valeurs prioritaires sont celles qui, lorsqu’elles sont bafouées, réveillent la blessure." }
+        ]
       },
-    };
 
-    const CATEGORIES = [
-      { id:"bases",  label:"Bases", items: ["comfort","emotions","empathy"] },
-      { id:"wounds", label:"Blessures", items: ["betrayal","abandonment","rejection","humiliation","injustice"] },
-      { id:"mech",   label:"Mécanismes", items: ["addictions","values","dogmas"] },
-      { id:"all",    label:"Tous", items: Object.keys(MODULES) },
+      { id:"ref_dogmes", type:"REF", title:"Référentiel : conditionnements & dogmes",
+        subtitle:"Familiaux, sociaux, religieux, genre, éducatifs, psychologiques, intérieurs.",
+        accent:"#c7a6ff", accent2:"#8a5cff",
+        content: [
+          { kicker:"Définition", lead:"Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements." },
+          { kicker:"Exemples", bullets:[
+            "Familiaux : « Sois sage et tais-toi. » « On ne parle pas de nos problèmes à l’extérieur. » …",
+            "Sociaux/culturels : « Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » …",
+            "Religieux/spirituels : « Tu dois souffrir pour mériter. » « Le plaisir est un péché. » …",
+            "Genre/rôle : « Un homme ne pleure pas. » « Une femme doit être parfaite. » …",
+            "Éducatifs : « Si tu échoues, tu es nul. » « L’erreur est interdite. » …",
+            "Psychologiques : « Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » …",
+            "Intérieurs : « Je dois être parfait. » « Je ne suis pas assez bien. » …"
+          ]},
+          { kicker:"Message clé", lead:"Ce ne sont que des croyances héritées : les mettre en lumière rend la liberté intérieure possible." }
+        ]
+      },
     ];
 
-    /* -------------------------
-      DOM
-    ------------------------- */
-    const mainTitle = document.getElementById("mainTitle");
-    const mainSubtitle = document.getElementById("mainSubtitle");
-    const mainChips = document.getElementById("mainChips");
+    const NAV = [
+      { section:"Carte", items:["home"] },
+      { section:"Socles", items:["socle_confort","socle_apathie_empathie","socle_empathie"] },
+      { section:"Blessures", items:["w_rejet","w_abandon","w_humiliation","w_trahison","w_injustice"] },
+      { section:"Référentiels", items:["ref_emotions","ref_addictions","ref_valeurs","ref_dogmes"] },
+    ];
 
-    const resetVisitedBtn = document.getElementById("resetVisitedBtn");
-    const moduleTopbar = document.getElementById("moduleTopbar");
-    const backBtn = document.getElementById("backBtn");
-    const progressPill = document.getElementById("progressPill");
+    // DOM
+    const navEl = document.getElementById("nav");
+    const mainEl = document.getElementById("main");
+    const pageTitle = document.getElementById("pageTitle");
+    const pageSubtitle = document.getElementById("pageSubtitle");
+    const homeBtn = document.getElementById("homeBtn");
+    const copyLinkBtn = document.getElementById("copyLinkBtn");
 
-    const homeView = document.getElementById("homeView");
-    const moduleView = document.getElementById("moduleView");
-    const categoryRow = document.getElementById("categoryRow");
-    const homeGrid = document.getElementById("homeGrid");
-    const miniMap = document.getElementById("miniMap");
-    const accordionHost = document.getElementById("accordionHost");
+    // Helpers
+    const getPage = (id) => PAGES.find(p => p.id === id);
 
-    // Dropdown
-    const moduleDropdown = document.getElementById("moduleDropdown");
-    const ddBtn = document.getElementById("ddBtn");
-    const ddLabel = document.getElementById("ddLabel");
-    const ddMenu = document.getElementById("ddMenu");
-
-    /* -------------------------
-      STATE
-    ------------------------- */
-    let viewMode = "home";
-    let currentModuleId = "comfort";
-    let activeCategoryId = "bases";
-    let currentNodeId = null;
-
-    /* -------------------------
-      EVENTS
-    ------------------------- */
-    resetVisitedBtn.addEventListener("click", resetVisited);
-    backBtn.addEventListener("click", () => goHome());
-
-    ddBtn.addEventListener("click", () => toggleDropdown());
-    document.addEventListener("click", (e) => {
-      if(!moduleDropdown.contains(e.target)) closeDropdown();
-    });
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape") closeDropdown();
-    });
-
-    function toggleDropdown(){
-      const open = moduleDropdown.getAttribute("data-open") === "true";
-      open ? closeDropdown() : openDropdown();
-    }
-    function openDropdown(){
-      moduleDropdown.setAttribute("data-open","true");
-      ddBtn.setAttribute("aria-expanded","true");
-      ddMenu.focus({ preventScroll:true });
-    }
-    function closeDropdown(){
-      moduleDropdown.setAttribute("data-open","false");
-      ddBtn.setAttribute("aria-expanded","false");
+    function setAccent(p){
+      document.documentElement.style.setProperty("--accent", p.accent || "#2de2e6");
+      document.documentElement.style.setProperty("--accent2", p.accent2 || "#8a5cff");
     }
 
-    /* -------------------------
-      NAV (home/module)
-    ------------------------- */
-    function goHome({ silentHistory=false, cat=null } = {}){
-      viewMode = "home";
-      currentNodeId = null;
-      if(cat) activeCategoryId = cat;
-
-      moduleTopbar.classList.add("hidden");
-      miniMap.classList.add("hidden");
-      moduleView.classList.add("hidden");
-      homeView.classList.remove("hidden");
-
-      mainTitle.textContent = "Accueil";
-      mainSubtitle.textContent = "";
-      mainChips.innerHTML = "";
-
-      setThemeAccent("comfort");
-      renderCategoryButtons();
-      renderHomeCards(activeCategoryId);
-      applyVisitedStyles();
-
-      if(!silentHistory){
-        pushAppState({ view:"home", cat: activeCategoryId });
-      }
-    }
-
-    function enterModule(moduleId, { silentHistory=false } = {}){
-      viewMode = "module";
-      currentModuleId = moduleId;
-
-      const mod = MODULES[moduleId];
-      setThemeAccent(moduleId);
-
-      homeView.classList.add("hidden");
-      moduleView.classList.remove("hidden");
-      moduleTopbar.classList.remove("hidden");
-      miniMap.classList.remove("hidden");
-
-      mainTitle.textContent = mod.title;
-      mainSubtitle.textContent = mod.subtitle || "";
-      mainChips.innerHTML = (mod.tags||[]).slice(0,3).map(t=>`<div class="chip">${escapeHTML(t)}</div>`).join("");
-
-      renderDropdownItems();
-      setDropdownSelection(moduleId);
-
-      renderMiniMap(moduleId);
-      renderAccordion(moduleId);
-
-      openSection("core", { silentHistory:true, autoScroll:false });
-
-      markModuleVisited(moduleId);
-      updateProgressPill(moduleId);
-      applyVisitedStyles();
-
-      if(!silentHistory){
-        pushAppState({ view:"module", cat: activeCategoryId, moduleId, nodeId:"core" });
-      }
-    }
-
-    function renderCategoryButtons(){
-      categoryRow.innerHTML = "";
-      CATEGORIES.forEach(cat=>{
-        const btn = document.createElement("button");
-        btn.className = "categoryBtn";
-        btn.type = "button";
-        btn.setAttribute("aria-pressed", cat.id === activeCategoryId ? "true" : "false");
-        btn.innerHTML = `<span class="categoryDot"></span><span>${escapeHTML(cat.label)}</span>`;
-        btn.addEventListener("click", () => {
-          activeCategoryId = cat.id;
-          renderCategoryButtons();
-          renderHomeCards(activeCategoryId);
-          applyVisitedStyles();
-          pushAppState({ view:"home", cat: activeCategoryId });
-        });
-        categoryRow.appendChild(btn);
-      });
-    }
-
-    function renderHomeCards(categoryId){
-      const cat = CATEGORIES.find(c=>c.id===categoryId) || CATEGORIES[0];
-      const ids = [...new Set(cat.items)].filter(id => MODULES[id]);
-
-      homeGrid.innerHTML = "";
-      ids.forEach(id => {
-        const mod = MODULES[id];
-        const card = document.createElement("div");
-        card.className = "themeCard";
-        card.dataset.module = id;
-
-        card.addEventListener("mouseenter", () => setThemeAccent(id));
-        card.addEventListener("mouseleave", () => setThemeAccent("comfort"));
-        card.addEventListener("click", () => enterModule(id));
-
-        card.innerHTML = `
-          <h3>${escapeHTML(mod.title)}</h3>
-          <p>${escapeHTML(mod.subtitle || "")}</p>
-          <div class="mini">
-            ${(mod.tags||[]).slice(0,3).map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("")}
-          </div>
-        `;
-        homeGrid.appendChild(card);
-      });
-    }
-
-    /* -------------------------
-      Dropdown items
-    ------------------------- */
-    function renderDropdownItems(){
-      ddMenu.innerHTML = "";
-      const ids = Object.keys(MODULES);
-
-      ids.forEach(id => {
-        const mod = MODULES[id];
-        const btn = document.createElement("button");
-        btn.className = "ddItem";
-        btn.type = "button";
-        btn.setAttribute("role","option");
-        btn.dataset.module = id;
-        btn.setAttribute("aria-selected", id === currentModuleId ? "true" : "false");
-        btn.innerHTML = `
-          ${escapeHTML(mod.title)}
-          <span class="ddSmall">${escapeHTML(mod.subtitle || "")}</span>
-        `;
-        btn.addEventListener("click", () => {
-          closeDropdown();
-          enterModule(id);
-        });
-        ddMenu.appendChild(btn);
-      });
-    }
-
-    function setDropdownSelection(moduleId){
-      const mod = MODULES[moduleId];
-      ddLabel.textContent = mod ? mod.title : "Choisir un thème";
-      ddMenu.querySelectorAll(".ddItem").forEach(i=>{
-        i.setAttribute("aria-selected", i.dataset.module === moduleId ? "true" : "false");
-      });
-    }
-
-    /* -------------------------
-      MiniMap + Accordion (Mode B)
-    ------------------------- */
-    function renderMiniMap(moduleId){
-      const mod = MODULES[moduleId];
-      const order = mod.order || Object.keys(mod.content.nodes);
-
-      miniMap.innerHTML = "";
-      order.forEach(nodeId => {
-        const label = nodeId === "core" ? "Vue d’ensemble" : (mod.content.nodes[nodeId]?.title || nodeId);
-        const pill = document.createElement("button");
-        pill.className = "miniPill";
-        pill.type = "button";
-        pill.dataset.node = nodeId;
-        pill.setAttribute("aria-current", nodeId === currentNodeId ? "true" : "false");
-        pill.innerHTML = `<span class="miniDot"></span><span>${escapeHTML(label)}</span><span class="miniCheck"></span>`;
-        pill.addEventListener("click", () => openSection(nodeId, { autoScroll:false }));
-        miniMap.appendChild(pill);
-      });
-    }
-
-    function renderAccordion(moduleId){
-      const mod = MODULES[moduleId];
-      const order = mod.order || Object.keys(mod.content.nodes);
-
-      accordionHost.innerHTML = "";
-      order.forEach(nodeId => {
-        const node = mod.content.nodes[nodeId];
-        if(!node) return;
-
-        const item = document.createElement("div");
-        item.className = "accItem";
-        item.dataset.node = nodeId;
-        item.setAttribute("aria-expanded", "false");
-
-        const title = nodeId === "core" ? "Vue d’ensemble" : (node.title || nodeId);
-
-        item.innerHTML = `
-          <button class="accHead" type="button">
-            <div class="accTitle">
-              <span class="miniDot"></span>
-              <span>${escapeHTML(title)}</span>
-            </div>
-            <div class="accMeta">
-              <span class="visitBadge" data-badge="${escapeHTML(nodeId)}"></span>
-              <span class="caret"></span>
-            </div>
-          </button>
-          <div class="accBody">
-            ${(node.blocks || []).map(b => `
-              <div class="kicker">${escapeHTML(b.h || "")}</div>
-              <p>${escapeHTML(b.p || "")}</p>
-            `).join("")}
-            ${renderFidesInline(moduleId, nodeId)}
-          </div>
-        `;
-
-        item.querySelector(".accHead").addEventListener("click", () => openSection(nodeId, { autoScroll:false }));
-        accordionHost.appendChild(item);
-      });
-    }
-
-    // FIDES inline (pas de panneau explicatif) — uniquement si dispo
-    function renderFidesInline(moduleId, nodeId){
-      const mod = MODULES[moduleId];
-      const fidesPoints =
-        (mod.content.fides && mod.content.fides[nodeId]) ? mod.content.fides[nodeId] :
-        (mod.content.fides && mod.content.fides.core) ? mod.content.fides.core : null;
-
-      if(!fidesPoints || !fidesPoints.length) return "";
-      return `
-        <div class="kicker">FIDES</div>
-        <ul>
-          ${fidesPoints.map(x => `<li>${escapeHTML(x)}</li>`).join("")}
-        </ul>
-      `;
-    }
-
-    function openSection(nodeId, { silentHistory=false, autoScroll=false } = {}){
-      const mod = MODULES[currentModuleId];
-      if(!mod || !mod.content.nodes[nodeId]) return;
-
-      currentNodeId = nodeId;
-
-      // Mode B: 1 seule ouverte
-      accordionHost.querySelectorAll(".accItem").forEach(it => {
-        it.setAttribute("aria-expanded", it.dataset.node === nodeId ? "true" : "false");
-      });
-
-      markNodeVisited(currentModuleId, nodeId);
-
-      miniMap.querySelectorAll(".miniPill").forEach(p => {
-        p.setAttribute("aria-current", p.dataset.node === nodeId ? "true" : "false");
-      });
-
-      // Pas de scroll auto au clic
-      if(autoScroll){
-        const el = accordionHost.querySelector(`.accItem[data-node="${cssEscape(nodeId)}"]`);
-        if(el) el.scrollIntoView({ behavior:"smooth", block:"center" });
-      }
-
-      if(!silentHistory){
-        pushAppState({ view:"module", cat: activeCategoryId, moduleId: currentModuleId, nodeId });
-      }
-    }
-
-    function updateProgressPill(moduleId){
-      const mod = MODULES[moduleId];
-      const nodeIds = Object.keys(mod.content.nodes);
-      const total = nodeIds.length;
-      let seen = 0;
-      nodeIds.forEach(n => { if(isNodeVisited(moduleId, n)) seen++; });
-
-      progressPill.querySelector("strong").textContent = String(seen);
-      progressPill.querySelector("span").textContent = String(total);
-    }
-
-    function applyVisitedStyles(){
-      document.querySelectorAll(".themeCard[data-module]").forEach(card=>{
-        card.classList.toggle("is-visited", !!VISITED.modules[card.dataset.module]);
-      });
-
-      miniMap.querySelectorAll(".miniPill[data-node]").forEach(pill=>{
-        const nodeId = pill.dataset.node;
-        pill.classList.toggle("is-visited", isNodeVisited(currentModuleId, nodeId));
-        const check = pill.querySelector(".miniCheck");
-        if(check) check.textContent = isNodeVisited(currentModuleId, nodeId) ? "✓" : "";
-      });
-
-      accordionHost.querySelectorAll(".accItem[data-node]").forEach(item=>{
-        const nodeId = item.dataset.node;
-        const visited = isNodeVisited(currentModuleId, nodeId);
-        item.classList.toggle("is-visited", visited);
-        const badge = item.querySelector(`[data-badge="${cssEscape(nodeId)}"]`);
-        if(badge) badge.textContent = visited ? "✓" : "";
-      });
-
-      // dropdown selected state
-      ddMenu.querySelectorAll(".ddItem").forEach(i=>{
-        i.setAttribute("aria-selected", i.dataset.module === currentModuleId ? "true" : "false");
-      });
-      setDropdownSelection(currentModuleId);
-    }
-
-    /* -------------------------
-      Restore from state
-    ------------------------- */
-    function restoreFromState(state){
-      if(state.view === "module" && state.moduleId){
-        enterModule(state.moduleId, { silentHistory:true });
-        if(state.nodeId){
-          openSection(state.nodeId, { silentHistory:true, autoScroll:false });
-        }
-      } else {
-        goHome({ silentHistory:true, cat: state.cat || "bases" });
-      }
-    }
-
-    /* -------------------------
-      INIT
-    ------------------------- */
-    function init(){
-      if(!location.search){
-        pushAppState({ view:"home", cat:"bases" }, true);
-      } else {
-        pushAppState(readStateFromURL(), true);
-      }
-      restoreFromState(readStateFromURL());
-    }
-    init();
-
-    /* -------------------------
-      HELPERS
-    ------------------------- */
     function escapeHTML(str){
       return String(str)
         .replaceAll("&","&amp;")
@@ -1276,7 +563,171 @@
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
     }
-    function cssEscape(s){ return String(s).replace(/"/g, '\\"'); }
+
+    // Router (hash)
+    function getRoute(){
+      return (location.hash || "#home").slice(1);
+    }
+    function go(id){
+      location.hash = "#" + id;
+    }
+
+    // UI
+    function renderNav(currentId){
+      navEl.innerHTML = "";
+      NAV.forEach(group => {
+        const wrap = document.createElement("div");
+        wrap.className = "navSection";
+        wrap.innerHTML = `<div class="navTitle">${escapeHTML(group.section)}</div>`;
+
+        group.items.forEach(id => {
+          const p = getPage(id);
+          const btn = document.createElement("button");
+          btn.className = "navItem";
+          btn.type = "button";
+          btn.setAttribute("aria-current", id === currentId ? "page" : "false");
+          btn.innerHTML = `
+            ${escapeHTML(p.title)}
+            <span class="navSmall">${escapeHTML(p.subtitle || "")}</span>
+          `;
+          btn.addEventListener("click", () => go(id));
+          wrap.appendChild(btn);
+        });
+
+        navEl.appendChild(wrap);
+      });
+    }
+
+    function renderHome(){
+      const tiles = [
+        { title:"Socles", id:"socle_apathie_empathie", desc:"Les pages fondatrices (lecture continue, pas de fragmentation)." },
+        { title:"Blessures émotionnelles", id:"w_rejet", desc:"Grille stable : émotion → origine → masque → apathie → addictions → valeurs → dogmes → croyances." },
+        { title:"Référentiels", id:"ref_emotions", desc:"Ressources : émotions/sentiments, addictions, valeurs, dogmes." },
+        { title:"Point de départ recommandé", id:"socle_confort", desc:"Le mouvement Confort → Peur → Apprentissage → Expansion (toile de fond)." },
+      ];
+
+      mainEl.innerHTML = `
+        <div class="card">
+          <div class="kicker">Carte du système</div>
+          <div class="lead">Tu navigues par structure, pas par “thèmes”.</div>
+          <p>
+            Objectif du prototype : vérifier si cette architecture rend le sujet plus clair, sans “jeu” ni simplification.
+          </p>
+        </div>
+
+        <div class="mapGrid">
+          ${tiles.map(t => `
+            <div class="mapTile" data-go="${escapeHTML(t.id)}">
+              <h3>${escapeHTML(t.title)}</h3>
+              <p>${escapeHTML(t.desc)}</p>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="kicker">Règle d’or</div>
+          <div class="lead">Tout n’a pas le même statut.</div>
+          <ul>
+            <li><strong>Socles</strong> = ce qui organise la compréhension.</li>
+            <li><strong>Blessures</strong> = grille répétable, stable.</li>
+            <li><strong>Référentiels</strong> = ressources à consulter.</li>
+          </ul>
+        </div>
+      `;
+
+      mainEl.querySelectorAll(".mapTile").forEach(el => {
+        el.addEventListener("click", () => go(el.dataset.go));
+      });
+    }
+
+    function renderSocle(page){
+      const blocks = (page.content || []).map(b => {
+        const bullets = b.bullets?.length ? `<ul>${b.bullets.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>` : "";
+        const text = b.text ? `<p>${escapeHTML(b.text)}</p>` : "";
+        return `
+          <div class="card">
+            <div class="kicker">${escapeHTML(b.kicker || "Socle")}</div>
+            <div class="lead">${escapeHTML(b.lead || "")}</div>
+            ${text}
+            ${bullets}
+          </div>
+        `;
+      }).join("");
+
+      mainEl.innerHTML = blocks;
+    }
+
+    function renderBlessure(page){
+      mainEl.innerHTML = `
+        <div class="card">
+          <div class="kicker">Structure stable</div>
+          <div class="lead">${escapeHTML(page.title)}</div>
+          <p>${escapeHTML(page.subtitle || "")}</p>
+          ${page.note ? `<p class="note">${escapeHTML(page.note)}</p>` : ""}
+        </div>
+
+        <div class="woundGrid">
+          ${page.grid.map(([k,v]) => `
+            <div class="row">
+              <div class="label">${escapeHTML(k)}</div>
+              <div class="value">${escapeHTML(v)}</div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderRef(page){
+      const blocks = (page.content || []).map(b => {
+        const bullets = b.bullets?.length ? `<ul>${b.bullets.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>` : "";
+        const text = b.text ? `<p>${escapeHTML(b.text)}</p>` : "";
+        return `
+          <div class="card">
+            <div class="kicker">${escapeHTML(b.kicker || "Référentiel")}</div>
+            <div class="lead">${escapeHTML(b.lead || "")}</div>
+            ${text}
+            ${bullets}
+          </div>
+        `;
+      }).join("");
+      mainEl.innerHTML = blocks;
+    }
+
+    function render(){
+      const id = getRoute();
+      const page = getPage(id) || getPage("home");
+      setAccent(page);
+
+      pageTitle.textContent = page.title || "Atlas";
+      pageSubtitle.textContent = page.subtitle || "";
+
+      renderNav(page.id);
+
+      if(page.type === "HOME") renderHome();
+      else if(page.type === "SOCLE") renderSocle(page);
+      else if(page.type === "BLESSURE") renderBlessure(page);
+      else if(page.type === "REF") renderRef(page);
+      else renderHome();
+    }
+
+    // Toolbar
+    homeBtn.addEventListener("click", () => go("home"));
+    copyLinkBtn.addEventListener("click", async () => {
+      const url = location.href;
+      try{
+        await navigator.clipboard.writeText(url);
+        copyLinkBtn.textContent = "Lien copié ✓";
+        setTimeout(() => copyLinkBtn.textContent = "Copier lien", 1200);
+      } catch {
+        // fallback
+        prompt("Copie ce lien :", url);
+      }
+    });
+
+    // Init
+    window.addEventListener("hashchange", render);
+    if(!location.hash) location.hash = "#home";
+    render();
   </script>
 </body>
 </html>
