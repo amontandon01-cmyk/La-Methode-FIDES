@@ -3,32 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La méthode FIDES — Atlas</title>
+  <title>La méthode FIDES — Support</title>
 
   <style>
     :root{
-      /* FOND UNI (plus de dégradés) */
-      --bg0:#0b0e14;
-
-      /* Surfaces sobres */
+      --bg0:#0b0e14;                 /* fond UNI */
       --panel: rgba(255,255,255,0.04);
       --navbg: rgba(0,0,0,0.14);
       --card: rgba(0,0,0,0.16);
       --stroke: rgba(255,255,255,0.10);
 
-      /* Texte */
       --text: rgba(255,255,255,0.90);
       --muted: rgba(255,255,255,0.60);
-
-      /* Accent ultra sobre */
-      --accent: rgba(185,200,220,0.35);
 
       --shadow: 0 10px 26px rgba(0,0,0,0.45);
       --radius2: 20px;
       --radius: 16px;
       --maxw: 1180px;
 
-      /* Scrollbar inset (comme ton ancien esprit) */
+      /* Scrollbar "inset" */
       --sbSize: 8px;
       --sbPad: 12px;
       --sbTrack: rgba(0,0,0,0.18);
@@ -38,6 +31,7 @@
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -49,6 +43,7 @@
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 16px;
+      height: 100%;
     }
 
     .panel{
@@ -57,12 +52,11 @@
       border-radius: var(--radius2);
       box-shadow: var(--shadow);
       overflow:hidden;
-      min-height: calc(100vh - 32px);
+      height: calc(100vh - 32px);
       display:flex;
       flex-direction:column;
     }
 
-    /* ============ HEADER ============ */
     header{
       padding: 12px 16px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -71,6 +65,7 @@
       align-items:center;
       gap: 12px;
       background: rgba(0,0,0,0.10);
+      flex: 0 0 auto;
     }
 
     .brand{
@@ -80,31 +75,32 @@
       min-width: 0;
     }
 
-    /* Logo GRAND, sans gadget */
-    .logoWrap{
+    .logoBtn{
       display:flex;
       align-items:center;
-      gap: 12px;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
     }
 
+    /* LOGO BEAUCOUP PLUS GRAND */
     .logo{
-      height: 62px; /* <-- plus grand */
+      height: 92px;
       width: auto;
       display:block;
       object-fit: contain;
       background: rgba(255,255,255,0.96);
-      border-radius: 14px;
-      padding: 10px 12px;
+      border-radius: 16px;
+      padding: 14px 16px;
       border: 1px solid rgba(0,0,0,0.10);
     }
 
-    .titleBox{
-      min-width: 0;
-    }
+    .titleBox{ min-width: 0; }
     header h1{
       margin:0;
-      font-size: 15.5px;
-      font-weight: 900;
+      font-size: 16px;
+      font-weight: 920;
       letter-spacing: .2px;
       white-space: nowrap;
       overflow:hidden;
@@ -120,7 +116,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Bouton menu : uniquement utile sur mobile */
+    /* Menu mobile uniquement */
     .btn{
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(0,0,0,0.18);
@@ -132,24 +128,25 @@
       font-size: 12.5px;
       white-space: nowrap;
     }
-    .btn:hover{ border-color: rgba(255,255,255,0.18); }
-
-    /* ============ LAYOUT ============ */
-    .content{
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      min-height:0;
-      flex:1;
+    @media (min-width: 981px){
+      #menuBtn{ display:none; }
     }
 
-    /* Scroll areas */
+    .content{
+      display:grid;
+      grid-template-columns: 330px 1fr;
+      min-height: 0;
+      flex: 1 1 auto;
+    }
+
     .scrollArea{
       overflow:auto;
       padding-right: var(--sbPad);
       scrollbar-gutter: stable both-edges;
+      min-height: 0;
     }
 
-    /* Scrollbar intégrée (Firefox + Webkit) */
+    /* Scrollbar intégrée */
     .scrollArea{
       scrollbar-width: thin;
       scrollbar-color: rgba(205,215,235,0.28) var(--sbTrack);
@@ -158,33 +155,24 @@
     .scrollArea::-webkit-scrollbar-track{
       background: var(--sbTrack);
       border-radius: 999px;
-      margin: 10px;               /* inset */
+      margin: 10px;
     }
     .scrollArea::-webkit-scrollbar-thumb{
       background: linear-gradient(180deg, var(--sbThumb1), var(--sbThumb2));
       border: 2px solid var(--sbTrack);
       border-radius: 999px;
     }
-    .scrollArea::-webkit-scrollbar-thumb:hover{
-      background: linear-gradient(180deg,
-        rgba(205,215,235,0.30),
-        rgba(205,215,235,0.18)
-      );
-    }
 
     nav{
       border-right: 1px solid rgba(255,255,255,0.08);
       background: var(--navbg);
       padding: 14px;
-      min-height:0;
     }
 
     main{
       padding: 16px;
-      min-height:0;
     }
 
-    /* ============ NAV ============ */
     .navSection{
       margin-bottom: 14px;
       padding-bottom: 12px;
@@ -210,10 +198,6 @@
       font-size: 12.8px;
       margin-bottom: 8px;
     }
-    .navItem:hover{
-      border-color: rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.03);
-    }
     .navItem[aria-current="page"]{
       border-color: rgba(205,215,235,0.25);
       background: rgba(205,215,235,0.08);
@@ -227,7 +211,6 @@
       line-height: 1.25;
     }
 
-    /* ============ CONTENT ============ */
     .card{
       border: 1px solid rgba(255,255,255,0.10);
       background: var(--card);
@@ -267,10 +250,6 @@
       padding: 14px;
       cursor:pointer;
     }
-    .mapTile:hover{
-      border-color: rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.03);
-    }
     .mapTile h3{
       margin:0;
       font-size: 14.5px;
@@ -284,11 +263,7 @@
       line-height: 1.45;
     }
 
-    .woundGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
+    .woundGrid{ display:grid; gap: 10px; }
     .row{
       display:grid;
       grid-template-columns: 220px 1fr;
@@ -298,58 +273,34 @@
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(0,0,0,0.10);
     }
-    @media (max-width: 740px){
-      .row{ grid-template-columns: 1fr; }
-    }
-    .label{
-      font-weight: 950;
-      font-size: 12.8px;
-      color: rgba(255,255,255,0.88);
-    }
-    .value{
-      color: rgba(255,255,255,0.84);
-      font-size: 13.2px;
-      line-height: 1.6;
-    }
+    .label{ font-weight: 950; font-size: 12.8px; color: rgba(255,255,255,0.88); }
+    .value{ color: rgba(255,255,255,0.84); font-size: 13.2px; line-height: 1.6; }
 
-    /* ============ MOBILE ============ */
-    .backdrop{
-      display:none;
-    }
-
+    /* Mobile drawer nav */
+    .backdrop{ display:none; }
     @media (max-width: 980px){
       .content{ grid-template-columns: 1fr; }
-
-      /* nav en drawer */
       nav{
         position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: min(420px, calc(100% - 56px));
+        top: 0; left: 0; bottom: 0;
+        width: min(440px, calc(100% - 56px));
         transform: translateX(-110%);
         transition: transform .14s ease;
         z-index: 50;
-        border-right: 1px solid rgba(255,255,255,0.10);
         box-shadow: 0 20px 70px rgba(0,0,0,0.60);
         border-top-right-radius: 18px;
         border-bottom-right-radius: 18px;
       }
       nav[data-open="true"]{ transform: translateX(0); }
-
       .backdrop{
-        position: fixed;
-        inset: 0;
+        position: fixed; inset: 0;
         background: rgba(0,0,0,0.45);
         z-index: 40;
         display:none;
       }
       .backdrop[data-open="true"]{ display:block; }
-    }
-
-    /* Sur desktop, on cache le bouton menu car inutile */
-    @media (min-width: 981px){
-      #menuBtn{ display:none; }
+      .mapGrid{ grid-template-columns: 1fr; }
+      .row{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -360,13 +311,12 @@
 
       <header>
         <div class="brand">
-          <div class="logoWrap" id="logoBtn" title="Accueil" style="cursor:pointer;">
-            <img class="logo" src="image.png" alt="LA MÉTHODE FIDES" />
-          </div>
-
+          <button class="logoBtn" id="logoBtn" type="button" title="Accueil">
+            image.png
+          </button>
           <div class="titleBox">
-            <h1 id="pageTitle">Carte du système</h1>
-            <p id="pageSubtitle">Socles • Blessures • Référentiels</p>
+            <h1 id="pageTitle">Vue d’ensemble</h1>
+            <p id="pageSubtitle">Support de formation</p>
           </div>
         </div>
 
@@ -383,13 +333,16 @@
   </div>
 
   <script>
+    /* Contenu repris du support (Oct 2025). */
     const PAGES = [
-      { id:"home", type:"HOME", title:"Carte du système", subtitle:"Socles • Blessures • Référentiels" },
+      // ACCUEIL
+      { id:"home", type:"HOME", title:"Vue d’ensemble", subtitle:"Socles • Blessures • Référentiels" },
 
+      // SOCLES
       { id:"socle_confort", type:"SOCLE", title:"Le cercle de la zone de confort",
-        subtitle:"Confort → Peur → Apprentissage → Expansion.",
+        subtitle:"Confort → Peur → Apprentissage → Expansion",
         content: [
-          { kicker:"But pédagogique", lead:"Montrer les différentes zones (confort, peur, apprentissage, expansion).", bullets:[
+          { kicker:"But pédagogique", lead:"Montrer les différentes zones.", bullets:[
             "Zone de confort = sécurité illusoire, répétition des habitudes, évitement de l’inconfort.",
             "Zone de peur = doutes, jugements des autres, perte de repères.",
             "Zone d’apprentissage = nouvelles compétences, élargissement de soi, expérimentation.",
@@ -401,75 +354,147 @@
         ]
       },
 
-      { id:"socle_apathie_empathie", type:"SOCLE", title:"Blessures émotionnelles : apathie ↔ empathie",
-        subtitle:"Apathie = fermeture émotionnelle protectrice ; empathie = réouverture.",
+      { id:"socle_blessures", type:"SOCLE", title:"Les blessures émotionnelles (cadre)",
+        subtitle:"Apathie ↔ empathie",
         content: [
-          { kicker:"Point central", lead:"Quand une blessure s’active, l’apathie prend le dessus.", text:
-            "Ici, l’apathie n’est pas une absence d’émotion au sens médical : c’est un état de fermeture émotionnelle qui se met en place quand une douleur ancienne se réveille."
+          { kicker:"Constat", lead:"Quand une blessure s’active, l’apathie prend le dessus.", text:
+            "Dans ce contexte, l’apathie n’est pas une absence d’émotion au sens médical, mais un état de fermeture émotionnelle qui se met en place lorsqu’une douleur ancienne se réveille."
           },
           { kicker:"Fonction", lead:"Réaction inconsciente de protection / mode de survie émotionnel.", text:
-            "En reconnaissant cette fermeture et en la traversant avec bienveillance, on peut retrouver la connexion à soi, à l’autre et à la vie."
+            "C’est une réaction inconsciente de protection que la personne adopte pour ne plus souffrir."
           },
-          { kicker:"Finalité", lead:"Ouverture de conscience : acceptation de soi et de l’autre, sans jugement.", text:
-            "Quels que soient les comportements observés."
+          { kicker:"Direction", lead:"Retrouver l’ouverture de conscience.", text:
+            "L’objectif est de passer de la fermeture à l’ouverture de conscience — vers l’acceptation de soi et de l’autre, sans jugement."
+          },
+          { kicker:"Finalité", lead:"Retrouver la connexion.", text:
+            "Retrouver la connexion à soi, à l’autre et à la vie."
           }
         ]
       },
 
+      // EMPATHIE (socle + impacts)
       { id:"socle_empathie", type:"SOCLE", title:"L’empathie",
-        subtitle:"Résonance sans fusion.",
+        subtitle:"Résonance sans fusion",
         content: [
           { kicker:"Définition", lead:"Capacité à se mettre en résonance avec l’émotion de l’autre, sans se confondre avec elle." },
-          { kicker:"Différences", lead:"Empathie vs compassion / sympathie.", bullets:[
+          { kicker:"Différences", lead:"Empathie / compassion / sympathie", bullets:[
             "Empathie vs compassion : l’une ressent, l’autre agit.",
             "Empathie vs sympathie : l’une écoute, l’autre se projette."
           ]},
-          { kicker:"Freins à l’empathie", lead:"Les blessures émotionnelles voilent l’empathie.", bullets:[
-            "Rejet : envie de s’isoler / se couper.",
+          { kicker:"Freins (blessures)", lead:"Les blessures voilent l’empathie.", bullets:[
+            "Rejet : envie de s’isoler, se couper.",
             "Injustice : rigidité, contrôle de soi.",
-            "Trahison : méfiance / suspicion.",
+            "Trahison : méfiance, suspicion.",
             "Humiliation : honte, fuite du contact.",
-            "Abandon : besoin de combler le vide avant d’écouter."
+            "Abandon : besoin de combler son vide avant d’écouter."
           ]},
           { kicker:"Message clé", lead:"L’empathie est naturelle, mais elle est voilée par nos blessures." }
         ]
       },
 
-      { id:"w_rejet", type:"BLESSURE", title:"Blessure : rejet", subtitle:"Émotion racine : tristesse.",
-        grid: [
-          ["Émotion", "Tristesse."],
-          ["Origine", "Très tôt. Sentiment de ne pas avoir sa place, de déranger, d’être de trop."],
-          ["Masque / comportement", "Masque du fuyant : se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger."],
-          ["Empathie (note)", "Difficulté à s’ouvrir par peur d’être ignoré ; peut se couper des autres pour éviter de revivre le rejet."],
-          ["Addictions", "Isolement, écrans, alimentation compulsive discrète (addictions solitaires)."],
-          ["Valeurs de vie", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
-          ["Conditionnements / dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
-          ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. »"],
-          ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. »"]
+      { id:"impact_apathie", type:"REF", title:"Conséquences de l’absence d’empathie (apathie)",
+        subtitle:"Impacts personnels, relationnels, sociaux",
+        content: [
+          { kicker:"Conséquences", lead:"Synthèse (support)", bullets:[
+            "Bien-être personnel fragilisé : sentiment de vide, anxiété, isolement émotionnel, perte de confiance.",
+            "Fermeture aux autres : indifférence, incapacité d’aider, égocentrisme.",
+            "Relations superficielles et fragiles : difficulté à créer des liens profonds, solitude.",
+            "Santé affectée : émotions refoulées, tensions chroniques, troubles psychosomatiques.",
+            "Travail : leadership autoritaire, manque de coopération, climat de rivalité.",
+            "Conflits : rancunes accumulées, communication fermée, ruptures relationnelles.",
+            "Vie familiale et amoureuse : relations distantes, risque de séparation.",
+            "Éducation : climat rigide, découragement, comportements agressifs.",
+            "Société : individualisme, perte de solidarité, polarisation.",
+            "Impact existentiel : difficulté à donner du sens, blocage intérieur, repli sur ses peurs."
+          ]}
         ]
       },
 
-      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion racine : peur.",
+      { id:"impact_empathie", type:"REF", title:"Conséquences positives de l’empathie",
+        subtitle:"Bénéfices personnels, relationnels, collectifs",
+        content: [
+          { kicker:"Conséquences positives", lead:"Synthèse (support)", bullets:[
+            "Bien-être personnel : plus de satisfaction de vie, confiance en soi.",
+            "Croissance personnelle : estime de soi, réduction du stress, envie de s’engager.",
+            "Comportements compassionnels : entraide, coopération.",
+            "Efficacité thérapeutique : meilleure compréhension et adhésion aux soins.",
+            "Santé : réduction anxiété, douleur, tensions.",
+            "Leadership : confiance, loyauté, efficacité collective.",
+            "Relations durables : stabilité, bonheur relationnel.",
+            "Conflits : compréhension mutuelle, solutions justes.",
+            "Éducation : climat positif, meilleurs résultats scolaires.",
+            "Société : coopération, solidarité, sens du bien commun.",
+            "Apaisement : aider l’autre apaise aussi ses propres émotions.",
+            "Harmonie : réduction des préjugés, cohésion sociale renforcée."
+          ]}
+        ]
+      },
+
+      // BLESSURES (grille stable)
+      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion : surprise",
+        grid: [
+          ["Émotion", "Surprise."],
+          ["Âge d’ancrage", "6–7 ans (indiqué)."],
+          ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité."],
+          ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise."],
+          ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
+          ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
+          ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
+          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
+          ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »"],
+          ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"]
+        ]
+      },
+
+      { id:"w_abandon", type:"BLESSURE", title:"Blessure : abandon", subtitle:"Émotion : peur",
         grid: [
           ["Émotion", "Peur."],
-          ["Origine", "Sentiment d’être laissé seul, manques affectifs dans l’enfance."],
-          ["Masque / comportement", "Masque du dépendant : fusion, peur de la solitude, besoin excessif de soutien."],
-          ["Empathie (note)", "Confond souvent empathie et fusion ; donne trop pour éviter d’être abandonné."],
-          ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool — tout ce qui comble le vide intérieur."],
+          ["Origine", "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie."],
+          ["Masque / comportement", "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. Enfantin. Peut dire qu’il se sent bien seul et qu’il n’a besoin de personne."],
+          ["Empathie (note)", "Confond souvent empathie et fusion. Donne trop, dans l’espoir d’éviter d’être abandonné."],
+          ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool. Tout ce qui comble le vide intérieur."],
           ["Valeurs de vie", "Amour, proximité, lien, chaleur humaine, partage."],
           ["Conditionnements / dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
           ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
-          ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. »"]
+          ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »"]
         ]
       },
 
-      { id:"w_humiliation", type:"BLESSURE", title:"Blessure : humiliation", subtitle:"Émotion racine : dégoût.",
+      { id:"w_rejet", type:"BLESSURE", title:"Blessure : rejet", subtitle:"Émotion : tristesse",
+        grid: [
+          ["Émotion", "Tristesse."],
+          ["Origine", "Souvent très tôt (indiqué : parfois dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop."],
+          ["Masque / comportement", "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger. Caméléon, s’adapte. Tristesse non exprimée."],
+          ["Empathie (note)", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet."],
+          ["Addictions", "Isolement, écrans, alimentation compulsive discrète. Addictions solitaires."],
+          ["Valeurs de vie", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
+          ["Conditionnements / dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
+          ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »)."],
+          ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »"]
+        ]
+      },
+
+      { id:"w_injustice", type:"BLESSURE", title:"Blessure : injustice", subtitle:"Émotion : colère intérieure",
+        grid: [
+          ["Émotion", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
+          ["Origine", "Éducation stricte, froide, où l’amour dépend de la performance. Jugement/comparaison."],
+          ["Masque / comportement", "Masque du rigide. Perfectionnisme, dureté avec soi et les autres. Besoin de justice, refus de l’imperfection."],
+          ["Empathie (note)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
+          ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
+          ["Valeurs de vie", "Justice, équité, intégrité, vérité."],
+          ["Conditionnements / dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
+          ["Croyances limitantes", "« Je dois toujours prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
+          ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée et indépendante de mes performances. »"]
+        ]
+      },
+
+      { id:"w_humiliation", type:"BLESSURE", title:"Blessure : humiliation", subtitle:"Émotion : dégoût",
         grid: [
           ["Émotion", "Dégoût."],
-          ["Origine", "Honte, dévalorisation, humiliation dans l’enfance."],
-          ["Masque / comportement", "Masque du masochiste : se rabaisser, se sacrifier, se punir."],
+          ["Origine", "Honte, dévalorisation, humiliation dans l’enfance. Souvent liée à l’éducation stricte / regard social ou familial."],
+          ["Masque / comportement", "Masque du masochiste. Se rabaisser, se sacrifier, se punir. Regrets, remords, culpabilité. Anticipe les besoins des autres sans accord."],
           ["Empathie (note)", "Freinée par la honte — peur de montrer sa vulnérabilité."],
-          ["Addictions", "Nourriture, sexualité, auto-sabotage."],
+          ["Addictions", "Nourriture, sexualité, auto-sabotage. Excès pour compenser la honte."],
           ["Valeurs de vie", "Respect, dignité, authenticité."],
           ["Conditionnements / dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
           ["Croyances limitantes", "« Je ne mérite pas d’être heureux. » « Je dois porter la honte. »"],
@@ -477,46 +502,105 @@
         ]
       },
 
-      { id:"w_trahison", type:"BLESSURE", title:"Blessure : trahison", subtitle:"Émotion racine : surprise.",
-        grid: [
-          ["Émotion", "Surprise."],
-          ["Origine", "Expérience de trahison réelle ou vécue comme telle."],
-          ["Masque / comportement", "Masque du contrôlant : cassant, exigeant. Besoin de vérifier, imposer."],
-          ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
-          ["Addictions", "Pouvoir, contrôle, réussite, domination."],
-          ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent."],
-          ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. »"],
-          ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. »"],
-          ["Croyances expansives", "« Je me détache du résultat. » « Je laisse le bénéfice du doute. »"]
-        ]
+      // RÉFÉRENTIELS
+      { id:"ref_sentiments_expansifs", type:"REF", title:"Sentiments agréables / expansifs", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement." }]
+      },
+      { id:"ref_peur_insecurite", type:"REF", title:"Sentiments liés à la peur et à l’insécurité", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Anxiété, Inquiétude, Stress, Méfiance, Doute, Crainte, Panique, Impuissance, Inconfort, Tension, Sentiment d’insécurité." }]
+      },
+      { id:"ref_colere_frustration", type:"REF", title:"Sentiments liés à la colère et la frustration", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût." }]
+      },
+      { id:"ref_tristesse_perte", type:"REF", title:"Sentiments liés à la tristesse et la perte", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures." }]
+      },
+      { id:"ref_injustice_humiliation", type:"REF", title:"Sentiments liés à l’injustice et à l’humiliation", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité, Injustice, Rigidité intérieure." }]
+      },
+      { id:"ref_ouverture_connexion", type:"REF", title:"Sentiments d’ouverture et de connexion", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré." }]
       },
 
-      { id:"w_injustice", type:"BLESSURE", title:"Blessure : injustice", subtitle:"Émotion racine : colère intérieure.",
-        grid: [
-          ["Émotion", "Colère intérieure."],
-          ["Origine", "Éducation stricte, froide ; amour dépendant de la performance."],
-          ["Masque / comportement", "Masque du rigide : perfectionnisme, dureté, refus de l’imperfection."],
-          ["Empathie (note)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
-          ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle."],
-          ["Valeurs de vie", "Justice, équité, intégrité, vérité."],
-          ["Conditionnements / dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
-          ["Croyances limitantes", "« Je dois prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
-          ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée. »"]
-        ]
-      },
-
-      { id:"ref_emotions", type:"REF", title:"Référentiel : émotions & sentiments", subtitle:"Émotions racines + sentiments (nuances).",
+      { id:"ref_addictions", type:"REF", title:"Addictions", subtitle:"Définition + typologies",
         content: [
-          { kicker:"Émotions racines", lead:"Peur • Colère • Tristesse • Joie • Dégoût." }
+          { kicker:"Définition", lead:"Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)." },
+          { kicker:"Addictions visibles", lead:"Alcool, drogues, jeux, nourriture, sexe." },
+          { kicker:"Addictions invisibles", lead:"Perfectionnisme, contrôle, hyperactivité, réseaux sociaux." },
+          { kicker:"Message clé", lead:"L’addiction n’est pas une faute morale, mais un signe d’une émotion qui demande à être reconnue." }
         ]
-      }
+      },
+
+      { id:"ref_add_substances", type:"REF", title:"Addictions aux substances", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }]
+      },
+      { id:"ref_add_comportementales", type:"REF", title:"Addictions comportementales", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }]
+      },
+      { id:"ref_add_invisibles", type:"REF", title:"Addictions plus invisibles", subtitle:"Liste",
+        content: [{ kicker:"Liste", lead:"Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }]
+      },
+
+      { id:"ref_valeurs", type:"REF", title:"Valeurs de vie", subtitle:"Définition + repères",
+        content: [
+          { kicker:"Définition", lead:"Repères intérieurs qui guident nos choix." },
+          { kicker:"Exemples", lead:"Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi." },
+          { kicker:"Travail pratique", lead:"Identifier ses valeurs prioritaires et vérifier l’alignement actions/valeurs." },
+          { kicker:"Message clé", lead:"Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités." }
+        ]
+      },
+
+      { id:"ref_valeurs_listes", type:"REF", title:"Valeurs de vie (listes)", subtitle:"Piliers + exemples",
+        content: [
+          { kicker:"4 piliers universels", lead:"Santé, famille/proches, argent/sécurité financière, amour/relations." },
+          { kicker:"Valeurs personnelles", lead:"Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre." },
+          { kicker:"Valeurs relationnelles et familiales", lead:"Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage." },
+          { kicker:"Valeurs matérielles et financières", lead:"Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel." },
+          { kicker:"Valeurs liées à la vie et au corps", lead:"Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre." },
+          { kicker:"Valeurs de réalisation et contribution", lead:"Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité." },
+          { kicker:"Valeurs spirituelles et existentielles", lead:"Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie." }
+        ]
+      },
+
+      { id:"ref_dogmes", type:"REF", title:"Conditionnements et dogmes", subtitle:"Définition + exemples",
+        content: [
+          { kicker:"Définition", lead:"Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements." },
+          { kicker:"Exemples", lead:"« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »" },
+          { kicker:"Message clé", lead:"La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher." }
+        ]
+      },
+
+      { id:"ref_dogmes_listes", type:"REF", title:"Conditionnements & dogmes (listes)", subtitle:"Catégories",
+        content: [
+          { kicker:"Familiaux", lead:"« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..." },
+          { kicker:"Sociaux et culturels", lead:"« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..." },
+          { kicker:"Religieux et spirituels", lead:"« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ..." },
+          { kicker:"Genre et rôle social", lead:"« Un homme ne pleure pas. » « Une femme doit être parfaite. » ..." },
+          { kicker:"Éducatifs et scolaires", lead:"« Si tu échoues, tu es nul. » « L’erreur est interdite. » ..." },
+          { kicker:"Psychologiques et relationnels", lead:"« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » ..." },
+          { kicker:"Intérieurs (auto-dogmes)", lead:"« Je dois être parfait pour avoir de la valeur. » « Je ne suis pas assez bien. » ..." }
+        ]
+      },
+
+      { id:"ref_sources", type:"REF", title:"Référence", subtitle:"Source mentionnée",
+        content: [{ kicker:"Référence", lead:"Blessures / émotions : Lise Bourbeau (mention du support)." }]
+      },
     ];
 
     const NAV = [
-      { section:"Carte", items:["home"] },
-      { section:"Socles", items:["socle_confort","socle_apathie_empathie","socle_empathie"] },
+      { section:"Vue d’ensemble", items:["home"] },
+      { section:"Socles", items:["socle_confort","socle_blessures","socle_empathie"] },
       { section:"Blessures", items:["w_rejet","w_abandon","w_humiliation","w_trahison","w_injustice"] },
-      { section:"Référentiels", items:["ref_emotions"] },
+      { section:"Sentiments (référentiels)", items:[
+        "ref_sentiments_expansifs","ref_peur_insecurite","ref_colere_frustration",
+        "ref_tristesse_perte","ref_injustice_humiliation","ref_ouverture_connexion"
+      ]},
+      { section:"Addictions / Valeurs / Dogmes", items:[
+        "ref_addictions","ref_add_substances","ref_add_comportementales","ref_add_invisibles",
+        "ref_valeurs","ref_valeurs_listes","ref_dogmes","ref_dogmes_listes"
+      ]},
+      { section:"Empathie (impacts)", items:["impact_apathie","impact_empathie"] },
+      { section:"Référence", items:["ref_sources"] }
     ];
 
     const navEl = document.getElementById("nav");
@@ -527,16 +611,16 @@
     const backdrop = document.getElementById("backdrop");
     const logoBtn = document.getElementById("logoBtn");
 
-    const getPage = (id) => PAGES.find(p => p.id === id);
-
     function escapeHTML(str){
       return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
     }
+
+    const getPage = (id) => PAGES.find(p => p.id === id);
 
     function getRoute(){
       return (location.hash || "#home").slice(1);
@@ -564,15 +648,18 @@
       NAV.forEach(group => {
         const wrap = document.createElement("div");
         wrap.className = "navSection";
-        wrap.innerHTML = `<div class="navTitle">${escapeHTML(group.section)}</div>`;
+        wrap.innerHTML = '<div class="navTitle">' + escapeHTML(group.section) + '</div>';
 
         group.items.forEach(id => {
           const p = getPage(id);
+          if(!p) return;
           const btn = document.createElement("button");
           btn.className = "navItem";
           btn.type = "button";
           btn.setAttribute("aria-current", id === currentId ? "page" : "false");
-          btn.innerHTML = `${escapeHTML(p.title)}<span class="navSmall">${escapeHTML(p.subtitle || "")}</span>`;
+          btn.innerHTML =
+            escapeHTML(p.title) +
+            '<span class="navSmall">' + escapeHTML(p.subtitle || "") + '</span>';
           btn.addEventListener("click", () => { go(id); setMenu(false); });
           wrap.appendChild(btn);
         });
@@ -583,28 +670,26 @@
 
     function renderHome(){
       const tiles = [
-        { title:"Socles", id:"socle_apathie_empathie", desc:"Pages fondatrices (lecture continue)." },
+        { title:"Commencer par les Socles", id:"socle_confort", desc:"Confort → Peur → Apprentissage → Expansion." },
+        { title:"Cadre des blessures", id:"socle_blessures", desc:"Apathie = fermeture protectrice ; empathie = réouverture." },
         { title:"Blessures émotionnelles", id:"w_rejet", desc:"Grille stable : émotion → origine → masque → apathie → addictions → valeurs → dogmes → croyances." },
-        { title:"Référentiels", id:"ref_emotions", desc:"Ressources : émotions/sentiments, etc." },
-        { title:"Point de départ", id:"socle_confort", desc:"Confort → Peur → Apprentissage → Expansion." },
+        { title:"Référentiels", id:"ref_addictions", desc:"Sentiments, addictions, valeurs, dogmes." }
       ];
 
-      mainEl.innerHTML = `
-        <div class="card">
-          <div class="kicker">Structure</div>
-          <div class="lead">Socles • Blessures • Référentiels</div>
-          <p>Navigation par structure.</p>
-        </div>
-
-        <div class="mapGrid">
-          ${tiles.map(t => `
-            <div class="mapTile" data-go="${escapeHTML(t.id)}">
-              <h3>${escapeHTML(t.title)}</h3>
-              <p>${escapeHTML(t.desc)}</p>
-            </div>
-          `).join("")}
-        </div>
-      `;
+      mainEl.innerHTML =
+        '<div class="card">' +
+          '<div class="kicker">Sommaire</div>' +
+          '<div class="lead">Support de formation — La méthode FIDES</div>' +
+          '<p>Accès par structure : socles, blessures, référentiels.</p>' +
+        '</div>' +
+        '<div class="mapGrid">' +
+          tiles.map(t =>
+            '<div class="mapTile" data-go="' + escapeHTML(t.id) + '">' +
+              '<h3>' + escapeHTML(t.title) + '</h3>' +
+              '<p>' + escapeHTML(t.desc) + '</p>' +
+            '</div>'
+          ).join("") +
+        '</div>';
 
       mainEl.querySelectorAll(".mapTile").forEach(el => {
         el.addEventListener("click", () => go(el.dataset.go));
@@ -612,52 +697,41 @@
     }
 
     function renderSocle(page){
-      const blocks = (page.content || []).map(b => {
-        const bullets = b.bullets?.length ? `<ul>${b.bullets.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>` : "";
-        const text = b.text ? `<p>${escapeHTML(b.text)}</p>` : "";
-        return `
-          <div class="card">
-            <div class="kicker">${escapeHTML(b.kicker || "Socle")}</div>
-            <div class="lead">${escapeHTML(b.lead || "")}</div>
-            ${text}
-            ${bullets}
-          </div>
-        `;
-      }).join("");
-      mainEl.innerHTML = blocks;
+      let html = "";
+      (page.content || []).forEach(b => {
+        html += '<div class="card">';
+        html += '<div class="kicker">' + escapeHTML(b.kicker || "Section") + '</div>';
+        html += '<div class="lead">' + escapeHTML(b.lead || "") + '</div>';
+        if(b.text) html += '<p>' + escapeHTML(b.text) + '</p>';
+        if(b.bullets && b.bullets.length){
+          html += '<ul>';
+          b.bullets.forEach(x => { html += '<li>' + escapeHTML(x) + '</li>'; });
+          html += '</ul>';
+        }
+        html += '</div>';
+      });
+      mainEl.innerHTML = html;
     }
 
     function renderBlessure(page){
-      mainEl.innerHTML = `
-        <div class="card">
-          <div class="kicker">Blessure</div>
-          <div class="lead">${escapeHTML(page.title)}</div>
-          <p>${escapeHTML(page.subtitle || "")}</p>
-        </div>
-        <div class="woundGrid">
-          ${page.grid.map(([k,v]) => `
-            <div class="row">
-              <div class="label">${escapeHTML(k)}</div>
-              <div class="value">${escapeHTML(v)}</div>
-            </div>
-          `).join("")}
-        </div>
-      `;
+      mainEl.innerHTML =
+        '<div class="card">' +
+          '<div class="kicker">Blessure</div>' +
+          '<div class="lead">' + escapeHTML(page.title) + '</div>' +
+          '<p>' + escapeHTML(page.subtitle || "") + '</p>' +
+        '</div>' +
+        '<div class="woundGrid">' +
+          (page.grid || []).map(([k,v]) =>
+            '<div class="row">' +
+              '<div class="label">' + escapeHTML(k) + '</div>' +
+              '<div class="value">' + escapeHTML(v) + '</div>' +
+            '</div>'
+          ).join("") +
+        '</div>';
     }
 
     function renderRef(page){
-      const blocks = (page.content || []).map(b => {
-        const bullets = b.bullets?.length ? `<ul>${b.bullets.map(x=>`<li     const text = b.text ? `<p>${escapeHTML(b.text)}</p>` : "";
-        return `
-          <div class="card">
-            <div class="kicker">${escapeHTML(b.kicker || "Référentiel")}</div>
-            <div class="lead">${escapeHTML(b.lead || "")}</div>
-            ${text}
-            ${bullets}
-          </div>
-        `;
-      }).join("");
-      mainEl.innerHTML = blocks;
+      renderSocle(page);
     }
 
     function render(){
