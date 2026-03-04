@@ -553,13 +553,3 @@ export const PAGES = [
   {
     id: "ref_dogmes",
     type: "REF",
-    title: "Dogmes",
-    subtitle: "À compléter",
-    content: [
-      {
-        kicker: "Note",
-        lead: "Bloc en attente de ton contenu."
-      }
-    ]
-  }
-];
