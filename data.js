@@ -413,17 +413,17 @@ const PAGES = [
     id: "ref_sources",
     type: "REF",
     title: "Références",
-    subtitle: "Ce qui est repris / ce qui appartient à la Méthode FIDES",
+    subtitle: "Source",
     content: [
       {
-        kicker: "Source",
+        kicker: "Autre",
         lead:
           "La typologie des cinq blessures (rejet, abandon, humiliation, trahison, injustice) et les masques associés (fuyant, dépendant, masochiste, contrôlant, rigide) s’inspire des travaux de Lise Bourbeau, notamment dans l’ouvrage « Les 5 blessures qui empêchent d’être soi-même ».",
       },
       {
-        kicker: "Méthode",
+        kicker: "La Méthode FIDES",
         lead:
-          "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes et expansives font partie de la Méthode FIDES.",
+          "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes font partie de la Méthode FIDES.",
       },
     ],
   },
