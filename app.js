@@ -1,9 +1,9 @@
-/* app.js — refactor technique (sans changement de contenu/rendu)
-   Objectif :
-   - Navigation robuste (IDs invalides => home)
-   - Templates HTML simples pour éviter la duplication
-   - Types stricts (PAGE_TYPES)
-   - Validation dev : IDs uniques + NAV cohérent
+/* app.js — refactor technique + slugs d’URL + home non cliquable
+   Objectifs :
+   - Les tuiles de la home ne naviguent plus (non cliquables, aucun ajout ailleurs)
+   - Hash “sexy” via slugs (alias) : #bases-empathie, #blessures-rejet, etc.
+   - Compatibilité : anciens ids (#socle_empathie) => remplacés par le slug canonique
+   - Bonnes pratiques : templates HTML, types stricts, validation debug
 */
 
 "use strict";
@@ -17,7 +17,48 @@ const PAGE_TYPES = Object.freeze({
   REF: "REF",
 });
 
-const DEFAULT_ROUTE = "home";
+const DEFAULT_PAGE_ID = "home";
+
+/* ------------------------------ Routes (slugs) ------------------------------ */
+/* Slug -> Page ID
+   But : URLs lisibles et stables.
+*/
+const SLUG_TO_PAGE_ID = Object.freeze({
+  "vue-densemble": "home",
+
+  "bases-confort": "socle_confort",
+  "bases-blessures": "socle_blessures",
+  "bases-empathie": "socle_empathie",
+
+  "blessures-joie": "w_joie",
+  "blessures-rejet": "w_rejet",
+  "blessures-abandon": "w_abandon",
+  "blessures-humiliation": "w_humiliation",
+  "blessures-trahison": "w_trahison",
+  "blessures-injustice": "w_injustice",
+
+  "comportements-addictions": "ref_addictions",
+  "comportements-addictions-substances": "ref_add_substances",
+  "comportements-addictions-comportementales": "ref_add_comportementales",
+  "comportements-addictions-invisibles": "ref_add_invisibles",
+  "comportements-valeurs": "ref_valeurs",
+  "comportements-valeurs-listes": "ref_valeurs_listes",
+  "comportements-dogmes": "ref_dogmes",
+  "comportements-dogmes-listes": "ref_dogmes_listes",
+
+  "references": "ref_sources",
+});
+
+const PAGE_ID_TO_SLUG = Object.freeze(
+  Object.keys(SLUG_TO_PAGE_ID).reduce((acc, slug) => {
+    acc[SLUG_TO_PAGE_ID[slug]] = slug;
+    return acc;
+  }, {})
+);
+
+function getCanonicalSlugForPageId(pageId) {
+  return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID] || "vue-densemble";
+}
 
 /* ------------------------------ DOM helpers ------------------------------ */
 
@@ -42,13 +83,45 @@ function getPage(id) {
   return PAGES.find((p) => p.id === id);
 }
 
-function getRoute() {
-  return (location.hash || "#" + DEFAULT_ROUTE).slice(1);
+function normalizeHash(rawHash) {
+  // "#xxx" => "xxx"
+  const h = (rawHash || "").trim();
+  if (!h) return "";
+  return h.startsWith("#") ? h.slice(1) : h;
 }
 
-function go(id) {
-  const target = getPage(id) ? id : DEFAULT_ROUTE;
-  location.hash = "#" + target;
+function resolveRouteToPageId(routeToken) {
+  // 1) slug connu ?
+  if (SLUG_TO_PAGE_ID[routeToken] && getPage(SLUG_TO_PAGE_ID[routeToken])) {
+    return SLUG_TO_PAGE_ID[routeToken];
+  }
+  // 2) compat : ancien id direct ?
+  if (getPage(routeToken)) {
+    return routeToken;
+  }
+  // 3) fallback
+  return DEFAULT_PAGE_ID;
+}
+
+function getCurrentPageIdFromLocation() {
+  const token = normalizeHash(location.hash) || getCanonicalSlugForPageId(DEFAULT_PAGE_ID);
+  return resolveRouteToPageId(token);
+}
+
+function setHashToSlug(slug, { replace = false } = {}) {
+  const next = "#" + slug;
+  if (replace) {
+    // évite d’empiler l’historique lors de la canonicalisation
+    history.replaceState(null, "", next);
+  } else {
+    location.hash = next;
+  }
+}
+
+function go(pageId) {
+  const targetId = getPage(pageId) ? pageId : DEFAULT_PAGE_ID;
+  const slug = getCanonicalSlugForPageId(targetId);
+  setHashToSlug(slug, { replace: false });
 }
 
 function setMenu(open) {
@@ -59,7 +132,6 @@ function setMenu(open) {
 /* ------------------------------ Dev validation ------------------------------ */
 
 function isDebugMode() {
-  // Debug en local OU si tu ajoutes ?debug=1 à l’URL
   try {
     const isLocal =
       location.hostname === "localhost" ||
@@ -80,9 +152,7 @@ function validateData() {
     if (seen.has(p.id)) dupes.add(p.id);
     seen.add(p.id);
   }
-  if (dupes.size) {
-    console.warn("[FIDES] IDs dupliqués dans PAGES:", Array.from(dupes));
-  }
+  if (dupes.size) console.warn("[FIDES] IDs dupliqués dans PAGES:", Array.from(dupes));
 
   // 2) NAV -> pages existantes
   const missing = [];
@@ -91,9 +161,15 @@ function validateData() {
       if (!getPage(id)) missing.push({ section: group.section, id });
     }
   }
-  if (missing.length) {
-    console.warn("[FIDES] NAV référence des pages manquantes:", missing);
+  if (missing.length) console.warn("[FIDES] NAV référence des pages manquantes:", missing);
+
+  // 3) Slugs -> pages existantes
+  const badSlugs = [];
+  for (const slug of Object.keys(SLUG_TO_PAGE_ID)) {
+    const id = SLUG_TO_PAGE_ID[slug];
+    if (!getPage(id)) badSlugs.push({ slug, id });
   }
+  if (badSlugs.length) console.warn("[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes:", badSlugs);
 }
 
 /* ------------------------------ Templates HTML ------------------------------ */
@@ -112,10 +188,11 @@ function cardHtml({ kicker, lead, text, bullets }) {
   return html;
 }
 
-function tileHtml({ title, desc, id }) {
+function tileHtml({ title, desc }) {
+  // Home non cliquable : pas de data-go, pas d’évènement
   return (
-    '<div class="mapTile" data-go="' +
-    escapeHTML(id) +
+    '<div class="mapTile" role="group" aria-label="' +
+    escapeHTML(title) +
     '">' +
     "<h3>" +
     escapeHTML(title) +
@@ -151,7 +228,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") setMenu(false);
 });
 
-logoBtn.addEventListener("click", () => go(DEFAULT_ROUTE));
+logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
 
 /* -------------------------------- Renders -------------------------------- */
 
@@ -194,22 +271,18 @@ function renderHome() {
   const tiles = [
     {
       title: "Bases",
-      id: "socle_confort",
       desc: "Comprendre le cadre : zones (confort → peur → apprentissage → expansion) et bases des blessures.",
     },
     {
       title: "Blessures",
-      id: "w_joie",
-      desc: "Lire une blessure : émotion racine → sentiments possibles → masque → apathie → croyances.",
+      desc: "Lire une blessure : émotion racine → sentiments possibles → masque → apathie / empathie → croyances.",
     },
     {
       title: "Comportements",
-      id: "ref_addictions",
       desc: "Relier le vécu aux mécanismes : addictions, valeurs, dogmes (ce qui oriente les choix).",
     },
     {
       title: "Empathie",
-      id: "socle_empathie",
       desc: "Comprendre l’empathie et voir ses effets concrets : apathie (impacts) vs empathie (bénéfices).",
     },
   ];
@@ -237,26 +310,14 @@ function renderHome() {
     "</ul>" +
     "</div>";
 
-  const grid =
-    '<div class="mapGrid">' +
-    tiles.map(tileHtml).join("") +
-    "</div>";
+  const grid = '<div class="mapGrid">' + tiles.map(tileHtml).join("") + "</div>";
 
   mainEl.innerHTML = homeIntro + parcours + grid;
-
-  mainEl.querySelectorAll(".mapTile").forEach((el) => {
-    el.addEventListener("click", () => {
-      const target = el.dataset.go || DEFAULT_ROUTE;
-      go(target);
-    });
-  });
 }
 
 function renderSocle(page) {
   let html = "";
-  for (const b of page.content || []) {
-    html += cardHtml(b);
-  }
+  for (const b of page.content || []) html += cardHtml(b);
   mainEl.innerHTML = html;
 }
 
@@ -284,9 +345,23 @@ function renderRef(page) {
   renderSocle(page);
 }
 
+function canonicalizeUrlIfNeeded(pageId) {
+  const currentToken = normalizeHash(location.hash);
+  const canonicalSlug = getCanonicalSlugForPageId(pageId);
+
+  // Si on est déjà sur le slug canonique, ok.
+  if (currentToken === canonicalSlug) return;
+
+  // Si l’utilisateur a mis un ancien id (#socle_empathie), on remplace par le slug sans ajouter d’historique.
+  // Si hash vide, on met aussi la version canonique.
+  setHashToSlug(canonicalSlug, { replace: true });
+}
+
 function render() {
-  const id = getRoute();
-  const page = getPage(id) || getPage(DEFAULT_ROUTE);
+  const pageId = getCurrentPageIdFromLocation();
+  const page = getPage(pageId) || getPage(DEFAULT_PAGE_ID);
+
+  canonicalizeUrlIfNeeded(page.id);
 
   pageTitle.textContent = page.title || "La Méthode FIDES";
   pageSubtitle.textContent = page.subtitle || "";
@@ -317,5 +392,9 @@ function render() {
 if (isDebugMode()) validateData();
 
 window.addEventListener("hashchange", render);
-if (!location.hash) location.hash = "#" + DEFAULT_ROUTE;
+
+// Init : si pas de hash, on met directement le slug canonique de la home
+if (!location.hash) {
+  setHashToSlug(getCanonicalSlugForPageId(DEFAULT_PAGE_ID), { replace: true });
+}
 render();
