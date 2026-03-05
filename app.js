@@ -1,14 +1,23 @@
-/* app.js — refactor pédagogique (Oct 2025)
+/* app.js — refactor technique (sans changement de contenu/rendu)
    Objectif :
-   - Ajouter un "état : joie" (absence de blessure activée)
-   - Associer à chaque blessure : émotion racine + sentiments possibles (variations)
-   - Fusionner "Sentiments (référentiels)" dans les pages blessures (sans perte de contenu)
-   - Renommer la section "Addictions / Valeurs / Dogmes" en "Comportements"
-   - Garder tout le contenu existant (socles, impacts, addictions, valeurs, dogmes, référence)
-   - Bonnes pratiques : données structurées, helpers, avoid duplication, const/immutables
+   - Navigation robuste (IDs invalides => home)
+   - Templates HTML simples pour éviter la duplication
+   - Types stricts (PAGE_TYPES)
+   - Validation dev : IDs uniques + NAV cohérent
 */
 
 "use strict";
+
+/* ------------------------------ Constantes ------------------------------ */
+
+const PAGE_TYPES = Object.freeze({
+  HOME: "HOME",
+  SOCLE: "SOCLE",
+  BLESSURE: "BLESSURE",
+  REF: "REF",
+});
+
+const DEFAULT_ROUTE = "home";
 
 /* ------------------------------ DOM helpers ------------------------------ */
 
@@ -34,16 +43,101 @@ function getPage(id) {
 }
 
 function getRoute() {
-  return (location.hash || "#home").slice(1);
+  return (location.hash || "#" + DEFAULT_ROUTE).slice(1);
 }
 
 function go(id) {
-  location.hash = "#" + id;
+  const target = getPage(id) ? id : DEFAULT_ROUTE;
+  location.hash = "#" + target;
 }
 
 function setMenu(open) {
   navEl.setAttribute("data-open", open ? "true" : "false");
   backdrop.setAttribute("data-open", open ? "true" : "false");
+}
+
+/* ------------------------------ Dev validation ------------------------------ */
+
+function isDebugMode() {
+  // Debug en local OU si tu ajoutes ?debug=1 à l’URL
+  try {
+    const isLocal =
+      location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.protocol === "file:";
+    const params = new URLSearchParams(location.search);
+    return isLocal || params.get("debug") === "1";
+  } catch {
+    return false;
+  }
+}
+
+function validateData() {
+  // 1) unicité des IDs
+  const seen = new Set();
+  const dupes = new Set();
+  for (const p of PAGES) {
+    if (seen.has(p.id)) dupes.add(p.id);
+    seen.add(p.id);
+  }
+  if (dupes.size) {
+    console.warn("[FIDES] IDs dupliqués dans PAGES:", Array.from(dupes));
+  }
+
+  // 2) NAV -> pages existantes
+  const missing = [];
+  for (const group of NAV) {
+    for (const id of group.items) {
+      if (!getPage(id)) missing.push({ section: group.section, id });
+    }
+  }
+  if (missing.length) {
+    console.warn("[FIDES] NAV référence des pages manquantes:", missing);
+  }
+}
+
+/* ------------------------------ Templates HTML ------------------------------ */
+
+function cardHtml({ kicker, lead, text, bullets }) {
+  let html = '<div class="card">';
+  html += '<div class="kicker">' + escapeHTML(kicker || "Section") + "</div>";
+  if (lead) html += '<div class="lead">' + escapeHTML(lead) + "</div>";
+  if (text) html += "<p>" + escapeHTML(text) + "</p>";
+  if (bullets && bullets.length) {
+    html += "<ul>";
+    for (const b of bullets) html += "<li>" + escapeHTML(b) + "</li>";
+    html += "</ul>";
+  }
+  html += "</div>";
+  return html;
+}
+
+function tileHtml({ title, desc, id }) {
+  return (
+    '<div class="mapTile" data-go="' +
+    escapeHTML(id) +
+    '">' +
+    "<h3>" +
+    escapeHTML(title) +
+    "</h3>" +
+    "<p>" +
+    escapeHTML(desc) +
+    "</p>" +
+    "</div>"
+  );
+}
+
+function woundRowHtml(label, value) {
+  return (
+    '<div class="row">' +
+    '<div class="label">' +
+    escapeHTML(label) +
+    "</div>" +
+    '<div class="value">' +
+    escapeHTML(value) +
+    "</div>" +
+    "</div>"
+  );
 }
 
 /* ------------------------------ Interactions ----------------------------- */
@@ -57,34 +151,43 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") setMenu(false);
 });
 
-logoBtn.addEventListener("click", () => go("home"));
+logoBtn.addEventListener("click", () => go(DEFAULT_ROUTE));
 
 /* -------------------------------- Renders -------------------------------- */
 
 function renderNav(currentId) {
   navEl.innerHTML = "";
-  NAV.forEach((group) => {
+
+  for (const group of NAV) {
     const wrap = document.createElement("div");
     wrap.className = "navSection";
     wrap.innerHTML = '<div class="navTitle">' + escapeHTML(group.section) + "</div>";
 
-    group.items.forEach((id) => {
+    for (const id of group.items) {
       const p = getPage(id);
-      if (!p) return;
+      if (!p) continue;
+
       const btn = document.createElement("button");
       btn.className = "navItem";
       btn.type = "button";
       btn.setAttribute("aria-current", id === currentId ? "page" : "false");
-      btn.innerHTML = escapeHTML(p.title) + '<span class="navSmall">' + escapeHTML(p.subtitle || "") + "</span>";
+
+      btn.innerHTML =
+        escapeHTML(p.title) +
+        '<span class="navSmall">' +
+        escapeHTML(p.subtitle || "") +
+        "</span>";
+
       btn.addEventListener("click", () => {
         go(id);
         setMenu(false);
       });
+
       wrap.appendChild(btn);
-    });
+    }
 
     navEl.appendChild(wrap);
-  });
+  }
 }
 
 function renderHome() {
@@ -111,59 +214,54 @@ function renderHome() {
     },
   ];
 
-  mainEl.innerHTML =
+  const homeIntro =
     '<div class="card">' +
-      '<div class="kicker">Vue d’ensemble</div>' +
-      '<div class="lead">Support de formation — La Méthode FIDES</div>' +
-      '<p>But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner.</p>' +
-    '</div>' +
+    '<div class="kicker">Vue d’ensemble</div>' +
+    '<div class="lead">Support de formation — La Méthode FIDES</div>' +
+    "<p>" +
+    escapeHTML(
+      "But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner."
+    ) +
+    "</p>" +
+    "</div>";
 
+  const parcours =
     '<div class="card">' +
-      '<div class="kicker">Parcours pédagogique</div>' +
-      '<div class="lead">Un chemin en 4 étapes</div>' +
-      '<ul>' +
-        '<li>1. Comprendre le cadre (bases)</li>' +
-        '<li>2. Identifier la blessure</li>' +
-        '<li>3. Observer les comportements</li>' +
-        '<li>4. Libérer les croyances</li>' +
-      '</ul>' +
-    '</div>' +
+    '<div class="kicker">Parcours pédagogique</div>' +
+    '<div class="lead">Un chemin en 4 étapes</div>' +
+    "<ul>" +
+    "<li>1. Comprendre le cadre (bases)</li>" +
+    "<li>2. Identifier la blessure</li>" +
+    "<li>3. Observer les comportements</li>" +
+    "<li>4. Libérer les croyances</li>" +
+    "</ul>" +
+    "</div>";
 
+  const grid =
     '<div class="mapGrid">' +
-      tiles.map(t =>
-        '<div class="mapTile" data-go="' + escapeHTML(t.id) + '">' +
-          '<h3>' + escapeHTML(t.title) + '</h3>' +
-          '<p>' + escapeHTML(t.desc) + '</p>' +
-        '</div>'
-      ).join("") +
-    '</div>';
+    tiles.map(tileHtml).join("") +
+    "</div>";
 
-  mainEl.querySelectorAll(".mapTile").forEach(el => {
-    el.addEventListener("click", () => go(el.dataset.go));
+  mainEl.innerHTML = homeIntro + parcours + grid;
+
+  mainEl.querySelectorAll(".mapTile").forEach((el) => {
+    el.addEventListener("click", () => {
+      const target = el.dataset.go || DEFAULT_ROUTE;
+      go(target);
+    });
   });
 }
 
 function renderSocle(page) {
   let html = "";
-  (page.content || []).forEach((b) => {
-    html += '<div class="card">';
-    html += '<div class="kicker">' + escapeHTML(b.kicker || "Section") + "</div>";
-    html += '<div class="lead">' + escapeHTML(b.lead || "") + "</div>";
-    if (b.text) html += "<p>" + escapeHTML(b.text) + "</p>";
-    if (b.bullets && b.bullets.length) {
-      html += "<ul>";
-      b.bullets.forEach((x) => {
-        html += "<li>" + escapeHTML(x) + "</li>";
-      });
-      html += "</ul>";
-    }
-    html += "</div>";
-  });
+  for (const b of page.content || []) {
+    html += cardHtml(b);
+  }
   mainEl.innerHTML = html;
 }
 
 function renderBlessure(page) {
-  mainEl.innerHTML =
+  const head =
     '<div class="card">' +
     '<div class="kicker">Blessure</div>' +
     '<div class="lead">' +
@@ -172,22 +270,14 @@ function renderBlessure(page) {
     "<p>" +
     escapeHTML(page.subtitle || "") +
     "</p>" +
-    "</div>" +
-    '<div class="woundGrid">' +
-    (page.grid || [])
-      .map(
-        ([k, v]) =>
-          '<div class="row">' +
-          '<div class="label">' +
-          escapeHTML(k) +
-          "</div>" +
-          '<div class="value">' +
-          escapeHTML(v) +
-          "</div>" +
-          "</div>"
-      )
-      .join("") +
     "</div>";
+
+  const grid =
+    '<div class="woundGrid">' +
+    (page.grid || []).map(([k, v]) => woundRowHtml(k, v)).join("") +
+    "</div>";
+
+  mainEl.innerHTML = head + grid;
 }
 
 function renderRef(page) {
@@ -196,20 +286,36 @@ function renderRef(page) {
 
 function render() {
   const id = getRoute();
-  const page = getPage(id) || getPage("home");
+  const page = getPage(id) || getPage(DEFAULT_ROUTE);
 
   pageTitle.textContent = page.title || "La Méthode FIDES";
   pageSubtitle.textContent = page.subtitle || "";
 
   renderNav(page.id);
 
-  if (page.type === "HOME") renderHome();
-  else if (page.type === "SOCLE") renderSocle(page);
-  else if (page.type === "BLESSURE") renderBlessure(page);
-  else if (page.type === "REF") renderRef(page);
-  else renderHome();
+  switch (page.type) {
+    case PAGE_TYPES.HOME:
+      renderHome();
+      break;
+    case PAGE_TYPES.SOCLE:
+      renderSocle(page);
+      break;
+    case PAGE_TYPES.BLESSURE:
+      renderBlessure(page);
+      break;
+    case PAGE_TYPES.REF:
+      renderRef(page);
+      break;
+    default:
+      renderHome();
+      break;
+  }
 }
 
+/* ------------------------------ Boot ------------------------------ */
+
+if (isDebugMode()) validateData();
+
 window.addEventListener("hashchange", render);
-if (!location.hash) location.hash = "#home";
+if (!location.hash) location.hash = "#" + DEFAULT_ROUTE;
 render();
