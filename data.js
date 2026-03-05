@@ -1,6 +1,5 @@
 /* data.js — données (refactor pédagogique)
    Contient uniquement : SENTIMENTS, joinSentiments, EMOTION_TO_SENTIMENTS, PAGES, NAV
-   Objectif : isoler les données sans changer le rendu.
 */
 
 "use strict";
@@ -11,7 +10,6 @@ const SENTIMENTS = Object.freeze({
   expansifs:
     "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement.",
   peur_insecurite:
-    // Ajout : Surprise (pour couvrir l’émotion racine de la trahison)
     "Anxiété, Inquiétude, Stress, Méfiance, Doute, Crainte, Panique, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Surprise.",
   colere_frustration:
     "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût.",
@@ -24,7 +22,6 @@ const SENTIMENTS = Object.freeze({
 });
 
 function joinSentiments(...keys) {
-  // Concatène des listes de sentiments existantes (sans inventer)
   return keys.map((k) => SENTIMENTS[k]).join(" ");
 }
 
@@ -32,19 +29,18 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
   joie: joinSentiments("expansifs", "ouverture_connexion"),
   tristesse: SENTIMENTS.tristesse_perte,
   peur: SENTIMENTS.peur_insecurite,
-  degout: SENTIMENTS.injustice_humiliation, // aligné sur ton tableau (humiliation -> honte/culpabilité/etc.)
+  degout: SENTIMENTS.injustice_humiliation,
   surprise: "Surprise, Méfiance, Doute, Inquiétude, Crainte, Sentiment d’insécurité",
   colere_interieure: SENTIMENTS.colere_frustration,
 });
 
 /* ---------------------------- Pages (contenu) ---------------------------- */
-/* Contenu repris du support (Oct 2025). */
 
 const PAGES = [
   // ACCUEIL
   { id: "home", type: "HOME", title: "Vue d’ensemble", subtitle: "Bases • Blessures • Comportements" },
 
-  // SOCLES
+  // BASES
   {
     id: "socle_confort",
     type: "SOCLE",
@@ -97,6 +93,14 @@ const PAGES = [
         lead: "Retrouver la connexion.",
         text: "Retrouver la connexion à soi, à l’autre et à la vie.",
       },
+
+      // (3) Pont Blessures → Comportements (une seule fois, dans la base)
+      {
+        kicker: "Lien avec les comportements",
+        lead: "Ce que l’on observe dans le quotidien.",
+        text:
+          "Quand une blessure émotionnelle s’active, la personne cherche inconsciemment à éviter l’émotion ressentie. Les comportements observables (addictions, valeurs affichées, dogmes et croyances) deviennent souvent des stratégies de protection. Les comprendre aide à identifier la blessure à l’origine et à ouvrir un chemin de transformation.",
+      },
     ],
   },
 
@@ -129,7 +133,6 @@ const PAGES = [
       },
       { kicker: "Message clé", lead: "L’empathie est naturelle, mais elle est voilée par nos blessures." },
 
-      // Impacts — repris sans perte depuis impact_apathie
       {
         kicker: "Conséquences",
         lead: "Conséquences de l’absence d’empathie (apathie) — Synthèse (support)",
@@ -146,8 +149,6 @@ const PAGES = [
           "Impact existentiel : difficulté à donner du sens, blocage intérieur, repli sur ses peurs.",
         ],
       },
-
-      // Impacts — repris sans perte depuis impact_empathie
       {
         kicker: "Conséquences positives",
         lead: "Conséquences positives de l’empathie — Synthèse (support)",
@@ -169,7 +170,7 @@ const PAGES = [
     ],
   },
 
-  // BLESSURES (grille stable) + Ajouts pédagogiques (émotion racine + sentiments possibles)
+  // BLESSURES — ordre harmonisé + suppression "(note)" et "(variations)"
   {
     id: "w_joie",
     type: "BLESSURE",
@@ -177,65 +178,8 @@ const PAGES = [
     subtitle: "Absence de blessure activée",
     grid: [
       ["Émotion racine", "Joie."],
-      ["Sentiments possibles (variations)", EMOTION_TO_SENTIMENTS.joie],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
       ["Cadre", "Absence de blessure activée."],
-    ],
-  },
-
-  {
-    id: "w_trahison",
-    type: "BLESSURE",
-    title: "Blessure : trahison",
-    subtitle: "Émotion : surprise",
-    grid: [
-      ["Émotion racine", "Surprise."],
-      ["Sentiments possibles (variations)", EMOTION_TO_SENTIMENTS.surprise],
-      ["Âge d’ancrage", "6–7 ans (indiqué)."],
-      [
-        "Origine",
-        "Expérience de trahison réelle ou vécue comme telle (parent absent, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité.",
-      ],
-      [
-        "Masque / comportement",
-        "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise.",
-      ],
-      ["Apathie", "Méfiance, contrôle ou test permanent de l’autre."],
-      ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
-      ["Valeurs de vie", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
-      ["Conditionnements / dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
-      [
-        "Croyances limitantes",
-        "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »",
-      ],
-      ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
-    ],
-  },
-
-  {
-    id: "w_abandon",
-    type: "BLESSURE",
-    title: "Blessure : abandon",
-    subtitle: "Émotion : peur",
-    grid: [
-      ["Émotion racine", "Peur."],
-      ["Sentiments possibles (variations)", EMOTION_TO_SENTIMENTS.peur],
-      [
-        "Origine",
-        "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",
-      ],
-      [
-        "Masque / comportement",
-        "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. Enfantin. Peut dire qu’il se sent bien seul et qu’il n’a besoin de personne.",
-      ],
-      ["Empathie (note)", "Confond souvent empathie et fusion. Donne trop, dans l’espoir d’éviter d’être abandonné."],
-      ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool. Tout ce qui comble le vide intérieur."],
-      ["Valeurs de vie", "Amour, proximité, lien, chaleur humaine, partage."],
-      ["Conditionnements / dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
-      ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
-      [
-        "Croyances expansives",
-        "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »",
-      ],
     ],
   },
 
@@ -246,7 +190,7 @@ const PAGES = [
     subtitle: "Émotion : tristesse",
     grid: [
       ["Émotion racine", "Tristesse."],
-      ["Sentiments possibles (variations)", EMOTION_TO_SENTIMENTS.tristesse],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.tristesse],
       [
         "Origine",
         "Souvent très tôt (indiqué : parfois dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop.",
@@ -255,10 +199,10 @@ const PAGES = [
         "Masque / comportement",
         "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger. Caméléon, s’adapte. Tristesse non exprimée.",
       ],
-      ["Empathie (note)", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet."],
+      ["Apathie / empathie", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet."],
       ["Addictions", "Isolement, écrans, alimentation compulsive discrète. Addictions solitaires."],
-      ["Valeurs de vie", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
-      ["Conditionnements / dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
+      ["Dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
+      ["Valeurs", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
       [
         "Croyances limitantes",
         "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »).",
@@ -268,24 +212,30 @@ const PAGES = [
   },
 
   {
-    id: "w_injustice",
+    id: "w_abandon",
     type: "BLESSURE",
-    title: "Blessure : injustice",
-    subtitle: "Émotion : colère intérieure",
+    title: "Blessure : abandon",
+    subtitle: "Émotion : peur",
     grid: [
-      ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
-      ["Sentiments possibles (variations)", EMOTION_TO_SENTIMENTS.colere_interieure],
-      ["Origine", "Éducation stricte, froide, où l’amour dépend de la performance. Jugement/comparaison."],
+      ["Émotion racine", "Peur."],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
+      [
+        "Origine",
+        "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",
+      ],
       [
         "Masque / comportement",
-        "Masque du rigide. Perfectionnisme, dureté avec soi et les autres. Besoin de justice, refus de l’imperfection.",
+        "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. Enfantin. Peut dire qu’il se sent bien seul et qu’il n’a besoin de personne.",
       ],
-      ["Empathie (note)", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
-      ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
-      ["Valeurs de vie", "Justice, équité, intégrité, vérité."],
-      ["Conditionnements / dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
-      ["Croyances limitantes", "« Je dois toujours prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
-      ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée et indépendante de mes performances. »"],
+      ["Apathie / empathie", "Confond souvent empathie et fusion. Donne trop, dans l’espoir d’éviter d’être abandonné."],
+      ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool. Tout ce qui comble le vide intérieur."],
+      ["Dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
+      ["Valeurs", "Amour, proximité, lien, chaleur humaine, partage."],
+      ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
+      [
+        "Croyances expansives",
+        "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »",
+      ],
     ],
   },
 
@@ -296,7 +246,7 @@ const PAGES = [
     subtitle: "Émotion : dégoût",
     grid: [
       ["Émotion racine", "Dégoût."],
-      ["Sentiments possibles (variations)", EMOTION_TO_SENTIMENTS.degout],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.degout],
       [
         "Origine",
         "Honte, dévalorisation, humiliation dans l’enfance. Souvent liée à l’éducation stricte / regard social ou familial.",
@@ -305,16 +255,67 @@ const PAGES = [
         "Masque / comportement",
         "Masque du masochiste. Se rabaisser, se sacrifier, se punir. Regrets, remords, culpabilité. Anticipe les besoins des autres sans accord.",
       ],
-      ["Empathie (note)", "Freinée par la honte — peur de montrer sa vulnérabilité."],
+      ["Apathie / empathie", "Freinée par la honte — peur de montrer sa vulnérabilité."],
       ["Addictions", "Nourriture, sexualité, auto-sabotage. Excès pour compenser la honte."],
-      ["Valeurs de vie", "Respect, dignité, authenticité."],
-      ["Conditionnements / dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
+      ["Dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
+      ["Valeurs", "Respect, dignité, authenticité."],
       ["Croyances limitantes", "« Je ne mérite pas d’être heureux. » « Je dois porter la honte. »"],
       ["Croyances expansives", "« Je mérite le respect et la joie de vivre. » « Je peux exister avec dignité. »"],
     ],
   },
 
-  // COMPORTEMENTS — on conserve toutes les pages et contenus
+  {
+    id: "w_trahison",
+    type: "BLESSURE",
+    title: "Blessure : trahison",
+    subtitle: "Émotion : surprise",
+    grid: [
+      ["Émotion racine", "Surprise."],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
+      [
+        "Origine",
+        "Expérience de trahison réelle ou vécue comme telle (parent absent, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité.",
+      ],
+      ["Âge d’ancrage", "6–7 ans (indiqué)."],
+      [
+        "Masque / comportement",
+        "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise.",
+      ],
+      ["Apathie / empathie", "Méfiance, contrôle ou test permanent de l’autre."],
+      ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
+      ["Dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
+      ["Valeurs", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
+      [
+        "Croyances limitantes",
+        "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »",
+      ],
+      ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
+    ],
+  },
+
+  {
+    id: "w_injustice",
+    type: "BLESSURE",
+    title: "Blessure : injustice",
+    subtitle: "Émotion : colère intérieure",
+    grid: [
+      ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere_interieure],
+      ["Origine", "Éducation stricte, froide, où l’amour dépend de la performance. Jugement/comparaison."],
+      [
+        "Masque / comportement",
+        "Masque du rigide. Perfectionnisme, dureté avec soi et les autres. Besoin de justice, refus de l’imperfection.",
+      ],
+      ["Apathie / empathie", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
+      ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
+      ["Dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
+      ["Valeurs", "Justice, équité, intégrité, vérité."],
+      ["Croyances limitantes", "« Je dois toujours prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
+      ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée et indépendante de mes performances. »"],
+    ],
+  },
+
+  // COMPORTEMENTS
   {
     id: "ref_addictions",
     type: "REF",
@@ -328,9 +329,27 @@ const PAGES = [
     ],
   },
 
-  { id: "ref_add_substances", type: "REF", title: "Addictions aux substances", subtitle: "Exemples", content: [{ kicker: "Liste", lead: "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }] },
-  { id: "ref_add_comportementales", type: "REF", title: "Addictions comportementales", subtitle: "Exemples", content: [{ kicker: "Liste", lead: "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }] },
-  { id: "ref_add_invisibles", type: "REF", title: "Addictions plus invisibles", subtitle: "Exemples", content: [{ kicker: "Liste", lead: "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }] },
+  {
+    id: "ref_add_substances",
+    type: "REF",
+    title: "Addictions aux substances",
+    subtitle: "Exemples",
+    content: [{ kicker: "Liste", lead: "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }],
+  },
+  {
+    id: "ref_add_comportementales",
+    type: "REF",
+    title: "Addictions comportementales",
+    subtitle: "Exemples",
+    content: [{ kicker: "Liste", lead: "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }],
+  },
+  {
+    id: "ref_add_invisibles",
+    type: "REF",
+    title: "Addictions plus invisibles",
+    subtitle: "Exemples",
+    content: [{ kicker: "Liste", lead: "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }],
+  },
 
   {
     id: "ref_valeurs",
@@ -389,8 +408,25 @@ const PAGES = [
     ],
   },
 
-  // RÉFÉRENCE
-  { id: "ref_sources", type: "REF", title: "Référence", subtitle: "Source mentionnée", content: [{ kicker: "Référence", lead: "Blessures / émotions : Lise Bourbeau (mention du support)." }] },
+  // RÉFÉRENCE — précis et minimal
+  {
+    id: "ref_sources",
+    type: "REF",
+    title: "Références",
+    subtitle: "Ce qui est repris / ce qui appartient à la Méthode FIDES",
+    content: [
+      {
+        kicker: "Source",
+        lead:
+          "La typologie des cinq blessures (rejet, abandon, humiliation, trahison, injustice) et les masques associés (fuyant, dépendant, masochiste, contrôlant, rigide) s’inspire des travaux de Lise Bourbeau, notamment dans l’ouvrage « Les 5 blessures qui empêchent d’être soi-même ».",
+      },
+      {
+        kicker: "Méthode",
+        lead:
+          "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes et expansives font partie de la Méthode FIDES.",
+      },
+    ],
+  },
 ];
 
 /* ---------------------------- Navigation (UI) ----------------------------- */
@@ -400,5 +436,5 @@ const NAV = [
   { section: "Bases", items: ["socle_confort", "socle_blessures", "socle_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
   { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_valeurs_listes", "ref_dogmes", "ref_dogmes_listes"] },
-  { section: "Référence", items: ["ref_sources"] },
+  { section: "Références", items: ["ref_sources"] },
 ];
