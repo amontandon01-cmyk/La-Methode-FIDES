@@ -1,8 +1,10 @@
-/* app.js — refactor technique + slugs d’URL + home non cliquable
+/* app.js — refactor technique + slugs d’URL + home non cliquable + mobile menu pack 2
    Objectifs :
    - Les tuiles de la home ne naviguent plus (non cliquables, aucun ajout ailleurs)
    - Hash “sexy” via slugs (alias) : #bases-empathie, #blessures-rejet, etc.
    - Compatibilité : anciens ids (#socle_empathie) => remplacés par le slug canonique
+   - Menu mobile amélioré : header dans le drawer + bouton fermer + sections repliables (accordion)
+   - Après navigation : scroll du contenu en haut (mobile-friendly)
    - Bonnes pratiques : templates HTML, types stricts, validation debug
 */
 
@@ -20,9 +22,7 @@ const PAGE_TYPES = Object.freeze({
 const DEFAULT_PAGE_ID = "home";
 
 /* ------------------------------ Routes (slugs) ------------------------------ */
-/* Slug -> Page ID
-   But : URLs lisibles et stables.
-*/
+
 const SLUG_TO_PAGE_ID = Object.freeze({
   "vue-densemble": "home",
 
@@ -84,22 +84,18 @@ function getPage(id) {
 }
 
 function normalizeHash(rawHash) {
-  // "#xxx" => "xxx"
   const h = (rawHash || "").trim();
   if (!h) return "";
   return h.startsWith("#") ? h.slice(1) : h;
 }
 
 function resolveRouteToPageId(routeToken) {
-  // 1) slug connu ?
   if (SLUG_TO_PAGE_ID[routeToken] && getPage(SLUG_TO_PAGE_ID[routeToken])) {
     return SLUG_TO_PAGE_ID[routeToken];
   }
-  // 2) compat : ancien id direct ?
   if (getPage(routeToken)) {
     return routeToken;
   }
-  // 3) fallback
   return DEFAULT_PAGE_ID;
 }
 
@@ -111,22 +107,44 @@ function getCurrentPageIdFromLocation() {
 function setHashToSlug(slug, { replace = false } = {}) {
   const next = "#" + slug;
   if (replace) {
-    // évite d’empiler l’historique lors de la canonicalisation
     history.replaceState(null, "", next);
   } else {
     location.hash = next;
   }
 }
 
+/* ------------------------------ Scroll UX ------------------------------ */
+
+let _pendingScrollTop = false;
+
+function scrollMainToTop() {
+  _pendingScrollTop = true;
+}
+
+function applyPendingScrollTop() {
+  if (!_pendingScrollTop) return;
+  _pendingScrollTop = false;
+  requestAnimationFrame(() => {
+    if (mainEl) mainEl.scrollTop = 0;
+  });
+}
+
+/* ------------------------------ Navigation actions ------------------------------ */
+
 function go(pageId) {
   const targetId = getPage(pageId) ? pageId : DEFAULT_PAGE_ID;
   const slug = getCanonicalSlugForPageId(targetId);
+  scrollMainToTop();
   setHashToSlug(slug, { replace: false });
 }
 
 function setMenu(open) {
   navEl.setAttribute("data-open", open ? "true" : "false");
   backdrop.setAttribute("data-open", open ? "true" : "false");
+
+  // Accessibilité
+  if (menuBtn) menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  if (navEl) navEl.setAttribute("aria-hidden", open ? "false" : "true");
 }
 
 /* ------------------------------ Dev validation ------------------------------ */
@@ -145,7 +163,6 @@ function isDebugMode() {
 }
 
 function validateData() {
-  // 1) unicité des IDs
   const seen = new Set();
   const dupes = new Set();
   for (const p of PAGES) {
@@ -154,7 +171,6 @@ function validateData() {
   }
   if (dupes.size) console.warn("[FIDES] IDs dupliqués dans PAGES:", Array.from(dupes));
 
-  // 2) NAV -> pages existantes
   const missing = [];
   for (const group of NAV) {
     for (const id of group.items) {
@@ -163,7 +179,6 @@ function validateData() {
   }
   if (missing.length) console.warn("[FIDES] NAV référence des pages manquantes:", missing);
 
-  // 3) Slugs -> pages existantes
   const badSlugs = [];
   for (const slug of Object.keys(SLUG_TO_PAGE_ID)) {
     const id = SLUG_TO_PAGE_ID[slug];
@@ -189,7 +204,6 @@ function cardHtml({ kicker, lead, text, bullets }) {
 }
 
 function tileHtml({ title, desc }) {
-  // Home non cliquable : pas de data-go, pas d’évènement
   return (
     '<div class="mapTile" role="group" aria-label="' +
     escapeHTML(title) +
@@ -217,6 +231,24 @@ function woundRowHtml(label, value) {
   );
 }
 
+/* ------------------------------ Menu mobile header ------------------------------ */
+
+function ensureNavHeader() {
+  // Le header doit rester en haut du <nav>
+  if (navEl.querySelector(".navHeader")) return;
+
+  const header = document.createElement("div");
+  header.className = "navHeader";
+  header.innerHTML =
+    '<div class="navHeaderTitle">Menu</div>' +
+    '<button type="button" class="navCloseBtn" id="navCloseBtn" aria-label="Fermer le menu">✕</button>';
+
+  navEl.prepend(header);
+
+  const closeBtn = header.querySelector("#navCloseBtn");
+  if (closeBtn) closeBtn.addEventListener("click", () => setMenu(false));
+}
+
 /* ------------------------------ Interactions ----------------------------- */
 
 menuBtn.addEventListener("click", () => {
@@ -234,11 +266,28 @@ logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
 
 function renderNav(currentId) {
   navEl.innerHTML = "";
+  ensureNavHeader();
+
+  const activeSectionName =
+    (NAV.find((g) => (g.items || []).includes(currentId)) || {}).section || "";
 
   for (const group of NAV) {
     const wrap = document.createElement("div");
     wrap.className = "navSection";
-    wrap.innerHTML = '<div class="navTitle">' + escapeHTML(group.section) + "</div>";
+
+    const isOpenByDefault = group.section === activeSectionName;
+    wrap.setAttribute("data-open", isOpenByDefault ? "true" : "false");
+
+    const sectionBtn = document.createElement("button");
+    sectionBtn.type = "button";
+    sectionBtn.className = "navSectionBtn";
+    sectionBtn.setAttribute("aria-expanded", isOpenByDefault ? "true" : "false");
+    sectionBtn.innerHTML =
+      '<span>' + escapeHTML(group.section) + '</span>' +
+      '<span class="navChevron">›</span>';
+
+    const itemsWrap = document.createElement("div");
+    itemsWrap.className = "navItems";
 
     for (const id of group.items) {
       const p = getPage(id);
@@ -260,9 +309,24 @@ function renderNav(currentId) {
         setMenu(false);
       });
 
-      wrap.appendChild(btn);
+      itemsWrap.appendChild(btn);
     }
 
+    sectionBtn.addEventListener("click", () => {
+      const willOpen = wrap.getAttribute("data-open") !== "true";
+
+      navEl.querySelectorAll(".navSection").forEach((sec) => {
+        sec.setAttribute("data-open", "false");
+        const b = sec.querySelector(".navSectionBtn");
+        if (b) b.setAttribute("aria-expanded", "false");
+      });
+
+      wrap.setAttribute("data-open", willOpen ? "true" : "false");
+      sectionBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+
+    wrap.appendChild(sectionBtn);
+    wrap.appendChild(itemsWrap);
     navEl.appendChild(wrap);
   }
 }
@@ -348,12 +412,7 @@ function renderRef(page) {
 function canonicalizeUrlIfNeeded(pageId) {
   const currentToken = normalizeHash(location.hash);
   const canonicalSlug = getCanonicalSlugForPageId(pageId);
-
-  // Si on est déjà sur le slug canonique, ok.
   if (currentToken === canonicalSlug) return;
-
-  // Si l’utilisateur a mis un ancien id (#socle_empathie), on remplace par le slug sans ajouter d’historique.
-  // Si hash vide, on met aussi la version canonique.
   setHashToSlug(canonicalSlug, { replace: true });
 }
 
@@ -385,6 +444,8 @@ function render() {
       renderHome();
       break;
   }
+
+  applyPendingScrollTop();
 }
 
 /* ------------------------------ Boot ------------------------------ */
@@ -393,7 +454,6 @@ if (isDebugMode()) validateData();
 
 window.addEventListener("hashchange", render);
 
-// Init : si pas de hash, on met directement le slug canonique de la home
 if (!location.hash) {
   setHashToSlug(getCanonicalSlugForPageId(DEFAULT_PAGE_ID), { replace: true });
 }
