@@ -505,37 +505,44 @@ function renderNav(currentId) {
 
 function renderHome() {
   const tiles = [
-    { title: "Commencer par les Socles", id: "socle_confort", desc: "Confort → Peur → Apprentissage → Expansion." },
-    { title: "Cadre des blessures", id: "socle_blessures", desc: "Apathie = fermeture protectrice ; empathie = réouverture." },
-    { title: "Identifier les blessures", id: "w_joie", desc: "Émotion racine → sentiments possibles (variations)." },
-    { title: "Comportements", id: "ref_addictions", desc: "Addictions, valeurs, dogmes." },
+    {
+      title: "Socles",
+      id: "socle_confort",
+      desc: "Comprendre le cadre : zones (confort → peur → apprentissage → expansion) et bases des blessures.",
+    },
+    {
+      title: "Blessures",
+      id: "w_joie",
+      desc: "Lire une blessure : émotion racine → sentiments possibles → masque → apathie → croyances.",
+    },
+    {
+      title: "Comportements",
+      id: "ref_addictions",
+      desc: "Relier le vécu aux mécanismes : addictions, valeurs, dogmes (ce qui oriente les choix).",
+    },
+    {
+      title: "Empathie (impacts)",
+      id: "impact_empathie",
+      desc: "Voir les effets concrets : absence d’empathie (apathie) vs empathie (bénéfices).",
+    },
   ];
 
   mainEl.innerHTML =
     '<div class="card">' +
-    '<div class="kicker">Sommaire</div>' +
-    '<div class="lead">Support de formation — La méthode FIDES</div>' +
-    "<p>Comprendre les socles, identifier les blessures, observer les comportements.</p>" +
-    "</div>" +
+      '<div class="kicker">Vue d’ensemble</div>' +
+      '<div class="lead">Support de formation — La méthode FIDES</div>' +
+      '<p>But pédagogique : poser le cadre, identifier une blessure à partir de l’émotion et des sentiments, puis relier les comportements observables (addictions, valeurs, dogmes) aux impacts relationnels.</p>' +
+    '</div>' +
     '<div class="mapGrid">' +
-    tiles
-      .map(
-        (t) =>
-          '<div class="mapTile" data-go="' +
-          escapeHTML(t.id) +
-          '">' +
-          "<h3>" +
-          escapeHTML(t.title) +
-          "</h3>" +
-          "<p>" +
-          escapeHTML(t.desc) +
-          "</p>" +
-          "</div>"
-      )
-      .join("") +
-    "</div>";
+      tiles.map(t =>
+        '<div class="mapTile" data-go="' + escapeHTML(t.id) + '">' +
+          '<h3>' + escapeHTML(t.title) + '</h3>' +
+          '<p>' + escapeHTML(t.desc) + '</p>' +
+        '</div>'
+      ).join("") +
+    '</div>';
 
-  mainEl.querySelectorAll(".mapTile").forEach((el) => {
+  mainEl.querySelectorAll(".mapTile").forEach(el => {
     el.addEventListener("click", () => go(el.dataset.go));
   });
 }
