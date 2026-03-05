@@ -105,9 +105,9 @@ function renderHome() {
       desc: "Relier le vécu aux mécanismes : addictions, valeurs, dogmes (ce qui oriente les choix).",
     },
     {
-      title: "Empathie (impacts)",
-      id: "impact_empathie",
-      desc: "Voir les effets concrets : absence d’empathie (apathie) vs empathie (bénéfices).",
+      title: "Empathie",
+      id: "socle_empathie",
+      desc: "Comprendre l’empathie et voir ses effets concrets : apathie (impacts) vs empathie (bénéfices).",
     },
   ];
 
