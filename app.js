@@ -114,9 +114,21 @@ function renderHome() {
   mainEl.innerHTML =
     '<div class="card">' +
       '<div class="kicker">Vue d’ensemble</div>' +
-      '<div class="lead">Support de formation — La méthode FIDES</div>' +
+      '<div class="lead">Support de formation — La Méthode FIDES</div>' +
       '<p>But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner.</p>' +
     '</div>' +
+
+    '<div class="card">' +
+      '<div class="kicker">Parcours pédagogique</div>' +
+      '<div class="lead">Un chemin en 4 étapes</div>' +
+      '<ul>' +
+        '<li>1. Comprendre le cadre (bases)</li>' +
+        '<li>2. Identifier la blessure</li>' +
+        '<li>3. Observer les comportements</li>' +
+        '<li>4. Libérer les croyances</li>' +
+      '</ul>' +
+    '</div>' +
+
     '<div class="mapGrid">' +
       tiles.map(t =>
         '<div class="mapTile" data-go="' + escapeHTML(t.id) + '">' +
@@ -186,7 +198,7 @@ function render() {
   const id = getRoute();
   const page = getPage(id) || getPage("home");
 
-  pageTitle.textContent = page.title || "La méthode FIDES";
+  pageTitle.textContent = page.title || "La Méthode FIDES";
   pageSubtitle.textContent = page.subtitle || "";
 
   renderNav(page.id);
