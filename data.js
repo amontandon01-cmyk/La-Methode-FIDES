@@ -100,7 +100,7 @@ const PAGES = [
     ],
   },
 
-  // EMPATHIE (socle + impacts)
+  // EMPATHIE (socle + impacts fusionnés)
   {
     id: "socle_empathie",
     type: "SOCLE",
@@ -128,18 +128,11 @@ const PAGES = [
         ],
       },
       { kicker: "Message clé", lead: "L’empathie est naturelle, mais elle est voilée par nos blessures." },
-    ],
-  },
 
-  {
-    id: "impact_apathie",
-    type: "REF",
-    title: "Conséquences de l’absence d’empathie (apathie)",
-    subtitle: "Impacts personnels, relationnels, sociaux",
-    content: [
+      // Impacts — repris sans perte depuis impact_apathie
       {
         kicker: "Conséquences",
-        lead: "Synthèse (support)",
+        lead: "Conséquences de l’absence d’empathie (apathie) — Synthèse (support)",
         bullets: [
           "Bien-être personnel fragilisé : sentiment de vide, anxiété, isolement émotionnel, perte de confiance.",
           "Fermeture aux autres : indifférence, incapacité d’aider, égocentrisme.",
@@ -153,18 +146,11 @@ const PAGES = [
           "Impact existentiel : difficulté à donner du sens, blocage intérieur, repli sur ses peurs.",
         ],
       },
-    ],
-  },
 
-  {
-    id: "impact_empathie",
-    type: "REF",
-    title: "Conséquences positives de l’empathie",
-    subtitle: "Bénéfices personnels, relationnels, collectifs",
-    content: [
+      // Impacts — repris sans perte depuis impact_empathie
       {
         kicker: "Conséquences positives",
-        lead: "Synthèse (support)",
+        lead: "Conséquences positives de l’empathie — Synthèse (support)",
         bullets: [
           "Bien-être personnel : plus de satisfaction de vie, confiance en soi.",
           "Croissance personnelle : estime de soi, réduction du stress, envie de s’engager.",
@@ -328,7 +314,7 @@ const PAGES = [
     ],
   },
 
-  // COMPORTEMENTS (ex-Addictions / Valeurs / Dogmes) — on conserve toutes les pages et contenus
+  // COMPORTEMENTS — on conserve toutes les pages et contenus
   {
     id: "ref_addictions",
     type: "REF",
@@ -408,15 +394,11 @@ const PAGES = [
 ];
 
 /* ---------------------------- Navigation (UI) ----------------------------- */
-/* Sentiments fusionnés : on ne liste plus les pages ref_sentiments_* dans le menu.
-   Le contenu est réinjecté dans les pages blessures via la ligne "Sentiments possibles (variations)".
-*/
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
   { section: "Bases", items: ["socle_confort", "socle_blessures", "socle_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
   { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_valeurs_listes", "ref_dogmes", "ref_dogmes_listes"] },
-  { section: "Empathie (impacts)", items: ["impact_apathie", "impact_empathie"] },
   { section: "Référence", items: ["ref_sources"] },
 ];
