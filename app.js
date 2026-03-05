@@ -168,22 +168,22 @@ const PAGES = [
   },
 
   // RÉFÉRENTIELS
-  { id:"ref_sentiments_expansifs", type:"REF", title:"Sentiments agréables / expansifs", subtitle:"Liste",
+  { id:"ref_sentiments_expansifs", type:"REF", title:"Sentiments agréables / expansifs",
     content: [{ kicker:"Liste", lead:"Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement." }]
   },
-  { id:"ref_peur_insecurite", type:"REF", title:"Sentiments liés à la peur et à l’insécurité", subtitle:"Liste",
+  { id:"ref_peur_insecurite", type:"REF", title:"Sentiments liés à la peur et à l’insécurité",
     content: [{ kicker:"Liste", lead:"Anxiété, Inquiétude, Stress, Méfiance, Doute, Crainte, Panique, Impuissance, Inconfort, Tension, Sentiment d’insécurité." }]
   },
-  { id:"ref_colere_frustration", type:"REF", title:"Sentiments liés à la colère et la frustration", subtitle:"Liste",
+  { id:"ref_colere_frustration", type:"REF", title:"Sentiments liés à la colère et la frustration",
     content: [{ kicker:"Liste", lead:"Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût." }]
   },
-  { id:"ref_tristesse_perte", type:"REF", title:"Sentiments liés à la tristesse et la perte", subtitle:"Liste",
+  { id:"ref_tristesse_perte", type:"REF", title:"Sentiments liés à la tristesse et la perte",
     content: [{ kicker:"Liste", lead:"Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures." }]
   },
-  { id:"ref_injustice_humiliation", type:"REF", title:"Sentiments liés à l’injustice et à l’humiliation", subtitle:"Liste",
+  { id:"ref_injustice_humiliation", type:"REF", title:"Sentiments liés à l’injustice et à l’humiliation",
     content: [{ kicker:"Liste", lead:"Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité, Injustice, Rigidité intérieure." }]
   },
-  { id:"ref_ouverture_connexion", type:"REF", title:"Sentiments d’ouverture et de connexion", subtitle:"Liste",
+  { id:"ref_ouverture_connexion", type:"REF", title:"Sentiments d’ouverture et de connexion",
     content: [{ kicker:"Liste", lead:"Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré." }]
   },
 
@@ -196,13 +196,13 @@ const PAGES = [
     ]
   },
 
-  { id:"ref_add_substances", type:"REF", title:"Addictions aux substances", subtitle:"Liste",
+  { id:"ref_add_substances", type:"REF", title:"Addictions aux substances",
     content: [{ kicker:"Liste", lead:"Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }]
   },
-  { id:"ref_add_comportementales", type:"REF", title:"Addictions comportementales", subtitle:"Liste",
+  { id:"ref_add_comportementales", type:"REF", title:"Addictions comportementales",
     content: [{ kicker:"Liste", lead:"Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }]
   },
-  { id:"ref_add_invisibles", type:"REF", title:"Addictions plus invisibles", subtitle:"Liste",
+  { id:"ref_add_invisibles", type:"REF", title:"Addictions plus invisibles",
     content: [{ kicker:"Liste", lead:"Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }]
   },
 
