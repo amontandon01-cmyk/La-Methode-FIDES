@@ -47,7 +47,7 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
 
 const PAGES = [
   // ACCUEIL
-  { id: "home", type: "HOME", title: "Vue d’ensemble", subtitle: "Socles • Blessures • Comportements" },
+  { id: "home", type: "HOME", title: "Vue d’ensemble", subtitle: "Bases • Blessures • Comportements" },
 
   // SOCLES
   {
@@ -347,9 +347,9 @@ const PAGES = [
     ],
   },
 
-  { id: "ref_add_substances", type: "REF", title: "Addictions aux substances", content: [{ kicker: "Liste", lead: "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }] },
-  { id: "ref_add_comportementales", type: "REF", title: "Addictions comportementales", content: [{ kicker: "Liste", lead: "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }] },
-  { id: "ref_add_invisibles", type: "REF", title: "Addictions plus invisibles", content: [{ kicker: "Liste", lead: "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }] },
+  { id: "ref_add_substances", type: "REF", title: "Addictions aux substances", subtitle: "Exemples", content: [{ kicker: "Liste", lead: "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }] },
+  { id: "ref_add_comportementales", type: "REF", title: "Addictions comportementales", subtitle: "Exemples", content: [{ kicker: "Liste", lead: "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }] },
+  { id: "ref_add_invisibles", type: "REF", title: "Addictions plus invisibles", subtitle: "Exemples", content: [{ kicker: "Liste", lead: "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }] },
 
   {
     id: "ref_valeurs",
@@ -419,7 +419,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Socles", items: ["socle_confort", "socle_blessures", "socle_empathie"] },
+  { section: "Bases", items: ["socle_confort", "socle_blessures", "socle_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
   { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_valeurs_listes", "ref_dogmes", "ref_dogmes_listes"] },
   { section: "Empathie (impacts)", items: ["impact_apathie", "impact_empathie"] },
@@ -506,7 +506,7 @@ function renderNav(currentId) {
 function renderHome() {
   const tiles = [
     {
-      title: "Socles",
+      title: "Bases",
       id: "socle_confort",
       desc: "Comprendre le cadre : zones (confort → peur → apprentissage → expansion) et bases des blessures.",
     },
@@ -531,7 +531,7 @@ function renderHome() {
     '<div class="card">' +
       '<div class="kicker">Vue d’ensemble</div>' +
       '<div class="lead">Support de formation — La méthode FIDES</div>' +
-      '<p>But pédagogique : poser le cadre, identifier une blessure à partir de l’émotion et des sentiments, puis relier les comportements observables (addictions, valeurs, dogmes) aux impacts relationnels.</p>' +
+      '<p>But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner.</p>' +
     '</div>' +
     '<div class="mapGrid">' +
       tiles.map(t =>
