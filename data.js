@@ -394,15 +394,43 @@ const PAGES = [
   id: "ref_valeurs",
   type: "REF",
   title: "Valeurs de vie",
-  subtitle: "Définition & repères",
+  subtitle: "Repères & piliers",
   grid: [
     [
       "Définition",
       "Repères intérieurs qui guident nos choix."
     ],
     [
-      "Exemples",
-      "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi."
+      "Repère central",
+      "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre."
+    ],
+    [
+      "4 piliers universels",
+      "Santé, famille/proches, argent/sécurité financière, amour/relations."
+    ],
+    [
+      "Valeurs personnelles",
+      "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre."
+    ],
+    [
+      "Valeurs relationnelles et familiales",
+      "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage."
+    ],
+    [
+      "Valeurs matérielles et financières",
+      "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel."
+    ],
+    [
+      "Valeurs liées à la vie et au corps",
+      "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre."
+    ],
+    [
+      "Valeurs de réalisation et contribution",
+      "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité."
+    ],
+    [
+      "Valeurs spirituelles et existentielles",
+      "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie."
     ],
     [
       "Travail pratique",
@@ -414,36 +442,47 @@ const PAGES = [
     ],
   ],
 },
-
-  {
-    id: "ref_valeurs_listes",
-    type: "REF",
-    title: "Valeurs de vie",
-    subtitle: "Piliers + exemples",
-    grid: [
-      ["4 piliers universels", "Santé, famille/proches, argent/sécurité financière, amour/relations."],
-      ["Valeurs personnelles", "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre."],
-      ["Valeurs relationnelles et familiales", "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage."],
-      ["Valeurs matérielles et financières", "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel."],
-      ["Valeurs liées à la vie et au corps", "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre."],
-      ["Valeurs de réalisation et contribution", "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité."],
-      ["Valeurs spirituelles et existentielles", "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie."],
-    ],
-  },
-
 {
   id: "ref_dogmes",
   type: "REF",
   title: "Conditionnements & dogmes",
-  subtitle: "Définition + exemples",
+  subtitle: "Repères & tendances",
   grid: [
     [
       "Définition",
       "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements."
     ],
     [
-      "Exemples",
-      "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »"
+      "Repère central",
+      "Un conditionnement agit comme une règle intériorisée qui influence nos réactions, souvent sans que nous en ayons conscience."
+    ],
+    [
+      "Familiaux",
+      "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..."
+    ],
+    [
+      "Sociaux et culturels",
+      "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..."
+    ],
+    [
+      "Religieux et spirituels",
+      "« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ..."
+    ],
+    [
+      "Genre et rôle social",
+      "« Un homme ne pleure pas. » « Une femme doit être parfaite. » ..."
+    ],
+    [
+      "Éducatifs et scolaires",
+      "« Si tu échoues, tu es nul. » « L’erreur est interdite. » ..."
+    ],
+    [
+      "Psychologiques et relationnels",
+      "« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » ..."
+    ],
+    [
+      "Intérieurs (auto-dogmes)",
+      "« Je dois être parfait pour avoir de la valeur. » « Je ne suis pas assez bien. » ..."
     ],
     [
       "Message clé",
@@ -451,23 +490,6 @@ const PAGES = [
     ],
   ],
 },
-
-  {
-    id: "ref_dogmes_listes",
-    type: "REF",
-    title: "Conditionnements & dogmes",
-    subtitle: "Grandes tendances",
-    grid: [
-      ["Familiaux", "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..."],
-      ["Sociaux et culturels", "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..."],
-      ["Religieux et spirituels", "« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ..."],
-      ["Genre et rôle social", "« Un homme ne pleure pas. » « Une femme doit être parfaite. » ..."],
-      ["Éducatifs et scolaires", "« Si tu échoues, tu es nul. » « L’erreur est interdite. » ..."],
-      ["Psychologiques et relationnels", "« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » ..."],
-      ["Intérieurs (auto-dogmes)", "« Je dois être parfait pour avoir de la valeur. » « Je ne suis pas assez bien. » ..."],
-    ],
-  },
-
   // RÉFÉRENCES
   {
     id: "ref_sources",
