@@ -366,7 +366,7 @@ const PAGES = [
     id: "ref_add_substances",
     type: "REF",
     title: "Addictions aux substances",
-    subtitle: "Exemples",
+    subtitle: "Manifestations visibles",
     grid: [
       ["Liste", "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre."],
     ],
@@ -376,7 +376,7 @@ const PAGES = [
     id: "ref_add_comportementales",
     type: "REF",
     title: "Addictions comportementales",
-    subtitle: "Exemples",
+    subtitle: "Manifestations concrètes",
     grid: [
       ["Liste", "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation."],
     ],
@@ -386,7 +386,7 @@ const PAGES = [
     id: "ref_add_invisibles",
     type: "REF",
     title: "Addictions plus invisibles",
-    subtitle: "Exemples",
+    subtitle: "Manifestations discrètes",
     grid: [
       ["Liste", "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."],
     ],
@@ -458,7 +458,7 @@ const PAGES = [
     id: "ref_dogmes_listes",
     type: "REF",
     title: "Conditionnements & dogmes",
-    subtitle: "Catégories",
+    subtitle: "Grandes tendances",
     grid: [
       ["Familiaux", "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..."],
       ["Sociaux et culturels", "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..."],
@@ -478,12 +478,16 @@ const PAGES = [
     subtitle: "Source",
     grid: [
       [
-        "Autre",
-        "La typologie des cinq blessures (rejet, abandon, humiliation, trahison, injustice) et les masques associés (fuyant, dépendant, masochiste, contrôlant, rigide) s’inspire des travaux de Lise Bourbeau, notamment dans l’ouvrage « Les 5 blessures qui empêchent d’être soi-même ».",
+        "Source d’inspiration",
+        "La lecture des cinq blessures fondamentales — rejet, abandon, humiliation, trahison et injustice — ainsi que des masques relationnels qui leur sont classiquement associés, trouve un appui dans les travaux de Lise Bourbeau, en particulier dans l’ouvrage Les 5 blessures qui empêchent d’être soi-même.",
       ],
       [
-        "La Méthode FIDES",
-        "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes font partie de la Méthode FIDES.",
+        "Élaboration de la Méthode FIDES",
+        "La structuration pédagogique présentée sur ce site, l’identification des émotions racines, l’articulation entre blessures, comportements compensatoires, valeurs de vie, conditionnements, dogmes de comportement et croyances limitantes relèvent de la Méthode FIDES.",
+      ],
+      [
+        "Protection et usage",
+        "Copyright, tous droits réservés. La méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",
       ],
     ],
   },
