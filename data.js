@@ -398,11 +398,15 @@ const PAGES = [
   grid: [
     [
       "Définition",
-      "Repères intérieurs qui guident nos choix."
+      "Repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre."
     ],
     [
       "Repère central",
       "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre."
+    ],
+    [
+      "Exemples",
+      "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure."
     ],
     [
       "4 piliers universels",
@@ -434,7 +438,7 @@ const PAGES = [
     ],
     [
       "Travail pratique",
-      "Identifier ses valeurs prioritaires et vérifier l’alignement actions/valeurs."
+      "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont alignés avec elles."
     ],
     [
       "Message clé",
@@ -450,11 +454,15 @@ const PAGES = [
   grid: [
     [
       "Définition",
-      "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements."
+      "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui influencent nos comportements, souvent sans que nous en ayons conscience."
     ],
     [
       "Repère central",
       "Un conditionnement agit comme une règle intériorisée qui influence nos réactions, souvent sans que nous en ayons conscience."
+    ],
+    [
+      "Exemples",
+      "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. » « Sois sage et tais-toi. » « L’erreur est interdite. » « Si tu dis non, on ne t’aimera plus. »"
     ],
     [
       "Familiaux",
