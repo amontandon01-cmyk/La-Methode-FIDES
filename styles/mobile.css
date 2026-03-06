@@ -26,7 +26,7 @@
   }
 
   .content{
-    grid-template-columns: 1fr;
+    display: block;
     min-height: auto;
   }
 
@@ -47,6 +47,7 @@
     border-right: none;
     padding: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -153,23 +154,33 @@
   }
 
   main{
+    display:block;
     width: 100%;
+    max-width: 100%;
     padding: 12px;
+    margin: 0;
   }
 
-  .scrollArea{
+  /* IMPORTANT : séparer menu et contenu */
+  nav.scrollArea{
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100dvh;
+    padding-right: 0;
+    scrollbar-gutter: auto;
+  }
+
+  main.scrollArea{
     overflow: visible;
     min-height: auto;
     padding-right: 0;
     scrollbar-gutter: auto;
   }
 
-  main.scrollArea,
-  nav.scrollArea{
-    padding-right: 0;
-  }
-
   .card{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     padding: 10px;
     margin-bottom: 8px;
   }
@@ -194,11 +205,15 @@
   }
 
   .mapGrid{
+    display:grid;
     grid-template-columns: 1fr;
     gap: 8px;
+    width: 100%;
   }
 
   .mapTile{
+    width: 100%;
+    margin: 0;
     padding: 10px;
     border-radius: 14px;
   }
@@ -214,10 +229,14 @@
   }
 
   .woundGrid{
+    display:grid;
     gap: 8px;
+    width: 100%;
   }
 
   .row{
+    width: 100%;
+    margin: 0;
     grid-template-columns: 1fr;
     gap: 8px;
     padding: 10px;
