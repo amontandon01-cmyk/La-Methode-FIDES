@@ -1,5 +1,10 @@
-/* data.js — données (refactor pédagogique)
-   Contient uniquement : SENTIMENTS, joinSentiments, EMOTION_TO_SENTIMENTS, PAGES, NAV
+/* data.js — données pédagogiques
+   Contient :
+   - SENTIMENTS
+   - joinSentiments
+   - EMOTION_TO_SENTIMENTS
+   - PAGES
+   - NAV
 */
 
 "use strict";
@@ -22,7 +27,7 @@ const SENTIMENTS = Object.freeze({
 });
 
 function joinSentiments(...keys) {
-  return keys.map((k) => SENTIMENTS[k]).join(" ");
+  return keys.map((key) => SENTIMENTS[key]).join(" ");
 }
 
 const EMOTION_TO_SENTIMENTS = Object.freeze({
@@ -38,12 +43,17 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
 
 const PAGES = [
   // ACCUEIL
-  { id: "home", type: "HOME", title: "Vue d’ensemble", subtitle: "Bases • Blessures • Comportements" },
+  {
+    id: "home",
+    type: "HOME",
+    title: "Vue d’ensemble",
+    subtitle: "Bases • Blessures • Comportements",
+  },
 
   // BASES
   {
-    id: "socle_confort",
-    type: "SOCLE",
+    id: "base_confort",
+    type: "BASE",
     title: "Le cercle de la zone de confort",
     subtitle: "Confort → Peur → Apprentissage → Expansion",
     content: [
@@ -66,8 +76,8 @@ const PAGES = [
   },
 
   {
-    id: "socle_blessures",
-    type: "SOCLE",
+    id: "base_blessures",
+    type: "BASE",
     title: "Les blessures émotionnelles (cadre)",
     subtitle: "Apathie ↔ empathie",
     content: [
@@ -93,8 +103,6 @@ const PAGES = [
         lead: "Retrouver la connexion.",
         text: "Retrouver la connexion à soi, à l’autre et à la vie.",
       },
-
-      // (3) Pont Blessures → Comportements (une seule fois, dans la base)
       {
         kicker: "Lien avec les comportements",
         lead: "Ce que l’on observe dans le quotidien.",
@@ -104,10 +112,9 @@ const PAGES = [
     ],
   },
 
-  // EMPATHIE (socle + impacts fusionnés)
   {
-    id: "socle_empathie",
-    type: "SOCLE",
+    id: "base_empathie",
+    type: "BASE",
     title: "L’empathie",
     subtitle: "Résonance sans fusion",
     content: [
@@ -118,7 +125,10 @@ const PAGES = [
       {
         kicker: "Différences",
         lead: "Empathie / compassion / sympathie",
-        bullets: ["Empathie vs compassion : l’une ressent, l’autre agit.", "Empathie vs sympathie : l’une écoute, l’autre se projette."],
+        bullets: [
+          "Empathie vs compassion : l’une ressent, l’autre agit.",
+          "Empathie vs sympathie : l’une écoute, l’autre se projette.",
+        ],
       },
       {
         kicker: "Freins (blessures)",
@@ -131,8 +141,10 @@ const PAGES = [
           "Abandon : besoin de combler son vide avant d’écouter.",
         ],
       },
-      { kicker: "Message clé", lead: "L’empathie est naturelle, mais elle est voilée par nos blessures." },
-
+      {
+        kicker: "Message clé",
+        lead: "L’empathie est naturelle, mais elle est voilée par nos blessures.",
+      },
       {
         kicker: "Conséquences",
         lead: "Conséquences de l’absence d’empathie (apathie) — Synthèse (support)",
@@ -170,7 +182,7 @@ const PAGES = [
     ],
   },
 
-  // BLESSURES — ordre harmonisé + suppression "(note)" et "(variations)"
+  // BLESSURES
   {
     id: "w_joie",
     type: "BLESSURE",
@@ -199,7 +211,10 @@ const PAGES = [
         "Masque / comportement",
         "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger. Caméléon, s’adapte. Tristesse non exprimée.",
       ],
-      ["Apathie / empathie", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet."],
+      [
+        "Apathie / empathie",
+        "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet.",
+      ],
       ["Addictions", "Isolement, écrans, alimentation compulsive discrète. Addictions solitaires."],
       ["Dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
       ["Valeurs", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
@@ -207,7 +222,10 @@ const PAGES = [
         "Croyances limitantes",
         "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »).",
       ],
-      ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »"],
+      [
+        "Croyances expansives",
+        "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »",
+      ],
     ],
   },
 
@@ -289,7 +307,10 @@ const PAGES = [
         "Croyances limitantes",
         "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »",
       ],
-      ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
+      [
+        "Croyances expansives",
+        "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »",
+      ],
     ],
   },
 
@@ -322,10 +343,22 @@ const PAGES = [
     title: "Addictions",
     subtitle: "Définition + typologies",
     content: [
-      { kicker: "Définition", lead: "Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)." },
-      { kicker: "Addictions visibles", lead: "Alcool, drogues, jeux, nourriture, sexe." },
-      { kicker: "Addictions invisibles", lead: "Perfectionnisme, contrôle, hyperactivité, réseaux sociaux." },
-      { kicker: "Message clé", lead: "L’addiction n’est pas une faute morale, mais un signe d’une émotion qui demande à être reconnue." },
+      {
+        kicker: "Définition",
+        lead: "Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.).",
+      },
+      {
+        kicker: "Addictions visibles",
+        lead: "Alcool, drogues, jeux, nourriture, sexe.",
+      },
+      {
+        kicker: "Addictions invisibles",
+        lead: "Perfectionnisme, contrôle, hyperactivité, réseaux sociaux.",
+      },
+      {
+        kicker: "Message clé",
+        lead: "L’addiction n’est pas une faute morale, mais un signe d’une émotion qui demande à être reconnue.",
+      },
     ],
   },
 
@@ -334,21 +367,29 @@ const PAGES = [
     type: "REF",
     title: "Addictions aux substances",
     subtitle: "Exemples",
-    content: [{ kicker: "Liste", lead: "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre." }],
+    grid: [
+      ["Liste", "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre."],
+    ],
   },
+
   {
     id: "ref_add_comportementales",
     type: "REF",
     title: "Addictions comportementales",
     subtitle: "Exemples",
-    content: [{ kicker: "Liste", lead: "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation." }],
+    grid: [
+      ["Liste", "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation."],
+    ],
   },
+
   {
     id: "ref_add_invisibles",
     type: "REF",
     title: "Addictions plus invisibles",
     subtitle: "Exemples",
-    content: [{ kicker: "Liste", lead: "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle." }],
+    grid: [
+      ["Liste", "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."],
+    ],
   },
 
   {
@@ -357,10 +398,22 @@ const PAGES = [
     title: "Valeurs de vie",
     subtitle: "Définition + repères",
     content: [
-      { kicker: "Définition", lead: "Repères intérieurs qui guident nos choix." },
-      { kicker: "Exemples", lead: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi." },
-      { kicker: "Travail pratique", lead: "Identifier ses valeurs prioritaires et vérifier l’alignement actions/valeurs." },
-      { kicker: "Message clé", lead: "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités." },
+      {
+        kicker: "Définition",
+        lead: "Repères intérieurs qui guident nos choix.",
+      },
+      {
+        kicker: "Exemples",
+        lead: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi.",
+      },
+      {
+        kicker: "Travail pratique",
+        lead: "Identifier ses valeurs prioritaires et vérifier l’alignement actions/valeurs.",
+      },
+      {
+        kicker: "Message clé",
+        lead: "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités.",
+      },
     ],
   },
 
@@ -369,14 +422,14 @@ const PAGES = [
     type: "REF",
     title: "Valeurs de vie (listes)",
     subtitle: "Piliers + exemples",
-    content: [
-      { kicker: "4 piliers universels", lead: "Santé, famille/proches, argent/sécurité financière, amour/relations." },
-      { kicker: "Valeurs personnelles", lead: "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre." },
-      { kicker: "Valeurs relationnelles et familiales", lead: "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage." },
-      { kicker: "Valeurs matérielles et financières", lead: "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel." },
-      { kicker: "Valeurs liées à la vie et au corps", lead: "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre." },
-      { kicker: "Valeurs de réalisation et contribution", lead: "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité." },
-      { kicker: "Valeurs spirituelles et existentielles", lead: "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie." },
+    grid: [
+      ["4 piliers universels", "Santé, famille/proches, argent/sécurité financière, amour/relations."],
+      ["Valeurs personnelles", "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre."],
+      ["Valeurs relationnelles et familiales", "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage."],
+      ["Valeurs matérielles et financières", "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel."],
+      ["Valeurs liées à la vie et au corps", "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre."],
+      ["Valeurs de réalisation et contribution", "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité."],
+      ["Valeurs spirituelles et existentielles", "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie."],
     ],
   },
 
@@ -386,9 +439,18 @@ const PAGES = [
     title: "Conditionnements et dogmes",
     subtitle: "Définition + exemples",
     content: [
-      { kicker: "Définition", lead: "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements." },
-      { kicker: "Exemples", lead: "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »" },
-      { kicker: "Message clé", lead: "La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher." },
+      {
+        kicker: "Définition",
+        lead: "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements.",
+      },
+      {
+        kicker: "Exemples",
+        lead: "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »",
+      },
+      {
+        kicker: "Message clé",
+        lead: "La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher.",
+      },
     ],
   },
 
@@ -397,34 +459,32 @@ const PAGES = [
     type: "REF",
     title: "Conditionnements & dogmes (listes)",
     subtitle: "Catégories",
-    content: [
-      { kicker: "Familiaux", lead: "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..." },
-      { kicker: "Sociaux et culturels", lead: "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..." },
-      { kicker: "Religieux et spirituels", lead: "« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ..." },
-      { kicker: "Genre et rôle social", lead: "« Un homme ne pleure pas. » « Une femme doit être parfaite. » ..." },
-      { kicker: "Éducatifs et scolaires", lead: "« Si tu échoues, tu es nul. » « L’erreur est interdite. » ..." },
-      { kicker: "Psychologiques et relationnels", lead: "« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » ..." },
-      { kicker: "Intérieurs (auto-dogmes)", lead: "« Je dois être parfait pour avoir de la valeur. » « Je ne suis pas assez bien. » ..." },
+    grid: [
+      ["Familiaux", "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..."],
+      ["Sociaux et culturels", "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..."],
+      ["Religieux et spirituels", "« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ..."],
+      ["Genre et rôle social", "« Un homme ne pleure pas. » « Une femme doit être parfaite. » ..."],
+      ["Éducatifs et scolaires", "« Si tu échoues, tu es nul. » « L’erreur est interdite. » ..."],
+      ["Psychologiques et relationnels", "« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » ..."],
+      ["Intérieurs (auto-dogmes)", "« Je dois être parfait pour avoir de la valeur. » « Je ne suis pas assez bien. » ..."],
     ],
   },
 
-  // RÉFÉRENCE — précis et minimal
+  // RÉFÉRENCES
   {
     id: "ref_sources",
     type: "REF",
     title: "Références",
     subtitle: "Source",
-    content: [
-      {
-        kicker: "Autre",
-        lead:
-          "La typologie des cinq blessures (rejet, abandon, humiliation, trahison, injustice) et les masques associés (fuyant, dépendant, masochiste, contrôlant, rigide) s’inspire des travaux de Lise Bourbeau, notamment dans l’ouvrage « Les 5 blessures qui empêchent d’être soi-même ».",
-      },
-      {
-        kicker: "La Méthode FIDES",
-        lead:
-          "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes font partie de la Méthode FIDES.",
-      },
+    grid: [
+      [
+        "Autre",
+        "La typologie des cinq blessures (rejet, abandon, humiliation, trahison, injustice) et les masques associés (fuyant, dépendant, masochiste, contrôlant, rigide) s’inspire des travaux de Lise Bourbeau, notamment dans l’ouvrage « Les 5 blessures qui empêchent d’être soi-même ».",
+      ],
+      [
+        "La Méthode FIDES",
+        "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes font partie de la Méthode FIDES.",
+      ],
     ],
   },
 ];
@@ -433,7 +493,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["socle_confort", "socle_blessures", "socle_empathie"] },
+  { section: "Bases", items: ["base_confort", "base_blessures", "base_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
   { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_valeurs_listes", "ref_dogmes", "ref_dogmes_listes"] },
   { section: "Références", items: ["ref_sources"] },
