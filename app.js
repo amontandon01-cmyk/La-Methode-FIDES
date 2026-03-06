@@ -1,11 +1,10 @@
-/* app.js — refactor technique + slugs d’URL + home non cliquable + mobile menu pack 2
-   Objectifs :
-   - Les tuiles de la home ne naviguent plus (non cliquables, aucun ajout ailleurs)
-   - Hash “sexy” via slugs (alias) : #bases-empathie, #blessures-rejet, etc.
-   - Compatibilité : anciens ids (#socle_empathie) => remplacés par le slug canonique
-   - Menu mobile amélioré : header dans le drawer + bouton fermer + sections repliables (accordion)
-   - Après navigation : scroll du contenu en haut (mobile-friendly)
-   - Bonnes pratiques : templates HTML, types stricts, validation debug
+/* app.js — version propre et minimale
+   Rôle :
+   - navigation par slugs lisibles
+   - rendu dynamique des pages
+   - menu mobile repliable
+   - Vue d’ensemble et Références directement cliquables
+   - compatibilité avec anciens ids
 */
 
 "use strict";
@@ -14,21 +13,22 @@
 
 const PAGE_TYPES = Object.freeze({
   HOME: "HOME",
-  SOCLE: "SOCLE",
+  BASE: "BASE",
   BLESSURE: "BLESSURE",
   REF: "REF",
 });
 
 const DEFAULT_PAGE_ID = "home";
+const SINGLE_LINK_SECTIONS = new Set(["Vue d’ensemble", "Références"]);
 
-/* ------------------------------ Routes (slugs) ------------------------------ */
+/* ------------------------------ Routes ------------------------------ */
 
 const SLUG_TO_PAGE_ID = Object.freeze({
   "vue-densemble": "home",
 
-  "bases-confort": "socle_confort",
-  "bases-blessures": "socle_blessures",
-  "bases-empathie": "socle_empathie",
+  "bases-confort": "base_confort",
+  "bases-blessures": "base_blessures",
+  "bases-empathie": "base_empathie",
 
   "blessures-joie": "w_joie",
   "blessures-rejet": "w_rejet",
@@ -50,28 +50,30 @@ const SLUG_TO_PAGE_ID = Object.freeze({
 });
 
 const PAGE_ID_TO_SLUG = Object.freeze(
-  Object.keys(SLUG_TO_PAGE_ID).reduce((acc, slug) => {
-    acc[SLUG_TO_PAGE_ID[slug]] = slug;
+  Object.entries(SLUG_TO_PAGE_ID).reduce((acc, [slug, pageId]) => {
+    acc[pageId] = slug;
     return acc;
   }, {})
 );
 
 function getCanonicalSlugForPageId(pageId) {
-  return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID] || "vue-densemble";
+  return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
 }
 
-/* ------------------------------ DOM helpers ------------------------------ */
+/* ------------------------------ DOM ------------------------------ */
 
 const navEl = document.getElementById("nav");
 const mainEl = document.getElementById("main");
-const pageTitle = document.getElementById("pageTitle");
-const pageSubtitle = document.getElementById("pageSubtitle");
+const pageTitleEl = document.getElementById("pageTitle");
+const pageSubtitleEl = document.getElementById("pageSubtitle");
 const menuBtn = document.getElementById("menuBtn");
 const backdrop = document.getElementById("backdrop");
 const logoBtn = document.getElementById("logoBtn");
 
-function escapeHTML(str) {
-  return String(str)
+/* ------------------------------ Helpers ------------------------------ */
+
+function escapeHTML(value) {
+  return String(value)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -79,23 +81,25 @@ function escapeHTML(str) {
     .replace(/'/g, "&#039;");
 }
 
-function getPage(id) {
-  return PAGES.find((p) => p.id === id);
+function getPage(pageId) {
+  return PAGES.find((page) => page.id === pageId);
 }
 
 function normalizeHash(rawHash) {
-  const h = (rawHash || "").trim();
-  if (!h) return "";
-  return h.startsWith("#") ? h.slice(1) : h;
+  const hash = (rawHash || "").trim();
+  if (!hash) return "";
+  return hash.startsWith("#") ? hash.slice(1) : hash;
 }
 
 function resolveRouteToPageId(routeToken) {
   if (SLUG_TO_PAGE_ID[routeToken] && getPage(SLUG_TO_PAGE_ID[routeToken])) {
     return SLUG_TO_PAGE_ID[routeToken];
   }
+
   if (getPage(routeToken)) {
     return routeToken;
   }
+
   return DEFAULT_PAGE_ID;
 }
 
@@ -105,49 +109,56 @@ function getCurrentPageIdFromLocation() {
 }
 
 function setHashToSlug(slug, { replace = false } = {}) {
-  const next = "#" + slug;
+  const nextHash = "#" + slug;
+
   if (replace) {
-    history.replaceState(null, "", next);
+    history.replaceState(null, "", nextHash);
   } else {
-    location.hash = next;
+    location.hash = nextHash;
   }
 }
 
-/* ------------------------------ Scroll UX ------------------------------ */
+function isMobileViewport() {
+  return window.matchMedia("(max-width: 980px)").matches;
+}
 
-let _pendingScrollTop = false;
+/* ------------------------------ Scroll ------------------------------ */
 
 function scrollMainToTop() {
-  _pendingScrollTop = true;
+  if (isMobileViewport()) {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  } else if (mainEl) {
+    mainEl.scrollTop = 0;
+  }
 }
 
-function applyPendingScrollTop() {
-  if (!_pendingScrollTop) return;
-  _pendingScrollTop = false;
-  requestAnimationFrame(() => {
-    if (mainEl) mainEl.scrollTop = 0;
-  });
-}
-
-/* ------------------------------ Navigation actions ------------------------------ */
+/* ------------------------------ Navigation ------------------------------ */
 
 function go(pageId) {
-  const targetId = getPage(pageId) ? pageId : DEFAULT_PAGE_ID;
-  const slug = getCanonicalSlugForPageId(targetId);
+  const targetPageId = getPage(pageId) ? pageId : DEFAULT_PAGE_ID;
+  const slug = getCanonicalSlugForPageId(targetPageId);
+
   scrollMainToTop();
-  setHashToSlug(slug, { replace: false });
+  setHashToSlug(slug);
 }
 
-function setMenu(open) {
-  navEl.setAttribute("data-open", open ? "true" : "false");
-  backdrop.setAttribute("data-open", open ? "true" : "false");
-
-  // Accessibilité
-  if (menuBtn) menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-  if (navEl) navEl.setAttribute("aria-hidden", open ? "false" : "true");
+function setMenu(isOpen) {
+  navEl.setAttribute("data-open", isOpen ? "true" : "false");
+  backdrop.setAttribute("data-open", isOpen ? "true" : "false");
+  menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  navEl.setAttribute("aria-hidden", isOpen ? "false" : "true");
 }
 
-/* ------------------------------ Dev validation ------------------------------ */
+function closeMenu() {
+  setMenu(false);
+}
+
+function toggleMenu() {
+  const isOpen = navEl.getAttribute("data-open") === "true";
+  setMenu(!isOpen);
+}
+
+/* ------------------------------ Debug ------------------------------ */
 
 function isDebugMode() {
   try {
@@ -163,42 +174,65 @@ function isDebugMode() {
 }
 
 function validateData() {
-  const seen = new Set();
-  const dupes = new Set();
-  for (const p of PAGES) {
-    if (seen.has(p.id)) dupes.add(p.id);
-    seen.add(p.id);
-  }
-  if (dupes.size) console.warn("[FIDES] IDs dupliqués dans PAGES:", Array.from(dupes));
+  const seenIds = new Set();
+  const duplicateIds = new Set();
 
-  const missing = [];
+  for (const page of PAGES) {
+    if (seenIds.has(page.id)) duplicateIds.add(page.id);
+    seenIds.add(page.id);
+  }
+
+  if (duplicateIds.size) {
+    console.warn("[FIDES] IDs dupliqués dans PAGES :", Array.from(duplicateIds));
+  }
+
+  const missingNavPages = [];
   for (const group of NAV) {
-    for (const id of group.items) {
-      if (!getPage(id)) missing.push({ section: group.section, id });
+    for (const pageId of group.items) {
+      if (!getPage(pageId)) {
+        missingNavPages.push({ section: group.section, id: pageId });
+      }
     }
   }
-  if (missing.length) console.warn("[FIDES] NAV référence des pages manquantes:", missing);
 
-  const badSlugs = [];
-  for (const slug of Object.keys(SLUG_TO_PAGE_ID)) {
-    const id = SLUG_TO_PAGE_ID[slug];
-    if (!getPage(id)) badSlugs.push({ slug, id });
+  if (missingNavPages.length) {
+    console.warn("[FIDES] NAV référence des pages manquantes :", missingNavPages);
   }
-  if (badSlugs.length) console.warn("[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes:", badSlugs);
+
+  const missingSlugPages = [];
+  for (const [slug, pageId] of Object.entries(SLUG_TO_PAGE_ID)) {
+    if (!getPage(pageId)) {
+      missingSlugPages.push({ slug, id: pageId });
+    }
+  }
+
+  if (missingSlugPages.length) {
+    console.warn("[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes :", missingSlugPages);
+  }
 }
 
-/* ------------------------------ Templates HTML ------------------------------ */
+/* ------------------------------ Templates ------------------------------ */
 
 function cardHtml({ kicker, lead, text, bullets }) {
   let html = '<div class="card">';
   html += '<div class="kicker">' + escapeHTML(kicker || "Section") + "</div>";
-  if (lead) html += '<div class="lead">' + escapeHTML(lead) + "</div>";
-  if (text) html += "<p>" + escapeHTML(text) + "</p>";
+
+  if (lead) {
+    html += '<div class="lead">' + escapeHTML(lead) + "</div>";
+  }
+
+  if (text) {
+    html += "<p>" + escapeHTML(text) + "</p>";
+  }
+
   if (bullets && bullets.length) {
     html += "<ul>";
-    for (const b of bullets) html += "<li>" + escapeHTML(b) + "</li>";
+    for (const bullet of bullets) {
+      html += "<li>" + escapeHTML(bullet) + "</li>";
+    }
     html += "</ul>";
   }
+
   html += "</div>";
   return html;
 }
@@ -231,103 +265,133 @@ function woundRowHtml(label, value) {
   );
 }
 
-/* ------------------------------ Menu mobile header ------------------------------ */
+function navItemHtml(page, currentPageId) {
+  return (
+    '<button class="navItem" type="button" aria-current="' +
+    (page.id === currentPageId ? "page" : "false") +
+    '">' +
+    escapeHTML(page.title) +
+    '<span class="navSmall">' +
+    escapeHTML(page.subtitle || "") +
+    "</span>" +
+    "</button>"
+  );
+}
 
-function ensureNavHeader() {
-  // Le header doit rester en haut du <nav>
-  if (navEl.querySelector(".navHeader")) return;
+/* ------------------------------ Menu mobile ------------------------------ */
 
+function createNavHeader() {
   const header = document.createElement("div");
   header.className = "navHeader";
   header.innerHTML =
     '<div class="navHeaderTitle">Menu</div>' +
-    '<button type="button" class="navCloseBtn" id="navCloseBtn" aria-label="Fermer le menu">✕</button>';
+    '<button type="button" class="navCloseBtn" aria-label="Fermer le menu">✕</button>';
 
-  navEl.prepend(header);
-
-  const closeBtn = header.querySelector("#navCloseBtn");
-  if (closeBtn) closeBtn.addEventListener("click", () => setMenu(false));
+  header.querySelector(".navCloseBtn").addEventListener("click", closeMenu);
+  return header;
 }
 
-/* ------------------------------ Interactions ----------------------------- */
+function renderSingleLinkSection(group, currentPageId) {
+  const page = getPage(group.items[0]);
+  if (!page) return null;
 
-menuBtn.addEventListener("click", () => {
-  const open = navEl.getAttribute("data-open") === "true";
-  setMenu(!open);
-});
-backdrop.addEventListener("click", () => setMenu(false));
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") setMenu(false);
-});
+  const sectionEl = document.createElement("div");
+  sectionEl.className = "navSection";
 
-logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
+  const itemBtn = document.createElement("button");
+  itemBtn.className = "navItem";
+  itemBtn.type = "button";
+  itemBtn.setAttribute("aria-current", page.id === currentPageId ? "page" : "false");
+  itemBtn.innerHTML =
+    escapeHTML(page.title) +
+    '<span class="navSmall">' + escapeHTML(page.subtitle || "") + "</span>";
 
-/* -------------------------------- Renders -------------------------------- */
+  itemBtn.addEventListener("click", () => {
+    go(page.id);
+    closeMenu();
+  });
 
-function renderNav(currentId) {
-  navEl.innerHTML = "";
-  ensureNavHeader();
+  sectionEl.appendChild(itemBtn);
+  return sectionEl;
+}
 
-  const activeSectionName =
-    (NAV.find((g) => (g.items || []).includes(currentId)) || {}).section || "";
+function renderAccordionSection(group, currentPageId, activeSection) {
+  const sectionEl = document.createElement("div");
+  sectionEl.className = "navSection";
 
-  for (const group of NAV) {
-    const wrap = document.createElement("div");
-    wrap.className = "navSection";
+  const isOpen = group.section === activeSection;
+  sectionEl.setAttribute("data-open", isOpen ? "true" : "false");
 
-    const isOpenByDefault = group.section === activeSectionName;
-    wrap.setAttribute("data-open", isOpenByDefault ? "true" : "false");
+  const sectionBtn = document.createElement("button");
+  sectionBtn.type = "button";
+  sectionBtn.className = "navSectionBtn";
+  sectionBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  sectionBtn.innerHTML =
+    "<span>" + escapeHTML(group.section) + "</span>" +
+    '<span class="navChevron">›</span>';
 
-    const sectionBtn = document.createElement("button");
-    sectionBtn.type = "button";
-    sectionBtn.className = "navSectionBtn";
-    sectionBtn.setAttribute("aria-expanded", isOpenByDefault ? "true" : "false");
-    sectionBtn.innerHTML =
-      '<span>' + escapeHTML(group.section) + '</span>' +
-      '<span class="navChevron">›</span>';
+  const itemsWrap = document.createElement("div");
+  itemsWrap.className = "navItems";
 
-    const itemsWrap = document.createElement("div");
-    itemsWrap.className = "navItems";
+  for (const pageId of group.items) {
+    const page = getPage(pageId);
+    if (!page) continue;
 
-    for (const id of group.items) {
-      const p = getPage(id);
-      if (!p) continue;
+    const itemBtn = document.createElement("button");
+    itemBtn.className = "navItem";
+    itemBtn.type = "button";
+    itemBtn.setAttribute("aria-current", pageId === currentPageId ? "page" : "false");
+    itemBtn.innerHTML =
+      escapeHTML(page.title) +
+      '<span class="navSmall">' + escapeHTML(page.subtitle || "") + "</span>";
 
-      const btn = document.createElement("button");
-      btn.className = "navItem";
-      btn.type = "button";
-      btn.setAttribute("aria-current", id === currentId ? "page" : "false");
-
-      btn.innerHTML =
-        escapeHTML(p.title) +
-        '<span class="navSmall">' +
-        escapeHTML(p.subtitle || "") +
-        "</span>";
-
-      btn.addEventListener("click", () => {
-        go(id);
-        setMenu(false);
-      });
-
-      itemsWrap.appendChild(btn);
-    }
-
-    sectionBtn.addEventListener("click", () => {
-      const willOpen = wrap.getAttribute("data-open") !== "true";
-
-      navEl.querySelectorAll(".navSection").forEach((sec) => {
-        sec.setAttribute("data-open", "false");
-        const b = sec.querySelector(".navSectionBtn");
-        if (b) b.setAttribute("aria-expanded", "false");
-      });
-
-      wrap.setAttribute("data-open", willOpen ? "true" : "false");
-      sectionBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    itemBtn.addEventListener("click", () => {
+      go(pageId);
+      closeMenu();
     });
 
-    wrap.appendChild(sectionBtn);
-    wrap.appendChild(itemsWrap);
-    navEl.appendChild(wrap);
+    itemsWrap.appendChild(itemBtn);
+  }
+
+  sectionBtn.addEventListener("click", () => {
+    const willOpen = sectionEl.getAttribute("data-open") !== "true";
+
+    navEl.querySelectorAll(".navSection[data-open]").forEach((section) => {
+      section.setAttribute("data-open", "false");
+      const btn = section.querySelector(".navSectionBtn");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    });
+
+    sectionEl.setAttribute("data-open", willOpen ? "true" : "false");
+    sectionBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+  });
+
+  sectionEl.appendChild(sectionBtn);
+  sectionEl.appendChild(itemsWrap);
+
+  return sectionEl;
+}
+
+/* ------------------------------ Renders ------------------------------ */
+
+function renderNav(currentPageId) {
+  navEl.innerHTML = "";
+  navEl.appendChild(createNavHeader());
+
+  const activeSection =
+    NAV.find((group) => group.items.includes(currentPageId))?.section || "";
+
+  for (const group of NAV) {
+    const isSingleLink =
+      SINGLE_LINK_SECTIONS.has(group.section) && group.items.length === 1;
+
+    const sectionEl = isSingleLink
+      ? renderSingleLinkSection(group, currentPageId)
+      : renderAccordionSection(group, currentPageId, activeSection);
+
+    if (sectionEl) {
+      navEl.appendChild(sectionEl);
+    }
   }
 }
 
@@ -351,7 +415,7 @@ function renderHome() {
     },
   ];
 
-  const homeIntro =
+  const introHtml =
     '<div class="card">' +
     '<div class="kicker">Vue d’ensemble</div>' +
     '<div class="lead">Support de formation — La Méthode FIDES</div>' +
@@ -362,7 +426,7 @@ function renderHome() {
     "</p>" +
     "</div>";
 
-  const parcours =
+  const parcoursHtml =
     '<div class="card">' +
     '<div class="kicker">Parcours pédagogique</div>' +
     '<div class="lead">Un chemin en 4 étapes</div>' +
@@ -374,46 +438,49 @@ function renderHome() {
     "</ul>" +
     "</div>";
 
-  const grid = '<div class="mapGrid">' + tiles.map(tileHtml).join("") + "</div>";
+  const gridHtml =
+    '<div class="mapGrid">' +
+    tiles.map(tileHtml).join("") +
+    "</div>";
 
-  mainEl.innerHTML = homeIntro + parcours + grid;
+  mainEl.innerHTML = introHtml + parcoursHtml + gridHtml;
 }
 
-function renderSocle(page) {
+function renderBase(page) {
   let html = "";
-  for (const b of page.content || []) html += cardHtml(b);
+  for (const block of page.content || []) {
+    html += cardHtml(block);
+  }
   mainEl.innerHTML = html;
 }
 
 function renderBlessure(page) {
-  const head =
+  const headHtml =
     '<div class="card">' +
     '<div class="kicker">Blessure</div>' +
-    '<div class="lead">' +
-    escapeHTML(page.title) +
-    "</div>" +
-    "<p>" +
-    escapeHTML(page.subtitle || "") +
-    "</p>" +
+    '<div class="lead">' + escapeHTML(page.title) + "</div>" +
+    "<p>" + escapeHTML(page.subtitle || "") + "</p>" +
     "</div>";
 
-  const grid =
+  const gridHtml =
     '<div class="woundGrid">' +
-    (page.grid || []).map(([k, v]) => woundRowHtml(k, v)).join("") +
+    (page.grid || []).map(([label, value]) => woundRowHtml(label, value)).join("") +
     "</div>";
 
-  mainEl.innerHTML = head + grid;
+  mainEl.innerHTML = headHtml + gridHtml;
 }
 
 function renderRef(page) {
-  renderSocle(page);
+  renderBase(page);
 }
 
 function canonicalizeUrlIfNeeded(pageId) {
   const currentToken = normalizeHash(location.hash);
   const canonicalSlug = getCanonicalSlugForPageId(pageId);
-  if (currentToken === canonicalSlug) return;
-  setHashToSlug(canonicalSlug, { replace: true });
+
+  if (currentToken !== canonicalSlug) {
+    setHashToSlug(canonicalSlug, { replace: true });
+  }
 }
 
 function render() {
@@ -422,8 +489,8 @@ function render() {
 
   canonicalizeUrlIfNeeded(page.id);
 
-  pageTitle.textContent = page.title || "La Méthode FIDES";
-  pageSubtitle.textContent = page.subtitle || "";
+  pageTitleEl.textContent = page.title || "La Méthode FIDES";
+  pageSubtitleEl.textContent = page.subtitle || "";
 
   renderNav(page.id);
 
@@ -431,8 +498,8 @@ function render() {
     case PAGE_TYPES.HOME:
       renderHome();
       break;
-    case PAGE_TYPES.SOCLE:
-      renderSocle(page);
+    case PAGE_TYPES.BASE:
+      renderBase(page);
       break;
     case PAGE_TYPES.BLESSURE:
       renderBlessure(page);
@@ -444,17 +511,30 @@ function render() {
       renderHome();
       break;
   }
-
-  applyPendingScrollTop();
 }
+
+/* ------------------------------ Events ------------------------------ */
+
+menuBtn.addEventListener("click", toggleMenu);
+backdrop.addEventListener("click", closeMenu);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMenu();
+  }
+});
+
+logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
+window.addEventListener("hashchange", render);
 
 /* ------------------------------ Boot ------------------------------ */
 
-if (isDebugMode()) validateData();
-
-window.addEventListener("hashchange", render);
+if (isDebugMode()) {
+  validateData();
+}
 
 if (!location.hash) {
   setHashToSlug(getCanonicalSlugForPageId(DEFAULT_PAGE_ID), { replace: true });
 }
+
 render();
