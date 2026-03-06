@@ -139,32 +139,38 @@ header p{
 }
 
 .scrollArea{
-  overflow:auto;
-  padding-right: var(--sbPad);
-  scrollbar-gutter: stable both-edges;
   min-height: 0;
 }
 
-.scrollArea{
-  scrollbar-width: thin;
-  scrollbar-color: rgba(205,215,235,0.28) var(--sbTrack);
-}
+@media (min-width: 981px){
+  nav.scrollArea,
+  main.scrollArea{
+    overflow: auto;
+    padding-right: var(--sbPad);
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(205,215,235,0.28) var(--sbTrack);
+  }
 
-.scrollArea::-webkit-scrollbar{
-  width: var(--sbSize);
-  height: var(--sbSize);
-}
+  nav.scrollArea::-webkit-scrollbar,
+  main.scrollArea::-webkit-scrollbar{
+    width: var(--sbSize);
+    height: var(--sbSize);
+  }
 
-.scrollArea::-webkit-scrollbar-track{
-  background: var(--sbTrack);
-  border-radius: 999px;
-  margin: 10px;
-}
+  nav.scrollArea::-webkit-scrollbar-track,
+  main.scrollArea::-webkit-scrollbar-track{
+    background: var(--sbTrack);
+    border-radius: 999px;
+    margin: 10px;
+  }
 
-.scrollArea::-webkit-scrollbar-thumb{
-  background: linear-gradient(180deg, var(--sbThumb1), var(--sbThumb2));
-  border: 2px solid var(--sbTrack);
-  border-radius: 999px;
+  nav.scrollArea::-webkit-scrollbar-thumb,
+  main.scrollArea::-webkit-scrollbar-thumb{
+    background: linear-gradient(180deg, var(--sbThumb1), var(--sbThumb2));
+    border: 2px solid var(--sbTrack);
+    border-radius: 999px;
+  }
 }
 
 nav{
