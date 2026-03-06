@@ -3,6 +3,7 @@
   body{
     height: auto;
     min-height: 100%;
+    margin: 0;
   }
 
   body{
@@ -14,12 +15,12 @@
     margin: 0;
     padding: 0;
     height: auto;
-    min-height: 100dvh;
+    min-height: 100svh;
   }
 
   .panel{
     height: auto;
-    min-height: 100dvh;
+    min-height: 100svh;
     border-radius: 0;
     border-left: none;
     border-right: none;
@@ -30,28 +31,46 @@
     min-height: auto;
   }
 
-  nav{
+  header{
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .brand{
+    gap: 10px;
+  }
+
+  .logo{
+    height: 54px;
+    border-radius: 14px;
+  }
+
+  header h1{
+    font-size: 15px;
+  }
+
+  header p{
+    display: none;
+  }
+
+  /* MENU MOBILE */
+  #nav{
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     width: 100vw;
     max-width: 100vw;
+    padding: 0;
+    border-right: none;
+    border-radius: 0;
     transform: translateX(-100%);
     transition: transform .16s ease;
     z-index: 50;
-    box-shadow: 0 20px 70px rgba(0,0,0,0.60);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: none;
-    padding: 0;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
 
-  nav[data-open="true"]{
+  #nav[data-open="true"]{
     transform: translateX(0);
   }
 
@@ -60,17 +79,17 @@
     inset: 0;
     background: rgba(0,0,0,0.45);
     z-index: 40;
-    display:none;
+    display: none;
   }
 
   .backdrop[data-open="true"]{
-    display:block;
+    display: block;
   }
 
   .navHeader{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 12px;
     padding: 14px 12px 10px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -96,8 +115,8 @@
 
   .navSectionBtn{
     width: 100%;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 10px;
     border: none;
@@ -108,7 +127,7 @@
   }
 
   .navChevron{
-    display:inline-block;
+    display: inline-block;
     opacity: 0.65;
     font-weight: 900;
     transform: rotate(0deg);
@@ -116,11 +135,11 @@
   }
 
   .navItems{
-    display:block;
+    display: block;
   }
 
   .navSection[data-open="false"] .navItems{
-    display:none;
+    display: none;
   }
 
   .navSection[data-open="true"] .navChevron{
@@ -128,71 +147,30 @@
   }
 
   .navTitle{
-    display:none;
+    display: none;
   }
 
-  header{
-    padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .brand{
-    gap: 10px;
-  }
-
-  .logo{
-    height: 54px;
-    border-radius: 14px;
-  }
-
-  header h1{
-    font-size: 15px;
-  }
-
-  header p{
-    display:none;
-  }
-
-  main{
-    display:block;
+  /* CONTENU MOBILE */
+  #main{
+    display: block;
     width: 100%;
     max-width: 100%;
+    margin: 0;
     padding: 12px;
-    margin: 0 auto;
-  }
-
-  /* Menu mobile : garde son scroll */
-  nav.scrollArea{
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-height: 100dvh;
-    padding-right: 0 !important;
-    scrollbar-gutter: auto !important;
-  }
-
-  /* Contenu mobile : plus de scroll interne, plus de décalage droite */
-  main.scrollArea{
     overflow: visible;
-    min-height: auto;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding-right: 0 !important;
-    scrollbar-gutter: auto !important;
   }
 
-  /* Neutralisation générale de l’héritage desktop */
-  .scrollArea{
-    padding-right: 0 !important;
-    scrollbar-gutter: auto !important;
+  /* On neutralise proprement l’héritage desktop seulement sur les 2 zones scrollées */
+  #main.scrollArea,
+  #nav.scrollArea{
+    padding-right: 0;
+    scrollbar-gutter: auto;
   }
 
   .card{
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
     padding: 10px;
-    margin-bottom: 8px;
+    margin: 0 0 8px 0;
   }
 
   .kicker{
@@ -215,18 +193,16 @@
   }
 
   .mapGrid{
-    display:grid;
+    display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
     width: 100%;
-    margin: 0 auto;
   }
 
   .mapTile{
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
     padding: 10px;
+    margin: 0;
     border-radius: 14px;
   }
 
@@ -241,19 +217,18 @@
   }
 
   .woundGrid{
-    display:grid;
+    display: grid;
     gap: 8px;
     width: 100%;
-    margin: 0 auto;
   }
 
   .row{
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
     padding: 10px;
+    margin: 0;
     border-radius: 14px;
   }
 
