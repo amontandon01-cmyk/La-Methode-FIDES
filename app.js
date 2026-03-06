@@ -471,6 +471,23 @@ function renderBlessure(page) {
 }
 
 function renderRef(page) {
+  if (page.grid && page.grid.length) {
+    const headHtml =
+      '<div class="card">' +
+      '<div class="kicker">Référence</div>' +
+      '<div class="lead">' + escapeHTML(page.title) + "</div>" +
+      "<p>" + escapeHTML(page.subtitle || "") + "</p>" +
+      "</div>";
+
+    const gridHtml =
+      '<div class="woundGrid">' +
+      page.grid.map(([label, value]) => woundRowHtml(label, value)).join("") +
+      "</div>";
+
+    mainEl.innerHTML = headHtml + gridHtml;
+    return;
+  }
+
   renderBase(page);
 }
 
