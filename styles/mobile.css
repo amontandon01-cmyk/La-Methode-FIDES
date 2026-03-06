@@ -1,6 +1,33 @@
 @media (max-width: 980px){
+  html,
+  body{
+    height: auto;
+    min-height: 100%;
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+
+  .app{
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .panel{
+    height: auto;
+    min-height: 100dvh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
   .content{
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   nav{
@@ -19,6 +46,8 @@
     border-bottom-right-radius: 0;
     border-right: none;
     padding: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   nav[data-open="true"]{
@@ -124,12 +153,20 @@
   }
 
   main{
+    width: 100%;
     padding: 12px;
   }
 
   .scrollArea{
+    overflow: visible;
+    min-height: auto;
     padding-right: 0;
     scrollbar-gutter: auto;
+  }
+
+  main.scrollArea,
+  nav.scrollArea{
+    padding-right: 0;
   }
 
   .card{
@@ -174,6 +211,10 @@
     margin-top: 6px;
     font-size: 12.4px;
     line-height: 1.4;
+  }
+
+  .woundGrid{
+    gap: 8px;
   }
 
   .row{
