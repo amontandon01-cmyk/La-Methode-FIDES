@@ -20,9 +20,12 @@
   --sbThumb2: rgba(205,215,235,0.14);
 }
 
-*{ box-sizing:border-box; }
+*{
+  box-sizing:border-box;
+}
 
-html, body{
+html,
+body{
   height:100%;
 }
 
@@ -45,18 +48,18 @@ body{
   border: 1px solid var(--stroke);
   border-radius: var(--radius2);
   box-shadow: var(--shadow);
-  overflow:hidden;
+  overflow: hidden;
   height: calc(100vh - 32px);
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
 header{
   padding: 12px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 12px;
   background: rgba(0,0,0,0.10);
   flex: 0 0 auto;
@@ -283,7 +286,8 @@ main{
   line-height: 1.35;
 }
 
-p, li{
+p,
+li{
   color: rgba(255,255,255,0.86);
   font-size: 13.2px;
   line-height: 1.6;
