@@ -433,21 +433,33 @@ const PAGES = [
     ],
   },
 
-   {
-    id: "ref_dogmes_listes",
+  {
+    id: "ref_dogmes",
     type: "REF",
-    title: "Conditionnements & dogmes",
-    subtitle: "Catégories",
-    grid: [
+    title: "Conditionnements et dogmes",
+    subtitle: "Définition + exemples",
+    content: [
       {
-        kicker: "Définition et exemples",
-        lead: "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements."
-              "Comme : « Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »"
+        kicker: "Définition",
+        lead: "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements.",
+      },
+      {
+        kicker: "Exemples",
+        lead: "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »",
       },
       {
         kicker: "Message clé",
         lead: "La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher.",
       },
+    ],
+  },
+
+  {
+    id: "ref_dogmes_listes",
+    type: "REF",
+    title: "Conditionnements & dogmes",
+    subtitle: "Catégories",
+    grid: [
       ["Familiaux", "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..."],
       ["Sociaux et culturels", "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ..."],
       ["Religieux et spirituels", "« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ..."],
@@ -475,8 +487,7 @@ const PAGES = [
       ],
       [
         "Protection et usage",
-        "Copyright, tous droits réservés."
-        "La méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",
+        "Copyright, tous droits réservés. \nLa méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",
       ],       
     ],
   },
