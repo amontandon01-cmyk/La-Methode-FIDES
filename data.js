@@ -337,31 +337,30 @@ const PAGES = [
   },
 
   // COMPORTEMENTS
-  {
-    id: "ref_addictions",
-    type: "REF",
-    title: "Addictions",
-    subtitle: "Définition + typologies",
-    content: [
-      {
-        kicker: "Définition",
-        lead: "Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.).",
-      },
-      {
-        kicker: "Addictions visibles",
-        lead: "Alcool, drogues, jeux, nourriture, sexe.",
-      },
-      {
-        kicker: "Addictions invisibles",
-        lead: "Perfectionnisme, contrôle, hyperactivité, réseaux sociaux.",
-      },
-      {
-        kicker: "Message clé",
-        lead: "L’addiction n’est pas une faute morale, mais un signe d’une émotion qui demande à être reconnue.",
-      },
+{
+  id: "ref_addictions",
+  type: "REF",
+  title: "Addictions",
+  subtitle: "Définition & typologies",
+  grid: [
+    [
+      "Définition",
+      "Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)."
     ],
-  },
-
+    [
+      "Addictions visibles",
+      "Alcool, drogues, jeux, nourriture, sexe."
+    ],
+    [
+      "Addictions invisibles",
+      "Perfectionnisme, contrôle, hyperactivité, réseaux sociaux."
+    ],
+    [
+      "Message clé",
+      "L’addiction n’est pas une faute morale, mais un signe d’une émotion qui demande à être reconnue."
+    ],
+  ],
+},
   {
     id: "ref_add_substances",
     type: "REF",
@@ -391,31 +390,30 @@ const PAGES = [
       ["Liste", "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."],
     ],
   },
-
-  {
-    id: "ref_valeurs",
-    type: "REF",
-    title: "Valeurs de vie",
-    subtitle: "Définition + repères",
-    content: [
-      {
-        kicker: "Définition",
-        lead: "Repères intérieurs qui guident nos choix.",
-      },
-      {
-        kicker: "Exemples",
-        lead: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi.",
-      },
-      {
-        kicker: "Travail pratique",
-        lead: "Identifier ses valeurs prioritaires et vérifier l’alignement actions/valeurs.",
-      },
-      {
-        kicker: "Message clé",
-        lead: "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités.",
-      },
+{
+  id: "ref_valeurs",
+  type: "REF",
+  title: "Valeurs de vie",
+  subtitle: "Définition & repères",
+  grid: [
+    [
+      "Définition",
+      "Repères intérieurs qui guident nos choix."
     ],
-  },
+    [
+      "Exemples",
+      "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi."
+    ],
+    [
+      "Travail pratique",
+      "Identifier ses valeurs prioritaires et vérifier l’alignement actions/valeurs."
+    ],
+    [
+      "Message clé",
+      "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités."
+    ],
+  ],
+},
 
   {
     id: "ref_valeurs_listes",
@@ -433,26 +431,26 @@ const PAGES = [
     ],
   },
 
-  {
-    id: "ref_dogmes",
-    type: "REF",
-    title: "Conditionnements et dogmes",
-    subtitle: "Définition + exemples",
-    content: [
-      {
-        kicker: "Définition",
-        lead: "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements.",
-      },
-      {
-        kicker: "Exemples",
-        lead: "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »",
-      },
-      {
-        kicker: "Message clé",
-        lead: "La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher.",
-      },
+{
+  id: "ref_dogmes",
+  type: "REF",
+  title: "Conditionnements & dogmes",
+  subtitle: "Définition + exemples",
+  grid: [
+    [
+      "Définition",
+      "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui dictent nos comportements."
     ],
-  },
+    [
+      "Exemples",
+      "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. »"
+    ],
+    [
+      "Message clé",
+      "La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher."
+    ],
+  ],
+},
 
   {
     id: "ref_dogmes_listes",
