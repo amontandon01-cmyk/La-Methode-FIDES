@@ -42,7 +42,6 @@ const SLUG_TO_PAGE_ID = Object.freeze({
   "comportements-addictions-comportementales": "ref_add_comportementales",
   "comportements-addictions-invisibles": "ref_add_invisibles",
   "comportements-valeurs": "ref_valeurs",
-  "comportements-valeurs-listes": "ref_valeurs_listes",
   "comportements-dogmes": "ref_dogmes",
   "comportements-dogmes-listes": "ref_dogmes_listes",
 
@@ -78,7 +77,7 @@ function escapeHTML(value) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/'/g, "&#39;");
 }
 
 function getPage(pageId) {
@@ -95,22 +94,20 @@ function resolveRouteToPageId(routeToken) {
   if (SLUG_TO_PAGE_ID[routeToken] && getPage(SLUG_TO_PAGE_ID[routeToken])) {
     return SLUG_TO_PAGE_ID[routeToken];
   }
-
   if (getPage(routeToken)) {
     return routeToken;
   }
-
   return DEFAULT_PAGE_ID;
 }
 
 function getCurrentPageIdFromLocation() {
-  const token = normalizeHash(location.hash) || getCanonicalSlugForPageId(DEFAULT_PAGE_ID);
+  const token =
+    normalizeHash(location.hash) || getCanonicalSlugForPageId(DEFAULT_PAGE_ID);
   return resolveRouteToPageId(token);
 }
 
 function setHashToSlug(slug, { replace = false } = {}) {
   const nextHash = "#" + slug;
-
   if (replace) {
     history.replaceState(null, "", nextHash);
   } else {
@@ -137,12 +134,13 @@ function scrollMainToTop() {
 function go(pageId) {
   const targetPageId = getPage(pageId) ? pageId : DEFAULT_PAGE_ID;
   const slug = getCanonicalSlugForPageId(targetPageId);
-
   scrollMainToTop();
   setHashToSlug(slug);
 }
 
 function setMenu(isOpen) {
+  if (!navEl || !backdrop || !menuBtn) return;
+
   navEl.setAttribute("data-open", isOpen ? "true" : "false");
   backdrop.setAttribute("data-open", isOpen ? "true" : "false");
   menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
@@ -207,75 +205,69 @@ function validateData() {
   }
 
   if (missingSlugPages.length) {
-    console.warn("[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes :", missingSlugPages);
+    console.warn(
+      "[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes :",
+      missingSlugPages
+    );
   }
 }
 
 /* ------------------------------ Templates ------------------------------ */
 
 function cardHtml({ kicker, lead, text, bullets }) {
-  let html = '<div class="card">';
-  html += '<div class="kicker">' + escapeHTML(kicker || "Section") + "</div>";
+  let html = `<article class="card">`;
+
+  html += `<div class="cardKicker">${escapeHTML(kicker || "Section")}</div>`;
 
   if (lead) {
-    html += '<div class="lead">' + escapeHTML(lead) + "</div>";
+    html += `<h3 class="cardLead">${escapeHTML(lead)}</h3>`;
   }
 
   if (text) {
-    html += "<p>" + escapeHTML(text) + "</p>";
+    html += `<p class="cardText">${escapeHTML(text)}</p>`;
   }
 
   if (bullets && bullets.length) {
-    html += "<ul>";
+    html += `<ul class="cardList">`;
     for (const bullet of bullets) {
-      html += "<li>" + escapeHTML(bullet) + "</li>";
+      html += `<li>${escapeHTML(bullet)}</li>`;
     }
-    html += "</ul>";
+    html += `</ul>`;
   }
 
-  html += "</div>";
+  html += `</article>`;
   return html;
 }
 
 function tileHtml({ title, desc }) {
-  return (
-    '<div class="mapTile" role="group" aria-label="' +
-    escapeHTML(title) +
-    '">' +
-    "<h3>" +
-    escapeHTML(title) +
-    "</h3>" +
-    "<p>" +
-    escapeHTML(desc) +
-    "</p>" +
-    "</div>"
-  );
+  return `
+    <article class="homeTile">
+      <h3>${escapeHTML(title)}</h3>
+      <p>${escapeHTML(desc)}</p>
+    </article>
+  `;
 }
 
 function woundRowHtml(label, value) {
-  return (
-    '<div class="row">' +
-    '<div class="label">' +
-    escapeHTML(label) +
-    "</div>" +
-    '<div class="value">' +
-    escapeHTML(value) +
-    "</div>" +
-    "</div>"
-  );
+  return `
+    <article class="woundRow">
+      <div class="woundLabel">${escapeHTML(label)}</div>
+      <div class="woundValue">${escapeHTML(value)}</div>
+    </article>
+  `;
 }
 
 function navItemHtml(page, currentPageId) {
-  return (
-    '<button class="navItem" type="button" aria-current="' +
-    (page.id === currentPageId ? "page" : "false") +
-    '">' +
-    escapeHTML(page.title) +
-    '<span class="navSmall">' +
-    escapeHTML(page.subtitle || "") +
-    "</span>" +
-    "</button>"
-  );
+  return `
+    <button
+      class="navItem"
+      type="button"
+      aria-current="${page.id === currentPageId ? "page" : "false"}"
+    >
+      <span class="navItemTitle">${escapeHTML(page.title)}</span>
+      <span class="navItemSubtitle">${escapeHTML(page.subtitle || "")}</span>
+    </button>
+  `;
 }
 
 /* ------------------------------ Menu mobile ------------------------------ */
@@ -283,11 +275,16 @@ function navItemHtml(page, currentPageId) {
 function createNavHeader() {
   const header = document.createElement("div");
   header.className = "navHeader";
-  header.innerHTML =
-    '<div class="navHeaderTitle">Menu</div>' +
-    '<button type="button" class="navCloseBtn" aria-label="Fermer le menu">✕</button>';
+  header.innerHTML = `
+    <div class="navHeaderTitle">Menu</div>
+    <button class="navCloseBtn" type="button" aria-label="Fermer le menu">✕</button>
+  `;
 
-  header.querySelector(".navCloseBtn").addEventListener("click", closeMenu);
+  const closeBtn = header.querySelector(".navCloseBtn");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeMenu);
+  }
+
   return header;
 }
 
@@ -301,11 +298,14 @@ function renderSingleLinkSection(group, currentPageId) {
   const itemBtn = document.createElement("button");
   itemBtn.className = "navItem";
   itemBtn.type = "button";
-  itemBtn.setAttribute("aria-current", page.id === currentPageId ? "page" : "false");
-  itemBtn.innerHTML =
-    escapeHTML(page.title) +
-    '<span class="navSmall">' + escapeHTML(page.subtitle || "") + "</span>";
-
+  itemBtn.setAttribute(
+    "aria-current",
+    page.id === currentPageId ? "page" : "false"
+  );
+  itemBtn.innerHTML = `
+    <span class="navItemTitle">${escapeHTML(page.title)}</span>
+    <span class="navItemSubtitle">${escapeHTML(page.subtitle || "")}</span>
+  `;
   itemBtn.addEventListener("click", () => {
     go(page.id);
     closeMenu();
@@ -326,9 +326,10 @@ function renderAccordionSection(group, currentPageId, activeSection) {
   sectionBtn.type = "button";
   sectionBtn.className = "navSectionBtn";
   sectionBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  sectionBtn.innerHTML =
-    "<span>" + escapeHTML(group.section) + "</span>" +
-    '<span class="navChevron">›</span>';
+  sectionBtn.innerHTML = `
+    <span>${escapeHTML(group.section)}</span>
+    <span class="navChevron">›</span>
+  `;
 
   const itemsWrap = document.createElement("div");
   itemsWrap.className = "navItems";
@@ -340,11 +341,14 @@ function renderAccordionSection(group, currentPageId, activeSection) {
     const itemBtn = document.createElement("button");
     itemBtn.className = "navItem";
     itemBtn.type = "button";
-    itemBtn.setAttribute("aria-current", pageId === currentPageId ? "page" : "false");
-    itemBtn.innerHTML =
-      escapeHTML(page.title) +
-      '<span class="navSmall">' + escapeHTML(page.subtitle || "") + "</span>";
-
+    itemBtn.setAttribute(
+      "aria-current",
+      pageId === currentPageId ? "page" : "false"
+    );
+    itemBtn.innerHTML = `
+      <span class="navItemTitle">${escapeHTML(page.title)}</span>
+      <span class="navItemSubtitle">${escapeHTML(page.subtitle || "")}</span>
+    `;
     itemBtn.addEventListener("click", () => {
       go(pageId);
       closeMenu();
@@ -375,6 +379,8 @@ function renderAccordionSection(group, currentPageId, activeSection) {
 /* ------------------------------ Renders ------------------------------ */
 
 function renderNav(currentPageId) {
+  if (!navEl) return;
+
   navEl.innerHTML = "";
   navEl.appendChild(createNavHeader());
 
@@ -407,7 +413,7 @@ function renderHome() {
     },
     {
       title: "Comportements",
-      desc: "Relier le vécu aux mécanismes : addictions, valeurs, dogmes (ce qui oriente les choix).",
+      desc: "Relier le vécu aux mécanismes : addictions, valeurs, dogmes et conditionnements.",
     },
     {
       title: "Empathie",
@@ -415,33 +421,36 @@ function renderHome() {
     },
   ];
 
-  const introHtml =
-    '<div class="card">' +
-    '<div class="kicker">Vue d’ensemble</div>' +
-    '<div class="lead">Support de formation — La Méthode FIDES</div>' +
-    "<p>" +
-    escapeHTML(
-      "But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner."
-    ) +
-    "</p>" +
-    "</div>";
+  const introHtml = `
+    <section class="heroCard">
+      <div class="cardKicker">Vue d’ensemble</div>
+      <h2 class="cardLead">Support de formation — La Méthode FIDES</h2>
+      <p class="cardText">
+        ${escapeHTML(
+          "But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner."
+        )}
+      </p>
+    </section>
+  `;
 
-  const parcoursHtml =
-    '<div class="card">' +
-    '<div class="kicker">Parcours pédagogique</div>' +
-    '<div class="lead">Un chemin en 4 étapes</div>' +
-    "<ul>" +
-    "<li>1. Comprendre le cadre (bases)</li>" +
-    "<li>2. Identifier la blessure</li>" +
-    "<li>3. Observer les comportements</li>" +
-    "<li>4. Libérer les croyances</li>" +
-    "</ul>" +
-    "</div>";
+  const parcoursHtml = `
+    <section class="card">
+      <div class="cardKicker">Parcours pédagogique</div>
+      <h3 class="cardLead">Un chemin en 4 étapes</h3>
+      <ul class="cardList">
+        <li>1. Comprendre le cadre (bases)</li>
+        <li>2. Identifier la blessure</li>
+        <li>3. Observer les comportements</li>
+        <li>4. Libérer les croyances</li>
+      </ul>
+    </section>
+  `;
 
-  const gridHtml =
-    '<div class="mapGrid">' +
-    tiles.map(tileHtml).join("") +
-    "</div>";
+  const gridHtml = `
+    <section class="homeGrid">
+      ${tiles.map(tileHtml).join("")}
+    </section>
+  `;
 
   mainEl.innerHTML = introHtml + parcoursHtml + gridHtml;
 }
@@ -455,34 +464,38 @@ function renderBase(page) {
 }
 
 function renderBlessure(page) {
-  const headHtml =
-    '<div class="card">' +
-    '<div class="kicker">Blessure</div>' +
-    '<div class="lead">' + escapeHTML(page.title) + "</div>" +
-    "<p>" + escapeHTML(page.subtitle || "") + "</p>" +
-    "</div>";
+  const headHtml = `
+    <section class="heroCard">
+      <div class="cardKicker">Blessure</div>
+      <h2 class="cardLead">${escapeHTML(page.title)}</h2>
+      <p class="cardText">${escapeHTML(page.subtitle || "")}</p>
+    </section>
+  `;
 
-  const gridHtml =
-    '<div class="woundGrid">' +
-    (page.grid || []).map(([label, value]) => woundRowHtml(label, value)).join("") +
-    "</div>";
+  const gridHtml = `
+    <section class="woundGrid">
+      ${(page.grid || []).map(([label, value]) => woundRowHtml(label, value)).join("")}
+    </section>
+  `;
 
   mainEl.innerHTML = headHtml + gridHtml;
 }
 
 function renderRef(page) {
   if (page.grid && page.grid.length) {
-    const headHtml =
-      '<div class="card">' +
-      '<div class="kicker">Référence</div>' +
-      '<div class="lead">' + escapeHTML(page.title) + "</div>" +
-      "<p>" + escapeHTML(page.subtitle || "") + "</p>" +
-      "</div>";
+    const headHtml = `
+      <section class="heroCard">
+        <div class="cardKicker">Référence</div>
+        <h2 class="cardLead">${escapeHTML(page.title)}</h2>
+        <p class="cardText">${escapeHTML(page.subtitle || "")}</p>
+      </section>
+    `;
 
-    const gridHtml =
-      '<div class="woundGrid">' +
-      page.grid.map(([label, value]) => woundRowHtml(label, value)).join("") +
-      "</div>";
+    const gridHtml = `
+      <section class="woundGrid">
+        ${page.grid.map(([label, value]) => woundRowHtml(label, value)).join("")}
+      </section>
+    `;
 
     mainEl.innerHTML = headHtml + gridHtml;
     return;
@@ -532,8 +545,13 @@ function render() {
 
 /* ------------------------------ Events ------------------------------ */
 
-menuBtn.addEventListener("click", toggleMenu);
-backdrop.addEventListener("click", closeMenu);
+if (menuBtn) {
+  menuBtn.addEventListener("click", toggleMenu);
+}
+
+if (backdrop) {
+  backdrop.addEventListener("click", closeMenu);
+}
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -541,7 +559,10 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
+if (logoBtn) {
+  logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
+}
+
 window.addEventListener("hashchange", render);
 
 /* ------------------------------ Boot ------------------------------ */
