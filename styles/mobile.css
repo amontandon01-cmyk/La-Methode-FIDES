@@ -160,7 +160,6 @@
     overflow: visible;
   }
 
-  /* On neutralise proprement l’héritage desktop seulement sur les 2 zones scrollées */
   #main.scrollArea,
   #nav.scrollArea{
     padding-right: 0;
