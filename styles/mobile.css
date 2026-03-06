@@ -158,29 +158,39 @@
     width: 100%;
     max-width: 100%;
     padding: 12px;
-    margin: 0;
+    margin: 0 auto;
   }
 
-  /* IMPORTANT : séparer menu et contenu */
+  /* Menu mobile : garde son scroll */
   nav.scrollArea{
     overflow-y: auto;
     overflow-x: hidden;
     min-height: 100dvh;
-    padding-right: 0;
-    scrollbar-gutter: auto;
+    padding-right: 0 !important;
+    scrollbar-gutter: auto !important;
   }
 
+  /* Contenu mobile : plus de scroll interne, plus de décalage droite */
   main.scrollArea{
     overflow: visible;
     min-height: auto;
-    padding-right: 0;
-    scrollbar-gutter: auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-right: 0 !important;
+    scrollbar-gutter: auto !important;
+  }
+
+  /* Neutralisation générale de l’héritage desktop */
+  .scrollArea{
+    padding-right: 0 !important;
+    scrollbar-gutter: auto !important;
   }
 
   .card{
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
     margin-bottom: 8px;
   }
@@ -209,11 +219,13 @@
     grid-template-columns: 1fr;
     gap: 8px;
     width: 100%;
+    margin: 0 auto;
   }
 
   .mapTile{
     width: 100%;
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
     border-radius: 14px;
   }
@@ -232,11 +244,13 @@
     display:grid;
     gap: 8px;
     width: 100%;
+    margin: 0 auto;
   }
 
   .row{
     width: 100%;
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns: 1fr;
     gap: 8px;
     padding: 10px;
