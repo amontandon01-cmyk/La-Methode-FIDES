@@ -478,13 +478,17 @@ const PAGES = [
     subtitle: "Source",
     grid: [
       [
-        "Autre",
-        "La typologie des cinq blessures (rejet, abandon, humiliation, trahison, injustice) et les masques associés (fuyant, dépendant, masochiste, contrôlant, rigide) s’inspire des travaux de Lise Bourbeau, notamment dans l’ouvrage « Les 5 blessures qui empêchent d’être soi-même ».",
+        "Source d’inspiration",
+        "La lecture des cinq blessures fondamentales — rejet, abandon, humiliation, trahison et injustice — ainsi que des masques relationnels qui leur sont classiquement associés, trouve un appui dans les travaux de Lise Bourbeau, en particulier dans l’ouvrage Les 5 blessures qui empêchent d’être soi-même.",
       ],
       [
-        "La Méthode FIDES",
-        "L’organisation pédagogique du modèle, l’identification des émotions racines, l’analyse des comportements (addictions, valeurs, dogmes), ainsi que le travail sur les croyances limitantes font partie de la Méthode FIDES.",
+        "Élaboration de la Méthode FIDES",
+        "La structuration pédagogique présentée sur ce site, l’identification des émotions racines, l’articulation entre blessures, comportements compensatoires, valeurs de vie, conditionnements, dogmes de comportement et croyances limitantes relèvent de la Méthode FIDES.",
       ],
+      [
+        "Protection et usage",
+        "Copyright, tous droits réservés. \nLa méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",
+      ],       
     ],
   },
 ];
