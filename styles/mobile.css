@@ -53,7 +53,6 @@
     display: none;
   }
 
-  /* MENU MOBILE */
   #nav{
     position: fixed;
     inset: 0;
@@ -150,17 +149,15 @@
     display: none;
   }
 
-  /* CONTENU MOBILE */
   #main{
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 12px 14px;
-  overflow: visible;
-}
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    overflow: visible;
+  }
 
-  #main.scrollArea,
   #nav.scrollArea{
     padding-right: 0;
     scrollbar-gutter: auto;
@@ -169,7 +166,7 @@
   .card{
     width: 100%;
     padding: 10px;
-    margin: 0 0 8px 0;
+    margin: 0 0 8px;
   }
 
   .kicker{
@@ -182,7 +179,8 @@
     margin: 0 0 6px;
   }
 
-  p, li{
+  p,
+  li{
     font-size: 12.6px;
     line-height: 1.5;
   }
@@ -192,10 +190,8 @@
   }
 
   .mapGrid{
-    display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
-    width: 100%;
   }
 
   .mapTile{
@@ -216,14 +212,10 @@
   }
 
   .woundGrid{
-    display: grid;
     gap: 8px;
-    width: 100%;
   }
 
   .row{
-    width: 100%;
-    display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
     padding: 10px;
