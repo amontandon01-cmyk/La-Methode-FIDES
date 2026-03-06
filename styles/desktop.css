@@ -144,7 +144,7 @@ header p{
 
 @media (min-width: 981px){
   nav.scrollArea,
-  main.scrollArea{
+  main{
     overflow: auto;
     padding-right: var(--sbPad);
     scrollbar-gutter: stable both-edges;
@@ -153,20 +153,20 @@ header p{
   }
 
   nav.scrollArea::-webkit-scrollbar,
-  main.scrollArea::-webkit-scrollbar{
+  main::-webkit-scrollbar{
     width: var(--sbSize);
     height: var(--sbSize);
   }
 
   nav.scrollArea::-webkit-scrollbar-track,
-  main.scrollArea::-webkit-scrollbar-track{
+  main::-webkit-scrollbar-track{
     background: var(--sbTrack);
     border-radius: 999px;
     margin: 10px;
   }
 
   nav.scrollArea::-webkit-scrollbar-thumb,
-  main.scrollArea::-webkit-scrollbar-thumb{
+  main::-webkit-scrollbar-thumb{
     background: linear-gradient(180deg, var(--sbThumb1), var(--sbThumb2));
     border: 2px solid var(--sbTrack);
     border-radius: 999px;
