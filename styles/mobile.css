@@ -24,6 +24,7 @@
     border-radius: 0;
     border-left: none;
     border-right: none;
+    box-shadow: none;
   }
 
   .content{
@@ -46,7 +47,9 @@
   }
 
   header h1{
-    font-size: 15px;
+    font-family: var(--font-title);
+    font-size: 22px;
+    color: var(--accent);
   }
 
   header p{
@@ -56,17 +59,18 @@
   #nav{
     position: fixed;
     inset: 0;
-    width: 100vw;
-    max-width: 100vw;
+    width: 86%;
+    max-width: 340px;
     padding: 0;
-    border-right: none;
+    border-right: 1px solid rgba(190, 43, 86, 0.12);
     border-radius: 0;
     transform: translateX(-100%);
-    transition: transform .16s ease;
-    z-index: 50;
+    transition: transform .22s ease;
+    z-index: 1000;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    background: var(--navbg);
   }
 
   #nav[data-open="true"]{
@@ -76,13 +80,16 @@
   .backdrop{
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 40;
-    display: none;
+    background: rgba(0,0,0,0.42);
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
   }
 
   .backdrop[data-open="true"]{
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .navHeader{
@@ -91,25 +98,38 @@
     justify-content: space-between;
     gap: 12px;
     padding: 14px 12px 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(190, 43, 86, 0.12);
     margin-bottom: 10px;
     position: sticky;
     top: 0;
-    background: var(--navbg);
+    background: rgba(255,255,255,0.96);
     z-index: 2;
   }
 
   .navHeaderTitle{
-    font-weight: 950;
+    font-weight: 900;
     font-size: 13px;
     letter-spacing: .10em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.70);
+    color: rgba(190, 43, 86, 0.80);
+  }
+
+  .navCloseBtn{
+    border: 1px solid rgba(190, 43, 86, 0.16);
+    background: rgba(255,255,255,0.92);
+    color: var(--accent);
+    border-radius: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 1;
   }
 
   .navSection{
     margin: 0 12px 12px;
     padding-bottom: 10px;
+    border-bottom: 1px solid rgba(190, 43, 86, 0.08);
   }
 
   .navSectionBtn{
@@ -120,21 +140,21 @@
     gap: 10px;
     border: none;
     background: transparent;
-    color: rgba(255,255,255,0.70);
+    color: rgba(190, 43, 86, 0.82);
     padding: 6px 2px 10px;
     cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
   }
 
   .navChevron{
     display: inline-block;
-    opacity: 0.65;
-    font-weight: 900;
+    font-size: 16px;
+    line-height: 1;
     transform: rotate(0deg);
-    transition: transform .12s ease;
-  }
-
-  .navItems{
-    display: block;
+    transition: transform .18s ease;
   }
 
   .navSection[data-open="false"] .navItems{
@@ -145,8 +165,41 @@
     transform: rotate(90deg);
   }
 
+  .navItems{
+    display: block;
+  }
+
   .navTitle{
     display: none;
+  }
+
+  .navItem{
+    width:100%;
+    text-align:left;
+    border: 1px solid rgba(190, 43, 86, 0.14);
+    background: rgba(255,255,255,0.94);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 10px;
+    cursor:pointer;
+    font-weight: 800;
+    font-size: 12.6px;
+    margin-bottom: 8px;
+  }
+
+  .navItem[aria-current="page"]{
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .navSmall{
+    display:block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.25;
   }
 
   #main{
@@ -167,21 +220,28 @@
     width: 100%;
     padding: 10px;
     margin: 0 0 8px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(190, 43, 86, 0.12);
+    border-radius: 14px;
+    box-shadow: none;
   }
 
   .kicker{
     font-size: 10px;
     margin: 0 0 6px;
+    color: rgba(190, 43, 86, 0.78);
   }
 
   .lead{
-    font-size: 13.4px;
+    font-family: var(--font-title);
+    font-size: 18px;
     margin: 0 0 6px;
+    color: var(--accent);
   }
 
   p,
   li{
-    font-size: 12.6px;
+    font-size: 12.8px;
     line-height: 1.5;
   }
 
@@ -190,8 +250,9 @@
   }
 
   .mapGrid{
+    display:grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 10px;
   }
 
   .mapTile{
@@ -199,19 +260,23 @@
     padding: 10px;
     margin: 0;
     border-radius: 14px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(190, 43, 86, 0.12);
+    box-shadow: none;
   }
 
   .mapTile h3{
-    font-size: 13.8px;
+    font-family: var(--font-title);
+    font-size: 17px;
+    color: var(--accent);
   }
 
   .mapTile p{
-    margin-top: 6px;
     font-size: 12.4px;
-    line-height: 1.4;
   }
 
   .woundGrid{
+    display:grid;
     gap: 8px;
   }
 
@@ -221,14 +286,20 @@
     padding: 10px;
     margin: 0;
     border-radius: 14px;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(190, 43, 86, 0.12);
+    box-shadow: none;
   }
 
   .label{
     font-size: 12.2px;
+    color: var(--accent);
+    font-weight: 800;
   }
 
   .value{
     font-size: 12.8px;
     line-height: 1.5;
+    color: rgba(0,0,0,0.86);
   }
 }
