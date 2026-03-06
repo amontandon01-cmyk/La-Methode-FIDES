@@ -152,13 +152,13 @@
 
   /* CONTENU MOBILE */
   #main{
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 12px;
-    overflow: visible;
-  }
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 12px 14px;
+  overflow: visible;
+}
 
   #main.scrollArea,
   #nav.scrollArea{
