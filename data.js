@@ -420,7 +420,7 @@ const PAGES = [
   {
     id: "ref_valeurs_listes",
     type: "REF",
-    title: "Valeurs de vie (listes)",
+    title: "Valeurs de vie",
     subtitle: "Piliers + exemples",
     grid: [
       ["4 piliers universels", "Santé, famille/proches, argent/sécurité financière, amour/relations."],
@@ -457,7 +457,7 @@ const PAGES = [
   {
     id: "ref_dogmes_listes",
     type: "REF",
-    title: "Conditionnements & dogmes (listes)",
+    title: "Conditionnements & dogmes",
     subtitle: "Catégories",
     grid: [
       ["Familiaux", "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ..."],
