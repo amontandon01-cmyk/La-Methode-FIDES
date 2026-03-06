@@ -519,6 +519,6 @@ const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
   { section: "Bases", items: ["base_confort", "base_blessures", "base_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
-  { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_valeurs_listes", "ref_dogmes", "ref_dogmes_listes"] },
+  { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
 ];
