@@ -341,55 +341,62 @@ const PAGES = [
   id: "ref_addictions",
   type: "REF",
   title: "Addictions",
-  subtitle: "Définition & typologies",
+  subtitle: "Repères & typologies",
   grid: [
     [
       "Définition",
-      "Comportements répétitifs visant à éviter une émotion (substance, relation, travail, écrans, etc.)."
+      "Comportements répétitifs ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. L’addiction peut passer par une substance, une activité, une relation, une recherche de performance ou une habitude apparemment banale."
     ],
     [
-      "Addictions visibles",
-      "Alcool, drogues, jeux, nourriture, sexe."
+      "Repère central",
+      "L’addiction procure souvent un soulagement rapide, une impression de contrôle ou une coupure temporaire avec la douleur. En revanche, elle ne traite pas la blessure de fond : elle la masque, la reporte ou l’entretient."
     ],
     [
-      "Addictions invisibles",
-      "Perfectionnisme, contrôle, hyperactivité, réseaux sociaux."
+      "Fonction",
+      "Elle peut servir à ne plus sentir un vide, une peur, une honte, une solitude, une colère intérieure ou une tension psychique. Elle peut aussi donner l’illusion de remplir, calmer, stimuler, contrôler, oublier, se rassurer ou se punir."
+    ],
+    [
+      "Pourquoi c’est piégeant",
+      "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment l’addiction à une solution, alors qu’elle devient peu à peu une stratégie de survie émotionnelle qui prend de la place dans la vie quotidienne."
+    ],
+    [
+      "Addictions aux substances",
+      "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, caféine, sucre. Ces formes passent par l’ingestion, l’inhalation ou l’effet chimique recherché pour modifier rapidement l’état intérieur."
+    ],
+    [
+      "Repères concrets (substances)",
+      "Recherche d’apaisement rapide, besoin de “tenir”, difficulté à traverser certaines émotions sans produit, augmentation progressive de la fréquence, de la dose ou de la dépendance psychologique."
+    ],
+    [
+      "Addictions comportementales",
+      "Jeux d’argent, jeux vidéo, internet, réseaux sociaux, téléphone portable, télévision, achats compulsifs, travail, sport, sexe, amour, relations toxiques, nourriture, régimes, automutilation. Ici, ce n’est pas la substance qui domine, mais la répétition d’un comportement devenu refuge."
+    ],
+    [
+      "Repères concrets (comportementales)",
+      "Besoin de faire, consommer, vérifier, scroller, performer, séduire ou se distraire pour ne pas ressentir. Ces comportements donnent souvent une récompense immédiate, une stimulation, un apaisement ou une impression d’exister."
+    ],
+    [
+      "Addictions plus invisibles",
+      "Perfectionnisme, contrôle, besoin de reconnaissance, hyperactivité, dépendance à l’adrénaline, dépendance spirituelle, dépendance émotionnelle. Ces formes passent plus facilement pour des qualités, alors qu’elles peuvent aussi servir à éviter le contact avec une douleur profonde."
+    ],
+    [
+      "Pourquoi elles passent inaperçues",
+      "Parce qu’elles sont parfois valorisées socialement : être performant, toujours occupé, irréprochable, indispensable, admiré, “éveillé” ou très engagé peut sembler positif, alors que cela peut aussi cacher une fuite émotionnelle."
+    ],
+    [
+      "Lecture pédagogique",
+      "Plus une addiction devient nécessaire pour tenir, se calmer, se sentir vivant, se sentir aimé ou garder le contrôle, plus elle mérite d’être interrogée. La question utile n’est pas seulement “qu’est-ce que je fais ?”, mais aussi “qu’est-ce que cela m’aide à ne pas ressentir ?”."
+    ],
+    [
+      "Lien avec les blessures",
+      "Selon la blessure activée, la stratégie change : isolement, fusion, contrôle, perfectionnisme, compensation par le plaisir, recherche de pouvoir, besoin de remplir un vide. L’addiction n’est donc pas isolée : elle s’inscrit souvent dans une logique émotionnelle plus large."
     ],
     [
       "Message clé",
-      "L’addiction n’est pas une faute morale, mais un signe d’une émotion qui demande à être reconnue."
+      "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal : quelque chose en soi cherche à ne plus souffrir, à se protéger ou à survivre émotionnellement."
     ],
   ],
 },
-  {
-    id: "ref_add_substances",
-    type: "REF",
-    title: "Addictions aux substances",
-    subtitle: "Manifestations visibles",
-    grid: [
-      ["Liste", "Alcool, Tabac, Cannabis, Cocaïne, Héroïne, Amphétamines, Ecstasy, Médicaments psychotropes, Antidouleurs, Caféine, Sucre."],
-    ],
-  },
-
-  {
-    id: "ref_add_comportementales",
-    type: "REF",
-    title: "Addictions comportementales",
-    subtitle: "Manifestations concrètes",
-    grid: [
-      ["Liste", "Jeux d’argent, Jeux vidéo, Internet, Réseaux sociaux, Téléphone portable, Télévision, Achats compulsifs, Travail, Sport, Sexe, Amour, Relations toxiques, Nourriture, Régimes, Automutilation."],
-    ],
-  },
-
-  {
-    id: "ref_add_invisibles",
-    type: "REF",
-    title: "Addictions plus invisibles",
-    subtitle: "Manifestations discrètes",
-    grid: [
-      ["Liste", "Perfectionnisme, Contrôle, Besoin de reconnaissance, Hyperactivité, Dépendance à l’adrénaline, Dépendance spirituelle, Dépendance émotionnelle."],
-    ],
-  },
 {
   id: "ref_valeurs",
   type: "REF",
@@ -527,6 +534,6 @@ const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
   { section: "Bases", items: ["base_confort", "base_blessures", "base_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
-  { section: "Comportements", items: ["ref_addictions", "ref_add_substances", "ref_add_comportementales", "ref_add_invisibles", "ref_valeurs", "ref_dogmes"] },
+  { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
 ];
