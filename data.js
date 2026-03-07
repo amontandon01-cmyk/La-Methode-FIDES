@@ -35,7 +35,7 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
   tristesse: SENTIMENTS.tristesse_perte,
   peur: SENTIMENTS.peur_insecurite,
   degout: SENTIMENTS.injustice_humiliation,
-  surprise: "Méfiance, supériorité, incompréhension, impatience",
+  surprise: "Méfiance, supériorité, incompréhension, impatience, frustration",
   colere_interieure: SENTIMENTS.colere_frustration,
 });
 
