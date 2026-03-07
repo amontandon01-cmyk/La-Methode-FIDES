@@ -289,7 +289,7 @@ const PAGES = [
   {
     id: "w_rejet",
     type: "BLESSURE",
-    title: "Blessure : REJET",
+    title: "REJET",
     subtitle: "Émotion : tristesse",
     grid: [
       ["Émotion racine", "Tristesse."],
@@ -323,7 +323,7 @@ const PAGES = [
   {
     id: "w_abandon",
     type: "BLESSURE",
-    title: "Blessure : ABANDON",
+    title: "ABANDON",
     subtitle: "Émotion : peur",
     grid: [
       ["Émotion racine", "Peur."],
@@ -351,7 +351,7 @@ const PAGES = [
   {
     id: "w_humiliation",
     type: "BLESSURE",
-    title: "Blessure : HUMILIATION",
+    title: "HUMILIATION",
     subtitle: "Émotion : dégoût",
     grid: [
       ["Émotion racine", "Dégoût."],
@@ -376,7 +376,7 @@ const PAGES = [
   {
     id: "w_trahison",
     type: "BLESSURE",
-    title: "Blessure : TRAHISON",
+    title: "TRAHISON",
     subtitle: "Émotion : surprise",
     grid: [
       ["Émotion racine", "Surprise."],
@@ -408,7 +408,7 @@ const PAGES = [
   {
     id: "w_injustice",
     type: "BLESSURE",
-    title: "Blessure : INJUSTICE",
+    title: "INJUSTICE",
     subtitle: "Émotion : colère intérieure",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
@@ -628,7 +628,7 @@ const PAGES = [
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
   { section: "Bases", items: ["base_blessures", "base_confort", "base_empathie", "base_karpman"] },
-  { section: "Blessures", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
+  { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
 ];
