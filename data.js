@@ -15,7 +15,7 @@ const SENTIMENTS = Object.freeze({
   expansifs:
     "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement.",
   peur_insecurite:
-    "Anxiété, Inquiétude, Stress, Méfiance, Doute, Crainte, Panique, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Surprise.",
+    "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Infériorité.",
   colere_frustration:
     "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût.",
   tristesse_perte:
@@ -35,7 +35,7 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
   tristesse: SENTIMENTS.tristesse_perte,
   peur: SENTIMENTS.peur_insecurite,
   degout: SENTIMENTS.injustice_humiliation,
-  surprise: "Surprise, Méfiance, Doute, Inquiétude, Crainte, Sentiment d’insécurité",
+  surprise: "Méfiance, supériorité, incompréhension, impatience",
   colere_interieure: SENTIMENTS.colere_frustration,
 });
 
@@ -139,7 +139,7 @@ const PAGES = [
     {
       kicker: "Personnalité prédominant surprise / peur",
       lead: "Quand la protection passe surtout par la vigilance, l’anticipation, le contrôle, la maîtrise, la validation ou chercher à être rassuré.",
-      text: "Cette personnalité est souvent lié à des dominantes comme la trahison et l’abandon. La personne vit plus facilement l’inconnu comme un risque d’insécurité, de perte d’appui, de perte de contrôle ou de déception. Elle peut chercher à sécuriser le lien, vérifier, anticiper, contrôler, performer, garder la main ou éviter la dépendance. La peur pousse à chercher un point d’appui. La surprise pousse à se méfier et à reprendre le contrôle. Le dégoût peut aussi apparaître dans cette personnalité, notamment lorsque la personne rejette la faiblesse, la dépendance, l’imprévu ou ce qui lui donne le sentiment d’être envahie ou trahie."
+      text: "Cette personnalité est souvent lié à des dominantes comme la trahison et l’abandon. La surprise pousse à se méfier et à reprendre le contrôle. La personne vit plus facilement l’inconnu comme un risque d’insécurité, de perte d’appui, de perte de contrôle ou de déception. Elle peut chercher à sécuriser le lien, vérifier, anticiper, contrôler, performer, garder la main ou éviter la dépendance. La peur pousse à chercher un point d’appui. Le dégoût peut aussi apparaître dans cette personnalité, notamment lorsque la personne rejette la faiblesse, la dépendance, l’imprévu ou ce qui lui donne le sentiment d’être envahie ou trahie."
     },
     {
       kicker: "Personnalité prédominant tristesse / colère intérieure",
@@ -271,7 +271,7 @@ const PAGES = [
    {
   id: "w_joie",
   type: "BLESSURE",
-  title: "État : joie",
+  title: "État : JOIE",
   subtitle: "Absence de blessure activée",
   grid: [
     ["Émotion racine", "Joie."],
@@ -289,7 +289,7 @@ const PAGES = [
   {
     id: "w_rejet",
     type: "BLESSURE",
-    title: "Blessure : rejet",
+    title: "Blessure : REJET",
     subtitle: "Émotion : tristesse",
     grid: [
       ["Émotion racine", "Tristesse."],
@@ -323,14 +323,14 @@ const PAGES = [
   {
     id: "w_abandon",
     type: "BLESSURE",
-    title: "Blessure : abandon",
+    title: "Blessure : ABANDON",
     subtitle: "Émotion : peur",
     grid: [
       ["Émotion racine", "Peur."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
       [
         "Origine",
-        "Sentiment d’être laissé seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",
+        "Sentiment d’être seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",
       ],
       [
         "Masque / comportement",
@@ -351,7 +351,7 @@ const PAGES = [
   {
     id: "w_humiliation",
     type: "BLESSURE",
-    title: "Blessure : humiliation",
+    title: "Blessure : HUMILIATION",
     subtitle: "Émotion : dégoût",
     grid: [
       ["Émotion racine", "Dégoût."],
@@ -376,16 +376,16 @@ const PAGES = [
   {
     id: "w_trahison",
     type: "BLESSURE",
-    title: "Blessure : trahison",
+    title: "Blessure : TRAHISON",
     subtitle: "Émotion : surprise",
     grid: [
       ["Émotion racine", "Surprise."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
       [
         "Origine",
-        "Expérience de trahison réelle ou vécue comme telle (parent absent, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité.",
+        "Expérience de trahison réelle ou vécue comme telle (parent absent, divorce, séparation, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité.",
       ],
-      ["Âge d’ancrage", "6–7 ans (indiqué)."],
+      ["Âge d’ancrage", "6–7 ans."],
       [
         "Masque / comportement",
         "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise.",
@@ -393,7 +393,7 @@ const PAGES = [
       ["Apathie / empathie", "Méfiance, contrôle ou test permanent de l’autre."],
       ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
       ["Dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
-      ["Valeurs", "Loyauté, fidélité, vérité, apparence/paraître, argent (statut social, entourage, savoir)."],
+      ["Valeurs", "Loyauté, fidélité, vérité, famille, rapport au temps apparence/paraître, argent (statut social, entourage, savoir)."],
       [
         "Croyances limitantes",
         "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »",
@@ -408,7 +408,7 @@ const PAGES = [
   {
     id: "w_injustice",
     type: "BLESSURE",
-    title: "Blessure : injustice",
+    title: "Blessure : INJUSTICE",
     subtitle: "Émotion : colère intérieure",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
@@ -628,7 +628,7 @@ const PAGES = [
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
   { section: "Bases", items: ["base_blessures", "base_confort", "base_empathie", "base_karpman"] },
-  { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
+  { section: "Blessures", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
 ];
