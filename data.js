@@ -290,7 +290,7 @@ const PAGES = [
     id: "w_rejet",
     type: "BLESSURE",
     title: "REJET (tristesse)",
-    subtitle: "comportement d'inferiorite",
+    subtitle: "Comportement d'inferiorité",
     grid: [
       ["Émotion racine", "Tristesse."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.tristesse],
@@ -324,7 +324,7 @@ const PAGES = [
     id: "w_abandon",
     type: "BLESSURE",
     title: "ABANDON (peur)",
-    subtitle: "comportement d'inferiorite",
+    subtitle: "Comportement d'inferiorité",
     grid: [
       ["Émotion racine", "Peur."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
@@ -352,7 +352,7 @@ const PAGES = [
     id: "w_humiliation",
     type: "BLESSURE",
     title: "HUMILIATION (dégout)",
-    subtitle: "comportement d'inferiorite",
+    subtitle: "Comportement d'inferiorité",
     grid: [
       ["Émotion racine", "Dégoût."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.degout],
@@ -377,7 +377,7 @@ const PAGES = [
     id: "w_trahison",
     type: "BLESSURE",
     title: "TRAHISON (surprise)",
-    subtitle: "comportement de superiorité",
+    subtitle: "Comportement de superiorité",
     grid: [
       ["Émotion racine", "Surprise."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
@@ -402,6 +402,10 @@ const PAGES = [
         "Croyances expansives",
         "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »",
       ],
+      [
+        "Guérison",
+        "Amène à la douceur tant avec soi qu'avec les autres.",
+      ],
     ],
   },
 
@@ -409,7 +413,7 @@ const PAGES = [
     id: "w_injustice",
     type: "BLESSURE",
     title: "INJUSTICE (colère)",
-    subtitle: "comportement de superiorité",
+    subtitle: "Comportement de superiorité",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere_interieure],
