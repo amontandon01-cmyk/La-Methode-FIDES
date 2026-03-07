@@ -75,43 +75,65 @@ const PAGES = [
     ],
   },
 
-  {
-    id: "base_blessures",
-    type: "BASE",
-    title: "Les blessures émotionnelles (cadre)",
-    subtitle: "Apathie ↔ empathie",
-    content: [
-      {
-        kicker: "Constat",
-        lead: "Quand une blessure s’active, l’apathie prend le dessus.",
-        text:
-          "Dans ce contexte, l’apathie n’est pas une absence d’émotion au sens médical, mais un état de fermeture émotionnelle qui se met en place lorsqu’une douleur ancienne se réveille.",
-      },
-      {
-        kicker: "Fonction",
-        lead: "Réaction inconsciente de protection / mode de survie émotionnel.",
-        text: "C’est une réaction inconsciente de protection que la personne adopte pour ne plus souffrir.",
-      },
-      {
-        kicker: "Direction",
-        lead: "Retrouver l’ouverture de conscience.",
-        text:
-          "L’objectif est de passer de la fermeture à l’ouverture de conscience — vers l’acceptation de soi et de l’autre, sans jugement.",
-      },
-      {
-        kicker: "Finalité",
-        lead: "Retrouver la connexion.",
-        text: "Retrouver la connexion à soi, à l’autre et à la vie.",
-      },
-      {
-        kicker: "Lien avec les comportements",
-        lead: "Ce que l’on observe dans le quotidien.",
-        text:
-          "Quand une blessure émotionnelle s’active, la personne cherche inconsciemment à éviter l’émotion ressentie. Les comportements observables (addictions, valeurs affichées, dogmes et croyances) deviennent souvent des stratégies de protection. Les comprendre aide à identifier la blessure à l’origine et à ouvrir un chemin de transformation.",
-      },
-    ],
-  },
-
+{
+  id: "base_blessures",
+  type: "BASE",
+  title: "Les blessures émotionnelles",
+  subtitle: "Blessures prédominantes & profils",
+  content: [
+    {
+      kicker: "Définition",
+      lead: "Une blessure émotionnelle influence la manière de vivre, ressentir et réagir.",
+      text: "Une blessure émotionnelle est une douleur ancienne qui colore la perception de soi, de l’autre et du monde. Lorsqu’elle s’active, elle influence les émotions, les comportements, les relations et les mécanismes de protection mis en place pour ne plus souffrir. Dans ce contexte, l’apathie ne désigne pas une absence d’émotion au sens médical, mais un état de fermeture émotionnelle qui se met en place lorsqu’une douleur ancienne se réveille."
+    },
+    {
+      kicker: "Point de départ",
+      lead: "Une même situation peut réveiller des réactions très différentes.",
+      text: "Face à une remarque, une séparation, un changement, une attente ou une incertitude, chaque personne réagit à travers ses blessures prédominantes. Ce filtre intérieur explique pourquoi deux personnes peuvent vivre la même situation de manière totalement différente. Quand une blessure s’active, la fermeture émotionnelle prend souvent le dessus avant qu’une vraie ouverture soit possible."
+    },
+    {
+      kicker: "Toutes les blessures existent chez chacun",
+      lead: "La différence se joue dans la prédominance.",
+      text: "Chaque être humain porte en lui les différentes blessures émotionnelles à des degrés variables. La différence ne tient pas à la présence ou à l’absence d’une blessure, mais à celles qui s’activent le plus souvent, prennent le plus de place et organisent le fonctionnement habituel."
+    },
+    {
+      kicker: "Blessures prédominantes",
+      lead: "Elles donnent la tonalité principale du profil.",
+      text: "Une ou deux blessures dominantes orientent souvent la manière de se protéger, de créer du lien, de réagir au stress, d’éviter la douleur ou de chercher de la sécurité. Les autres blessures restent présentes, mais elles occupent moins souvent le premier plan."
+    },
+    {
+      kicker: "Profil prédominant peur / surprise",
+      lead: "Quand la protection passe surtout par la vigilance, l’anticipation, le contrôle ou la maîtrise.",
+      text: "Ce profil est souvent lié à des dominantes comme l’abandon et la trahison. La personne vit plus facilement l’inconnu comme un risque d’insécurité, de perte d’appui, de perte de contrôle ou de déception. Elle peut chercher à sécuriser le lien, vérifier, anticiper, contrôler, performer, garder la main ou éviter la dépendance. La peur pousse à chercher un point d’appui. La surprise pousse à se méfier et à reprendre le contrôle. Le dégoût peut aussi apparaître dans ce profil, notamment lorsque la personne rejette la faiblesse, la dépendance, l’imprévu ou ce qui lui donne le sentiment d’être envahie ou trahie."
+    },
+    {
+      kicker: "Profil prédominant tristesse / colère intérieure",
+      lead: "Quand la protection passe surtout par le retrait, l’auto-contrôle, la fermeture ou l’effacement.",
+      text: "Ce profil est souvent lié à des dominantes comme le rejet et l’injustice. La personne vit plus facilement l’inconnu comme un risque d’être de trop, de ne pas avoir sa place, d’être jugée, blessée ou insuffisante. Elle peut se retirer, se couper, se durcir, se suradapter, viser l’irréprochable ou garder beaucoup à l’intérieur. La tristesse pousse au repli, à l’effacement ou au doute sur sa valeur. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici, notamment sous forme de honte, de rejet de soi, de rejet du corps, de dévalorisation ou de refus de ce qui est ressenti comme sale, faible ou imparfait."
+    },
+    {
+      kicker: "Lien avec les comportements",
+      lead: "Ce que l’on observe dans le quotidien.",
+      text: "Quand une blessure émotionnelle s’active, la personne cherche inconsciemment à éviter l’émotion ressentie ou à retrouver une forme de sécurité. Les comportements observables — addictions, valeurs affichées, dogmes, croyances, contrôle, retrait, hyperadaptation ou quête de reconnaissance — deviennent alors des stratégies de protection. Les comprendre aide à identifier la blessure à l’origine et à ouvrir un chemin de transformation."
+    },
+    {
+      kicker: "Direction",
+      lead: "Passer de la fermeture à l’ouverture de conscience.",
+      text: "Le chemin n’est pas d’effacer ses blessures, mais de les reconnaître, de comprendre leur logique et de ne plus leur laisser diriger toute la vie intérieure. L’objectif est de passer de la fermeture à l’ouverture de conscience, vers l’acceptation de soi et de l’autre, sans jugement."
+    },
+    {
+      kicker: "Finalité",
+      lead: "Retrouver la connexion.",
+      text: "Le but est de retrouver la connexion à soi, à l’autre et à la vie, avec plus de présence, de discernement, d’acceptation et de stabilité intérieure. Cette lecture prépare ensuite naturellement la compréhension de la zone de confort, de la peur, de l’apprentissage et de l’expansion."
+    },
+    {
+      kicker: "Message clé",
+      lead: "Tout le monde porte toutes les blessures, mais pas avec la même intensité.",
+      text: "Comprendre ses blessures prédominantes aide à mieux lire ses réactions, ses comportements et ses blocages. C’est une porte d’entrée essentielle pour comprendre comment chacun vit ensuite sa zone de confort."
+    },
+  ],
+},
+   
   {
     id: "base_empathie",
     type: "BASE",
