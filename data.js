@@ -238,6 +238,34 @@ const PAGES = [
       },
     ],
   },
+   {
+  id: "base_karpman",
+  type: "BASE",
+  title: "Le triangle de Karpman",
+  subtitle: "Victime ↔ Sauveur ↔ Persécuteur",
+  content: [
+    {
+      kicker: "Définition",
+      lead: "Une grille de lecture des dynamiques relationnelles de survie.",
+      text: "Le triangle de Karpman aide à repérer certaines postures relationnelles qui apparaissent quand une blessure s’active dans le lien. Il ne sert pas à enfermer une personne dans une étiquette, mais à observer des rôles qui peuvent se rejouer : Victime, Sauveur, Persécuteur. Une même personne peut passer de l’un à l’autre selon le contexte."
+    },
+    {
+      kicker: "Lien avec les blessures",
+      lead: "Chaque blessure dominante peut favoriser certaines entrées dans le triangle.",
+      text: "Rejet → fuite silencieuse. Abandon → tendance à la Victime et au Sauveur-fusionnel. Humiliation → tendance au Sauveur sacrificiel. Trahison → tendance au Persécuteur-contrôlant ou au test permanent. Injustice → tendance au Persécuteur-rigide ou au juge intérieur."
+    },
+    {
+      kicker: "Lecture pédagogique",
+      lead: "Le rôle visible protège souvent une douleur plus profonde.",
+      text: "Derrière ces postures, on retrouve souvent une tentative de se protéger, d’éviter une émotion ou de garder un lien. Lire ces dynamiques permet de mieux comprendre ce qui se joue dans la relation et d’ouvrir un chemin plus conscient, plus juste et plus libre."
+    },
+    {
+      kicker: "Message clé",
+      lead: "Le but n’est pas d’accuser, mais de comprendre.",
+      text: "Repérer le triangle aide à sortir des réactions automatiques et à revenir à une posture plus responsable, plus lucide et plus alignée."
+    },
+  ],
+},
 
   // BLESSURES
    {
@@ -580,6 +608,10 @@ const PAGES = [
         "La lecture des cinq blessures fondamentales — rejet, abandon, humiliation, trahison et injustice — ainsi que des masques relationnels qui leur sont classiquement associés, trouve un appui dans les travaux de Lise Bourbeau, en particulier dans l’ouvrage Les 5 blessures qui empêchent d’être soi-même.",
       ],
       [
+         "Triangle de Karpman",
+         "Le triangle de Karpman apporte une grille de lecture complémentaire des dynamiques relationnelles de survie. Son intégration dans ce site s’inscrit dans la structuration pédagogique de la Méthode FIDES, en lien avec les blessures émotionnelles et les rôles relationnels qui peuvent en découler."
+      ],
+      [
         "Élaboration de la Méthode FIDES",
         "La structuration pédagogique présentée sur ce site, l’identification des émotions racines, l’articulation entre blessures, comportements compensatoires, valeurs de vie, conditionnements, dogmes de comportement et croyances limitantes relèvent de la Méthode FIDES.",
       ],
@@ -595,7 +627,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_confort", "base_empathie"] },
+  { section: "Bases", items: ["base_blessures", "base_confort", "base_empathie", "base_karpman"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
