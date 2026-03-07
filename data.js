@@ -51,29 +51,64 @@ const PAGES = [
   },
 
   // BASES
-  {
-    id: "base_confort",
-    type: "BASE",
-    title: "Le cercle de la zone de confort",
-    subtitle: "Confort → Peur → Apprentissage → Expansion",
-    content: [
-      {
-        kicker: "But pédagogique",
-        lead: "Montrer les différentes zones.",
-        bullets: [
-          "Zone de confort = sécurité illusoire, répétition des habitudes, évitement de l’inconfort.",
-          "Zone de peur = doutes, jugements des autres, perte de repères.",
-          "Zone d’apprentissage = nouvelles compétences, élargissement de soi, expérimentation.",
-          "Zone d’expansion = réalisation de soi, alignement avec sa valeur, contribution au monde.",
-        ],
-      },
-      {
-        kicker: "Message clé",
-        lead: "Pour avancer, il faut oser franchir la peur et passer par l’apprentissage.",
-        text: "Sans ce passage, on reste prisonnier de l’illusion de sécurité.",
-      },
-    ],
-  },
+{
+  id: "base_confort",
+  type: "BASE",
+  title: "Le cercle de la zone de confort",
+  subtitle: "Du confort à l’ouverture",
+  content: [
+    {
+      kicker: "Définition",
+      lead: "La zone de confort ne parle pas seulement d’habitudes extérieures.",
+      text: "La zone de confort correspond à un espace connu, prévisible et émotionnellement balisé. Elle donne une impression de sécurité, car elle évite l’inconnu, limite l’exposition et permet de rester dans des réactions déjà maîtrisées. Elle peut rassurer à court terme, mais elle entretient aussi les anciens réflexes de protection."
+    },
+    {
+      kicker: "Point de départ",
+      lead: "On ne quitte pas tous sa zone de confort de la même manière.",
+      text: "La manière de vivre le confort, la peur, l’apprentissage et l’expansion dépend fortement des blessures prédominantes. Selon le profil intérieur, l’inconnu sera vécu comme une menace de perte de contrôle, de perte de lien, de rejet, d’exposition, d’échec ou d’atteinte à sa valeur. La sortie de zone de confort est donc toujours aussi un passage émotionnel."
+    },
+    {
+      kicker: "Profil prédominant peur / surprise",
+      lead: "Le confort protège surtout de l’insécurité, de l’imprévu et de la perte de maîtrise.",
+      text: "Dans ce profil, la zone de confort prend souvent la forme d’un cadre contrôlé, prévisible, vérifiable et rassurant. La personne supporte difficilement l’incertitude, l’improvisation, la dépendance ou l’absence de garantie. Sortir du confort réveille vite la vigilance, l’anticipation, la tension ou le besoin de garder la main. La peur pousse à chercher un appui. La surprise pousse à reprendre le contrôle. Le dégoût peut aussi apparaître quand la personne se sent envahie, déstabilisée ou confrontée à une faiblesse qu’elle refuse."
+    },
+    {
+      kicker: "Profil prédominant tristesse / colère intérieure",
+      lead: "Le confort protège surtout du regard, de l’exposition, du jugement et de la blessure intérieure.",
+      text: "Dans ce profil, la zone de confort prend souvent la forme du retrait, de la discrétion, de l’auto-contrôle, de l’habitude ou d’un environnement où la personne risque moins d’être atteinte. Sortir du confort réveille plus facilement le doute, l’effacement, la crispation intérieure, la peur d’être de trop ou de ne pas être à la hauteur. La tristesse pousse au repli. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici sous forme de honte, de rejet de soi ou de refus de ce qui semble imparfait, vulnérable ou exposé."
+    },
+    {
+      kicker: "Zone de confort",
+      lead: "Ce qui est connu semble sûr, même quand cela limite.",
+      text: "La zone de confort correspond à ce que l’on connaît déjà : habitudes, rôles familiers, environnements prévisibles, réactions déjà utilisées. Elle peut donner une impression de stabilité, mais elle entretient aussi la répétition, l’évitement et l’illusion de sécurité. On y reste souvent moins par élan que par besoin de ne pas ressentir ce que l’inconnu pourrait réveiller."
+    },
+    {
+      kicker: "Zone de peur",
+      lead: "Le passage où l’ancien cadre commence à lâcher.",
+      text: "Dès qu’une personne sort de ses repères habituels, une zone de peur apparaît. Elle peut prendre la forme du doute, du stress, du regard des autres, de la peur de l’échec, de la perte de contrôle, du rejet ou de l’exposition. Cette étape est normale : elle signale que quelque chose d’ancien est remis en question. Selon le profil dominant, cette peur prendra plutôt la forme du contrôle, du repli, de la sidération, de la tension ou du besoin d’être rassuré."
+    },
+    {
+      kicker: "Zone d’apprentissage",
+      lead: "L’espace où l’on expérimente autrement.",
+      text: "Dans cette zone, la personne commence à tester de nouvelles manières d’agir, de ressentir, de se positionner et de répondre à la vie. Elle développe des compétences, élargit sa lecture, découvre ses mécanismes et apprend à traverser l’inconfort sans revenir immédiatement aux anciens réflexes. C’est une zone exigeante, mais profondément transformatrice."
+    },
+    {
+      kicker: "Zone d’expansion",
+      lead: "Quand l’être prend plus de place sans se trahir.",
+      text: "La zone d’expansion correspond à une ouverture plus grande : plus de liberté intérieure, plus d’alignement, plus de présence et plus de capacité à agir avec justesse. La personne ne fonctionne plus uniquement à partir de ses anciens réflexes de protection. Elle ose davantage, tout en restant reliée à elle-même. L’expansion n’est pas une performance : c’est un déploiement plus conscient."
+    },
+    {
+      kicker: "Clé de lecture",
+      lead: "Ce qui freine n’est pas seulement l’extérieur.",
+      text: "Le vrai frein n’est pas seulement la nouveauté, mais ce que cette nouveauté réveille intérieurement. Rester dans le confort protège à court terme, mais limite l’évolution. Traverser la peur permet d’entrer dans l’apprentissage, puis dans l’expansion. La question utile n’est donc pas seulement “qu’est-ce qui me fait peur ?”, mais aussi “qu’est-ce que je protège en restant ici ?”."
+    },
+    {
+      kicker: "Message clé",
+      lead: "La peur n’est pas forcément un stop.",
+      text: "Sortir de sa zone de confort ne consiste pas à se forcer brutalement, mais à reconnaître ce qui se ferme en soi, à comprendre ce qui cherche à se protéger, puis à avancer avec plus de conscience. C’est ainsi que l’apprentissage devient possible et que l’expansion peut se vivre sans violence intérieure."
+    },
+  ],
+},
 
 {
   id: "base_blessures",
@@ -169,7 +204,7 @@ const PAGES = [
       },
       {
         kicker: "Conséquences",
-        lead: "Conséquences de l’absence d’empathie (apathie) — Synthèse (support)",
+        lead: "Conséquences de l’absence d’empathie (apathie)",
         bullets: [
           "Bien-être personnel fragilisé : sentiment de vide, anxiété, isolement émotionnel, perte de confiance.",
           "Fermeture aux autres : indifférence, incapacité d’aider, égocentrisme.",
@@ -185,7 +220,7 @@ const PAGES = [
       },
       {
         kicker: "Conséquences positives",
-        lead: "Conséquences positives de l’empathie — Synthèse (support)",
+        lead: "Conséquences positives de l’empathie",
         bullets: [
           "Bien-être personnel : plus de satisfaction de vie, confiance en soi.",
           "Croissance personnelle : estime de soi, réduction du stress, envie de s’engager.",
@@ -560,7 +595,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_confort", "base_blessures", "base_empathie"] },
+  { section: "Bases", items: ["base_blessures", "base_confort", "base_empathie"] },
   { section: "Blessures", items: ["w_joie", "w_rejet", "w_abandon", "w_humiliation", "w_trahison", "w_injustice"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
