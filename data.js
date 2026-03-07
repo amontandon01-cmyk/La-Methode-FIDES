@@ -290,7 +290,7 @@ const PAGES = [
     id: "w_rejet",
     type: "BLESSURE",
     title: "REJET",
-    subtitle: "Émotion : tristesse",
+    subtitle: "comportement d'inferiorite",
     grid: [
       ["Émotion racine", "Tristesse."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.tristesse],
@@ -324,7 +324,7 @@ const PAGES = [
     id: "w_abandon",
     type: "BLESSURE",
     title: "ABANDON",
-    subtitle: "Émotion : peur",
+    subtitle: "comportement d'inferiorite",
     grid: [
       ["Émotion racine", "Peur."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
@@ -352,7 +352,7 @@ const PAGES = [
     id: "w_humiliation",
     type: "BLESSURE",
     title: "HUMILIATION",
-    subtitle: "Émotion : dégoût",
+    subtitle: "comportement d'inferiorite",
     grid: [
       ["Émotion racine", "Dégoût."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.degout],
@@ -377,7 +377,7 @@ const PAGES = [
     id: "w_trahison",
     type: "BLESSURE",
     title: "TRAHISON",
-    subtitle: "Émotion : surprise",
+    subtitle: "comportement de superiorité",
     grid: [
       ["Émotion racine", "Surprise."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
@@ -409,7 +409,7 @@ const PAGES = [
     id: "w_injustice",
     type: "BLESSURE",
     title: "INJUSTICE",
-    subtitle: "Émotion : colère intérieure",
+    subtitle: "comportement de superiorité",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere_interieure],
