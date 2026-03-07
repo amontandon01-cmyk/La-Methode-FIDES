@@ -289,7 +289,7 @@ const PAGES = [
   {
     id: "w_rejet",
     type: "BLESSURE",
-    title: "REJET",
+    title: "REJET (tristesse)",
     subtitle: "comportement d'inferiorite",
     grid: [
       ["Émotion racine", "Tristesse."],
@@ -323,7 +323,7 @@ const PAGES = [
   {
     id: "w_abandon",
     type: "BLESSURE",
-    title: "ABANDON",
+    title: "ABANDON (peur)",
     subtitle: "comportement d'inferiorite",
     grid: [
       ["Émotion racine", "Peur."],
@@ -351,7 +351,7 @@ const PAGES = [
   {
     id: "w_humiliation",
     type: "BLESSURE",
-    title: "HUMILIATION",
+    title: "HUMILIATION (dégout)",
     subtitle: "comportement d'inferiorite",
     grid: [
       ["Émotion racine", "Dégoût."],
@@ -376,7 +376,7 @@ const PAGES = [
   {
     id: "w_trahison",
     type: "BLESSURE",
-    title: "TRAHISON",
+    title: "TRAHISON (surprise)",
     subtitle: "comportement de superiorité",
     grid: [
       ["Émotion racine", "Surprise."],
@@ -408,7 +408,7 @@ const PAGES = [
   {
     id: "w_injustice",
     type: "BLESSURE",
-    title: "INJUSTICE",
+    title: "INJUSTICE (colère)",
     subtitle: "comportement de superiorité",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
