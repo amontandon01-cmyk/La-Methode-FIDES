@@ -65,17 +65,17 @@ const PAGES = [
     {
       kicker: "Point de départ",
       lead: "On ne quitte pas tous sa zone de confort de la même manière.",
-      text: "La manière de vivre le confort, la peur, l’apprentissage et l’expansion dépend fortement des blessures prédominantes. Selon le profil intérieur, l’inconnu sera vécu comme une menace de perte de contrôle, de perte de lien, de rejet, d’exposition, d’échec ou d’atteinte à sa valeur. La sortie de zone de confort est donc toujours aussi un passage émotionnel."
+      text: "La manière de vivre le confort, la peur, l’apprentissage et l’expansion dépend fortement des blessures prédominantes. Selon la personnalité intérieure, l’inconnu sera vécu comme une menace de perte de contrôle, de perte de lien, de rejet, d’exposition, d’échec ou d’atteinte à sa valeur. La sortie de zone de confort est donc toujours aussi un passage émotionnel."
     },
     {
-      kicker: "Profil prédominant peur / surprise",
+      kicker: "Personnalité prédominante surprise / peur",
       lead: "Le confort protège surtout de l’insécurité, de l’imprévu et de la perte de maîtrise.",
-      text: "Dans ce profil, la zone de confort prend souvent la forme d’un cadre contrôlé, prévisible, vérifiable et rassurant. La personne supporte difficilement l’incertitude, l’improvisation, la dépendance ou l’absence de garantie. Sortir du confort réveille vite la vigilance, l’anticipation, la tension ou le besoin de garder la main. La peur pousse à chercher un appui. La surprise pousse à reprendre le contrôle. Le dégoût peut aussi apparaître quand la personne se sent envahie, déstabilisée ou confrontée à une faiblesse qu’elle refuse."
+      text: "Dans cette personnalité, la zone de confort prend souvent la forme d’un cadre contrôlé, prévisible, vérifiable et rassurant. La personne supporte difficilement l’incertitude, l’improvisation, la dépendance ou l’absence de garantie. Sortir du confort réveille vite la vigilance, l’anticipation, la tension ou le besoin de garder la main. La peur pousse à chercher un appui. La surprise pousse à reprendre le contrôle. Le dégoût peut aussi apparaître quand la personne se sent envahie, déstabilisée ou confrontée à une faiblesse qu’elle refuse."
     },
     {
-      kicker: "Profil prédominant tristesse / colère intérieure",
+      kicker: "Personnalité prédominante tristesse / colère intérieure",
       lead: "Le confort protège surtout du regard, de l’exposition, du jugement et de la blessure intérieure.",
-      text: "Dans ce profil, la zone de confort prend souvent la forme du retrait, de la discrétion, de l’auto-contrôle, de l’habitude ou d’un environnement où la personne risque moins d’être atteinte. Sortir du confort réveille plus facilement le doute, l’effacement, la crispation intérieure, la peur d’être de trop ou de ne pas être à la hauteur. La tristesse pousse au repli. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici sous forme de honte, de rejet de soi ou de refus de ce qui semble imparfait, vulnérable ou exposé."
+      text: "Dans cette personnalité, la zone de confort prend souvent la forme du retrait, de la discrétion, de l’auto-contrôle, de l’habitude ou d’un environnement où la personne risque moins d’être atteinte. Sortir du confort réveille plus facilement le doute, l’effacement, la crispation intérieure, la peur d’être de trop ou de ne pas être à la hauteur. La tristesse pousse au repli. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici sous forme de honte, de rejet de soi ou de refus de ce qui semble imparfait, vulnérable ou exposé."
     },
     {
       kicker: "Zone de confort",
@@ -114,17 +114,17 @@ const PAGES = [
   id: "base_blessures",
   type: "BASE",
   title: "Les blessures émotionnelles",
-  subtitle: "Blessures prédominantes & profils",
+  subtitle: "Blessures prédominantes & personnalité",
   content: [
     {
       kicker: "Définition",
-      lead: "Une blessure émotionnelle influence la manière de vivre, ressentir et réagir.",
-      text: "Une blessure émotionnelle est une douleur ancienne qui colore la perception de soi, de l’autre et du monde. Lorsqu’elle s’active, elle influence les émotions, les comportements, les relations et les mécanismes de protection mis en place pour ne plus souffrir. Dans ce contexte, l’apathie ne désigne pas une absence d’émotion au sens médical, mais un état de fermeture émotionnelle qui se met en place lorsqu’une douleur ancienne se réveille."
+      lead: "Une blessure émotionnelle amène à des comportements dysfonctionnels.",
+      text: "Une blessure émotionnelle colore la perception de soi, de l’autre et du monde. Lorsqu’elle s’active, elle influence les émotions, les comportements, les relations et les mécanismes de protection mis en place pour ne plus souffrir. Dans ce contexte, l’apathie ne désigne pas une absence d’émotion au sens médical, mais un état de fermeture émotionnelle qui se met en place lorsqu’une douleur ancienne se réveille."
     },
     {
       kicker: "Point de départ",
       lead: "Une même situation peut réveiller des réactions très différentes.",
-      text: "Face à une remarque, une séparation, un changement, une attente ou une incertitude, chaque personne réagit à travers ses blessures prédominantes. Ce filtre intérieur explique pourquoi deux personnes peuvent vivre la même situation de manière totalement différente. Quand une blessure s’active, la fermeture émotionnelle prend souvent le dessus avant qu’une vraie ouverture soit possible."
+      text: "Face à une situation, une remarque, un changement, une culpabilité ou une incertitude, etc... chaque personne réagit à travers ses blessures prédominantes. Ce filtre intérieur explique pourquoi deux personnes peuvent vivre la même situation de manière totalement différente. Quand une blessure s’active, la fermeture émotionnelle inconsciente prend le dessus."
     },
     {
       kicker: "Toutes les blessures existent chez chacun",
@@ -133,18 +133,18 @@ const PAGES = [
     },
     {
       kicker: "Blessures prédominantes",
-      lead: "Elles donnent la tonalité principale du profil.",
-      text: "Une ou deux blessures dominantes orientent souvent la manière de se protéger, de créer du lien, de réagir au stress, d’éviter la douleur ou de chercher de la sécurité. Les autres blessures restent présentes, mais elles occupent moins souvent le premier plan."
+      lead: "Elles donnent la tonalité principale de la personnalité.",
+      text: "Une ou deux blessures dominantes orientent souvent la manière de se protéger, de créer du lien, de réagir au stress ou à la panique, d’éviter la douleur ou de chercher de la sécurité. Les autres blessures restent présentes, mais elles occupent moins souvent le premier plan."
     },
     {
-      kicker: "Profil prédominant peur / surprise",
-      lead: "Quand la protection passe surtout par la vigilance, l’anticipation, le contrôle ou la maîtrise.",
-      text: "Ce profil est souvent lié à des dominantes comme l’abandon et la trahison. La personne vit plus facilement l’inconnu comme un risque d’insécurité, de perte d’appui, de perte de contrôle ou de déception. Elle peut chercher à sécuriser le lien, vérifier, anticiper, contrôler, performer, garder la main ou éviter la dépendance. La peur pousse à chercher un point d’appui. La surprise pousse à se méfier et à reprendre le contrôle. Le dégoût peut aussi apparaître dans ce profil, notamment lorsque la personne rejette la faiblesse, la dépendance, l’imprévu ou ce qui lui donne le sentiment d’être envahie ou trahie."
+      kicker: "Personnalité prédominant surprise / peur",
+      lead: "Quand la protection passe surtout par la vigilance, l’anticipation, le contrôle, la maîtrise, la validation ou chercher à être rassuré.",
+      text: "Cette personnalité est souvent lié à des dominantes comme la trahison et l’abandon. La personne vit plus facilement l’inconnu comme un risque d’insécurité, de perte d’appui, de perte de contrôle ou de déception. Elle peut chercher à sécuriser le lien, vérifier, anticiper, contrôler, performer, garder la main ou éviter la dépendance. La peur pousse à chercher un point d’appui. La surprise pousse à se méfier et à reprendre le contrôle. Le dégoût peut aussi apparaître dans cette personnalité, notamment lorsque la personne rejette la faiblesse, la dépendance, l’imprévu ou ce qui lui donne le sentiment d’être envahie ou trahie."
     },
     {
-      kicker: "Profil prédominant tristesse / colère intérieure",
+      kicker: "Personnalité prédominant tristesse / colère intérieure",
       lead: "Quand la protection passe surtout par le retrait, l’auto-contrôle, la fermeture ou l’effacement.",
-      text: "Ce profil est souvent lié à des dominantes comme le rejet et l’injustice. La personne vit plus facilement l’inconnu comme un risque d’être de trop, de ne pas avoir sa place, d’être jugée, blessée ou insuffisante. Elle peut se retirer, se couper, se durcir, se suradapter, viser l’irréprochable ou garder beaucoup à l’intérieur. La tristesse pousse au repli, à l’effacement ou au doute sur sa valeur. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici, notamment sous forme de honte, de rejet de soi, de rejet du corps, de dévalorisation ou de refus de ce qui est ressenti comme sale, faible ou imparfait."
+      text: "Cette personnalité est souvent lié à des dominantes comme le rejet et l’injustice. La personne vit plus facilement l’inconnu comme un risque d’être de trop, de ne pas avoir sa place, d’être jugée, blessée ou insuffisante. Elle peut se retirer, se couper, se durcir, se suradapter, viser l’irréprochable ou garder beaucoup à l’intérieur. La tristesse pousse au repli, à l’effacement ou au doute sur sa valeur. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici, notamment sous forme de honte, de rejet de soi, de rejet du corps, de dévalorisation ou de refus de ce qui est ressenti comme sale, faible ou imparfait."
     },
     {
       kicker: "Lien avec les comportements",
