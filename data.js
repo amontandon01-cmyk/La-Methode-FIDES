@@ -183,17 +183,23 @@ const PAGES = [
   },
 
   // BLESSURES
-  {
-    id: "w_joie",
-    type: "BLESSURE",
-    title: "État : joie",
-    subtitle: "Absence de blessure activée",
-    grid: [
-      ["Émotion racine", "Joie."],
-      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
-      ["Cadre", "Absence de blessure activée."],
-    ],
-  },
+   {
+  id: "w_joie",
+  type: "BLESSURE",
+  title: "État : joie",
+  subtitle: "Absence de blessure activée",
+  grid: [
+    ["Émotion racine", "Joie."],
+    ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
+    ["Cadre", "Absence de blessure activée. État d’ouverture intérieure, de sécurité relationnelle et de présence à soi."],
+    ["Manifestations concrètes", "Élan naturel, détente, respiration plus libre, capacité à apprécier l’instant, sentiment d’espace intérieur, disponibilité émotionnelle, fluidité dans les échanges."],
+    ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre."],
+    ["Relation à l’autre", "Présence réelle, écoute ouverte, respect, capacité à aimer sans fusion, à donner sans se perdre et à recevoir sans méfiance."],
+    ["Comportements alignés", "Authenticité, créativité, élan de vie, coopération, gratitude, humour, spontanéité, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
+    ["Lecture pédagogique", "La joie n’est pas une excitation permanente ni une obligation d’être bien. Elle correspond à un état intérieur plus libre, où la personne n’est plus dominée par une blessure et ses stratégies de protection."],
+    ["Message clé", "Quand la blessure est traitée, l’être retrouve naturellement la sérénité."],
+  ],
+},
 
   {
     id: "w_rejet",
