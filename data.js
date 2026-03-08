@@ -293,6 +293,59 @@ const PAGES = [
     },
   ]
 },
+{
+  id: "base_culpabilite",  slug: "bases-culpabilite",
+  type: "BASE",
+  title: "La culpabilité",
+  subtitle: "Quand la protection cède, la culpabilité se met en lumière",
+  content: [
+    {
+      kicker: "Culpabilité",
+      lead: "Quand la protection cède, la culpabilité remonte plus clairement",
+      text: "La culpabilité apparaît souvent lorsque la personne commence à sortir de ses mécanismes de protection et voit plus clairement ce qu’elle a vécu, perdu, tu, permis, accepté, porté, empêché, ou laissé se produire. Elle remonte fréquemment lorsque la croyance limitante devient plus visible, que le déni cède, que la réalité intérieure se laisse enfin regarder, et qu’un deuil commence à se faire. Dans ce passage, la personne rencontre plus facilement des phrases intérieures comme : « j’aurais dû », « je n’aurais pas dû », « j’aurais pu empêcher », « j’aurais dû voir », « j’aurais dû dire ». La culpabilité marque alors un moment charnière : la blessure ne reste plus seulement recouverte, elle commence à être reconnue.",
+    },
+    {
+      kicker: "Deuil",
+      lead: "La culpabilité remonte souvent quand l’illusion ne tient plus",
+      text: "Toute blessure profonde implique une forme de deuil. Il peut s’agir du deuil d’une personne, d’un lien, d’une sécurité, d’une réparation attendue, d’une image idéale, d’une reconnaissance espérée, ou d’un possible qui n’a pas eu lieu. Tant que la psyché protège encore ce lien, cette image ou cette illusion, la culpabilité peut rester recouverte. Quand la réalité devient plus visible, elle peut remonter avec force. La personne commence alors à voir ce qu’elle n’a pas pu dire, ce qu’elle n’a pas pu empêcher, ce qu’elle a accepté pour survivre, ou ce qu’elle s’est reproché à tort. Dans cette lecture, la culpabilité surgit souvent au moment où le deuil commence réellement à être traversé.",
+    },
+    {
+      kicker: "Honte et responsabilité",
+      lead: "La culpabilité parle d’un acte, la honte parle de l’être",
+      text: "La culpabilité touche ce que la personne croit avoir fait, omis, permis ou raté. La honte touche ce qu’elle croit être. La culpabilité dit : « j’ai mal fait », « j’aurais dû », « je porte une part ». La honte dit : « je suis mauvais », « je suis défectueux », « je suis indigne ». Cette distinction est essentielle, car une culpabilité reconnue peut ouvrir un chemin de conscience et de responsabilité plus juste, tandis qu’une honte installée enferme l’être dans une identité blessée. Le travail thérapeutique consiste alors à différencier ce qui relève d’une responsabilité réelle, d’une culpabilité apprise, d’une culpabilité imaginaire, ou d’une faute portée à la place d’un autre.",
+    },
+    {
+      kicker: "Blessures émotionnelles",
+      lead: "Chaque blessure colore différemment la manière de porter, projeter ou traverser la faute",
+      text: "Chaque blessure émotionnelle colore la culpabilité d’une manière particulière. Dans le rejet, la culpabilité touche souvent ce qui n’a pas été dit, montré, demandé ou assumé ; elle peut prendre la forme d’un effacement, d’un retrait ou d’une difficulté à prendre sa place. Dans l’abandon, elle touche le besoin, l’attachement, la peur de perdre, le fait de dépendre, d’attendre ou de trop demander ; elle peut s’accompagner d’un fort sentiment d’insécurité affective. Dans l’humiliation, elle touche la valeur de soi, le poids que l’on croit représenter, le rapport au désir, à la dignité, au corps, au plaisir ou au service ; elle conduit souvent à porter trop, à se charger, à se sacrifier ou à se rabaisser. Dans la trahison, la culpabilité peut remonter lorsque le déni cède et que la personne reconnaît ce qu’elle n’a pas voulu voir, ou voit à quel endroit elle s’est quittée elle-même pour préserver un lien ou garder le contrôle. Dans l’injustice, la culpabilité s’associe plus facilement au juge intérieur, à l’exigence, à l’erreur, à l’imperfection, à la retenue émotionnelle, et à une forme de rigidité tournée contre soi ou silencieusement contre l’autre. Une blessure n’est pas un rôle du triangle de Karpman, mais elle peut favoriser certaines postures de survie dans la manière de porter la faute, de réparer, de se retirer, de juger ou de contrôler.",
+    },
+    {
+      kicker: "Triangle de Karpman",
+      lead: "La faute peut être portée sur soi, réparée, ou rejetée sur l’autre",
+      text: "Dans le triangle de Karpman, la culpabilité se manifeste de plusieurs manières. En posture de victime, la personne porte la faute et se vit comme celle qui n’a pas su, pas pu, pas bien fait. En posture de sauveur-réparateur, elle cherche à réparer, porter, soulager ou empêcher, comme si la paix intérieure passait par le fait de prendre en charge ce qui déborde. En posture de persécuteur chaud, ou juge communicant, elle rejette la faute sur l’autre de manière visible, directe, contrôlante, corrective ou tranchante. En posture de persécuteur froid, ou juge silencieux, elle rejette aussi la faute sur l’autre, mais par fermeture, retrait, distance, rigidité ou pression muette ; l’autre se retrouve alors à porter le malaise sans que tout soit clairement dit. Dans cette lecture, la culpabilité peut se retourner contre soi, se transformer en besoin de réparer, ou se projeter sur l’autre de manière chaude ou silencieuse.",
+    },
+    {
+      kicker: "Trahison et injustice",
+      lead: "L’une contrôle plus souvent de manière visible, l’autre plus souvent de manière froide ou silencieuse",
+      text: "La trahison et l’injustice peuvent toutes deux conduire à une posture de contrôle, mais elles ne prennent pas toujours la même forme. Dans la trahison, la tension sort plus facilement de manière visible, active, contrôlante, verbale ou corrective. La personne veut reprendre la main, vérifier, maîtriser, trancher, comprendre, remettre de l’ordre, parfois de manière très directe. Cela rejoint davantage le persécuteur chaud ou le juge communicant. Dans l’injustice, la tension se fige plus facilement de manière intérieure, froide, silencieuse, contenue ou raide. La personne se coupe du ressenti, se juge, juge l’autre sans forcément le verbaliser, se ferme, se retire ou laisse l’autre sentir la faute sans la nommer clairement. Cela rejoint davantage le juge intérieur, le juge silencieux, ou le persécuteur froid.",
+    },
+    {
+      kicker: "Transformation",
+      lead: "La guérison passe par le tri, la conscience et le relâchement",
+      text: "Guérir ne consiste pas à supprimer toute culpabilité. Guérir consiste à la rencontrer, à l’écouter, à la trier, puis à la remettre à sa juste place. Il s’agit de reconnaître ce qui appartient réellement à soi, de différencier ce qui relevait de l’âge, du contexte, du trauma, de la blessure ou du système relationnel, de rendre ce qui ne nous appartient pas, puis de transformer la culpabilité en conscience, en responsabilité juste, en réparation possible, et enfin en relâchement intérieur. Tant que la culpabilité reste recouverte, la blessure continue souvent d’organiser les réactions, les défenses et les rôles de survie. Lorsqu’elle est reconnue et traversée, elle devient un passage central de transformation.",
+    },
+    {
+      kicker: "Phrase clé",
+      lead: "Une synthèse simple à retenir",
+      text: "La culpabilité apparaît souvent lorsque la personne commence à quitter ses protections et rencontre enfin la réalité de la blessure, de la perte, de la croyance et de ce qui n’a pas pu être vécu, dit, empêché ou réparé.",
+    },
+    {
+      kicker: "Repère pédagogique",
+      lead: "Le point charnière du chemin d’intériorité",
+      text: "Faire face à la culpabilité constitue souvent un point charnière du chemin d’intériorité : tant qu’elle reste recouverte, la blessure conserve son pouvoir d’organisation ; lorsqu’elle est reconnue, triée et traversée, un espace de guérison plus profond peut s’ouvrir.",
+    },
+  ],
+},
 
   // BLESSURES
    {
@@ -521,7 +574,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_croyances", "base_confort", "base_empathie", "base_karpman"] },
+  { section: "Bases", items: ["base_blessures", "base_croyances", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
   { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
