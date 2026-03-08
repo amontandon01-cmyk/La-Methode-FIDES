@@ -23,32 +23,20 @@ const SINGLE_LINK_SECTIONS = new Set(["Vue d’ensemble", "Références"]);
 
 /* ------------------------------ Routes ------------------------------ */
 
-const SLUG_TO_PAGE_ID = Object.freeze({
-  "vue-densemble": "home",
-
-  "bases-confort": "base_confort",
-  "bases-blessures": "base_blessures",
-  "bases-empathie": "base_empathie",
-  "bases-karpman": "base_karpman",
-  "bases-croyances": "base_croyances",
-
-  "blessures-joie": "w_joie",
-  "blessures-rejet": "w_rejet",
-  "blessures-abandon": "w_abandon",
-  "blessures-humiliation": "w_humiliation",
-  "blessures-trahison": "w_trahison",
-  "blessures-injustice": "w_injustice",
-
-  "comportements-addictions": "ref_addictions",
-  "comportements-valeurs": "ref_valeurs",
-  "comportements-dogmes": "ref_dogmes",
-
-  "references": "ref_sources",
-});
+const SLUG_TO_PAGE_ID = Object.freeze(
+  PAGES.reduce((acc, page) => {
+    if (page.slug) {
+      acc[page.slug] = page.id;
+    }
+    return acc;
+  }, {})
+);
 
 const PAGE_ID_TO_SLUG = Object.freeze(
-  Object.entries(SLUG_TO_PAGE_ID).reduce((acc, [slug, pageId]) => {
-    acc[pageId] = slug;
+  PAGES.reduce((acc, page) => {
+    if (page.slug) {
+      acc[page.id] = page.slug;
+    }
     return acc;
   }, {})
 );
@@ -178,64 +166,6 @@ function isDebugMode() {
     return isLocal || params.get("debug") === "1";
   } catch {
     return false;
-  }
-}
-
-function validateData() {
-  const seenIds = new Set();
-  const duplicateIds = new Set();
-
-  for (const page of PAGES) {
-    if (seenIds.has(page.id)) duplicateIds.add(page.id);
-    seenIds.add(page.id);
-  }
-
-  if (duplicateIds.size) {
-    console.warn("[FIDES] IDs dupliqués dans PAGES :", Array.from(duplicateIds));
-  }
-
-  const missingNavPages = [];
-  for (const group of NAV) {
-    for (const pageId of group.items) {
-      if (!getPage(pageId)) {
-        missingNavPages.push({ section: group.section, id: pageId });
-      }
-    }
-  }
-
-  if (missingNavPages.length) {
-    console.warn("[FIDES] NAV référence des pages manquantes :", missingNavPages);
-  }
-
-  const missingSlugPages = [];
-  for (const [slug, pageId] of Object.entries(SLUG_TO_PAGE_ID)) {
-    if (!getPage(pageId)) {
-      missingSlugPages.push({ slug, id: pageId });
-    }
-  }
-
-  if (missingSlugPages.length) {
-    console.warn("[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes :", missingSlugPages);
-  }
-
-  const pagesWithoutSlug = [];
-  for (const page of PAGES) {
-    if (!PAGE_ID_TO_SLUG[page.id]) {
-      pagesWithoutSlug.push(page.id);
-    }
-  }
-
-  if (pagesWithoutSlug.length) {
-    console.warn("[FIDES] Pages sans slug :", pagesWithoutSlug);
-  }
-
-  const navPageIds = new Set(NAV.flatMap((group) => group.items));
-  const pagesOutsideNav = PAGES
-    .map((page) => page.id)
-    .filter((pageId) => !navPageIds.has(pageId));
-
-  if (pagesOutsideNav.length) {
-    console.warn("[FIDES] Pages présentes dans PAGES mais absentes de NAV :", pagesOutsideNav);
   }
 }
 
