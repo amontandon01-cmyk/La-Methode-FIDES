@@ -114,7 +114,7 @@ const PAGES = [
   content: [
     {
       kicker: "Définition",
-      lead: "Une blessure émotionnelle amène à des comportements dysfonctionnels.",
+      lead: "Une blessure émotionnelle liée à une croyance limitante amène à des comportements dysfonctionnels.",
       text: "Une blessure émotionnelle colore la perception de soi, de l’autre et du monde. Lorsqu’elle s’active, elle influence les émotions, les comportements, les relations et les mécanismes de protection mis en place pour ne plus souffrir. Dans ce contexte, l’apathie ne désigne pas une absence d’émotion au sens médical, mais un état de fermeture émotionnelle qui se met en place lorsqu’une douleur ancienne se réveille."
     },
     {
@@ -162,6 +162,45 @@ const PAGES = [
       lead: "Tout le monde porte toutes les blessures, mais pas avec la même intensité.",
       text: "Comprendre ses blessures prédominantes aide à mieux lire ses réactions, ses comportements et ses blocages. C’est une porte d’entrée essentielle pour comprendre comment chacun vit ensuite sa zone de confort."
     },
+  ],
+},
+
+{
+  id: "base_croyances",
+  type: "BASE",
+  title: "Pensée & croyances limitantes",
+  subtitle: "Du la fermeture à l’ouverture",
+  content: [
+    {
+      kicker: "Définition",
+      lead: "Une pensée traverse l’esprit, une croyance s’installe dans l’être.",
+      text: "Les pensées et croyances limitantes sont des filtres intérieurs qui réduisent le champ des possibles. La pensée limitante apparaît dans l’instant, influence le ressenti immédiat et oriente souvent la réaction. La croyance limitante s’inscrit plus profondément et devient une référence intérieure durable, à partir de laquelle la personne se perçoit, perçoit les autres et interprète la vie. Lorsqu’elle s’installe, elle agit comme une vérité intérieure et influence les choix, les émotions, les relations et les comportements au quotidien. Elle peut même aller plus loin en donnant à la personne une forme d’autorisation intérieure à adopter des comportements déplacés ou dysfonctionnels, puisqu’elle rend ces comportements cohérents avec sa lecture du monde, avec ce qu’elle croit juste, légitime ou nécessaire à cet instant."
+    },
+    {
+      kicker: "Le filtre intérieur",
+      lead: "Ce que je crois oriente ce que je vois.",
+      text: "Chaque personne lit la réalité à travers sa propre carte du monde, c’est-à-dire à travers son histoire, ses repères, ses blessures, ses expériences et le sens qu’elle a donné à ce qu’elle a vécu. Les pensées et croyances limitantes viennent s’ancrer dans cette carte du monde et cherchent ensuite à la maintenir cohérente. La personne sélectionne alors ce qui confirme déjà sa vision, interprète les situations dans ce sens et peut même biaiser la réalité pour que tout continue à s’intégrer à ce qu’elle croit vrai. Dans certains cas, elle cherche aussi à faire entrer l’autre dans cette même lecture du monde, comme si sa perception était la plus juste ou la plus sécurisante. Ce mécanisme réduit l’ouverture, enferme dans des schémas connus et freine l’accès à une vision plus vaste, plus souple et plus vivante de la réalité."
+    },
+    {
+      kicker: "La naissance de la croyance",
+      lead: "Toute croyance prend racine dans une histoire intérieure.",
+      text: "Une pensée ou une croyance limitante se construit à partir d’expériences marquantes, d’émotions fortes, de blessures actives, de paroles reçues et de conclusions tirées sur soi, sur les autres ou sur la vie. Lorsqu’un vécu émotionnel touche profondément l’être, celui-ci cherche à lui donner du sens et construit une lecture intérieure destinée à préserver son équilibre. Cette lecture devient progressivement familière, puis structurante, jusqu’à former une croyance qui influence durablement le fonctionnement intérieur."
+    },
+    {
+      kicker: "Le lien avec les blessures et les comportements",
+      lead: "La blessure active la croyance, la croyance guide le comportement.",
+      text: "Chaque blessure émotionnelle alimente des pensées particulières et soutient des croyances qui orientent les réactions, les choix et les stratégies de protection. Lorsqu’une blessure s’active, la personne pense, ressent et agit à travers ce filtre, ce qui l’amène à adopter des comportements répétitifs comme la fuite, le contrôle, la suradaptation, l’effacement, l’hypervigilance, l’exigence excessive ou le sacrifice. Le comportement devient alors l’expression visible d’une croyance intérieure plus profonde, souvent installée depuis longtemps dans l’histoire de l’être. À travers cette croyance, la personne se donne intérieurement la permission d’agir de manière déplacée ou dysfonctionnelle, tout en vivant cela comme normal, justifié ou nécessaire au regard de sa propre carte du monde."
+    },
+    {
+      kicker: "Les signes de leur présence et ce qui les nourrit",
+      lead: "Ce qui se répète cherche à être vu, compris et transformé.",
+      text: "Les pensées et croyances limitantes se reconnaissent à travers les blocages récurrents, les réactions émotionnelles intenses, les schémas répétitifs, les difficultés à s’autoriser, à choisir, à recevoir, à se positionner ou à avancer avec fluidité. Elles se renforcent par la répétition mentale, par les comportements de protection, par les expériences qui semblent confirmer le schéma et par l’identification progressive de la personne à ce qu’elle croit vivre comme une vérité. Plus cette dynamique se répète, plus la croyance gagne en force et en influence dans la vie quotidienne."
+    },
+    {
+      kicker: "Le chemin de guérison",
+      lead: "La guérison ouvre une nouvelle lecture de soi et de la vie.",
+      text: "La guérison commence lorsque la personne repère la pensée qui la traverse, reconnaît la croyance qui l’habite, identifie l’émotion présente et relie cette dynamique à la blessure active. À partir de cette conscience, elle peut accueillir son vécu, comprendre le sens de ses comportements et choisir des ajustements plus alignés avec son être profond. Lorsque la croyance est mise en lumière, la personne comprend qu’elle s’est appuyée sur elle pour s’autoriser certains comportements dysfonctionnels. Cette prise de conscience est intense, parce qu’elle amène une remise en question profonde de soi et de ce que l’on a considéré comme normal, légitime ou juste. C’est à cet endroit que la guérison devient possible : la personne voit enfin que cette croyance a eu une fonction, qu’elle l’a aidée à tenir, à se protéger ou à avancer jusqu’ici, puis elle reconnaît qu’aujourd’hui elle la comprend comme limitante et qu’elle n’a plus besoin de la nourrir. Elle peut alors se pardonner de l’avoir utilisée, la remercier pour ce qu’elle lui a permis de traverser, puis la libérer pour ouvrir un nouveau chemin d’évolution plus conscient, plus ajusté et plus libre."
+    }
   ],
 },
    
@@ -513,7 +552,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_confort", "base_empathie", "base_karpman"] },
+  { section: "Bases", items: ["base_blessures", "base_croyance", "base_confort", "base_empathie", "base_karpman"] },
   { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
