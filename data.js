@@ -40,7 +40,7 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
 const PAGES = [
   // ACCUEIL
   {
-    id: "home",
+    id: "home", slug: "vue-densemble",
     type: "HOME",
     title: "Vue d’ensemble",
     subtitle: "Bases • Blessures • Comportements",
@@ -48,7 +48,7 @@ const PAGES = [
 
   // BASES
 {
-  id: "base_confort",
+  id: "base_confort", slug: "bases-confort",
   type: "BASE",
   title: "Le cercle de la zone de confort",
   subtitle: "Du confort à l’ouverture",
@@ -107,7 +107,7 @@ const PAGES = [
 },
 
 {
-  id: "base_blessures",
+  id: "base_blessures", slug: "bases-blessures",
   type: "BASE",
   title: "Les blessures émotionnelles",
   subtitle: "Blessures prédominantes & personnalité",
@@ -161,7 +161,7 @@ const PAGES = [
 },
 
 {
-  id: "base_croyances",
+  id: "base_croyances", slug: "bases-croyances",
   type: "BASE",
   title: "Pensée & croyances limitantes",
   subtitle: "Du la fermeture à l’ouverture",
@@ -200,7 +200,7 @@ const PAGES = [
 },
    
   {
-    id: "base_empathie",
+    id: "base_empathie", slug: "bases-empathie",
     type: "BASE",
     title: "L’empathie",
     subtitle: "Résonance sans fusion",
@@ -269,7 +269,7 @@ const PAGES = [
     ],
   },
    {
-  id: "base_karpman",
+  id: "base_karpman", slug: "bases-karpman",
   type: "BASE",
   title: "Le triangle de Karpman",
   subtitle: "Victime ↔ Sauveur ↔ Persécuteur",
@@ -299,7 +299,7 @@ const PAGES = [
 
   // BLESSURES
    {
-  id: "w_joie",
+  id: "w_joie", slug: "blessures-joie",
   type: "BLESSURE",
   title: "État : JOIE",
   subtitle: "Comportement neutre",
@@ -315,7 +315,7 @@ const PAGES = [
 },
 
   {
-    id: "w_rejet",
+    id: "w_rejet", slug: "blessures-rejet",
     type: "BLESSURE",
     title: "REJET (tristesse)",
     subtitle: "Comportement d'inferiorité",
@@ -334,7 +334,7 @@ const PAGES = [
   },
 
   {
-    id: "w_abandon",
+    id: "w_abandon", slug: "blessures-abandon",
     type: "BLESSURE",
     title: "ABANDON (peur)",
     subtitle: "Comportement d'inferiorité",
@@ -354,7 +354,7 @@ const PAGES = [
   },
 
   {
-    id: "w_humiliation",
+    id: "w_humiliation", slug: "blessures-humiliation",
     type: "BLESSURE",
     title: "HUMILIATION (dégout)",
     subtitle: "Comportement d'inferiorité",
@@ -373,7 +373,7 @@ const PAGES = [
   },
 
   {
-    id: "w_trahison",
+    id: "w_trahison", slug: "blessures-trahison",
     type: "BLESSURE",
     title: "TRAHISON (surprise)",
     subtitle: "Comportement de superiorité",
@@ -392,7 +392,7 @@ const PAGES = [
   },
 
   {
-    id: "w_injustice",
+    id: "w_injustice", slug: "blessures-injustice",
     type: "BLESSURE",
     title: "INJUSTICE (colère)",
     subtitle: "Comportement de superiorité",
@@ -412,7 +412,7 @@ const PAGES = [
 
   // COMPORTEMENTS
 {
-  id: "ref_addictions",
+  id: "ref_addictions", slug: "comportements-addictions",
   type: "REF",
   title: "Addictions",
   subtitle: "Repères & typologies",
@@ -433,7 +433,7 @@ const PAGES = [
   ],
 },
 {
-  id: "ref_valeurs",
+  id: "ref_valeurs", slug: "comportements-valeurs",
   type: "REF",
   title: "Valeurs de vie",
   subtitle: "Repères & piliers",
@@ -454,7 +454,7 @@ const PAGES = [
   ],
 },
 {
-  id: "ref_dogmes",
+  id: "ref_dogmes", slug: "comportements-dogmes",
   type: "REF",
   title: "Conditionnements & dogmes",
   subtitle: "Repères & tendances",
@@ -507,7 +507,7 @@ const PAGES = [
 },
   // RÉFÉRENCES
   {
-    id: "ref_sources",
+    id: "ref_sources", slug: "references",
     type: "REF",
     title: "Références",
     subtitle: "Source",
