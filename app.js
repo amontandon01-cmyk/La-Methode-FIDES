@@ -149,6 +149,9 @@ function setMenu(isOpen) {
   backdrop.setAttribute("data-open", isOpen ? "true" : "false");
   menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   navEl.setAttribute("aria-hidden", isOpen ? "false" : "true");
+
+  document.documentElement.classList.toggle("menuOpen", isOpen);
+  document.body.classList.toggle("menuOpen", isOpen);
 }
 
 function closeMenu() {
