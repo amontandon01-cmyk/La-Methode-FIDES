@@ -180,14 +180,19 @@ function cardHtml({ kicker, lead, text, bullets, image, imageAlt }) {
     html += '<div class="lead">' + escapeHTML(lead) + "</div>";
   }
 
-  if (image) {
-    html +=
-      '<img class="cardImage" src="' +
-      encodeURI(image) +
-      '" alt="' +
-      escapeHTML(imageAlt || kicker || "Illustration") +
-      '" loading="lazy" decoding="async">';
-  }
+   if (image) {
+  html += `
+    <figure class="cardMedia">
+      <img
+        class="cardImage"
+        src="${encodeURI(image)}"
+        alt="${escapeHTML(imageAlt || "Illustration")}"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  `;
+}
 
   if (text) {
     html += "<p>" + escapeHTML(text) + "</p>";
