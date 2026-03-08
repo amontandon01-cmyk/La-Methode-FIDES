@@ -13,7 +13,7 @@
 
 const SENTIMENTS = Object.freeze({
   joie:
-    "Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture d'esprit, Douceur, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré, engagement, tranquilité d'esprit.",
+    "Amour, Sérénité, Gratitude, plénitude, Plaisir, Bonheur, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture d'esprit, Douceur, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré, engagement, tranquilité d'esprit.",
   peur:
     "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Infériorité.",
   colere:
@@ -23,7 +23,7 @@ const SENTIMENTS = Object.freeze({
   injustice:
     "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité, Injustice, Rigidité intérieure.",
   surprise: 
-    "Méfiance, supériorité, incompréhension, impatience, frustration",
+    "Méfiance, Supériorité, Incompréhension, Impatience, Frustration",
 });
 
 const EMOTION_TO_SENTIMENTS = Object.freeze({
@@ -273,9 +273,9 @@ const PAGES = [
     ["Émotion racine", "Joie."],
     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
     ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre, confiance et engagement dans ses projets."],
-    ["Relation à l’autre", "Présence authentique, à l'écoute de l'autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie."],
-    ["Comportements", "Sérénité, spontanéité, élan naturel, respiration plus libre, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échange, communication constructive, gratitude, productivité, authenticité, créativité, élan de vie, coopération, humour, spontanéité, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
-    ["Lecture pédagogique", "La joie n’est pas une excitation permanente ni une obligation d’être bien. Elle correspond à un état intérieur plus libre, où la personne n’est plus dominée par une blessure et ses stratégies de protection."],
+    ["Relation à l’autre", "Présence authentique, à l'écoute de l'autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie et en l'humanité."],
+    ["Comportements", "Sérénité, spontanéité, élan naturel, respiration librérée, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échange, communication constructive, gratitude, productivité, authenticité, créativité, élan de vie, coopération, humour, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
+    ["Lecture pédagogique", "La joie ne correspond pas à une excitation permanente ni à une obligation d’être constamment bien. Elle désigne un état intérieur plus libre et plus stable. Dans cet état, la personne n’est plus dominée par une blessure émotionnelle ni par les stratégies de protection qui en découlent. L’énergie qui était mobilisée pour se défendre, contrôler, fuir ou se protéger redevient disponible. La joie se manifeste alors naturellement par une sensation d’ouverture, de légèreté et de présence à l’instant. Elle permet d’entrer en relation avec soi-même et avec les autres de manière plus authentique, sans tension intérieure."],
     ["Message clé", "Quand la blessure est traitée, l’être retrouve naturellement la sérénité."],
   ],
 },
@@ -288,29 +288,14 @@ const PAGES = [
     grid: [
       ["Émotion racine", "Tristesse."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.tristesse],
-      [
-        "Origine",
-        "Souvent très tôt (indiqué : parfois dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop.",
-      ],
-      [
-        "Masque / comportement",
-        "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger. Caméléon, s’adapte. Tristesse non exprimée.",
-      ],
-      [
-        "Apathie / empathie",
-        "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet.",
-      ],
+      ["Origine", "Souvent très tôt (indiqué : parfois dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop.",],
+      ["Masque / comportement", "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger. Caméléon, s’adapte. Tristesse non exprimée.",],
+      ["Apathie / empathie", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet.",],
       ["Addictions", "Isolement, écrans, alimentation compulsive discrète. Addictions solitaires."],
       ["Dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
       ["Valeurs", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
-      [
-        "Croyances limitantes",
-        "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »).",
-      ],
-      [
-        "Croyances expansives",
-        "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »",
-      ],
+      ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »).",],
+      ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »",],
     ],
   },
 
@@ -322,10 +307,7 @@ const PAGES = [
     grid: [
       ["Émotion racine", "Peur."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
-      [
-        "Origine",
-        "Sentiment d’être seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",
-      ],
+      ["Origine", "Sentiment d’être seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",],
       [
         "Masque / comportement",
         "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. Enfantin. Peut dire qu’il se sent bien seul et qu’il n’a besoin de personne.",
