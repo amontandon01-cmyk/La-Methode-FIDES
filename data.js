@@ -330,7 +330,7 @@ const PAGES = [
       ["Âge d’ancrage", "6–7 ans."],
       ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant, manipulateur. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise. Perte de confiance dans l’autre et dans l’humanité. Pouvoir, contrôle, réussite, domination.",],
       ["Apathie / empathie", "Méfiance, contrôle ou test permanent de l’autre."],
-      ["Valeurs", "Loyauté, fidélité, vérité, famille, rapport au temps apparence/paraître, argent (statut social, entourage, savoir)."],
+      ["Valeurs", "Loyauté, fidélité, vérité, famille, rapport au temps, apparence, paraître, réputation, argent (statut social, entourage, savoir)."],
       ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire.» « On ne peut faire confiance à personne.» « Il faut tout contrôler.» « N’aime pas avoir tort.» « N’aime pas perdre.»",],
       ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »",],
       ["Guérison", "Amène à la douceur tant avec soi qu'avec les autres.",],
