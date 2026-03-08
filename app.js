@@ -7,7 +7,7 @@
    - compatibilité avec anciens ids
 */
 
-"use strict";
+import { PAGES, NAV } from "./data.js";
 
 /* ------------------------------ Constantes ------------------------------ */
 
