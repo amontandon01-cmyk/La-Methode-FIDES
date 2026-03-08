@@ -268,15 +268,15 @@ const PAGES = [
   id: "w_joie",
   type: "BLESSURE",
   title: "État : JOIE",
-  subtitle: "Absence de blessure activée",
+  subtitle: "Comportement neutre",
   grid: [
     ["Émotion racine", "Joie."],
     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
     ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre, confiance et engagement dans ses projets."],
     ["Relation à l’autre", "Présence authentique, à l'écoute de l'autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie et en l'humanité."],
     ["Comportements", "Sérénité, spontanéité, élan naturel, respiration librérée, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échange, communication constructive, gratitude, productivité, authenticité, créativité, élan de vie, coopération, humour, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
-    ["Lecture pédagogique", "La joie ne correspond pas à une excitation permanente ni à une obligation d’être constamment bien. Elle désigne un état intérieur plus libre et plus stable. Dans cet état, la personne n’est plus dominée par une blessure émotionnelle ni par les stratégies de protection qui en découlent. L’énergie qui était mobilisée pour se défendre, contrôler, fuir ou se protéger redevient disponible. La joie se manifeste alors naturellement par une sensation d’ouverture, de légèreté et de présence à l’instant. Elle permet d’entrer en relation avec soi-même et avec les autres de manière plus authentique, sans tension intérieure."],
-    ["Message clé", "Quand la blessure est traitée, l’être retrouve naturellement la sérénité."],
+    ["Lecture pédagogique", "La joie ne correspond pas à une excitation permanente ni à une obligation d’être constamment bien. Elle désigne un état intérieur libre et stable. Dans cet état, la personne n’est plus dominée par une blessure émotionnelle ni par les stratégies. L’énergie qui était mobilisée pour se protéger redevient disponible. La joie se manifeste alors naturellement par une sensation d’ouverture, de légèreté et de présence à l’instant. Elle permet d’entrer en relation avec soi-même et avec les autres de manière authentique, sans tension intérieure."],
+    ["Message clé", "Quand la blessure est traitée, l’être retrouve naturellement la sérénité. "],
   ],
 },
 
@@ -357,31 +357,14 @@ const PAGES = [
     grid: [
       ["Émotion racine", "Surprise."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
-      [
-        "Origine",
-        "Expérience de trahison réelle ou vécue comme telle (parent absent, divorce, séparation, infidélité, promesse non tenue). Perte de confiance dans l’autre et dans l’humanité.",
-      ],
+      ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, divorce, séparation, infidélité, promesse non tenue).",],
       ["Âge d’ancrage", "6–7 ans."],
-      [
-        "Masque / comportement",
-        "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise.",
-      ],
+      ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise. Perte de confiance dans l’autre et dans l’humanité. Pouvoir, contrôle, réussite, domination.",],
       ["Apathie / empathie", "Méfiance, contrôle ou test permanent de l’autre."],
-      ["Addictions", "Pouvoir, contrôle, réussite, domination. Travail ou sport comme moyen de ne pas perdre la main."],
-      ["Dogmes", "« On ne peut faire confiance à personne. » « Il faut tout contrôler. » « N’aime pas avoir tort. » « N’aime pas perdre. »"],
       ["Valeurs", "Loyauté, fidélité, vérité, famille, rapport au temps apparence/paraître, argent (statut social, entourage, savoir)."],
-      [
-        "Croyances limitantes",
-        "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire. »",
-      ],
-      [
-        "Croyances expansives",
-        "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »",
-      ],
-      [
-        "Guérison",
-        "Amène à la douceur tant avec soi qu'avec les autres.",
-      ],
+      ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire.» « On ne peut faire confiance à personne.» « Il faut tout contrôler.» « N’aime pas avoir tort.» « N’aime pas perdre.»",],
+      ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »",],
+      ["Guérison", "Amène à la douceur tant avec soi qu'avec les autres.",],
     ],
   },
 
@@ -394,10 +377,7 @@ const PAGES = [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere_interieure],
       ["Origine", "Éducation stricte, froide, où l’amour dépend de la performance. Jugement/comparaison."],
-      [
-        "Masque / comportement",
-        "Masque du rigide. Perfectionnisme, dureté avec soi et les autres. Besoin de justice, refus de l’imperfection.",
-      ],
+      ["Masque / comportement", "Masque du rigide. Perfectionnisme, dureté avec soi et les autres. Besoin de justice, refus de l’imperfection.",],
       ["Apathie / empathie", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
       ["Addictions", "Travail excessif, perfectionnisme, hyper-contrôle sur soi."],
       ["Dogmes", "« Il faut être parfait pour être aimé. » « Je ne dois rien laisser paraître. »"],
@@ -414,58 +394,19 @@ const PAGES = [
   title: "Addictions",
   subtitle: "Repères & typologies",
   grid: [
-    [
-      "Définition",
-      "Comportements répétitifs ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. L’addiction peut passer par une substance, une activité, une relation, une recherche de performance ou une habitude apparemment banale."
-    ],
-    [
-      "Repère central",
-      "L’addiction procure souvent un soulagement rapide, une impression de contrôle ou une coupure temporaire avec la douleur. En revanche, elle ne traite pas la blessure de fond : elle la masque, la reporte ou l’entretient."
-    ],
-    [
-      "Fonction",
-      "Elle peut servir à ne plus sentir un vide, une peur, une honte, une solitude, une colère intérieure ou une tension psychique. Elle peut aussi donner l’illusion de remplir, calmer, stimuler, contrôler, oublier, se rassurer ou se punir."
-    ],
-    [
-      "Pourquoi c’est piégeant",
-      "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment l’addiction à une solution, alors qu’elle devient peu à peu une stratégie de survie émotionnelle qui prend de la place dans la vie quotidienne."
-    ],
-    [
-      "Addictions aux substances",
-      "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, caféine, sucre. Ces formes passent par l’ingestion, l’inhalation ou l’effet chimique recherché pour modifier rapidement l’état intérieur."
-    ],
-    [
-      "Repères concrets (substances)",
-      "Recherche d’apaisement rapide, besoin de “tenir”, difficulté à traverser certaines émotions sans produit, augmentation progressive de la fréquence, de la dose ou de la dépendance psychologique."
-    ],
-    [
-      "Addictions comportementales",
-      "Jeux d’argent, jeux vidéo, internet, réseaux sociaux, téléphone portable, télévision, achats compulsifs, travail, sport, sexe, amour, relations toxiques, nourriture, régimes, automutilation. Ici, ce n’est pas la substance qui domine, mais la répétition d’un comportement devenu refuge."
-    ],
-    [
-      "Repères concrets (comportementales)",
-      "Besoin de faire, consommer, vérifier, scroller, performer, séduire ou se distraire pour ne pas ressentir. Ces comportements donnent souvent une récompense immédiate, une stimulation, un apaisement ou une impression d’exister."
-    ],
-    [
-      "Addictions plus invisibles",
-      "Perfectionnisme, contrôle, besoin de reconnaissance, hyperactivité, dépendance à l’adrénaline, dépendance spirituelle, dépendance émotionnelle. Ces formes passent plus facilement pour des qualités, alors qu’elles peuvent aussi servir à éviter le contact avec une douleur profonde."
-    ],
-    [
-      "Pourquoi elles passent inaperçues",
-      "Parce qu’elles sont parfois valorisées socialement : être performant, toujours occupé, irréprochable, indispensable, admiré, “éveillé” ou très engagé peut sembler positif, alors que cela peut aussi cacher une fuite émotionnelle."
-    ],
-    [
-      "Lecture pédagogique",
-      "Plus une addiction devient nécessaire pour tenir, se calmer, se sentir vivant, se sentir aimé ou garder le contrôle, plus elle mérite d’être interrogée. La question utile n’est pas seulement “qu’est-ce que je fais ?”, mais aussi “qu’est-ce que cela m’aide à ne pas ressentir ?”."
-    ],
-    [
-      "Lien avec les blessures",
-      "Selon la blessure activée, la stratégie change : isolement, fusion, contrôle, perfectionnisme, compensation par le plaisir, recherche de pouvoir, besoin de remplir un vide. L’addiction n’est donc pas isolée : elle s’inscrit souvent dans une logique émotionnelle plus large."
-    ],
-    [
-      "Message clé",
-      "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal : quelque chose en soi cherche à ne plus souffrir, à se protéger ou à survivre émotionnellement."
-    ],
+    ["Définition", "Comportements répétitifs ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. L’addiction peut passer par une substance, une activité, une relation, une recherche de performance ou une habitude apparemment banale."],
+    ["Repère central", "L’addiction procure souvent un soulagement rapide, une impression de contrôle ou une coupure temporaire avec la douleur. En revanche, elle ne traite pas la blessure de fond : elle la masque, la reporte ou l’entretient."],
+    ["Fonction", "C'est une béquille qui peut servir à ne plus sentir un vide, une peur, une honte, une solitude, une colère intérieure ou une tension psychique. Elle peut aussi donner l’illusion de remplir, calmer, stimuler, contrôler, oublier, se rassurer ou se punir."],
+    ["Pourquoi c’est piégeant", "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment l’addiction à une solution, alors qu’elle devient peu à peu une stratégie pour ne pas faire face aux émotions qui prennent de la place dans la vie quotidienne."],
+    ["Addictions aux substances", "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, caféine, sucre. Ces formes passent par l’ingestion, l’inhalation ou l’effet chimique recherché pour modifier rapidement l’état intérieur."],
+    ["Repères concrets (substances)", "Recherche d’apaisement rapide, besoin de “tenir”, difficulté à traverser certaines émotions sans produit, augmentation progressive de la fréquence, de la dose ou de la dépendance psychologique."],
+    ["Addictions comportementales", "Jeux d’argent, jeux vidéo, internet, réseaux sociaux, téléphone portable, télévision, achats compulsifs, travail, sport, sexe, amour, relations toxiques, nourriture, régimes, automutilation. Ici, ce n’est pas la substance qui domine, mais la répétition d’un comportement devenu refuge."],
+    ["Repères concrets (comportementales)", "Besoin de faire, consommer, vérifier, scroller, performer, séduire ou se distraire pour ne pas ressentir. Ces comportements donnent souvent une récompense immédiate, une stimulation, un apaisement ou une impression d’exister."],
+    ["Addictions plus invisibles", "Perfectionnisme, contrôle, besoin de reconnaissance, hyperactivité, dépendance à l’adrénaline, dépendance spirituelle, méditation. Ces formes passent plus facilement pour des qualités, alors qu’elles peuvent aussi servir à éviter le contact avec une douleur profonde."],
+    ["Pourquoi elles passent inaperçues", "Parce qu’elles sont parfois valorisées socialement : être performant, toujours occupé, irréprochable, indispensable, admiré, “éveillé” ou très engagé peut sembler positif, alors que cela peut aussi cacher une fuite émotionnelle."],
+    ["Lecture pédagogique", "Plus une addiction devient nécessaire pour tenir, se calmer, se sentir vivant, se sentir aimé ou garder le contrôle, plus elle mérite d’être interrogée. La question utile n’est pas seulement “qu’est-ce que je fais ?”, mais aussi “qu’est-ce que cela m’aide à ne pas ressentir ?”, ou “Quelle réalité je ne veux pas voir ?”."],
+    ["Lien avec les blessures", "Selon la blessure activée, la stratégie change : isolement, fusion, contrôle, perfectionnisme, compensation par le plaisir, recherche de pouvoir, besoin de remplir un vide. L’addiction n’est donc pas isolée : elle s’inscrit souvent dans une logique émotionnelle plus large."],
+    ["Message clé", "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal : quelque chose en soi cherche à ne plus souffrir, à se protéger ou à survivre émotionnellement."],
   ],
 },
 {
@@ -474,54 +415,19 @@ const PAGES = [
   title: "Valeurs de vie",
   subtitle: "Repères & piliers",
   grid: [
-    [
-      "Définition",
-      "Repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre."
-    ],
-    [
-      "Repère central",
-      "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre."
-    ],
-    [
-      "Exemples",
-      "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure."
-    ],
-    [
-      "4 piliers universels",
-      "Santé, famille/proches, argent/sécurité financière, amour/relations."
-    ],
-    [
-      "Valeurs personnelles",
-      "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre."
-    ],
-    [
-      "Valeurs relationnelles et familiales",
-      "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage."
-    ],
-    [
-      "Valeurs matérielles et financières",
-      "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel."
-    ],
-    [
-      "Valeurs liées à la vie et au corps",
-      "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre."
-    ],
-    [
-      "Valeurs de réalisation et contribution",
-      "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité."
-    ],
-    [
-      "Valeurs spirituelles et existentielles",
-      "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie."
-    ],
-    [
-      "Travail pratique",
-      "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont alignés avec elles."
-    ],
-    [
-      "Message clé",
-      "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités."
-    ],
+    ["Définition", "Repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre."],
+    ["Repère central", "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre."],
+    ["Exemples", "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure."],
+    ["4 piliers universels", "Santé, famille/proches, argent/sécurité financière, amour/relations."],
+    ["Valeurs personnelles", "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre."],
+    ["Valeurs relationnelles et familiales", "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage."],
+    ["Valeurs matérielles et financières", "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel."],
+    ["Valeurs liées à la vie et au corps", "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre."],
+    ["Valeurs de réalisation et contribution", "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité."],
+    ["Valeurs spirituelles et existentielles", "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie."],
+    ["Travail pratique" "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont alignés avec elles."],
+    ["Message clé", "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités."],
+    ["Guérison", "Les piliers essentiels de notre vie ne sont plus empilés les uns au-dessus des autres. Ils s’alignent à l’horizontale, et nous prenons place au centre. À partir de ce centre, nous pouvons ajuster chacun d’eux et créer l’équilibre qui permet à la sérénité et à la joie de s’installer."],
   ],
 },
 {
