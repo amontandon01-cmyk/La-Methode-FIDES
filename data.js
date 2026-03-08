@@ -65,47 +65,27 @@ const PAGES = [
     },
     {
       kicker: "Déclencheur / Trigger",
-      text: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi."
-    },
-    {
-      kicker: "Personnalité prédominante surprise / peur",
-      lead: "Le confort protège surtout de l’insécurité, de l’imprévu et de la perte de maîtrise.",
-      text: "Dans cette personnalité, la zone de confort prend souvent la forme d’un cadre contrôlé, prévisible, vérifiable et rassurant. La personne supporte difficilement l’incertitude, l’improvisation, la dépendance ou l’absence de garantie. Sortir du confort réveille vite la vigilance, l’anticipation, la tension ou le besoin de garder la main. La peur pousse à chercher un appui. La surprise pousse à reprendre le contrôle. Le dégoût peut aussi apparaître quand la personne se sent envahie, déstabilisée ou confrontée à une faiblesse qu’elle refuse."
-    },
-    {
-      kicker: "Personnalité prédominante tristesse / colère intérieure",
-      lead: "Le confort protège surtout du regard, de l’exposition, du jugement et de la blessure intérieure.",
-      text: "Dans cette personnalité, la zone de confort prend souvent la forme du retrait, de la discrétion, de l’auto-contrôle, de l’habitude ou d’un environnement où la personne risque moins d’être atteinte. Sortir du confort réveille plus facilement le doute, l’effacement, la crispation intérieure, la peur d’être de trop ou de ne pas être à la hauteur. La tristesse pousse au repli. La colère intérieure pousse à la rigidité, à l’exigence et à la retenue émotionnelle. Le dégoût peut aussi apparaître ici sous forme de honte, de rejet de soi ou de refus de ce qui semble imparfait, vulnérable ou exposé."
+      lead: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi."
     },
     {
       kicker: "Zone de confort",
-      lead: "Ce qui est connu semble sûr, même quand cela limite.",
-      text: "La zone de confort correspond à ce que l’on connaît déjà : habitudes, rôles familiers, environnements prévisibles, réactions déjà utilisées. Elle peut donner une impression de stabilité, mais elle entretient aussi la répétition, l’évitement et l’illusion de sécurité. On y reste souvent moins par élan que par besoin de ne pas ressentir ce que l’inconnu pourrait réveiller."
+      lead: "Je reste dans ce que je connais. Cette zone correspond au connu, aux automatismes et aux repères déjà installés.",
     },
     {
-      kicker: "Zone de peur",
-      lead: "Le passage où l’ancien cadre commence à lâcher.",
-      text: "Dès qu’une personne sort de ses repères habituels, une zone de peur apparaît. Elle peut prendre la forme du doute, du stress, du regard des autres, de la peur de l’échec, de la perte de contrôle, du rejet ou de l’exposition. Cette étape est normale : elle signale que quelque chose d’ancien est remis en question. Selon le profil dominant, cette peur prendra plutôt la forme du contrôle, du repli, de la sidération, de la tension ou du besoin d’être rassuré."
+      kicker: "Zone d’activation",
+      lead: "Mon émotion et mes réflexes de protection s’activent. Selon la blessure dominante, cette activation peut prendre la forme de la fuite, du contrôle, du repli, du figement ou de la suradaptation.",
     },
     {
-      kicker: "Zone d’apprentissage",
-      lead: "L’espace où l’on expérimente autrement.",
-      text: "Dans cette zone, la personne commence à tester de nouvelles manières d’agir, de ressentir, de se positionner et de répondre à la vie. Elle développe des compétences, élargit sa lecture, découvre ses mécanismes et apprend à traverser l’inconfort sans revenir immédiatement aux anciens réflexes. C’est une zone exigeante, mais profondément transformatrice."
+      kicker: "Zone de réalignement",
+      lead: "J’apprends à désapprendre de mes anciens schémas. Je prends conscience de ce qui s’active, je comprends ce que je protège et je commence à choisir autrement.",
     },
     {
-      kicker: "Zone d’expansion",
-      lead: "Quand l’être prend plus de place sans se trahir.",
-      text: "La zone d’expansion correspond à une ouverture plus grande : plus de liberté intérieure, plus d’alignement, plus de présence et plus de capacité à agir avec justesse. La personne ne fonctionne plus uniquement à partir de ses anciens réflexes de protection. Elle ose davantage, tout en restant reliée à elle-même. L’expansion n’est pas une performance : c’est un déploiement plus conscient."
+      kicker: "Zone d’évolution",
+      lead: "Je prends ma place avec plus d’authenticité. Une manière d’être plus juste, plus vraie et plus alignée s’intègre progressivement.",
     },
     {
       kicker: "Clé de lecture",
-      lead: "Ce qui freine n’est pas seulement l’extérieur.",
-      text: "Le vrai frein n’est pas seulement la nouveauté, mais ce que cette nouveauté réveille intérieurement. Rester dans le confort protège à court terme, mais limite l’évolution. Traverser la peur permet d’entrer dans l’apprentissage, puis dans l’expansion. La question utile n’est donc pas seulement “qu’est-ce qui me fait peur ?”, mais aussi “qu’est-ce que je protège en restant ici ?”."
-    },
-    {
-      kicker: "Message clé",
-      lead: "La peur n’est pas forcément un stop.",
-      text: "Sortir de sa zone de confort ne consiste pas à se forcer brutalement, mais à reconnaître ce qui se ferme en soi, à comprendre ce qui cherche à se protéger, puis à avancer avec plus de conscience. C’est ainsi que l’apprentissage devient possible et que l’expansion peut se vivre sans violence intérieure."
+      lead: "Le déclencheur active une émotion. La croyance limitante influence la réaction. Le réalignement ouvre l’évolution.",
     },
   ],
 },
