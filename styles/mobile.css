@@ -9,6 +9,13 @@
   body{
     overflow-x: hidden;
   }
+  
+  html.menuOpen,
+  body.menuOpen{
+    height: 100svh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
 
   .app{
     max-width: none;
