@@ -60,7 +60,8 @@ const PAGES = [
     },
     {
       kicker: "Schéma",
-      text: ""
+      image: "schema_zone_de_confort.png",
+      imageAlt: "Schéma de la zone de confort"
     },
     {
       kicker: "Déclencheur / Trigger",
