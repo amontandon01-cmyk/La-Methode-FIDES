@@ -347,18 +347,13 @@ const PAGES = [
       ["Émotion racine", "Peur."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
       ["Origine", "Sentiment d’être seul, manques affectifs dans l’enfance. Difficultés à exister sans la présence rassurante d’autrui. Manque d’autonomie.",],
-      [
-        "Masque / comportement",
-        "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. Enfantin. Peut dire qu’il se sent bien seul et qu’il n’a besoin de personne.",
-      ],
+      ["Masque / comportement", "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. Enfantin. Peut dire qu’il se sent bien seul et qu’il n’a besoin de personne.",],
       ["Apathie / empathie", "Confond souvent empathie et fusion. Donne trop, dans l’espoir d’éviter d’être abandonné."],
       ["Addictions", "Dépendances affectives, relations, réseaux sociaux, alcool. Tout ce qui comble le vide intérieur."],
       ["Dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
       ["Valeurs", "Amour, proximité, lien, chaleur humaine, partage."],
       ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
-      [
-        "Croyances expansives",
-        "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »",
+      ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »",
       ],
     ],
   },
@@ -371,14 +366,8 @@ const PAGES = [
     grid: [
       ["Émotion racine", "Dégoût."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.degout],
-      [
-        "Origine",
-        "Honte, dévalorisation, humiliation dans l’enfance. Souvent liée à l’éducation stricte / regard social ou familial.",
-      ],
-      [
-        "Masque / comportement",
-        "Masque du masochiste. Se rabaisser, se sacrifier, se punir. Regrets, remords, culpabilité. Anticipe les besoins des autres sans accord.",
-      ],
+      ["Origine", "Honte, dévalorisation, humiliation dans l’enfance. Souvent liée à l’éducation stricte / regard social ou familial.",],
+      ["Masque / comportement", "Masque du masochiste. Se rabaisser, se sacrifier, se punir. Regrets, remords, culpabilité. Anticipe les besoins des autres sans accord.",],
       ["Apathie / empathie", "Freinée par la honte — peur de montrer sa vulnérabilité."],
       ["Addictions", "Nourriture, sexualité, auto-sabotage. Excès pour compenser la honte."],
       ["Dogmes", "« Je dois me sacrifier pour les autres. » « Je ne dois pas exister pleinement. »"],
@@ -398,7 +387,7 @@ const PAGES = [
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
       ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, divorce, séparation, infidélité, promesse non tenue).",],
       ["Âge d’ancrage", "6–7 ans."],
-      ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise. Perte de confiance dans l’autre et dans l’humanité. Pouvoir, contrôle, réussite, domination.",],
+      ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant, manipulateur. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise. Perte de confiance dans l’autre et dans l’humanité. Pouvoir, contrôle, réussite, domination.",],
       ["Apathie / empathie", "Méfiance, contrôle ou test permanent de l’autre."],
       ["Valeurs", "Loyauté, fidélité, vérité, famille, rapport au temps apparence/paraître, argent (statut social, entourage, savoir)."],
       ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire.» « On ne peut faire confiance à personne.» « Il faut tout contrôler.» « N’aime pas avoir tort.» « N’aime pas perdre.»",],
@@ -528,22 +517,10 @@ const PAGES = [
     title: "Références",
     subtitle: "Source",
     grid: [
-      [
-        "Source d’inspiration",
-        "La lecture des cinq blessures fondamentales — rejet, abandon, humiliation, trahison et injustice — ainsi que des masques relationnels qui leur sont classiquement associés, trouve un appui dans les travaux de Lise Bourbeau, en particulier dans l’ouvrage Les 5 blessures qui empêchent d’être soi-même.",
-      ],
-      [
-         "Triangle de Karpman",
-         "Le triangle de Karpman apporte une grille de lecture complémentaire des dynamiques relationnelles de survie. Son intégration dans ce site s’inscrit dans la structuration pédagogique de la Méthode FIDES, en lien avec les blessures émotionnelles et les rôles relationnels qui peuvent en découler."
-      ],
-      [
-        "Élaboration de la Méthode FIDES",
-        "La structuration pédagogique présentée sur ce site, l’identification des émotions racines, l’articulation entre blessures, comportements compensatoires, valeurs de vie, conditionnements, dogmes de comportement et croyances limitantes relèvent de la Méthode FIDES.",
-      ],
-      [
-        "Protection et usage",
-        "Copyright, tous droits réservés. La méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",
-      ],
+      ["Source d’inspiration", "La lecture des cinq blessures fondamentales — rejet, abandon, humiliation, trahison et injustice — ainsi que des masques relationnels qui leur sont classiquement associés, trouve un appui dans les travaux de Lise Bourbeau, en particulier dans l’ouvrage Les 5 blessures qui empêchent d’être soi-même.",],
+      ["Triangle de Karpman", "Le triangle de Karpman apporte une grille de lecture complémentaire des dynamiques relationnelles de survie. Son intégration dans ce site s’inscrit dans la structuration pédagogique de la Méthode FIDES, en lien avec les blessures émotionnelles et les rôles relationnels qui peuvent en découler."],
+      ["Élaboration de la Méthode FIDES", "La structuration pédagogique présentée sur ce site, l’identification des émotions racines, l’articulation entre blessures, comportements compensatoires, valeurs de vie, conditionnements, dogmes de comportement et croyances limitantes relèvent de la Méthode FIDES.",],
+      ["Protection et usage", "Copyright, tous droits réservés. La méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",],
     ],
   },
 ];
