@@ -145,13 +145,21 @@ function go(pageId) {
 }
 
 function setMenu(isOpen) {
-  navEl.setAttribute("data-open", isOpen ? "true" : "false");
-  backdrop.setAttribute("data-open", isOpen ? "true" : "false");
-  menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  navEl.setAttribute("aria-hidden", isOpen ? "false" : "true");
+  const mobile = isMobileViewport();
+  const open = mobile && isOpen;
 
-  document.documentElement.classList.toggle("menuOpen", isOpen);
-  document.body.classList.toggle("menuOpen", isOpen);
+  navEl.setAttribute("data-open", open ? "true" : "false");
+  backdrop.setAttribute("data-open", open ? "true" : "false");
+  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+
+  if (mobile) {
+    navEl.setAttribute("aria-hidden", open ? "false" : "true");
+  } else {
+    navEl.removeAttribute("aria-hidden");
+  }
+
+  document.documentElement.classList.toggle("menuOpen", open);
+  document.body.classList.toggle("menuOpen", open);
 }
 
 function closeMenu() {
@@ -559,4 +567,5 @@ if (!location.hash) {
   setHashToSlug(getCanonicalSlugForPageId(DEFAULT_PAGE_ID), { replace: true });
 }
 
+setMenu(false);
 render();
