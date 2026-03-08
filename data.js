@@ -197,7 +197,7 @@ const PAGES = [
       {
        kicker: "Schéma",
        image: "schema_empathie.png",
-       imageAlt: "Schéma de l’empathie"
+       imageAlt: "Schéma de l’empathie",
       },
       {
         kicker: "Empathie blessée",
