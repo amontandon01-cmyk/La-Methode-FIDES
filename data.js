@@ -215,33 +215,79 @@ const PAGES = [
       },
       ],
       },
-   {
-  id: "base_karpman", slug: "bases-karpman",
+{
+  id: "base_karpman",
+  slug: "bases-karpman",
   type: "BASE",
   title: "Le triangle de Karpman",
   subtitle: "Victime ↔ Sauveur ↔ Persécuteur",
   content: [
     {
-      kicker: "Définition",
-      lead: "Une grille de lecture des dynamiques relationnelles de survie.",
-      text: "Le triangle de Karpman aide à repérer certaines postures relationnelles qui apparaissent quand une blessure s’active dans le lien. Il ne sert pas à enfermer une personne dans une étiquette, mais à observer des rôles qui peuvent se rejouer : Victime, Sauveur, Persécuteur. Une même personne peut passer de l’un à l’autre selon le contexte."
+      kicker: "Repérer les dynamiques relationnelles de survie",
+      lead: "Une blessure activée dans le lien peut faire glisser la relation dans des rôles automatiques.",
+      text: "Le triangle de Karpman est une grille de lecture qui aide à comprendre certaines dynamiques relationnelles qui apparaissent lorsque la sécurité intérieure vacille. Il met en lumière trois postures fréquentes : Victime, Sauveur et Persécuteur. Cette lecture permet d’observer des rôles relationnels, des mouvements défensifs et des stratégies de survie dans le lien. Elle éclaire la dynamique ; elle ne résume jamais la valeur profonde d’une personne."
     },
     {
-      kicker: "Lien avec les blessures",
-      lead: "Chaque blessure dominante peut favoriser certaines entrées dans le triangle.",
-      text: "Rejet → fuite silencieuse. Abandon → tendance à la Victime et au Sauveur-fusionnel. Humiliation → tendance au Sauveur sacrificiel. Trahison → tendance au Persécuteur-contrôlant ou au test permanent. Injustice → tendance au Persécuteur-rigide ou au juge intérieur."
+      kicker: "Définition",
+      lead: "Le rôle visible protège souvent quelque chose de plus profond.",
+      text: "Le triangle de Karpman permet de repérer une dynamique dans laquelle une personne peut se sentir impuissante, chercher à sauver, ou prendre le dessus. Ces rôles peuvent se succéder rapidement dans une même relation. Une même personne peut passer d’un pôle à l’autre selon le contexte, la blessure activée, le niveau d’insécurité ressenti et la tension présente dans le lien. Le triangle devient alors une lecture des réactions relationnelles automatiques."
+    },
+    {
+      kicker: "Les trois rôles",
+      lead: "Chaque rôle cherche une forme de protection, même lorsque cette forme devient relationnellement coûteuse.",
+      text: "La Victime vit un sentiment d’impuissance, de blessure, d’insécurité ou de vulnérabilité. Elle peut prendre deux formes différentes. Dans une logique de rejet, elle devient souvent silencieuse : elle se retire, se ferme, se replie, laisse peu transparaître sa douleur et disparaît un peu dans le lien. Dans une logique d’abandon, elle devient souvent plus exprimée : la souffrance se montre davantage, le manque de lien se fait sentir, et le besoin d’être rejointe ou rassurée devient plus visible. Le Sauveur cherche à aider, réparer, porter, rassurer, soulager ou maintenir le lien. Selon son moteur intérieur, cette aide peut venir d’un oubli de soi ou d’une stratégie de reprise de contrôle. Le Persécuteur cherche à corriger, imposer, contrôler, surveiller, accuser, couper ou reprendre la main. Il agit souvent à partir d’une tension intérieure, d’une peur, d’une méfiance ou d’un besoin de maîtrise."
+    },
+    {
+      kicker: "Lien avec les blessures émotionnelles",
+      lead: "Le même rôle peut prendre des formes différentes selon la blessure qui s’active.",
+      text: "Le rejet et l’abandon peuvent tous deux orienter vers une posture de Victime, avec deux expressions distinctes. Dans le rejet, la victime est souvent silencieuse. Elle se retire, se ferme, se replie, laisse peu transparaître sa douleur et disparaît un peu dans le lien. Dans l’abandon, la victime est souvent plus exprimée. La souffrance se montre davantage, la peur du manque de lien devient plus perceptible, le besoin d’être rejoint ou rassuré peut se dire plus ouvertement. La blessure d’humiliation oriente plus facilement vers le Sauveur sacrificiel. La personne s’oublie, se suradapte, se met au service de l’autre, cherche à soulager, réparer ou porter, parfois au détriment de sa juste place. La blessure de trahison oriente plus facilement vers le Persécuteur contrôlant. La personne veut vérifier, tester, surveiller, reprendre la main, anticiper, imposer ou garder l’ascendant pour éviter de revivre une perte de confiance. La blessure d’injustice peut elle aussi mener vers le Persécuteur, avec une forme plus rigide, plus mentale, plus froide, plus normative, parfois tournée vers l’extérieur, parfois vécue à l’intérieur sous la forme d’un juge intérieur."
+    },
+    {
+      kicker: "Distinction importante",
+      lead: "Une aide apparente peut venir d’un élan sacrificiel ou d’une stratégie de contrôle.",
+      text: "Le Sauveur sacrificiel s’inscrit plus facilement dans la blessure d’humiliation. Il aide en s’oubliant, se rend utile pour garder sa place, se charge de l’autre, se plie, s’efface ou se sacrifie. Le Sauveur stratégique s’inscrit plus facilement dans une logique de trahison et de contrôle. Il aide en apparence pour calmer la crise, restaurer son image, récupérer le lien, éviter les conséquences ou reprendre la main. Dans cette posture, le contrôle ne disparaît pas : il change de forme."
+    },
+    {
+      kicker: "Lecture plus fine des dynamiques d’emprise",
+      lead: "La réparation apparente ne signe pas toujours une transformation intérieure.",
+      text: "Dans certaines dynamiques d’emprise, une personne peut passer du Persécuteur au Sauveur stratégique. Ce mouvement peut donner l’impression d’un apaisement, d’un retour de conscience ou d’une volonté de réparation. En réalité, il peut aussi servir à réorganiser la relation sous influence, à restaurer l’image, à retenir l’autre ou à reprendre le contrôle. Dans votre lecture pédagogique : Humiliation → Sauveur sacrificiel. Trahison → Persécuteur contrôlant / Sauveur stratégique. Cette distinction est importante, parce qu’elle évite de confondre l’oubli de soi, la réparation apparente et la stratégie de domination."
+    },
+    {
+      kicker: "Point de vigilance",
+      lead: "Le triangle éclaire une dynamique relationnelle ; il ne pose pas un diagnostic.",
+      text: "Le triangle de Karpman aide à lire des mécanismes relationnels. Il permet de comprendre une dynamique, d’observer des postures et de mieux repérer ce qui se rejoue dans le lien. Il ne sert pas à figer une personne dans une étiquette clinique. Lorsqu’une dynamique de manipulation, d’emprise ou de contrôle apparaît, il est plus juste de parler de fonctionnement relationnel de contrôle, de stratégie d’emprise, de manipulation ou de logique de domination, plutôt que de réduire la personne à un mot qui enferme."
     },
     {
       kicker: "Lecture pédagogique",
-      lead: "Le rôle visible protège souvent une douleur plus profonde.",
-      text: "Derrière ces postures, on retrouve souvent une tentative de se protéger, d’éviter une émotion ou de garder un lien. Lire ces dynamiques permet de mieux comprendre ce qui se joue dans la relation et d’ouvrir un chemin plus conscient, plus juste et plus libre."
+      lead: "Derrière la posture, il y a souvent une tentative de protection.",
+      text: "Une posture de Victime peut protéger une peur immense de solitude, d’exclusion ou de perte du lien. Une posture de Sauveur sacrificiel peut protéger une difficulté à se choisir soi-même. Une posture de Persécuteur peut protéger une peur de la trahison, une tension liée à la perte de contrôle ou une insécurité profonde. Une posture de Sauveur stratégique peut protéger une image menacée, un pouvoir fragilisé ou la peur de perdre l’emprise sur la relation. Lire le triangle de cette manière permet de dépasser le comportement visible pour aller vers la logique intérieure qui s’active."
+    },
+    {
+      kicker: "Circulation dans le triangle",
+      lead: "Le triangle est un mouvement relationnel, pas une case figée.",
+      text: "Une personne peut commencer dans une posture de Victime, passer en Sauveur pour garder le lien, puis basculer en Persécuteur lorsque la frustration, la peur ou l’impuissance montent. Une autre peut attaquer, puis revenir dans une posture réparatrice apparente. Le triangle montre ainsi un mouvement relationnel automatique qui tourne tant que la blessure, l’émotion et la responsabilité profonde ne sont pas reconnues."
+    },
+    {
+      kicker: "Sortir du triangle",
+      lead: "Voir le rôle permet de retrouver de la clarté, de la responsabilité et de l’alignement.",
+      text: "Repérer le triangle permet de ralentir le mécanisme automatique. La personne peut alors observer ce qui s’active en elle, reconnaître la blessure touchée, accueillir l’émotion présente, remettre de la conscience dans la relation et retrouver une posture plus juste. Sortir du triangle, c’est passer de la réaction à la conscience, du rôle à la responsabilité, de la confusion à la clarté, et du contrôle ou du sacrifice à une présence plus alignée."
     },
     {
       kicker: "Message clé",
-      lead: "Le but n’est pas d’accuser, mais de comprendre.",
-      text: "Repérer le triangle aide à sortir des réactions automatiques et à revenir à une posture plus responsable, plus lucide et plus alignée."
+      lead: "Le triangle ne sert pas à accuser ; il sert à lire plus finement ce qui se joue.",
+      text: "Repérer le triangle aide à comprendre la dynamique relationnelle en cours, à différencier les moteurs invisibles derrière la posture visible, et à ouvrir un chemin plus conscient, plus responsable et plus libre."
     },
-  ],
+    {
+      kicker: "Version ultra synthétique",
+      lead: "Le rôle visible protège souvent une douleur plus profonde.",
+      text: "Victime : rejet → victime silencieuse ; abandon → victime exprimée. Sauveur : humiliation → sauveur sacrificiel ; trahison → sauveur stratégique. Persécuteur : trahison → persécuteur contrôlant ; injustice → persécuteur rigide / juge intérieur."
+    },
+    {
+      kicker: "Phrase centrale",
+      lead: "Une phrase à mettre en évidence dans le visuel.",
+      text: "Le Sauveur stratégique ne quitte pas le contrôle : il en change la forme."
+    }
+  ]
 },
 
   // BLESSURES
