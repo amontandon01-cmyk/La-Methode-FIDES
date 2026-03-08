@@ -272,10 +272,9 @@ const PAGES = [
   grid: [
     ["Émotion racine", "Joie."],
     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
-    ["Manifestations concrètes", "Élan naturel, détente, respiration plus libre, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échange, communication constructive, gratitude."],
-    ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre."],
-    ["Relation à l’autre", "Présence réelle, écoute ouverte, respect, capacité à aimer sans fusion, à donner sans se perdre et à recevoir sans méfiance."],
-    ["Comportements alignés", "Authenticité, créativité, élan de vie, coopération, gratitude, humour, spontanéité, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
+    ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre, confiance et engagement dans ses projets."],
+    ["Relation à l’autre", "Présence authentique, à l'écoute de l'autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie."],
+    ["Comportements", "Sérénité, spontanéité, élan naturel, respiration plus libre, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échange, communication constructive, gratitude, productivité, authenticité, créativité, élan de vie, coopération, humour, spontanéité, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
     ["Lecture pédagogique", "La joie n’est pas une excitation permanente ni une obligation d’être bien. Elle correspond à un état intérieur plus libre, où la personne n’est plus dominée par une blessure et ses stratégies de protection."],
     ["Message clé", "Quand la blessure est traitée, l’être retrouve naturellement la sérénité."],
   ],
