@@ -147,7 +147,7 @@ const PAGES = [
 {
   id: "base_croyances", slug: "bases-croyances",
   type: "BASE",
-  title: "Pensée & croyances limitantes",
+  title: "Pensées & croyances limitantes",
   subtitle: "De la fermeture à l’ouverture",
   content: [
     {
@@ -318,6 +318,11 @@ const PAGES = [
       kicker: "Blessures émotionnelles",
       lead: "Chaque blessure colore différemment la manière de porter, projeter ou traverser la faute",
       text: "Chaque blessure émotionnelle colore la culpabilité d’une manière particulière. Dans le rejet, la culpabilité touche souvent ce qui n’a pas été dit, montré, demandé ou assumé ; elle peut prendre la forme d’un effacement, d’un retrait ou d’une difficulté à prendre sa place. Dans l’abandon, elle touche le besoin, l’attachement, la peur de perdre, le fait de dépendre, d’attendre ou de trop demander ; elle peut s’accompagner d’un fort sentiment d’insécurité affective. Dans l’humiliation, elle touche la valeur de soi, le poids que l’on croit représenter, le rapport au désir, à la dignité, au corps, au plaisir ou au service ; elle conduit souvent à porter trop, à se charger, à se sacrifier ou à se rabaisser. Dans la trahison, la culpabilité peut remonter lorsque le déni cède et que la personne reconnaît ce qu’elle n’a pas voulu voir, ou voit à quel endroit elle s’est quittée elle-même pour préserver un lien ou garder le contrôle. Dans l’injustice, la culpabilité s’associe plus facilement au juge intérieur, à l’exigence, à l’erreur, à l’imperfection, à la retenue émotionnelle, et à une forme de rigidité tournée contre soi ou silencieusement contre l’autre. Une blessure n’est pas un rôle du triangle de Karpman, mais elle peut favoriser certaines postures de survie dans la manière de porter la faute, de réparer, de se retirer, de juger ou de contrôler.",
+    },
+    {
+      kicker: "Schéma",
+      image: "schema_CULPABILITE.svg",
+      imageAlt: "Schéma de la culpabilité",
     },
     {
       kicker: "Triangle de Karpman",
