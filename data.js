@@ -64,28 +64,28 @@ const PAGES = [
       imageAlt: "Schéma de la zone de confort"
     },
     {
-      kicker: "Déclencheur / Trigger",
-      lead: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi."
+      lead: "Déclencheur / Trigger",
+      text: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi."
     },
     {
-      kicker: "Zone de confort",
-      lead: "Je reste dans ce que je connais. Cette zone correspond au connu, aux automatismes et aux repères déjà installés.",
+      lead: "Zone de confort",
+      text: "Je reste dans ce que je connais. Cette zone correspond au connu, aux automatismes et aux repères déjà installés.",
     },
     {
-      kicker: "Zone d’activation",
-      lead: "Mon émotion et mes réflexes de protection s’activent. Selon la blessure dominante, cette activation peut prendre la forme de la fuite, du contrôle, du repli, du figement ou de la suradaptation.",
+      lead: "Zone d’activation",
+      text: "Mon émotion et mes réflexes de protection s’activent. Selon la blessure dominante, cette activation peut prendre la forme de la fuite, du contrôle, du repli, du figement ou de la suradaptation.",
     },
     {
-      kicker: "Zone de réalignement",
-      lead: "J’apprends à désapprendre de mes anciens schémas. Je prends conscience de ce qui s’active, je comprends ce que je protège et je commence à choisir autrement.",
+      lead: "Zone de réalignement",
+      text: "J’apprends à désapprendre de mes anciens schémas. Je prends conscience de ce qui s’active, je comprends ce que je protège et je commence à choisir autrement.",
     },
     {
-      kicker: "Zone d’évolution",
-      lead: "Je prends ma place avec plus d’authenticité. Une manière d’être plus juste, plus vraie et plus alignée s’intègre progressivement.",
+      lead: "Zone d’évolution",
+      text: "Je prends ma place avec plus d’authenticité. Une manière d’être plus juste, plus vraie et plus alignée s’intègre progressivement.",
     },
     {
-      kicker: "Clé de lecture",
-      lead: "Le déclencheur active une émotion. La croyance limitante influence la réaction. Le réalignement ouvre l’évolution.",
+      lead: "Clé de lecture",
+      text: "Le déclencheur active une émotion. La croyance limitante influence la réaction. Le réalignement ouvre l’évolution.",
     },
   ],
 },
@@ -513,3 +513,5 @@ const NAV = [
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
 ];
+
+export { PAGES, NAV };
