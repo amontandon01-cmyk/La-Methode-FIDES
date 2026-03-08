@@ -327,7 +327,7 @@ const PAGES = [
       ["Apathie / empathie", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet.",],
       ["Addictions", "Isolement, écrans, alimentation compulsive discrète. Addictions solitaires."],
       ["Dogmes", "« Je dois rester invisible pour être accepté. » « Si je me montre, je dérange. »"],
-      ["Valeurs", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, foi en la vie et en l’humain, amour."],
+      ["Valeurs", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, solitude, foi en la vie et en l’humain, amour."],
       ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »).",],
       ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »",],
     ],
