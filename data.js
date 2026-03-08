@@ -164,7 +164,7 @@ const PAGES = [
   id: "base_croyances", slug: "bases-croyances",
   type: "BASE",
   title: "Pensée & croyances limitantes",
-  subtitle: "Du la fermeture à l’ouverture",
+  subtitle: "De la fermeture à l’ouverture",
   content: [
     {
       kicker: "Définition",
