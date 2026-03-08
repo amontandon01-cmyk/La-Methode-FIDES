@@ -215,9 +215,8 @@ const PAGES = [
       },
       ],
       },
-export const baseKarpman = {
-  id: "base_karpman",
-  slug: "triangle-karpman",
+      {
+  id: "base_karpman", slug: "bases-karpman",
   type: "BASE",
   title: "Le triangle de Karpman",
   subtitle: "Repérer les dynamiques relationnelles de survie",
