@@ -64,27 +64,27 @@ const PAGES = [
       imageAlt: "Schéma de la zone de confort"
     },
     {
-      lead: "Déclencheur / Trigger",
+      kicker: "Déclencheur / Trigger",
       text: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi."
     },
     {
-      lead: "Zone de confort",
+      kicker: "Zone de confort",
       text: "Je reste dans ce que je connais. Cette zone correspond au connu, aux automatismes et aux repères déjà installés.",
     },
     {
-      lead: "Zone d’activation",
+      kicker: "Zone d’activation",
       text: "Mon émotion et mes réflexes de protection s’activent. Selon la blessure dominante, cette activation peut prendre la forme de la fuite, du contrôle, du repli, du figement ou de la suradaptation.",
     },
     {
-      lead: "Zone de réalignement",
+      kicker: "Zone de réalignement",
       text: "J’apprends à désapprendre de mes anciens schémas. Je prends conscience de ce qui s’active, je comprends ce que je protège et je commence à choisir autrement.",
     },
     {
-      lead: "Zone d’évolution",
+      kicker: "Zone d’évolution",
       text: "Je prends ma place avec plus d’authenticité. Une manière d’être plus juste, plus vraie et plus alignée s’intègre progressivement.",
     },
     {
-      lead: "Clé de lecture",
+      kicker: "Clé de lecture",
       text: "Le déclencheur active une émotion. La croyance limitante influence la réaction. Le réalignement ouvre l’évolution.",
     },
   ],
