@@ -292,7 +292,7 @@ const PAGES = [
       text: "Victime : je porte la faute. Rejet → victime silencieuse. Abandon → victime exprimée. Sauveur-réparateur : je dois réparer pour être en paix. Humiliation → sauveur sacrificiel. Trahison → sauveur stratégique possible. Persécuteur chaud / juge communicant : je rejette la faute sur l’autre en contrôlant, en corrigeant, en tranchant. Trahison → contrôle, correction, prise de pouvoir. Persécuteur froid / juge silencieux : je rejette la faute sur l’autre en laissant l’autre porter le malaise. Injustice → rigidité, froideur. Clé de lecture : le rôle visible protège souvent une douleur plus profonde.",
     },
   ]
-};
+},
 
   // BLESSURES
    {
