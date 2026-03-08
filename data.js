@@ -233,6 +233,11 @@ const PAGES = [
       text: "Le triangle de Karpman permet de repérer une dynamique dans laquelle une personne peut se sentir impuissante, chercher à sauver, ou prendre le dessus. Ces rôles peuvent se succéder rapidement dans une même relation. Une même personne peut passer d’un pôle à l’autre selon le contexte, la blessure activée, le niveau d’insécurité ressenti et la tension présente dans le lien. Le triangle devient alors une lecture des réactions relationnelles automatiques."
     },
     {
+      kicker: "Schéma",
+      image: "schema_karpman.svg",
+      imageAlt: "Schéma du triangle de Karpman"
+    },
+    {
       kicker: "Les trois rôles",
       lead: "Chaque rôle cherche une forme de protection, même lorsque cette forme devient relationnellement coûteuse.",
       text: "La Victime vit un sentiment d’impuissance, de blessure, d’insécurité ou de vulnérabilité. Elle peut prendre deux formes différentes. Dans une logique de rejet, elle devient souvent silencieuse : elle se retire, se ferme, se replie, laisse peu transparaître sa douleur et disparaît un peu dans le lien. Dans une logique d’abandon, elle devient souvent plus exprimée : la souffrance se montre davantage, le manque de lien se fait sentir, et le besoin d’être rejointe ou rassurée devient plus visible. Le Sauveur cherche à aider, réparer, porter, rassurer, soulager ou maintenir le lien. Selon son moteur intérieur, cette aide peut venir d’un oubli de soi ou d’une stratégie de reprise de contrôle. Le Persécuteur cherche à corriger, imposer, contrôler, surveiller, accuser, couper ou reprendre la main. Il agit souvent à partir d’une tension intérieure, d’une peur, d’une méfiance ou d’un besoin de maîtrise."
