@@ -321,7 +321,7 @@ const PAGES = [
     },
     {
       kicker: "Schéma",
-      image: "schema_CULPABILITE.svg",
+      image: "schema_culpabilite.svg",
       imageAlt: "Schéma de la culpabilité",
     },
     {
