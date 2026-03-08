@@ -13,30 +13,26 @@
 
 const SENTIMENTS = Object.freeze({
   expansifs:
-    "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement.",
-  peur_insecurite:
+    "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré.",
+  peur:
     "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Infériorité.",
-  colere_frustration:
+  colere:
     "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût.",
-  tristesse_perte:
+  tristesse:
     "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures.",
-  injustice_humiliation:
+  injustice:
     "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité, Injustice, Rigidité intérieure.",
-  ouverture_connexion:
-    "Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré.",
+  surprise: 
+    "Méfiance, supériorité, incompréhension, impatience, frustration",
 });
 
-function joinSentiments(...keys) {
-  return keys.map((key) => SENTIMENTS[key]).join(" ");
-}
-
 const EMOTION_TO_SENTIMENTS = Object.freeze({
-  joie: joinSentiments("expansifs", "ouverture_connexion"),
-  tristesse: SENTIMENTS.tristesse_perte,
-  peur: SENTIMENTS.peur_insecurite,
-  degout: SENTIMENTS.injustice_humiliation,
-  surprise: "Méfiance, supériorité, incompréhension, impatience, frustration",
-  colere_interieure: SENTIMENTS.colere_frustration,
+  joie: SENTIMENTS.joie,
+  tristesse: SENTIMENTS.tristesse,
+  peur: SENTIMENTS.peur,
+  degout: SENTIMENTS.injustice,
+  colere_interieure: SENTIMENTS.colere,
+  surprise: SENTIMENTS.surprise,
 });
 
 /* ---------------------------- Pages (contenu) ---------------------------- */
