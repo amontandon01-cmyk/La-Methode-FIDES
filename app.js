@@ -40,13 +40,8 @@ const SLUG_TO_PAGE_ID = Object.freeze({
   "blessures-injustice": "w_injustice",
 
   "comportements-addictions": "ref_addictions",
-  "comportements-addictions-substances": "ref_add_substances",
-  "comportements-addictions-comportementales": "ref_add_comportementales",
-  "comportements-addictions-invisibles": "ref_add_invisibles",
   "comportements-valeurs": "ref_valeurs",
-  "comportements-valeurs-listes": "ref_valeurs_listes",
   "comportements-dogmes": "ref_dogmes",
-  "comportements-dogmes-listes": "ref_dogmes_listes",
 
   "references": "ref_sources",
 });
@@ -221,6 +216,26 @@ function validateData() {
 
   if (missingSlugPages.length) {
     console.warn("[FIDES] SLUG_TO_PAGE_ID référence des pages manquantes :", missingSlugPages);
+  }
+
+  const pagesWithoutSlug = [];
+  for (const page of PAGES) {
+    if (!PAGE_ID_TO_SLUG[page.id]) {
+      pagesWithoutSlug.push(page.id);
+    }
+  }
+
+  if (pagesWithoutSlug.length) {
+    console.warn("[FIDES] Pages sans slug :", pagesWithoutSlug);
+  }
+
+  const navPageIds = new Set(NAV.flatMap((group) => group.items));
+  const pagesOutsideNav = PAGES
+    .map((page) => page.id)
+    .filter((pageId) => !navPageIds.has(pageId));
+
+  if (pagesOutsideNav.length) {
+    console.warn("[FIDES] Pages présentes dans PAGES mais absentes de NAV :", pagesOutsideNav);
   }
 }
 
