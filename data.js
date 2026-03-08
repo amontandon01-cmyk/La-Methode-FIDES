@@ -213,6 +213,7 @@ const PAGES = [
         kicker: "Phrase de transition vers Karpman",
         text: "Quand l’empathie se trouble sous l’effet des blessures, la relation glisse plus facilement vers le sauvetage, le contrôle ou la victimisation.",
       },
+      ],
       },
    {
   id: "base_karpman", slug: "bases-karpman",
@@ -326,14 +327,14 @@ const PAGES = [
     grid: [
       ["Émotion racine", "Surprise."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
-      ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, divorce, séparation, infidélité, promesse non tenue).",],
+      ["Origine", "Expérience de trahison réelle ou vécue comme telle (parent absent, divorce, séparation, infidélité, promesse non tenue)."],
       ["Âge d’ancrage", "6–7 ans."],
-      ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant, manipulateur. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise. Perte de confiance dans l’autre et dans l’humanité. Pouvoir, contrôle, réussite, domination.",],
+      ["Masque / comportement", "Masque du contrôlant. Cassant, exigeant, manipulateur. Besoin de tout vérifier, d’imposer sa volonté. Difficulté à lâcher prise. Perte de confiance dans l’autre et dans l’humanité. Pouvoir, contrôle, réussite, domination."],
       ["Apathie / empathie", "Méfiance, contrôle ou test permanent de l’autre."],
       ["Valeurs", "Loyauté, fidélité, vérité, famille, rapport au temps, apparence, paraître, réputation, argent (statut social, entourage, savoir)."],
-      ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire.» « On ne peut faire confiance à personne.» « Il faut tout contrôler.» « N’aime pas avoir tort.» « N’aime pas perdre.»",],
-      ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »",],
-      ["Guérison", "Amène à la douceur tant avec soi qu'avec les autres.",],
+      ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle. » « Où est la performance concrète ? » « Il faut le voir pour y croire.» « On ne peut faire confiance à personne.» « Il faut tout contrôler.» « N’aime pas avoir tort.» « N’aime pas perdre.»"],
+      ["Croyances expansives", "« Je me détache du résultat, car le chemin compte. » « Laisser à l’autre le bénéfice du doute. » « J’accepte l’autre tel qu’il est. »"],
+      ["Guérison", "Amène à la douceur tant avec soi qu'avec les autres."],
     ],
   },
 
