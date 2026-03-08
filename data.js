@@ -12,8 +12,8 @@
 /* ----------------------------- Données sources ----------------------------- */
 
 const SENTIMENTS = Object.freeze({
-  expansifs:
-    "Joie, Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture, Intimité, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré.",
+  joie:
+    "Amour, Sérénité, Gratitude, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture d'esprit, Douceur, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré, engagement, tranquilité d'esprit.",
   peur:
     "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Infériorité.",
   colere:
@@ -272,8 +272,7 @@ const PAGES = [
   grid: [
     ["Émotion racine", "Joie."],
     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
-    ["Cadre", "Absence de blessure activée. État d’ouverture intérieure, de sécurité relationnelle et de présence à soi."],
-    ["Manifestations concrètes", "Élan naturel, détente, respiration plus libre, capacité à apprécier l’instant, sentiment d’espace intérieur, disponibilité émotionnelle, fluidité dans les échanges."],
+    ["Manifestations concrètes", "Élan naturel, détente, respiration plus libre, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échange, communication constructive, gratitude."],
     ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre."],
     ["Relation à l’autre", "Présence réelle, écoute ouverte, respect, capacité à aimer sans fusion, à donner sans se perdre et à recevoir sans méfiance."],
     ["Comportements alignés", "Authenticité, créativité, élan de vie, coopération, gratitude, humour, spontanéité, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
