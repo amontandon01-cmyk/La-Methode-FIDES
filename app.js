@@ -372,19 +372,19 @@ function renderHome() {
   const tiles = [
     {
       title: "Bases",
-      desc: "Comprendre le cadre : zones (confort → peur → apprentissage → expansion) et bases des blessures.",
+      desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
     },
     {
       title: "Blessures",
-      desc: "Lire une blessure : émotion racine → sentiments possibles → masque → apathie / empathie → croyances.",
+      desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
     },
     {
       title: "Comportements",
-      desc: "Relier le vécu aux mécanismes : addictions, valeurs, dogmes (ce qui oriente les choix).",
+      desc: "Relier le vécu aux mécanismes visibles : addictions, rigidités, dogmes, évitements, contrôle, compensation ou répétition.",
     },
     {
       title: "Empathie",
-      desc: "Comprendre l’empathie et voir ses effets concrets : apathie (impacts) vs empathie (bénéfices).",
+      desc: "Comprendre l’empathie comme une résonance juste, distincte de l’apathie et de la fusion, et en observer les effets concrets.",
     },
   ];
 
@@ -394,21 +394,35 @@ function renderHome() {
     '<div class="lead">Support de formation — La Méthode FIDES</div>' +
     "<p>" +
     escapeHTML(
-      "But pédagogique : comprendre les bases, identifier la blessure à partir de l’émotion, relier les comportements observables (addictions, valeurs, dogmes), trouver la croyance de base, la libérer et se pardonner."
+      "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité."
     ) +
     "</p>" +
     "</div>";
 
-  const parcoursHtml =
+  const processHtml =
     '<div class="card">' +
-    '<div class="kicker">Parcours pédagogique</div>' +
-    '<div class="lead">Un chemin en 4 étapes</div>' +
-    "<ul>" +
-    "<li>1. Comprendre le cadre (bases)</li>" +
-    "<li>2. Identifier la blessure</li>" +
-    "<li>3. Observer les comportements</li>" +
-    "<li>4. Libérer les croyances</li>" +
-    "</ul>" +
+    '<div class="kicker">Clé de lecture</div>' +
+    '<div class="lead">La dynamique du processus</div>' +
+    "<p>" +
+    escapeHTML(
+      "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique."
+    ) +
+    "</p>" +
+    '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;">' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Déclencheur</span>' +
+      '<span aria-hidden="true">→</span>' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Émotion</span>' +
+      '<span aria-hidden="true">→</span>' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Blessure</span>' +
+      '<span aria-hidden="true">→</span>' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Croyance limitante</span>' +
+      '<span aria-hidden="true">→</span>' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Mécanismes visibles</span>' +
+      '<span aria-hidden="true">→</span>' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Réalignement</span>' +
+      '<span aria-hidden="true">→</span>' +
+      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Authenticité</span>' +
+    "</div>" +
     "</div>";
 
   const gridHtml =
@@ -416,7 +430,7 @@ function renderHome() {
     tiles.map(tileHtml).join("") +
     "</div>";
 
-  mainEl.innerHTML = introHtml + parcoursHtml + gridHtml;
+  mainEl.innerHTML = introHtml + processHtml + gridHtml;
 }
 
 function renderBase(page) {
