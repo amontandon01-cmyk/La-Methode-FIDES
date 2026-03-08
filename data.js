@@ -85,7 +85,7 @@ const PAGES = [
     },
     {
       kicker: "Clé de lecture",
-      text: "Le déclencheur active une émotion. La croyance limitante influence la réaction. Le réalignement ouvre l’évolution.",
+      text: "Le déclencheur réveille une émotion, active un ancien réflexe de protection et réactive souvent la croyance limitante associée. Cette dernière influence la réaction. Le réalignement permet d’apprendre à désapprendre un ancien schéma, d’ouvrir l’être à plus d’authenticité et d’ouvrir la voie à l’évolution.",
     },
   ],
 },
