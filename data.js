@@ -23,7 +23,7 @@ const SENTIMENTS = Object.freeze({
   injustice:
     "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité",
   surprise: 
-    "Méfiance, Supériorité, Incompréhension, Impatience, Frustration",
+    "Méfiance, Supériorité, Incompréhension, Impatience, Frustration, Jalousie",
 });
 
 const EMOTION_TO_SENTIMENTS = Object.freeze({
@@ -59,9 +59,12 @@ const PAGES = [
       text: "La zone de confort correspond à un espace connu, prévisible et émotionnellement balisé. Elle donne une impression de sécurité, car elle évite l’inconnu, limite l’exposition et permet de rester dans des réactions déjà maîtrisées. Elle peut rassurer à court terme, mais elle entretient aussi les anciens réflexes de protection."
     },
     {
-      kicker: "Point de départ",
-      lead: "On ne quitte pas tous sa zone de confort de la même manière.",
-      text: "La manière de vivre le confort, la peur, l’apprentissage et l’expansion dépend fortement des blessures prédominantes. Selon la personnalité intérieure, l’inconnu sera vécu comme une menace de perte de contrôle, de perte de lien, de rejet, d’exposition, d’échec ou d’atteinte à sa valeur. La sortie de zone de confort est donc toujours aussi un passage émotionnel."
+      kicker: "Schéma",
+      text: ""
+    },
+    {
+      kicker: "Déclencheur / Trigger",
+      text: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi."
     },
     {
       kicker: "Personnalité prédominante surprise / peur",
