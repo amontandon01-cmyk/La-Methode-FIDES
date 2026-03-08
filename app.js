@@ -171,12 +171,22 @@ function isDebugMode() {
 
 /* ------------------------------ Templates ------------------------------ */
 
-function cardHtml({ kicker, lead, text, bullets }) {
+function cardHtml({ kicker, lead, text, bullets, image, imageAlt }) {
   let html = '<div class="card">';
+
   html += '<div class="kicker">' + escapeHTML(kicker || "Section") + "</div>";
 
   if (lead) {
     html += '<div class="lead">' + escapeHTML(lead) + "</div>";
+  }
+
+  if (image) {
+    html +=
+      '<img class="cardImage" src="' +
+      encodeURI(image) +
+      '" alt="' +
+      escapeHTML(imageAlt || kicker || "Illustration") +
+      '" loading="lazy" decoding="async">';
   }
 
   if (text) {
