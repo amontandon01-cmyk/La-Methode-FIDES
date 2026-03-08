@@ -384,51 +384,95 @@ function renderHome() {
     },
     {
       title: "Empathie",
-      desc: "Comprendre l’empathie comme une résonance juste, distincte de l’apathie et de la fusion, et en observer les effets concrets.",
+      desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur pour en garder une compréhension juste.",
     },
   ];
 
-  const introHtml =
-    '<div class="card">' +
-    '<div class="kicker">Vue d’ensemble</div>' +
-    '<div class="lead">Support de formation — La Méthode FIDES</div>' +
-    "<p>" +
-    escapeHTML(
-      "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité."
-    ) +
-    "</p>" +
-    "</div>";
+  const introHtml = `
+    <div class="card">
+      <div class="kicker">Vue d’ensemble</div>
+      <div class="lead">Support de formation — La Méthode FIDES</div>
+      <p>${escapeHTML(
+        "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité."
+      )}</p>
+    </div>
+  `;
 
-  const processHtml =
-    '<div class="card">' +
-    '<div class="kicker">Clé de lecture</div>' +
-    '<div class="lead">La dynamique du processus</div>' +
-    "<p>" +
-    escapeHTML(
-      "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique."
-    ) +
-    "</p>" +
-    '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;">' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Déclencheur</span>' +
-      '<span aria-hidden="true">→</span>' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Émotion</span>' +
-      '<span aria-hidden="true">→</span>' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Blessure</span>' +
-      '<span aria-hidden="true">→</span>' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Croyance limitante</span>' +
-      '<span aria-hidden="true">→</span>' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Mécanismes visibles</span>' +
-      '<span aria-hidden="true">→</span>' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Réalignement</span>' +
-      '<span aria-hidden="true">→</span>' +
-      '<span style="padding:8px 12px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--stroke);font-weight:700;">Authenticité</span>' +
-    "</div>" +
-    "</div>";
+  const processText =
+    "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique.";
 
-  const gridHtml =
-    '<div class="mapGrid">' +
-    tiles.map(tileHtml).join("") +
-    "</div>";
+  const steps = [
+    "Déclencheur",
+    "Émotion",
+    "Blessure",
+    "Croyance limitante",
+    "Mécanismes visibles",
+    "Réalignement",
+    "Authenticité",
+  ];
+
+  const processHtml = `
+    <div class="card">
+      <div class="kicker">Clé de lecture</div>
+      <div class="lead">La dynamique du processus</div>
+      <p>${escapeHTML(processText)}</p>
+
+      <div style="
+        margin-top:18px;
+        padding:16px;
+        border:1px solid var(--stroke);
+        border-radius:18px;
+        background: rgba(255,255,255,0.55);
+      ">
+        <div style="
+          display:flex;
+          flex-wrap:wrap;
+          align-items:center;
+          gap:10px 8px;
+          justify-content:center;
+        ">
+          ${steps
+            .map((step, index) => {
+              const chip = `
+                <span style="
+                  display:inline-flex;
+                  align-items:center;
+                  justify-content:center;
+                  padding:10px 14px;
+                  border-radius:999px;
+                  background: rgb(245, 239, 227);
+                  border:1px solid rgba(190, 43, 86, 0.16);
+                  color: var(--text);
+                  font-weight:700;
+                  line-height:1.2;
+                  text-align:center;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+                ">${escapeHTML(step)}</span>
+              `;
+
+              if (index === steps.length - 1) return chip;
+
+              return `
+                ${chip}
+                <span aria-hidden="true" style="
+                  color: var(--muted);
+                  font-size: 18px;
+                  line-height: 1;
+                  padding: 0 2px;
+                ">→</span>
+              `;
+            })
+            .join("")}
+        </div>
+      </div>
+    </div>
+  `;
+
+  const gridHtml = `
+    <div class="mapGrid">
+      ${tiles.map(tileHtml).join("")}
+    </div>
+  `;
 
   mainEl.innerHTML = introHtml + processHtml + gridHtml;
 }
