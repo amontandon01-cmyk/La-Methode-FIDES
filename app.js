@@ -30,6 +30,7 @@ const SLUG_TO_PAGE_ID = Object.freeze({
   "bases-blessures": "base_blessures",
   "bases-empathie": "base_empathie",
   "bases-karpman": "base_karpman",
+  "bases-croyances": "bases_croyances",
 
   "blessures-joie": "w_joie",
   "blessures-rejet": "w_rejet",
