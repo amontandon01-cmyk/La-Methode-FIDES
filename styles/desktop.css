@@ -284,6 +284,16 @@ main{
   box-shadow: 0 3px 10px rgba(0,0,0,0.03);
 }
 
+.cardImage{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(190, 43, 86, 0.10);
+  background: rgba(255,255,255,0.72);
+}
+
 .kicker{
   font-size: 11px;
   color: rgba(190, 43, 86, 0.78);
