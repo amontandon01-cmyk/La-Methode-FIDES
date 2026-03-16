@@ -59,6 +59,7 @@ const PAGES = [
       imageAlt: "Schéma des émotions",
     },
   ],   
+},
 {
   id: "base_confort", slug: "bases-confort",
   type: "BASE",
