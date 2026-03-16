@@ -482,6 +482,7 @@ const PAGES = [
       ["Valeurs", "Sécurité intérieure, acceptation de la différence de l’autre, autonomie, solitude, foi en la vie et en l’humain, amour."],
       ["Croyances limitantes", "« Je n’ai pas ma place. » « Je ne suis pas digne d’être vu. » (et formulations du type « ce n’est pas grave », « c’est normal »).",],
       ["Croyances expansives", "« Ma présence suffit pour être aimé. » « J’ai une place unique et légitime. » « J’ose m’exprimer dans mes sentiments. »",],
+      ["Guérison", "Quand la blessure de rejet s’apaise, la personne ose prendre sa place et s’affirmer, se sent bien dans sa peau même lorsqu’elle n’existe plus pour certaines personnes et traverse moins de situations de panique (fuite)."],
     ],
   },
 
@@ -501,6 +502,7 @@ const PAGES = [
       ["Valeurs", "Amour, proximité, lien, chaleur humaine, partage."],
       ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
       ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »",
+      ["Guérison", "Quand la blessure d’abandon s’apaise, la personne se sent mieux lorsqu’elle est seule, cherche moins l’attention, vit les épreuves avec moins de dramatisation et ose avancer sans attendre l’aval des autres."],
       ],
     ],
   },
@@ -521,6 +523,7 @@ const PAGES = [
       ["Valeurs", "Respect, dignité, authenticité."],
       ["Croyances limitantes", "« Je ne mérite pas d’être heureux. » « Je dois porter la honte. »"],
       ["Croyances expansives", "« Je mérite le respect et la joie de vivre. » « Je peux exister avec dignité. »"],
+      ["Guérison", "Quand la blessure d’humiliation s’apaise, la personne écoute davantage ses besoins avant ceux des autres, porte moins sur ses épaules, se sent plus libre et peut demander sans avoir l’impression de déranger."],
     ],
   },
    
@@ -541,6 +544,8 @@ const PAGES = [
     ["Croyances limitantes", "« Les autres vont forcément me trahir. » « Je dois garder le contrôle pour être en sécurité. » « On ne peut faire confiance à personne. » « Si je relâche, je serai déçu. » « Je dois vérifier pour éviter d’être trompé. »"],
     ["Croyances expansives", "« Je peux rester clair sans contrôler. » « Je peux faire confiance avec discernement. » « Je peux poser un cadre sans dominer. » « La sécurité intérieure ne dépend pas de la maîtrise de l’autre. » « Je peux rester fort tout en laissant de la place au lien. »"],
     ["Incarner son plein potentiel", "Quand cette blessure s’apaise, l’être peut incarner la loyauté, la fiabilité, la clarté, le discernement, la force tranquille et un leadership juste. La puissance ne passe plus par le contrôle, mais par une sécurité intérieure stable, une parole nette et une confiance consciente. La personne peut alors guider sans imposer, voir clair sans soupçonner, protéger sans dominer, et s’engager avec solidité dans des liens plus vrais."],
+    ["Guérison", "Quand la blessure de trahison s’apaise, la personne reste plus stable lorsque les plans changent, se sent fière de ses réussites et devient plus détachée des résultats."],
+
   ],
 },
 
@@ -560,6 +565,7 @@ const PAGES = [
       ["Valeurs", "Justice, équité, intégrité, vérité."],
       ["Croyances limitantes", "« Je dois toujours prouver ma valeur. » « Je ne peux pas me montrer imparfait. »"],
       ["Croyances expansives", "« Je peux être aimé tel que je suis. » « Ma valeur est innée et indépendante de mes performances. »"],
+      ["Guérison", "Quand la blessure d’injustice s’apaise, la personne devient moins perfectionniste, s’accorde le droit à l’erreur, ose montrer sa sensibilité, ressent moins le poids du jugement et juge moins ceux qui jugent."],
     ],
   },
 
