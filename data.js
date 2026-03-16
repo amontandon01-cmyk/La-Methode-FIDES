@@ -101,6 +101,11 @@ const PAGES = [
       lead: "Les blessures émotionnelles influencent parfois la manière dont une personne perçoit le monde et intègre l’expérience.",
       text: "Lorsqu’une blessure s’active, certains canaux sensoriels peuvent prendre plus de place. Cela influence la façon dont la personne observe, comprend et réagit à une situation. Il ne s’agit pas d’une règle fixe, mais d’une tendance observable qui peut aider à lire certains comportements."
     },
+   {
+       kicker: "Schéma",
+       image: "schema_langages.png",
+       imageAlt: "Schéma des langages d’apprentissage",
+      },
     {
       kicker: "Rejet",
       lead: "La blessure de rejet s’accompagne souvent d’un vécu très intérieur.",
