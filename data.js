@@ -501,7 +501,7 @@ const PAGES = [
       ["Dogmes", "« Je dois toujours être avec quelqu’un pour exister. » « Si je suis seul, je ne vaux rien. »"],
       ["Valeurs", "Amour, proximité, lien, chaleur humaine, partage."],
       ["Croyances limitantes", "« Je finis toujours seul. » « Personne ne reste jamais avec moi. »"],
-      ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »",
+      ["Croyances expansives", "« Je suis complet même dans la solitude. » « Je peux créer des liens stables et nourrissants. » « Plus besoin de béquille (addiction) pour accepter la réalité. »"],
       ["Guérison", "Quand la blessure d’abandon s’apaise, la personne se sent mieux lorsqu’elle est seule, cherche moins l’attention, vit les épreuves avec moins de dramatisation et ose avancer sans attendre l’aval des autres."],
    ],
   },
