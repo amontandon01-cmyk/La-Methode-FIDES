@@ -89,6 +89,50 @@ const PAGES = [
     },
   ],
 },
+   {
+  id: "base_langages_apprentissage",
+  slug: "bases-langages-apprentissage",
+  type: "BASE",
+  title: "Langages d’apprentissage",
+  subtitle: "Blessures & perception",
+  content: [
+    {
+      kicker: "Définition",
+      lead: "Les blessures émotionnelles influencent parfois la manière dont une personne perçoit le monde et intègre l’expérience.",
+      text: "Lorsqu’une blessure s’active, certains canaux sensoriels peuvent prendre plus de place. Cela influence la façon dont la personne observe, comprend et réagit à une situation. Il ne s’agit pas d’une règle fixe, mais d’une tendance observable qui peut aider à lire certains comportements."
+    },
+    {
+      kicker: "Rejet",
+      lead: "La blessure de rejet s’accompagne souvent d’un vécu très intérieur.",
+      text: "Le corporel peut devenir dominant : sensation de vide, retrait intérieur, impression de disparaître, besoin de se protéger en se mettant à distance. Le visuel intérieur peut aussi apparaître sous forme d’imaginaire ou de refuge intérieur."
+    },
+    {
+      kicker: "Abandon",
+      lead: "La blessure d’abandon touche profondément le lien et la relation.",
+      text: "Le canal auditif peut prendre une grande place : importance du ton de voix, attente de réponses, sensibilité au silence, besoin d’entendre que le lien est maintenu. Le corporel peut aussi vivre l’insécurité ou la peur du vide relationnel."
+    },
+    {
+      kicker: "Humiliation",
+      lead: "La blessure d’humiliation touche fortement le rapport au corps.",
+      text: "Le corporel est souvent très présent : sensations de honte, gêne physique, impression d’être exposé ou diminué. Dans certains cas, les sensations liées à l’environnement, comme les odeurs, le goût ou la proximité corporelle, peuvent également être très marquées."
+    },
+    {
+      kicker: "Trahison",
+      lead: "La blessure de trahison pousse souvent à observer et à vérifier.",
+      text: "Le visuel peut devenir dominant : observation attentive, recherche d’indices, besoin de cohérence entre les paroles et les actes. L’auditif peut également être sensible aux promesses et aux contradictions."
+    },
+    {
+      kicker: "Injustice",
+      lead: "La blessure d’injustice s’accompagne souvent d’un fort contrôle intérieur.",
+      text: "Le corporel et l’auditif interne peuvent se combiner : tension dans le corps, exigence intérieure, dialogue mental critique ou jugeant. Le visuel peut soutenir une image idéale de rigueur ou de perfection."
+    },
+    {
+      kicker: "Lecture globale",
+      lead: "Cette lecture croisée affine la compréhension de ce qui se vit.",
+      text: "Lorsque l’on observe à la fois le langage d’apprentissage, le canal sensoriel dominant et la blessure activée, il devient plus facile de comprendre comment la personne perçoit une situation, comment elle intègre une expérience et comment elle se protège intérieurement. Cette lecture permet d’adapter l’accompagnement et de rejoindre la personne dans sa manière unique de vivre le monde."
+    },
+  ],
+},
 
 {
   id: "base_blessures", slug: "bases-blessures",
@@ -580,7 +624,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_croyances", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
+  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
   { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
