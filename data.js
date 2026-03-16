@@ -192,7 +192,55 @@ const PAGES = [
     },
   ],
 },
-
+   {
+  id: "base_vulnerabilites_amour",
+  slug: "vulnerabilites-amour",
+  type: "BASE",
+  title: "Les vulnérabilités de l’amour à deux",
+  subtitle: "Quand l’amour ouvre les zones sensibles de l’être",
+  content: [
+    {
+      kicker: "Amour à deux",
+      lead: "L’amour à deux ouvre un espace de rencontre, de proximité, de vérité et de transformation.",
+      text: "Il invite chacun à se laisser voir, à offrir une place à l’autre, à accueillir sa présence et à partager une part vivante de son monde intérieur. Quand le lien devient précieux, certaines zones sensibles de l’être s’ouvrent naturellement. La confiance, le lien, la liberté, l’existence et la dignité prennent une place plus forte dans l’expérience relationnelle. Ces vulnérabilités appartiennent à la réalité même de l’amour. Elles révèlent la manière dont chacun s’ouvre, ressent, espère, cherche sa place et protège ce qui compte profondément. Dans la lecture FIDES, les blessures émotionnelles prennent souvent racine dans ces zones sensibles du lien amoureux. L’amour vient alors mettre en lumière ce qui demande à être reconnu, pacifié, restauré et transformé."
+    },
+    {
+      kicker: "Trahison",
+      lead: "La vulnérabilité de la confiance.",
+      text: "Dans l’amour à deux, la confiance permet de se déposer, de s’ouvrir, de croire en la parole, en la présence et en l’intention de l’autre. Elle crée un espace où le cœur peut relâcher sa garde et entrer dans une relation plus vivante. Lorsque cette confiance est fragilisée, menacée ou brisée, quelque chose se tend profondément. La personne peut craindre d’être trompée, contournée, manipulée ou surprise là où elle espérait pouvoir se reposer. La question intérieure devient alors : Puis-je faire confiance à l’autre et à la relation ? Pour se protéger, la personne peut observer, vérifier, anticiper, tester, analyser ou chercher à garder la maîtrise de ce qui se passe. Dans l’amour, ce qu’elle cherche profondément est une fiabilité claire, une cohérence stable, une vérité relationnelle qui lui permette peu à peu de relâcher sa vigilance. La guérison commence lorsque la personne peut faire l’expérience d’un lien où la vérité, la cohérence et la sécurité restaurent progressivement la confiance intérieure."
+    },
+    {
+      kicker: "Abandon",
+      lead: "La vulnérabilité du lien.",
+      text: "Aimer crée un attachement. Le lien devient vivant, précieux, nourrissant. C’est aussi pour cela qu’il peut devenir un lieu de peur lorsqu’il semble menacé par la distance, le silence, l’éloignement, le retrait ou l’absence. Lorsque cette vulnérabilité s’active, la personne peut craindre de perdre l’autre, de ne plus compter, de ne plus être rejointe ou de se retrouver seule avec ce qu’elle ressent. La question intérieure devient alors : Puis-je aimer sans risquer de perdre le lien ? Pour se protéger, la personne peut chercher à maintenir la proximité, à sentir qu’elle compte, à recevoir des signes, à être rassurée sur sa place et sur la continuité de l’amour. Dans l’amour, ce qu’elle cherche profondément est une présence stable, une continuité du lien, le sentiment qu’elle a une place et qu’elle reste reliée. La guérison commence lorsque la personne peut sentir qu’elle demeure aimée et reliée, même lorsque la distance, le silence ou l’absence traversent la relation."
+    },
+    {
+      kicker: "Injustice",
+      lead: "La vulnérabilité de la liberté.",
+      text: "L’amour rapproche. Il invite à la proximité, au partage, à l’ajustement, parfois à la remise en mouvement de certains équilibres intérieurs. Pour certaines personnes, cette proximité peut réveiller une peur plus silencieuse : celle de perdre leur espace, leur autonomie, leur respiration intérieure ou leur liberté d’être. La question intérieure devient alors : Puis-je rester libre et moi-même dans la relation ? Lorsque cette vulnérabilité est touchée, la personne peut se contenir, se rigidifier, rationaliser, garder de la distance émotionnelle, s’appuyer fortement sur l’autonomie ou chercher à préserver son intégrité par le contrôle intérieur. Dans l’amour, ce qu’elle cherche profondément est un espace relationnel où elle peut rester elle-même, libre, respectée dans son rythme, son espace intérieur et sa vérité profonde. La guérison commence lorsque la personne découvre qu’elle peut aimer et être aimée sans se perdre, sans se contraindre intérieurement, et sans renoncer à sa liberté essentielle."
+    },
+    {
+      kicker: "Rejet",
+      lead: "La vulnérabilité de l’existence.",
+      text: "Le rejet touche la place même de l’être. Dans le lien amoureux, il apparaît lorsque la personne sent, redoute ou imagine que ce qu’elle est profondément pourrait ne pas être accueilli, aimé ou reconnu. Ce n’est plus seulement le lien qui semble fragile. C’est l’existence même de soi dans le regard de l’autre qui devient sensible. La question intérieure devient alors : Ai-je le droit d’exister tel que je suis dans la relation ? Pour se protéger, la personne peut se retirer, se faire discrète, éviter de trop prendre de place, se couper de certaines parts d’elle-même ou ne pas montrer pleinement ce qu’elle ressent. Elle peut aussi entrer dans une autre stratégie plus subtile : la suradaptation. Elle observe l’autre, sent ce qui lui ferait plaisir, s’ajuste à ses attentes, à ses besoins, à ses humeurs, à ses préférences. Elle devient parfois un véritable caméléon relationnel. Elle peut même ressentir du plaisir à voir l’autre heureux, apaisé ou comblé, comme si le fait de contribuer à son bien-être sécurisait sa propre place dans le lien. Dans l’amour, ce qu’elle cherche profondément est la reconnaissance : être vue, accueillie, reconnue dans ce qu’elle est, avec une place réelle et vivante dans la relation. La guérison commence lorsque la personne fait l’expérience que son existence a de la valeur dans le lien, qu’elle peut être pleinement elle-même, et qu’elle reste digne d’amour sans devoir se modeler pour être gardée."
+    },
+    {
+      kicker: "Humiliation",
+      lead: "La vulnérabilité de la dignité.",
+      text: "L’humiliation touche profondément la valeur personnelle et le respect de soi dans la relation. Elle atteint l’endroit où l’être a besoin d’être traité avec considération, douceur et respect. Lorsque cette vulnérabilité est activée, la personne peut vivre intérieurement de la honte, de l’abaissement, une atteinte à son image ou le sentiment d’être rabaissée dans ce qu’elle est. La question intérieure devient alors : Suis-je digne de respect dans la relation ? Pour se protéger, la personne peut se dévaloriser avant que quelqu’un ne le fasse, se rabaisser, porter plus que sa part, se charger, se sacrifier, s’oublier ou accepter des positions qui abîment sa dignité profonde. Dans l’amour, ce qu’elle cherche profondément est le respect, la douceur, la dignité, et la reconnaissance de sa valeur humaine profonde. La guérison commence lorsque la personne retrouve la sensation intime que sa valeur mérite respect, et qu’elle peut aimer sans se rabaisser, sans se sacrifier de manière excessive, et sans blesser sa dignité intérieure."
+    },
+    {
+      kicker: "Polarités",
+      lead: "Dans la lecture FIDES, l’amour à deux met aussi en lumière une dynamique de polarités.",
+      text: "Certaines vulnérabilités s’expriment avec une dominante plus intérieure, plus sensible, plus émotionnelle, plus reliée au ressenti et à la vie subtile du lien. D’autres prennent une coloration plus active, plus corporelle, plus mentale, plus orientée vers l’action, la vigilance, la structure ou la direction. Ces polarités éclairent la manière dont chacun aime, perçoit, réagit, se protège et cherche l’équilibre dans la relation. Elles permettent de mieux comprendre les différences de fonctionnement entre deux êtres, sans enfermer l’un ou l’autre dans une catégorie fixe. Dans l’amour vivant, ces polarités se rencontrent, se répondent, s’ajustent et se transforment. Elles participent à un chemin de conscience où chacun apprend à honorer sa nature, à reconnaître celle de l’autre, et à créer une relation plus juste, plus profonde et plus vivante."
+    },
+    {
+      kicker: "Comprendre",
+      lead: "Les blessures naissent souvent là où l’amour rencontre une vulnérabilité déjà sensible.",
+      text: "Lorsqu’une zone profonde est touchée, l’être humain met en place des protections. Ces protections cherchent souvent à préserver le lien, éviter la douleur, garder une place, maintenir une sécurité intérieure ou protéger quelque chose d’essentiel. Avec le temps, elles peuvent pourtant brouiller la relation. Elles influencent la manière d’aimer, de réagir, d’interpréter les gestes de l’autre, de demander, de se taire, de se rapprocher ou de se protéger. Comprendre les vulnérabilités de l’amour à deux permet de voir plus clairement ce que le lien vient réveiller en soi. Cela permet aussi de distinguer l’amour de la peur, la présence du réflexe, le lien de la protection. À cet endroit, la relation devient un espace de conscience. Elle ne révèle plus seulement la blessure. Elle devient aussi un chemin de transformation."
+    }
+  ]
+},
 {
   id: "base_croyances", slug: "bases-croyances",
   type: "BASE",
@@ -629,7 +677,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
+  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
   { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
