@@ -371,6 +371,16 @@ function renderNav(currentPageId) {
 function renderHome() {
   const tiles = [
     {
+      title: "Emotions",
+      image: "schema_emotions.png",
+      imageAlt: "Schéma des émotions",
+   },
+   {
+      title: "Mandala",
+      image: "mandala.svg",
+      imageAlt: "Mandala",
+   },
+    {
       title: "Bases",
       desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
     },
