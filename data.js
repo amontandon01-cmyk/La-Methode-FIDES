@@ -196,8 +196,8 @@ const PAGES = [
   id: "base_vulnerabilites_amour",
   slug: "vulnerabilites-amour",
   type: "BASE",
-  title: "Les vulnérabilités de l’amour à deux",
-  subtitle: "Quand l’amour ouvre les zones sensibles de l’être",
+  title: "Les vulnérabilités de l’amour",
+  subtitle: "Quand l’amour ouvre les zones sensibles",
   content: [
     {
       kicker: "Amour à deux",
