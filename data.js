@@ -248,6 +248,11 @@ const PAGES = [
       text: "Certaines vulnérabilités s’expriment avec une dominante plus intérieure, plus sensible, plus émotionnelle, plus reliée au ressenti et à la vie subtile du lien. D’autres prennent une coloration plus active, plus corporelle, plus mentale, plus orientée vers l’action, la vigilance, la structure ou la direction. Ces polarités éclairent la manière dont chacun aime, perçoit, réagit, se protège et cherche l’équilibre dans la relation. Elles permettent de mieux comprendre les différences de fonctionnement entre deux êtres, sans enfermer l’un ou l’autre dans une catégorie fixe. Dans l’amour vivant, ces polarités se rencontrent, se répondent, s’ajustent et se transforment. Elles participent à un chemin de conscience où chacun apprend à honorer sa nature, à reconnaître celle de l’autre, et à créer une relation plus juste, plus profonde et plus vivante."
     },
     {
+       kicker: "Schéma",
+       image: "schema_predominance.svg",
+       imageAlt: "Schéma des prédominances",
+    },
+    {
       kicker: "Comprendre",
       lead: "Les blessures naissent souvent là où l’amour rencontre une vulnérabilité déjà sensible.",
       text: "Lorsqu’une zone profonde est touchée, l’être humain met en place des protections. Ces protections cherchent souvent à préserver le lien, éviter la douleur, garder une place, maintenir une sécurité intérieure ou protéger quelque chose d’essentiel. Avec le temps, elles peuvent pourtant brouiller la relation. Elles influencent la manière d’aimer, de réagir, d’interpréter les gestes de l’autre, de demander, de se taire, de se rapprocher ou de se protéger. Comprendre les vulnérabilités de l’amour à deux permet de voir plus clairement ce que le lien vient réveiller en soi. Cela permet aussi de distinguer l’amour de la peur, la présence du réflexe, le lien de la protection. À cet endroit, la relation devient un espace de conscience. Elle ne révèle plus seulement la blessure. Elle devient aussi un chemin de transformation."
@@ -407,7 +412,7 @@ const PAGES = [
   id: "base_culpabilite",  slug: "bases-culpabilite",
   type: "BASE",
   title: "La culpabilité",
-  subtitle: "Quand la protection cède, la culpabilité se met en lumière",
+  subtitle: "Quand la protection cède, place à la culpabilité",
   content: [
     {
       kicker: "Culpabilité",
