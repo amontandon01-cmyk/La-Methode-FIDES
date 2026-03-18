@@ -46,42 +46,36 @@ const PAGES = [
   title: "Vue d’ensemble",
   subtitle: "Bases • Blessures • Comportements",
   content: [
-    {
-      kicker: "Vue d’ensemble",
-      lead: "Support de formation — La Méthode FIDES",
-      text: "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
+  {
+    kicker: "Vue d’ensemble",
+    lead: "Support de formation — La Méthode FIDES",
+    text: "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
+  },
+  {
+    kicker: "Clé de lecture",
+    lead: "La dynamique du processus",
+    text: "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique.",
+    steps: [
+      "Déclencheur",
+      "Émotion",
+      "Blessure",
+      "Croyance limitante",
+      "Mécanismes visibles",
+      "Réalignement",
+      "Authenticité",
+    ],
+  },
+  {
+    layout: "split",
+    left: {
+      kicker: "Émotions",
+      image: "schema_emotions.png",
+      imageAlt: "Schéma des émotions",
     },
-    {
-      kicker: "Clé de lecture",
-      lead: "La dynamique du processus",
-      text: "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique.",
-      steps: [
-        "Déclencheur",
-        "Émotion",
-        "Blessure",
-        "Croyance limitante",
-        "Mécanismes visibles",
-        "Réalignement",
-        "Authenticité",
-      ],
-    },
-    {
-      layout: "imageGrid",
-      items: [
-        {
-          title: "Émotions",
-          image: "schema_emotions.png",
-          imageAlt: "Schéma des émotions",
-        },
-        {
-          title: "Mandala",
-          image: "mandala.svg",
-          imageAlt: "Mandala",
-        },
-      ],
-    },
-    {
-      layout: "tiles",
+    right: {
+      layout: "tilesCard",
+      kicker: "Repères",
+      lead: "Lectures essentielles",
       items: [
         {
           title: "Bases",
@@ -101,7 +95,13 @@ const PAGES = [
         },
       ],
     },
-  ],
+  },
+  {
+    kicker: "Mandala",
+    image: "mandala.svg",
+    imageAlt: "Mandala",
+  },
+],
 },
 
   // BASES
