@@ -23,23 +23,25 @@ const SINGLE_LINK_SECTIONS = new Set(["Vue d’ensemble", "Références"]);
 
 /* ------------------------------ Routes ------------------------------ */
 
-const SLUG_TO_PAGE_ID = Object.freeze(
-  PAGES.reduce((acc, page) => {
-    if (page.slug) {
-      acc[page.slug] = page.id;
-    }
-    return acc;
-  }, {})
+const PAGE_BY_ID = Object.freeze(
+  Object.fromEntries(PAGES.map((page) => [page.id, page]))
+);
+
+const PAGE_BY_SLUG = Object.freeze(
+  Object.fromEntries(
+    PAGES.filter((page) => page.slug).map((page) => [page.slug, page])
+  )
 );
 
 const PAGE_ID_TO_SLUG = Object.freeze(
-  PAGES.reduce((acc, page) => {
-    if (page.slug) {
-      acc[page.id] = page.slug;
-    }
-    return acc;
-  }, {})
+  Object.fromEntries(
+    PAGES.filter((page) => page.slug).map((page) => [page.id, page.slug])
+  )
 );
+
+function getCanonicalSlugForPageId(pageId) {
+  return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
+}
 
 function getCanonicalSlugForPageId(pageId) {
   return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
@@ -67,7 +69,7 @@ function escapeHTML(value) {
 }
 
 function getPage(pageId) {
-  return PAGES.find((page) => page.id === pageId);
+  return PAGE_BY_ID[pageId] || null;
 }
 
 function normalizeHash(rawHash) {
@@ -76,10 +78,9 @@ function normalizeHash(rawHash) {
   return hash.startsWith("#") ? hash.slice(1) : hash;
 }
 
-function resolveRouteToPageId(routeToken) {
-  if (SLUG_TO_PAGE_ID[routeToken] && getPage(SLUG_TO_PAGE_ID[routeToken])) {
-    return SLUG_TO_PAGE_ID[routeToken];
-  }
+   function resolveRouteToPageId(routeToken) {
+  return PAGE_BY_SLUG[routeToken]?.id || PAGE_BY_ID[routeToken]?.id || DEFAULT_PAGE_ID;
+}
 
   if (getPage(routeToken)) {
     return routeToken;
@@ -154,45 +155,87 @@ function toggleMenu() {
   setMenu(!isOpen);
 }
 
-/* ------------------------------ Debug ------------------------------ */
-
-function isDebugMode() {
-  try {
-    const isLocal =
-      location.hostname === "localhost" ||
-      location.hostname === "127.0.0.1" ||
-      location.protocol === "file:";
-    const params = new URLSearchParams(location.search);
-    return isLocal || params.get("debug") === "1";
-  } catch {
-    return false;
-  }
-}
-
 /* ------------------------------ Templates ------------------------------ */
 
-function cardHtml({ kicker, lead, text, bullets, image, imageAlt }) {
+function flowHtml(steps = []) {
+  if (!steps.length) return "";
+
+  return `
+    <div style="
+      margin-top: 18px;
+      padding: 16px;
+      border: 1px solid var(--stroke);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.55);
+    ">
+      <div style="
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 8px;
+        justify-content: center;
+      ">
+        ${steps
+          .map((step, index) => {
+            const chip = `
+              <span style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 14px;
+                border-radius: 999px;
+                background: rgb(245, 239, 227);
+                border: 1px solid rgba(190, 43, 86, 0.16);
+                color: var(--text);
+                font-weight: 700;
+                line-height: 1.2;
+                text-align: center;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+              ">${escapeHTML(step)}</span>
+            `;
+
+            if (index === steps.length - 1) return chip;
+
+            return `
+              ${chip}
+              <span aria-hidden="true" style="
+                color: var(--muted);
+                font-size: 18px;
+                line-height: 1;
+                padding: 0 2px;
+              ">→</span>
+            `;
+          })
+          .join("")}
+      </div>
+    </div>
+  `;
+}
+
+function cardHtml({ kicker, lead, text, bullets, image, imageAlt, steps }) {
   let html = '<div class="card">';
 
-  html += '<div class="kicker">' + escapeHTML(kicker || "Section") + "</div>";
+  if (kicker) {
+    html += '<div class="kicker">' + escapeHTML(kicker) + "</div>";
+  }
 
   if (lead) {
     html += '<div class="lead">' + escapeHTML(lead) + "</div>";
   }
 
-   if (image) {
-  html += `
-    <figure class="cardMedia">
-      <img
-        class="cardImage"
-        src="${encodeURI(image)}"
-        alt="${escapeHTML(imageAlt || "Illustration")}"
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
-  `;
-}
+  if (image) {
+    html += `
+      <figure class="cardMedia">
+        <img
+          class="cardImage"
+          src="${encodeURI(image)}"
+          alt="${escapeHTML(imageAlt || "Illustration")}"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    `;
+  }
 
   if (text) {
     html += "<p>" + escapeHTML(text) + "</p>";
@@ -204,6 +247,10 @@ function cardHtml({ kicker, lead, text, bullets, image, imageAlt }) {
       html += "<li>" + escapeHTML(bullet) + "</li>";
     }
     html += "</ul>";
+  }
+
+  if (steps && steps.length) {
+    html += flowHtml(steps);
   }
 
   html += "</div>";
@@ -219,10 +266,22 @@ function tileHtml({ title, desc }) {
     escapeHTML(title) +
     "</h3>" +
     "<p>" +
-    escapeHTML(desc) +
+    escapeHTML(desc || "") +
     "</p>" +
     "</div>"
   );
+}
+
+function contentBlockHtml(block) {
+  if (block.layout === "tiles") {
+    return (
+      '<div class="mapGrid">' +
+      (block.items || []).map(tileHtml).join("") +
+      "</div>"
+    );
+  }
+
+  return cardHtml(block);
 }
 
 function woundRowHtml(label, value) {
@@ -368,131 +427,8 @@ function renderNav(currentPageId) {
   }
 }
 
-function renderHome() {
-  const tiles = [
-    {
-      title: "Emotions",
-      image: "schema_emotions.png",
-      imageAlt: "Schéma des émotions",
-   },
-   {
-      title: "Mandala",
-      image: "mandala.svg",
-      imageAlt: "Mandala",
-   },
-    {
-      title: "Bases",
-      desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
-    },
-    {
-      title: "Blessures",
-      desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
-    },
-    {
-      title: "Comportements",
-      desc: "Relier le vécu aux mécanismes visibles : addictions, rigidités, dogmes, évitements, contrôle, compensation ou répétition.",
-    },
-    {
-      title: "Empathie",
-      desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur pour en garder une compréhension juste.",
-    },
-  ];
-
-  const introHtml = `
-    <div class="card">
-      <div class="kicker">Vue d’ensemble</div>
-      <div class="lead">Support de formation — La Méthode FIDES</div>
-      <p>${escapeHTML(
-        "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité."
-      )}</p>
-    </div>
-  `;
-
-  const processText =
-    "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique.";
-
-  const steps = [
-    "Déclencheur",
-    "Émotion",
-    "Blessure",
-    "Croyance limitante",
-    "Mécanismes visibles",
-    "Réalignement",
-    "Authenticité",
-  ];
-
-  const processHtml = `
-    <div class="card">
-      <div class="kicker">Clé de lecture</div>
-      <div class="lead">La dynamique du processus</div>
-      <p>${escapeHTML(processText)}</p>
-
-      <div style="
-        margin-top:18px;
-        padding:16px;
-        border:1px solid var(--stroke);
-        border-radius:18px;
-        background: rgba(255,255,255,0.55);
-      ">
-        <div style="
-          display:flex;
-          flex-wrap:wrap;
-          align-items:center;
-          gap:10px 8px;
-          justify-content:center;
-        ">
-          ${steps
-            .map((step, index) => {
-              const chip = `
-                <span style="
-                  display:inline-flex;
-                  align-items:center;
-                  justify-content:center;
-                  padding:10px 14px;
-                  border-radius:999px;
-                  background: rgb(245, 239, 227);
-                  border:1px solid rgba(190, 43, 86, 0.16);
-                  color: var(--text);
-                  font-weight:700;
-                  line-height:1.2;
-                  text-align:center;
-                  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-                ">${escapeHTML(step)}</span>
-              `;
-
-              if (index === steps.length - 1) return chip;
-
-              return `
-                ${chip}
-                <span aria-hidden="true" style="
-                  color: var(--muted);
-                  font-size: 18px;
-                  line-height: 1;
-                  padding: 0 2px;
-                ">→</span>
-              `;
-            })
-            .join("")}
-        </div>
-      </div>
-    </div>
-  `;
-
-  const gridHtml = `
-    <div class="mapGrid">
-      ${tiles.map(tileHtml).join("")}
-    </div>
-  `;
-
-  mainEl.innerHTML = introHtml + processHtml + gridHtml;
-}
-
-function renderBase(page) {
-  let html = "";
-  for (const block of page.content || []) {
-    html += cardHtml(block);
-  }
-  mainEl.innerHTML = html;
+function renderContentPage(page) {
+  mainEl.innerHTML = (page.content || []).map(contentBlockHtml).join("");
 }
 
 function renderBlessure(page) {
@@ -529,7 +465,7 @@ function renderRef(page) {
     return;
   }
 
-  renderBase(page);
+ renderContentPage(page);
 }
 
 function canonicalizeUrlIfNeeded(pageId) {
@@ -554,19 +490,17 @@ function render() {
 
   switch (page.type) {
     case PAGE_TYPES.HOME:
-      renderHome();
-      break;
     case PAGE_TYPES.BASE:
-      renderBase(page);
-      break;
+     renderContentPage(page);
+  break;
     case PAGE_TYPES.BLESSURE:
       renderBlessure(page);
       break;
     case PAGE_TYPES.REF:
       renderRef(page);
       break;
-    default:
-      renderHome();
+      default:
+      renderContentPage(getPage(DEFAULT_PAGE_ID));
       break;
   }
 }
@@ -586,10 +520,6 @@ logoBtn.addEventListener("click", () => go(DEFAULT_PAGE_ID));
 window.addEventListener("hashchange", render);
 
 /* ------------------------------ Boot ------------------------------ */
-
-if (isDebugMode()) {
-  validateData();
-}
 
 if (!location.hash) {
   setHashToSlug(getCanonicalSlugForPageId(DEFAULT_PAGE_ID), { replace: true });
