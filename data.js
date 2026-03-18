@@ -106,19 +106,6 @@ const PAGES = [
 
   // BASES
 {
-  id: "base_emotions", slug: "bases-emotions",
-  type: "BASE",
-  title: "Les émotions",
-  subtitle: "Les émotions",
-  content: [
-    {
-      kicker: "Schéma",
-      image: "schema_emotions.png",
-      imageAlt: "Schéma des émotions",
-    },
-  ],   
-},
-{
   id: "base_confort", slug: "bases-confort",
   type: "BASE",
   title: "Le cercle de la zone de confort",
@@ -758,7 +745,7 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_emotions", "base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
+  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
   { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
