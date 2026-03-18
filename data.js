@@ -39,12 +39,63 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
 
 const PAGES = [
   // ACCUEIL
-  {
-    id: "home", slug: "vue-densemble",
-    type: "HOME",
-    title: "Vue d’ensemble",
-    subtitle: "Bases • Blessures • Comportements",
-  },
+{
+  id: "home",
+  slug: "vue-densemble",
+  type: "HOME",
+  title: "Vue d’ensemble",
+  subtitle: "Bases • Blessures • Comportements",
+  content: [
+    {
+      kicker: "Vue d’ensemble",
+      lead: "Support de formation — La Méthode FIDES",
+      text: "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
+    },
+    {
+      kicker: "Clé de lecture",
+      lead: "La dynamique du processus",
+      text: "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique.",
+      steps: [
+        "Déclencheur",
+        "Émotion",
+        "Blessure",
+        "Croyance limitante",
+        "Mécanismes visibles",
+        "Réalignement",
+        "Authenticité",
+      ],
+    },
+    {
+      layout: "tiles",
+      items: [
+        {
+          title: "Émotions",
+          desc: "Identifier l’émotion activée et le vécu intérieur qui l’accompagne.",
+        },
+        {
+          title: "Mandala",
+          desc: "Avoir une vue globale des liens entre blessures, croyances, comportements et réalignement.",
+        },
+        {
+          title: "Bases",
+          desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
+        },
+        {
+          title: "Blessures",
+          desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
+        },
+        {
+          title: "Comportements",
+          desc: "Relier le vécu aux mécanismes visibles : addictions, rigidités, dogmes, évitements, contrôle, compensation ou répétition.",
+        },
+        {
+          title: "Empathie",
+          desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur pour en garder une compréhension juste.",
+        },
+      ],
+    },
+  ],
+},
 
   // BASES
 {
