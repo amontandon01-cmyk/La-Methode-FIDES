@@ -261,7 +261,56 @@ function tileHtml({ title, desc }) {
   );
 }
 
+function imageGridHtml(items = []) {
+  if (!items.length) return "";
+
+  return `
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    ">
+      ${items
+        .map(
+          (item) => `
+            <div class="card" style="padding: 14px;">
+              <figure style="margin: 0;">
+                <img
+                  src="${encodeURI(item.image)}"
+                  alt="${escapeHTML(item.imageAlt || item.title || "Illustration")}"
+                  loading="lazy"
+                  decoding="async"
+                  style="
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    border-radius: 14px;
+                  "
+                />
+              </figure>
+              ${
+                item.title
+                  ? `<div style="
+                      margin-top: 10px;
+                      font-weight: 700;
+                      text-align: center;
+                    ">${escapeHTML(item.title)}</div>`
+                  : ""
+              }
+            </div>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function contentBlockHtml(block) {
+  if (block.layout === "imageGrid") {
+    return imageGridHtml(block.items || []);
+  }
+
   if (block.layout === "tiles") {
     return (
       '<div class="mapGrid">' +
