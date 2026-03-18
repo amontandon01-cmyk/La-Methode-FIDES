@@ -43,10 +43,6 @@ function getCanonicalSlugForPageId(pageId) {
   return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
 }
 
-function getCanonicalSlugForPageId(pageId) {
-  return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
-}
-
 /* ------------------------------ DOM ------------------------------ */
 
 const navEl = document.getElementById("nav");
@@ -78,15 +74,8 @@ function normalizeHash(rawHash) {
   return hash.startsWith("#") ? hash.slice(1) : hash;
 }
 
-   function resolveRouteToPageId(routeToken) {
+function resolveRouteToPageId(routeToken) {
   return PAGE_BY_SLUG[routeToken]?.id || PAGE_BY_ID[routeToken]?.id || DEFAULT_PAGE_ID;
-}
-
-  if (getPage(routeToken)) {
-    return routeToken;
-  }
-
-  return DEFAULT_PAGE_ID;
 }
 
 function getCurrentPageIdFromLocation() {
