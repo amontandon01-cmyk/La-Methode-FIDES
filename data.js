@@ -49,7 +49,7 @@ const PAGES = [
     },
     {
       title: "Mandala",
-      image: "schema_mandala.png",
+      image: "mandala.svg",
       imageAlt: "Mandala",
     },
   ],
