@@ -335,19 +335,6 @@ function woundRowHtml(label, value) {
   );
 }
 
-function navItemHtml(page, currentPageId) {
-  return (
-    '<button class="navItem" type="button" aria-current="' +
-    (page.id === currentPageId ? "page" : "false") +
-    '">' +
-    escapeHTML(page.title) +
-    '<span class="navSmall">' +
-    escapeHTML(page.subtitle || "") +
-    "</span>" +
-    "</button>"
-  );
-}
-
 /* ------------------------------ Menu mobile ------------------------------ */
 
 function createNavHeader() {
