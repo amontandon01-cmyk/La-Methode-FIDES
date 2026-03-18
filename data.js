@@ -40,38 +40,66 @@ const EMOTION_TO_SENTIMENTS = Object.freeze({
 const PAGES = [
   // ACCUEIL
 {
-  layout: "imageGrid",
-  items: [
+  id: "home",
+  slug: "vue-densemble",
+  type: "HOME",
+  title: "Vue d’ensemble",
+  subtitle: "Bases • Blessures • Comportements",
+  content: [
     {
-      title: "Émotions",
-      image: "schema_emotions.png",
-      imageAlt: "Schéma des émotions",
+      kicker: "Vue d’ensemble",
+      lead: "Support de formation — La Méthode FIDES",
+      text: "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
     },
     {
-      title: "Mandala",
-      image: "mandala.svg",
-      imageAlt: "Mandala",
-    },
-  ],
-},
-{
-  layout: "tiles",
-  items: [
-    {
-      title: "Bases",
-      desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
-    },
-    {
-      title: "Blessures",
-      desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
+      kicker: "Clé de lecture",
+      lead: "La dynamique du processus",
+      text: "Le déclencheur active une émotion. L’émotion révèle une blessure. La blessure s’appuie sur une croyance limitante. Cette croyance influence les mécanismes visibles. Le réalignement ouvre une manière d’être plus authentique.",
+      steps: [
+        "Déclencheur",
+        "Émotion",
+        "Blessure",
+        "Croyance limitante",
+        "Mécanismes visibles",
+        "Réalignement",
+        "Authenticité",
+      ],
     },
     {
-      title: "Comportements",
-      desc: "Relier le vécu aux mécanismes visibles : addictions, rigidités, dogmes, évitements, contrôle, compensation ou répétition.",
+      layout: "imageGrid",
+      items: [
+        {
+          title: "Émotions",
+          image: "schema_emotions.png",
+          imageAlt: "Schéma des émotions",
+        },
+        {
+          title: "Mandala",
+          image: "mandala.svg",
+          imageAlt: "Mandala",
+        },
+      ],
     },
     {
-      title: "Empathie",
-      desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur pour en garder une compréhension juste.",
+      layout: "tiles",
+      items: [
+        {
+          title: "Bases",
+          desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
+        },
+        {
+          title: "Blessures",
+          desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
+        },
+        {
+          title: "Comportements",
+          desc: "Relier le vécu aux mécanismes visibles : addictions, rigidités, dogmes, évitements, contrôle, compensation ou répétition.",
+        },
+        {
+          title: "Empathie",
+          desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur pour en garder une compréhension juste.",
+        },
+      ],
     },
   ],
 },
