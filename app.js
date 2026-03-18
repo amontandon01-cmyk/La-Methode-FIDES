@@ -280,9 +280,40 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
     html += "<p>" + escapeHTML(text) + "</p>";
   }
 
-  html += tilesGridHtml(items);
-  html += "</div>";
+  html += `
+    <div style="
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 6px;
+    ">
+      ${items
+        .map(
+          (item, index) => `
+            <div style="
+              ${index > 0 ? "padding-top: 16px; border-top: 1px solid var(--stroke);" : ""}
+            ">
+              <div style="
+                font-weight: 700;
+                font-size: 1rem;
+                margin-bottom: 6px;
+                color: var(--text);
+              ">
+                ${escapeHTML(item.title || "")}
+              </div>
+              ${
+                item.desc
+                  ? `<p style="margin: 0;">${escapeHTML(item.desc)}</p>`
+                  : ""
+              }
+            </div>
+          `
+        )
+        .join("")}
+    </div>
+  `;
 
+  html += "</div>";
   return html;
 }
 
