@@ -261,6 +261,45 @@ function tileHtml({ title, desc }) {
   );
 }
 
+function tilesGridHtml(items = []) {
+  return '<div class="mapGrid">' + items.map(tileHtml).join("") + "</div>";
+}
+
+function tilesCardHtml({ kicker, lead, text, items = [] }) {
+  let html = '<div class="card">';
+
+  if (kicker) {
+    html += '<div class="kicker">' + escapeHTML(kicker) + "</div>";
+  }
+
+  if (lead) {
+    html += '<div class="lead">' + escapeHTML(lead) + "</div>";
+  }
+
+  if (text) {
+    html += "<p>" + escapeHTML(text) + "</p>";
+  }
+
+  html += tilesGridHtml(items);
+  html += "</div>";
+
+  return html;
+}
+
+function splitHtml({ left, right }) {
+  return `
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      align-items: start;
+    ">
+      <div>${left ? contentBlockHtml(left) : ""}</div>
+      <div>${right ? contentBlockHtml(right) : ""}</div>
+    </div>
+  `;
+}
+
 function imageGridHtml(items = []) {
   if (!items.length) return "";
 
@@ -307,16 +346,20 @@ function imageGridHtml(items = []) {
 }
 
 function contentBlockHtml(block) {
+  if (block.layout === "split") {
+    return splitHtml(block);
+  }
+
+  if (block.layout === "tilesCard") {
+    return tilesCardHtml(block);
+  }
+
   if (block.layout === "imageGrid") {
     return imageGridHtml(block.items || []);
   }
 
   if (block.layout === "tiles") {
-    return (
-      '<div class="mapGrid">' +
-      (block.items || []).map(tileHtml).join("") +
-      "</div>"
-    );
+    return tilesGridHtml(block.items || []);
   }
 
   return cardHtml(block);
