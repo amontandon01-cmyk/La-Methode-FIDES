@@ -75,12 +75,7 @@ const PAGES = [
     right: {
       layout: "tilesCard",
       kicker: "Repères",
-      lead: "Lectures essentielles",
       items: [
-        {
-          title: "Bases",
-          desc: "Comprendre le cadre : déclencheur, zone de confort, zone d’activation, zone de réalignement et zone d’évolution.",
-        },
         {
           title: "Blessures",
           desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
