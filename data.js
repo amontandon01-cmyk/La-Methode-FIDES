@@ -86,7 +86,7 @@ const PAGES = [
         },
         {
           title: "Empathie",
-          desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur pour en garder une compréhension juste.",
+          desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur.",
         },
       ],
     },
