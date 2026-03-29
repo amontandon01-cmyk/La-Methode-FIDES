@@ -12,18 +12,12 @@
 /* ----------------------------- Données sources ----------------------------- */
 
 const SENTIMENTS = Object.freeze({
-  joie:
-    "Amour, Sérénité, Gratitude, plénitude, Plaisir, Bonheur, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture d'esprit, Douceur, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré, engagement, tranquilité d'esprit.",
-  peur:
-    "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Infériorité, Pessimisme.",
-  colere:
-    "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût.",
-  tristesse:
-    "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures, Optimisme",
-  injustice:
-    "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité",
-  surprise: 
-    "Méfiance, Supériorité, Incompréhension, Impatience, Frustration, Jalousie",
+  joie: "Amour, Sérénité, Gratitude, plénitude, Plaisir, Bonheur, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture d’esprit, Douceur, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré, engagement, tranquillité d’esprit.",
+  peur: "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Infériorité, Pessimisme.",
+  colere: "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût.",
+  tristesse: "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures, Optimisme",
+  injustice: "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité",
+  surprise: "Méfiance, Supériorité, Incompréhension, Impatience, Frustration, Jalousie",
 });
 
 const EMOTION_TO_SENTIMENTS = Object.freeze({
@@ -517,7 +511,7 @@ const PAGES = [
     ["Émotion racine", "Joie."],
     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
     ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre, confiance et engagement dans ses projets."],
-    ["Relation à l’autre", "Présence authentique, à l'écoute de l'autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie et en l'humanité."],
+    ["Relation à l’autre", "Présence authentique, à l’écoute de l’autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie et en l’humanité."],
     ["Comportements", "Sérénité, spontanéité, élan naturel, respiration libérée, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échanges, communication constructive, gratitude, productivité, authenticité, créativité, élan de vie, coopération, humour, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
     ["Lecture pédagogique", "La joie ne correspond pas à une excitation permanente ni à une obligation d’être constamment bien. Elle désigne un état intérieur libre et stable. Dans cet état, la personne n’est plus dominée par une blessure émotionnelle ni par les stratégies. L’énergie qui était mobilisée pour se protéger redevient disponible. La joie se manifeste alors naturellement par une sensation d’ouverture, de légèreté et de présence à l’instant. Elle permet d’entrer en relation avec soi-même et avec les autres de manière authentique, sans tension intérieure."],
     ["Message clé", "Quand la blessure est traitée, l’être retrouve naturellement la sérénité. "],
@@ -528,7 +522,7 @@ const PAGES = [
     id: "w_rejet", slug: "blessures-rejet",
     type: "BLESSURE",
     title: "REJET (tristesse)",
-    subtitle: "Comportement d'inferiorité",
+    subtitle: "Comportement d’infériorité",
     grid: [
       ["Émotion racine", "Tristesse."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.tristesse],
@@ -548,7 +542,7 @@ const PAGES = [
     id: "w_abandon", slug: "blessures-abandon",
     type: "BLESSURE",
     title: "ABANDON (peur)",
-    subtitle: "Comportement d'inferiorité",
+    subtitle: "Comportement d’infériorité",
     grid: [
       ["Émotion racine", "Peur."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
@@ -568,7 +562,7 @@ const PAGES = [
     id: "w_humiliation", slug: "blessures-humiliation",
     type: "BLESSURE",
     title: "HUMILIATION (dégout)",
-    subtitle: "Comportement d'inferiorité",
+    subtitle: "Comportement d’infériorité",
     grid: [
       ["Émotion racine", "Dégoût."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.degout],
@@ -610,7 +604,7 @@ const PAGES = [
     id: "w_injustice", slug: "blessures-injustice",
     type: "BLESSURE",
     title: "INJUSTICE (colère)",
-    subtitle: "Comportement de superiorité",
+    subtitle: "Comportement de supériorité",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
       ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere_interieure],
@@ -635,7 +629,7 @@ const PAGES = [
   grid: [
     ["Définition", "Comportements répétitifs ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. L’addiction peut passer par une substance, une activité, une relation, une recherche de performance ou une habitude apparemment banale."],
     ["Repère central", "L’addiction procure souvent un soulagement rapide, une impression de contrôle ou une coupure temporaire avec la douleur. En revanche, elle ne traite pas la blessure de fond : elle la masque, la reporte ou l’entretient."],
-    ["Fonction", "C'est une béquille qui peut servir à ne plus sentir un vide, une peur, une honte, une solitude, une colère intérieure ou une tension psychique. Elle peut aussi donner l’illusion de remplir, calmer, stimuler, contrôler, oublier, se rassurer ou se punir."],
+    ["Fonction", "C’est une béquille qui peut servir à ne plus sentir un vide, une peur, une honte, une solitude, une colère intérieure ou une tension psychique. Elle peut aussi donner l’illusion de remplir, calmer, stimuler, contrôler, oublier, se rassurer ou se punir."],
     ["Pourquoi c’est piégeant", "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment l’addiction à une solution, alors qu’elle devient peu à peu une stratégie pour ne pas faire face aux émotions qui prennent de la place dans la vie quotidienne."],
     ["Addictions aux substances", "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, caféine, sucre. Ces formes passent par l’ingestion, l’inhalation ou l’effet chimique recherché pour modifier rapidement l’état intérieur."],
     ["Repères concrets (substances)", "Recherche d’apaisement rapide, besoin de “tenir”, difficulté à traverser certaines émotions sans produit, augmentation progressive de la fréquence, de la dose ou de la dépendance psychologique."],
@@ -741,7 +735,7 @@ const PAGES = [
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
   { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
-  { section: "Blessures émotionnelle", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
+  { section: "Blessures émotionnelles", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
 ];
