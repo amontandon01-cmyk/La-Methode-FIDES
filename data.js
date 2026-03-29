@@ -60,12 +60,13 @@ const PAGES = [
     ],
   },
   {
-    layout: "split",
+   layout: "split",
    left: {
      kicker: "Émotions",
      image: "schema_emotions.png",
      imageAlt: "Schéma des émotions",
-     imageMaxWidth: "110%",
+     imageBottomSpace: "18px",
+   },
    },
     right: {
       layout: "tilesCard",
