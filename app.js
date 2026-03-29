@@ -63,7 +63,6 @@ function escapeHTML(value) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
-
 function getPage(pageId) {
   return PAGE_BY_ID[pageId] || null;
 }
@@ -209,7 +208,7 @@ function cardHtml({
   image,
   imageAlt,
   steps,
-  imageMaxWidth,
+  imageBottomSpace = "0px",
 }) {
   let html = `
     <article class="card">
@@ -227,24 +226,20 @@ function cardHtml({
     `;
   }
 
-   if (image) {
-  const imageBottomSpace = imageBottomSpace || "0px";
-  const imageWidth = imageMaxWidth || "100%";
-
-   html += `
-    <img
-      src="${escapeHTML(image)}"
-      alt="${escapeHTML(imageAlt || "")}"
-      style="
-        display: block;
-        width: ${escapeHTML(imageWidth)};
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto ${escapeHTML(imageBottomSpace)} auto;
-      "
-    >
-  `;
-}
+  if (image) {
+    html += `
+      <img
+        src="${escapeHTML(image)}"
+        alt="${escapeHTML(imageAlt || "")}"
+        style="
+          display: block;
+          width: 100%;
+          height: auto;
+          margin: 0 auto ${escapeHTML(imageBottomSpace)} auto;
+        "
+      >
+    `;
+  }
 
   if (text) {
     html += `
