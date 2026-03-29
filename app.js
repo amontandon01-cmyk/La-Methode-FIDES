@@ -229,6 +229,7 @@ function cardHtml({
 
    if (image) {
   const imageBottomSpace = imageBottomSpace || "0px";
+  const imageWidth = imageMaxWidth || "100%";
 
    html += `
     <img
