@@ -1,8 +1,5 @@
 /* data.js — données pédagogiques
    Contient :
-   - SENTIMENTS
-   - joinSentiments
-   - EMOTION_TO_SENTIMENTS
    - PAGES
    - NAV
 */
@@ -10,25 +7,6 @@
 "use strict";
 
 /* ----------------------------- Données sources ----------------------------- */
-
-const SENTIMENTS = Object.freeze({
-  joie: "Amour, Sérénité, Gratitude, plénitude, Plaisir, Bonheur, Confiance, Inspiration, Espoir, Enthousiasme, Curiosité, Fierté, Admiration, Tendresse, Satisfaction, Soulagement, Amusement, Compassion, Empathie, Ouverture d’esprit, Douceur, Communion, Alignement, Paix intérieure, Liberté, Expansion, Sens du sacré, engagement, tranquillité d’esprit.",
-  peur: "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Pessimisme.",
-  colere: "Agacée, Irritée, Contrariée, Froissée, Froide, Hautaine, Raide, Fermée.",
-  tristesse: "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures, Optimisme",
-  degout: "Honte, Culpabilité, Sentiment d’échec, Dévalorisation, Indignité",
-  surprise: "Méfiance, Incompréhension, Impatience, Frustration, Jalousie",
-});
-
-const EMOTION_TO_SENTIMENTS = Object.freeze({
-  joie: SENTIMENTS.joie,
-  tristesse: SENTIMENTS.tristesse,
-  peur: SENTIMENTS.peur,
-  degout: SENTIMENTS.degout,
-  colere: SENTIMENTS.colere,
-  surprise: SENTIMENTS.surprise,
-});
-
 /* ---------------------------- Pages (contenu) ---------------------------- */
 
 const PAGES = [
@@ -65,7 +43,7 @@ const PAGES = [
      kicker: "Émotions",
      image: "schema_emotions.png",
      imageAlt: "Schéma des émotions",
-     imageBottomSpace: "17px",
+     imageBottomSpace: "18px",
    },
     right: {
       layout: "tilesCard",
@@ -510,7 +488,7 @@ const PAGES = [
   subtitle: "Comportement neutre",
   grid: [
     ["Émotion racine", "Joie."],
-    ["Sentiments possibles", EMOTION_TO_SENTIMENTS.joie],
+    ["Sentiments possibles", "Amour, sérénité, gratitude, plénitude, plaisir, bonheur, confiance, inspiration, espoir, enthousiasme, curiosité, fierté, admiration, tendresse, satisfaction, soulagement, amusement, compassion, empathie, ouverture d’esprit, douceur, communion, alignement, paix intérieure, liberté, expansion, sens du sacré, engagement, tranquillité d’esprit."],
     ["Relation à soi", "Connexion simple à ses ressentis, accueil de ce qui est vécu, sentiment de légitimité, paix intérieure, confiance dans sa valeur propre, confiance et engagement dans ses projets."],
     ["Relation à l’autre", "Présence authentique, à l’écoute de l’autre dans le respect, capacité à aimer, capacité de discernement, à donner sans se perdre et à recevoir sans méfiance, foi en la vie et en l’humanité."],
     ["Comportements", "Sérénité, spontanéité, élan naturel, respiration libérée, capacité à vivre l’instant présent, disponibilité émotionnelle, fluidité dans les échanges, communication constructive, gratitude, productivité, authenticité, créativité, élan de vie, coopération, humour, capacité à poser des choix clairs dans le respect de soi et de l’autre."],
@@ -526,7 +504,7 @@ const PAGES = [
     subtitle: "Comportement d’infériorité",
     grid: [
       ["Émotion racine", "Tristesse."],
-      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.tristesse],
+      ["Sentiments possibles", "Mélancolie, nostalgie, chagrin, solitude, découragement, déception, vide intérieur, abattement, désespoir, impuissance, larmes intérieures, optimisme."],
       ["Origine", "Souvent très tôt (indiqué : parfois dans le ventre de la mère). Sentiment de ne pas avoir sa place, de déranger, d’être de trop.",],
       ["Masque / comportement", "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible. Difficulté à s’affirmer, peur de déranger. Caméléon, s’adapte. Tristesse non exprimée.",],
       ["Apathie / empathie", "Difficulté à s’ouvrir par peur d’être ignoré. Peut se couper des autres pour éviter de revivre le rejet.",],
@@ -546,7 +524,7 @@ const PAGES = [
     subtitle: "Comportement d’infériorité",
    grid: [
      ["Émotion racine", "Peur."],
-     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.peur],
+     ["Sentiments possibles", "Anxiété, inquiétude, stress, doute, crainte, impuissance, inconfort, tension, sentiment d’insécurité, pessimisme."],
      ["Origine", "Sentiment d’être seul, manques affectifs dans l’enfance. Difficulté à exister sans la présence rassurante d’autrui. La blessure d’abandon touche profondément le lien et la relation. Elle peut s’accompagner d’une forte sensibilité au ton de voix, au silence, à l’absence de réponse, et d’un besoin d’entendre que le lien est maintenu."],
      ["Âge d’ancrage", "Commence souvent très tôt dans l’enfance, habituellement avant l’âge de deux ans. La blessure peut ensuite se structurer dans le lien à travers le manque affectif, l’absence d’appui ou le vécu de séparation."],
      ["Masque / fonctionnement", "Masque du dépendant. Fusion, peur de la solitude, besoin excessif de soutien. La personne peut chercher fortement la présence, l’attention, l’appui, une réponse, un signe que le lien tient encore. Elle peut aussi dire qu’elle se sent bien seule et qu’elle n’a besoin de personne, alors qu’au fond le manque de lien reste très actif."],
@@ -567,7 +545,7 @@ const PAGES = [
     subtitle: "Comportement d’infériorité",
     grid: [
       ["Émotion racine", "Dégoût."],
-      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.degout],
+      ["Sentiments possibles", "Honte, culpabilité, sentiment d’échec, dévalorisation, indignité."],
       ["Origine", "Honte, dévalorisation, humiliation dans l’enfance. Souvent liée à l’éducation stricte / regard social ou familial.",],
       ["Masque / comportement", "Masque du masochiste. Se rabaisser, se sacrifier, se punir. Regrets, remords, culpabilité. Anticipe les besoins des autres sans accord.",],
       ["Apathie / empathie", "Freinée par la honte — peur de montrer sa vulnérabilité."],
@@ -587,7 +565,7 @@ const PAGES = [
   subtitle: "Comportement de supériorité",
 grid: [
   ["Émotion racine", "Surprise."],
-  ["Sentiments possibles", EMOTION_TO_SENTIMENTS.surprise],
+  ["Sentiments possibles", "Méfiance, incompréhension, impatience, frustration, jalousie."],
   ["Origine", "La blessure de trahison peut naître lorsqu’un lien censé protéger, rassurer ou tenir parole devient source d’incohérence, de déception ou de rupture de confiance. Elle se construit autour d’expériences où l’enfant a pu ressentir qu’une promesse n’était pas tenue, qu’un engagement était rompu, ou qu’un adulte important manquait de fiabilité. La confiance se fissure, et l’être apprend à reprendre la main par le contrôle."],
   ["Âge d’ancrage", "Souvent autour de 6 à 7 ans. C’est une période où les notions de confiance, de loyauté, d’engagement et de fiabilité prennent davantage de sens. La blessure peut alors commencer à se structurer plus nettement."],
   ["Masque / fonctionnement", "Masque du contrôlant. La personne cherche à garder la main, à anticiper, à vérifier, à obtenir des garanties, à cadrer ou à influencer pour éviter d’être surprise, trompée ou déçue. Elle peut paraître forte, sûre d’elle, dominante, très réactive et jugeant. Lorsqu’elle se sent touchée, ou lorsqu’un être qu’elle considère comme sien est touché, elle peut devenir très autoritaire. Elle protège alors l’autre à travers sa blessure, en cherchant à reprendre la main et à imposer sa lecture."],
@@ -608,7 +586,7 @@ grid: [
     subtitle: "Comportement de supériorité",
    grid: [
      ["Émotion racine", "Colère intérieure."],
-     ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere],
+     ["Sentiments possibles", "Agacée, irritée, contrariée, froissée, froide, hautaine, raide, fermée."],
      ["Origine", "Éducation stricte, froide, où l’amour dépend de la performance. Jugement, comparaison, exigence, pression à bien faire, difficulté à se sentir aimé pour ce que l’on est. L’enfant peut se sentir bloqué dans le développement de son individualité et apprendre très tôt à se contenir, à se corriger et à rester maîtrisé pour garder sa dignité, éviter d’être jugé ou perdre sa place."],
      ["Âge d’ancrage", "Souvent entre 4 et 6 ans. C’est une période où l’enfant cherche davantage à affirmer son individualité. Si cette individualité rencontre surtout de la froideur, de l’exigence, de l’insensibilité ou un amour conditionné à la performance, la blessure d’injustice peut commencer à se structurer plus nettement."],
      ["Masque / fonctionnement", "Masque du rigide. Perfectionnisme, froideur, posture hautaine, dureté avec soi et avec les autres, besoin de justice, refus de l’imperfection, supériorité morale. La personne retient beaucoup à l’intérieur, se maîtrise fortement et garde ce qui monte en elle pour que ses mots ne dépassent pas sa pensée et ne blessent pas l’autre. Elle supporte très mal qu’on la maîtrise, qu’on la contrôle ou qu’on décide à sa place. Quand elle est touchée, elle peut se fermer, se raidir et vouloir que l’autre sorte de son espace, de son cocon ou de son espace vital, afin de garder le contrôle sur ce qui monte en elle."],
