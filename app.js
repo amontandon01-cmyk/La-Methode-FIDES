@@ -228,9 +228,9 @@ function cardHtml({
   }
 
    if (image) {
-  const imageWidth = imageMaxWidth || "100%";
+  const imageBottomSpace = imageBottomSpace || "0px";
 
-  html += `
+   html += `
     <img
       src="${escapeHTML(image)}"
       alt="${escapeHTML(imageAlt || "")}"
@@ -239,7 +239,7 @@ function cardHtml({
         width: ${escapeHTML(imageWidth)};
         max-width: 100%;
         height: auto;
-        margin: 0 auto;
+        margin: 0 auto ${escapeHTML(imageBottomSpace)} auto;
       "
     >
   `;
