@@ -61,11 +61,12 @@ const PAGES = [
   },
   {
     layout: "split",
-    left: {
-      kicker: "Émotions",
-      image: "schema_emotions.png",
-      imageAlt: "Schéma des émotions",
-    },
+   left: {
+     kicker: "Émotions",
+     image: "schema_emotions.png",
+     imageAlt: "Schéma des émotions",
+     imageMaxWidth: "97%",
+   },
     right: {
       layout: "tilesCard",
       kicker: "Repères",
