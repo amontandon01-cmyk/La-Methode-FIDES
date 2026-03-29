@@ -204,7 +204,6 @@ function cardHtml({
   kicker,
   lead,
   text,
-  bullets,
   image,
   imageAlt,
   steps,
@@ -247,20 +246,6 @@ function cardHtml({
     `;
   }
 
-  if (bullets && bullets.length) {
-    html += `
-      <ul>
-    `;
-    for (const bullet of bullets) {
-      html += `
-        <li>${escapeHTML(bullet)}</li>
-      `;
-    }
-    html += `
-      </ul>
-    `;
-  }
-
   if (steps && steps.length) {
     html += flowHtml(steps);
   }
@@ -270,25 +255,6 @@ function cardHtml({
   `;
 
   return html;
-}
-
-function tileHtml({ title, desc }) {
-  return (
-    '<div class="mapTile" role="group" aria-label="' +
-    escapeHTML(title) +
-    '">' +
-    "<h3>" +
-    escapeHTML(title) +
-    "</h3>" +
-    "<p>" +
-    escapeHTML(desc || "") +
-    "</p>" +
-    "</div>"
-  );
-}
-
-function tilesGridHtml(items = []) {
-  return '<div class="mapGrid">' + items.map(tileHtml).join("") + "</div>";
 }
 
 function tilesCardHtml({ kicker, lead, text, items = [] }) {
@@ -357,51 +323,6 @@ function splitHtml({ left, right }) {
   `;
 }
 
-function imageGridHtml(items = []) {
-  if (!items.length) return "";
-
-  return `
-    <div style="
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
-      align-items: start;
-    ">
-      ${items
-        .map(
-          (item) => `
-            <div class="card" style="padding: 14px;">
-              <figure style="margin: 0;">
-                <img
-                  src="${encodeURI(item.image)}"
-                  alt="${escapeHTML(item.imageAlt || item.title || "Illustration")}"
-                  loading="lazy"
-                  decoding="async"
-                  style="
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    border-radius: 14px;
-                  "
-                />
-              </figure>
-              ${
-                item.title
-                  ? `<div style="
-                      margin-top: 10px;
-                      font-weight: 700;
-                      text-align: center;
-                    ">${escapeHTML(item.title)}</div>`
-                  : ""
-              }
-            </div>
-          `
-        )
-        .join("")}
-    </div>
-  `;
-}
-
 function contentBlockHtml(block) {
   if (block.layout === "split") {
     return splitHtml(block);
@@ -409,14 +330,6 @@ function contentBlockHtml(block) {
 
   if (block.layout === "tilesCard") {
     return tilesCardHtml(block);
-  }
-
-  if (block.layout === "imageGrid") {
-    return imageGridHtml(block.items || []);
-  }
-
-  if (block.layout === "tiles") {
-    return tilesGridHtml(block.items || []);
   }
 
   return cardHtml(block);
