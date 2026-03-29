@@ -65,7 +65,7 @@ const PAGES = [
      kicker: "Émotions",
      image: "schema_emotions.png",
      imageAlt: "Schéma des émotions",
-     imageMaxWidth: "99%",
+     imageMaxWidth: "110%",
    },
     right: {
       layout: "tilesCard",
