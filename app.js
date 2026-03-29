@@ -39,6 +39,8 @@ const PAGE_ID_TO_SLUG = Object.freeze(
   )
 );
 
+const maxWidth = imageMaxWidth || "100%";
+
 function getCanonicalSlugForPageId(pageId) {
   return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
 }
@@ -201,48 +203,78 @@ function flowHtml(steps = []) {
   `;
 }
 
-function cardHtml({ kicker, lead, text, bullets, image, imageAlt, steps }) {
-  let html = '<div class="card">';
+function cardHtml({
+  kicker,
+  lead,
+  text,
+  bullets,
+  image,
+  imageAlt,
+  steps,
+  imageMaxWidth,
+}) {
+  let html = `
+    <article class="card">
+  `;
 
   if (kicker) {
-    html += '<div class="kicker">' + escapeHTML(kicker) + "</div>";
+    html += `
+      <div class="kicker">${escapeHTML(kicker)}</div>
+    `;
   }
 
   if (lead) {
-    html += '<div class="lead">' + escapeHTML(lead) + "</div>";
+    html += `
+      <h3>${escapeHTML(lead)}</h3>
+    `;
   }
 
   if (image) {
+    const maxWidth = imageMaxWidth || "100%";
+
     html += `
-      <figure class="cardMedia">
-        <img
-          class="cardImage"
-          src="${encodeURI(image)}"
-          alt="${escapeHTML(imageAlt || "Illustration")}"
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
+      <img
+        src="${escapeHTML(image)}"
+        alt="${escapeHTML(imageAlt || "")}"
+        style="
+          display: block;
+          width: 100%;
+          max-width: ${escapeHTML(maxWidth)};
+          height: auto;
+          margin: 0 auto;
+        "
+      >
     `;
   }
 
   if (text) {
-    html += "<p>" + escapeHTML(text) + "</p>";
+    html += `
+      <p>${escapeHTML(text)}</p>
+    `;
   }
 
   if (bullets && bullets.length) {
-    html += "<ul>";
+    html += `
+      <ul>
+    `;
     for (const bullet of bullets) {
-      html += "<li>" + escapeHTML(bullet) + "</li>";
+      html += `
+        <li>${escapeHTML(bullet)}</li>
+      `;
     }
-    html += "</ul>";
+    html += `
+      </ul>
+    `;
   }
 
   if (steps && steps.length) {
     html += flowHtml(steps);
   }
 
-  html += "</div>";
+  html += `
+    </article>
+  `;
+
   return html;
 }
 
@@ -318,12 +350,10 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
 }
 
 function splitHtml({ left, right }) {
-  const columns = isMobileViewport() ? "1fr" : "1.06fr 0.94fr";
-
   return `
     <div style="
       display: grid;
-      grid-template-columns: ${columns};
+      grid-template-columns: ${isMobileViewport() ? "1fr" : "1fr 1fr"};
       gap: 18px;
       align-items: start;
     ">
