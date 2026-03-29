@@ -39,8 +39,6 @@ const PAGE_ID_TO_SLUG = Object.freeze(
   )
 );
 
-const maxWidth = imageMaxWidth || "100%";
-
 function getCanonicalSlugForPageId(pageId) {
   return PAGE_ID_TO_SLUG[pageId] || PAGE_ID_TO_SLUG[DEFAULT_PAGE_ID];
 }
@@ -228,7 +226,6 @@ function cardHtml({
       <h3>${escapeHTML(lead)}</h3>
     `;
   }
-}
 
   if (image) {
     const maxWidth = imageMaxWidth || "100%";
