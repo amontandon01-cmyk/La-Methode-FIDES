@@ -75,7 +75,7 @@ const PAGES = [
   // BASES
 {
   id: "base_confort", slug: "bases-confort",
-  type: "BASE",
+  type: "CONTENT",
   title: "Le cercle de la zone de confort",
   subtitle: "Du confort à l’ouverture",
   content: [
@@ -118,7 +118,7 @@ const PAGES = [
    {
   id: "base_langages_apprentissage",
   slug: "bases-langages-apprentissage",
-  type: "BASE",
+  type: "CONTENT",
   title: "Langages d’apprentissage",
   subtitle: "Blessures & perception",
   content: [
@@ -167,7 +167,7 @@ const PAGES = [
 
 {
   id: "base_blessures", slug: "bases-blessures",
-  type: "BASE",
+  type: "CONTENT",
   title: "Les blessures émotionnelles",
   subtitle: "Blessures prédominantes & personnalité",
   content: [
@@ -221,7 +221,7 @@ const PAGES = [
    {
   id: "base_vulnerabilites_amour",
   slug: "vulnerabilites-amour",
-  type: "BASE",
+  type: "CONTENT",
   title: "Les vulnérabilités de l’amour",
   subtitle: "Quand l’amour ouvre les zones sensibles",
   content: [
@@ -273,7 +273,7 @@ const PAGES = [
   ]
 },
 { 
-   id: "base_intelligences", slug: "bases-intelligences", type: "BASE", title: "Les intelligences de reconnexion", subtitle: "Cinq chemins intérieurs pour revenir à soi.", content: [
+   id: "base_intelligences", slug: "bases-intelligences", type: "CONTENT", title: "Les intelligences de reconnexion", subtitle: "Cinq chemins intérieurs pour revenir à soi.", content: [
   { kicker: "Introduction", lead: "Chaque blessure émotionnelle coupe d’un appui fondamental.", text: "Quand la blessure s’active, la personne perd plus facilement l’accès à une ressource intérieure essentielle.\nLe chemin de transformation consiste alors à se reconnecter à une intelligence déjà présente en soi, mais momentanément voilée, blessée ou déformée par l’expérience.\nCes intelligences ouvrent un passage concret vers une présence plus juste, plus libre et plus incarnée." },
 
   { kicker: "L’intelligence spirituelle", lead: "Axe de reconnexion : la foi — Blessure associée : la trahison", text: "La trahison coupe de la foi profonde.\nLa personne peut perdre foi en l’autre, en la vie, en l’humain, dans le lien, et parfois en plus grand que soi.\nLe contrôle, le besoin de preuve et une lecture très cartésienne prennent alors le dessus.\nSe reconnecter à la foi, c’est retrouver une confiance plus vaste, plus profonde et plus stable." },
@@ -292,7 +292,7 @@ const PAGES = [
    
 {
   id: "base_croyances", slug: "bases-croyances",
-  type: "BASE",
+  type: "CONTENT",
   title: "Pensées & croyances limitantes",
   subtitle: "De la fermeture à l’ouverture",
   content: [
@@ -331,7 +331,7 @@ const PAGES = [
    
   {
     id: "base_empathie", slug: "bases-empathie",
-    type: "BASE",
+    type: "CONTENT",
     title: "L’empathie",
     subtitle: "Résonance sans fusion",
     content: [
@@ -363,7 +363,7 @@ const PAGES = [
       },
       {
   id: "base_karpman", slug: "bases-karpman",
-  type: "BASE",
+  type: "CONTENT",
   title: "Le triangle de Karpman",
   subtitle: "Repérer les dynamiques relationnelles de survie",
   content: [
@@ -441,7 +441,7 @@ const PAGES = [
 },
 {
   id: "base_culpabilite",  slug: "bases-culpabilite",
-  type: "BASE",
+  type: "CONTENT",
   title: "La culpabilité",
   subtitle: "Quand la protection cède, place à la culpabilité",
   content: [
@@ -500,8 +500,10 @@ const PAGES = [
 
   // BLESSURES
    {
-  id: "w_joie", slug: "blessures-joie",
-  type: "BLESSURE",
+  id: "w_joie", 
+  slug: "blessures-joie",
+  type: "GRID",
+  eyebrow: "Blessure",
   title: "État : JOIE",
   subtitle: "Comportement neutre",
   grid: [
@@ -516,8 +518,10 @@ const PAGES = [
 },
 
   {
-    id: "w_rejet", slug: "blessures-rejet",
-    type: "BLESSURE",
+    id: "w_rejet", 
+    slug: "blessures-rejet",
+    type: "GRID",
+    eyebrow: "Blessure",
     title: "REJET (tristesse)",
     subtitle: "Comportement d’infériorité",
       grid: [
@@ -538,8 +542,10 @@ const PAGES = [
   },
 
   {
-    id: "w_abandon", slug: "blessures-abandon",
-    type: "BLESSURE",
+    id: "w_abandon", 
+    slug: "blessures-abandon",
+    type: "GRID",
+    eyebrow: "Blessure",
     title: "ABANDON (peur)",
     subtitle: "Comportement d’infériorité",
    grid: [
@@ -560,8 +566,10 @@ const PAGES = [
   },
 
   {
-    id: "w_humiliation", slug: "blessures-humiliation",
-    type: "BLESSURE",
+    id: "w_humiliation", 
+    slug: "blessures-humiliation",
+    type: "GRID",
+    eyebrow: "Blessure",
     title: "HUMILIATION (dégout)",
     subtitle: "Comportement d’infériorité",
     grid: [
@@ -580,8 +588,10 @@ const PAGES = [
   },
    
   {
-  id: "w_trahison", slug: "blessures-trahison",
-  type: "BLESSURE",
+  id: "w_trahison", 
+  slug: "blessures-trahison",
+  type: "GRID",
+  eyebrow: "Blessure",
   title: "TRAHISON (surprise)",
   subtitle: "Comportement de supériorité",
 grid: [
@@ -602,8 +612,10 @@ grid: [
 },
 
   {
-    id: "w_injustice", slug: "blessures-injustice",
-    type: "BLESSURE",
+    id: "w_injustice", 
+    slug: "blessures-injustice",
+    type: "GRID",
+    eyebrow: "Blessure",
     title: "INJUSTICE (colère)",
     subtitle: "Comportement de supériorité",
    grid: [
@@ -625,8 +637,9 @@ grid: [
 
   // COMPORTEMENTS
 {
-  id: "ref_addictions", slug: "comportements-addictions",
-  type: "REF",
+  id: "ref_addictions", 
+  slug: "comportements-addictions",
+  type: "GRID",
   title: "Addictions",
   subtitle: "Repères & typologies",
   grid: [
@@ -647,7 +660,7 @@ grid: [
 },
 {
   id: "ref_valeurs", slug: "comportements-valeurs",
-  type: "REF",
+  type: "GRID",
   title: "Valeurs de vie",
   subtitle: "Repères & piliers",
   grid: [
@@ -668,7 +681,7 @@ grid: [
 },
 {
   id: "ref_dogmes", slug: "comportements-dogmes",
-  type: "REF",
+  type: "GRID",
   title: "Conditionnements & dogmes",
   subtitle: "Repères & tendances",
   grid: [
@@ -721,7 +734,7 @@ grid: [
   // RÉFÉRENCES
   {
     id: "ref_sources", slug: "references",
-    type: "REF",
+    type: "GRID",
     title: "Références",
     subtitle: "Source",
     grid: [
