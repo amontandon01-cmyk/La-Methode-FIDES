@@ -318,10 +318,12 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
 }
 
 function splitHtml({ left, right }) {
+  const columns = isMobileViewport() ? "1fr" : "1.06fr 0.94fr";
+
   return `
     <div style="
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: ${columns};
       gap: 18px;
       align-items: start;
     ">
