@@ -13,9 +13,8 @@ import { PAGES, NAV } from "./data.js";
 
 const PAGE_TYPES = Object.freeze({
   HOME: "HOME",
-  BASE: "BASE",
-  BLESSURE: "BLESSURE",
-  REF: "REF",
+  CONTENT: "CONTENT",
+  GRID: "GRID",
 });
 
 const DEFAULT_PAGE_ID = "home";
@@ -96,6 +95,9 @@ function isMobileViewport() {
   return window.matchMedia("(max-width: 980px)").matches;
 }
 
+function getMenuSubtitle(page) {
+  return page.menuSubtitle ?? page.subtitle ?? "";
+}
 /* ------------------------------ Scroll ------------------------------ */
 
 function scrollMainToTop() {
@@ -374,7 +376,7 @@ function renderSingleLinkSection(group, currentPageId) {
   itemBtn.setAttribute("aria-current", page.id === currentPageId ? "page" : "false");
   itemBtn.innerHTML =
     escapeHTML(page.title) +
-    '<span class="navSmall">' + escapeHTML(page.subtitle || "") + "</span>";
+    '<span class="navSmall">' + escapeHTML(getMenuSubtitle(page)) + "</span>";
 
   itemBtn.addEventListener("click", () => {
     go(page.id);
@@ -413,7 +415,7 @@ function renderAccordionSection(group, currentPageId, activeSection) {
     itemBtn.setAttribute("aria-current", pageId === currentPageId ? "page" : "false");
     itemBtn.innerHTML =
       escapeHTML(page.title) +
-      '<span class="navSmall">' + escapeHTML(page.subtitle || "") + "</span>";
+      '<span class="navSmall">' + escapeHTML(getMenuSubtitle(page)) + "</span>";
 
     itemBtn.addEventListener("click", () => {
       go(pageId);
@@ -469,41 +471,22 @@ function renderContentPage(page) {
   mainEl.innerHTML = (page.content || []).map(contentBlockHtml).join("");
 }
 
-function renderBlessure(page) {
+function renderGridPage(page) {
+  const eyebrow = page.eyebrow ?? "";
+
   const headHtml =
-    '<div class="card">' +
-    '<div class="kicker">Blessure</div>' +
-    '<div class="lead">' + escapeHTML(page.title) + "</div>" +
-    "<p>" + escapeHTML(page.subtitle || "") + "</p>" +
-    "</div>";
+    '<section class="heroCard">' +
+      '<div class="eyebrow">' + escapeHTML(eyebrow) + '</div>' +
+      '<h2>' + escapeHTML(page.title) + '</h2>' +
+      '<p>' + escapeHTML(page.subtitle || "") + '</p>' +
+    '</section>';
 
   const gridHtml =
-    '<div class="woundGrid">' +
-    (page.grid || []).map(([label, value]) => woundRowHtml(label, value)).join("") +
-    "</div>";
+    '<section class="woundGrid">' +
+      (page.grid || []).map(([label, value]) => woundRowHtml(label, value)).join("") +
+    '</section>';
 
   mainEl.innerHTML = headHtml + gridHtml;
-}
-
-function renderRef(page) {
-  if (page.grid && page.grid.length) {
-    const headHtml =
-      '<div class="card">' +
-      '<div class="kicker">Référence</div>' +
-      '<div class="lead">' + escapeHTML(page.title) + "</div>" +
-      "<p>" + escapeHTML(page.subtitle || "") + "</p>" +
-      "</div>";
-
-    const gridHtml =
-      '<div class="woundGrid">' +
-      page.grid.map(([label, value]) => woundRowHtml(label, value)).join("") +
-      "</div>";
-
-    mainEl.innerHTML = headHtml + gridHtml;
-    return;
-  }
-
- renderContentPage(page);
 }
 
 function canonicalizeUrlIfNeeded(pageId) {
@@ -526,21 +509,20 @@ function render() {
 
   renderNav(page.id);
 
-  switch (page.type) {
-    case PAGE_TYPES.HOME:
-    case PAGE_TYPES.BASE:
-     renderContentPage(page);
-  break;
-    case PAGE_TYPES.BLESSURE:
-      renderBlessure(page);
-      break;
-    case PAGE_TYPES.REF:
-      renderRef(page);
-      break;
-      default:
-      renderContentPage(getPage(DEFAULT_PAGE_ID));
-      break;
-  }
+   switch (page.type) {
+     case PAGE_TYPES.HOME:
+     case PAGE_TYPES.CONTENT:
+       renderContentPage(page);
+       break;
+   
+     case PAGE_TYPES.GRID:
+       renderGridPage(page);
+       break;
+   
+     default:
+       renderContentPage(getPage(DEFAULT_PAGE_ID));
+       break;
+   }
 }
 
 /* ------------------------------ Events ------------------------------ */
