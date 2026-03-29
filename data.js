@@ -272,6 +272,24 @@ const PAGES = [
     }
   ]
 },
+{ 
+   id: "base_intelligences", slug: "bases-intelligences", type: "BASE", title: "Les intelligences de reconnexion", subtitle: "Cinq chemins intérieurs pour revenir à soi.", content: [
+  { kicker: "Introduction", lead: "Chaque blessure émotionnelle coupe d’un appui fondamental.", text: "Quand la blessure s’active, la personne perd plus facilement l’accès à une ressource intérieure essentielle.\nLe chemin de transformation consiste alors à se reconnecter à une intelligence déjà présente en soi, mais momentanément voilée, blessée ou déformée par l’expérience.\nCes intelligences ouvrent un passage concret vers une présence plus juste, plus libre et plus incarnée." },
+
+  { kicker: "L’intelligence spirituelle", lead: "Axe de reconnexion : la foi — Blessure associée : la trahison", text: "La trahison coupe de la foi profonde.\nLa personne peut perdre foi en l’autre, en la vie, en l’humain, dans le lien, et parfois en plus grand que soi.\nLe contrôle, le besoin de preuve et une lecture très cartésienne prennent alors le dessus.\nSe reconnecter à la foi, c’est retrouver une confiance plus vaste, plus profonde et plus stable." },
+
+  { kicker: "L’intelligence émotionnelle", lead: "Axe de reconnexion : l’amour — Blessure associée : l’abandon", text: "L’abandon touche le lien, la présence, le manque affectif et la sécurité du cœur.\nLa personne peut chercher l’amour à l’extérieur, craindre le vide, se sentir incomplète sans présence rassurante et dépendre du lien pour se sentir vivante.\nSe reconnecter à l’amour, c’est revenir à une qualité de présence plus stable, plus douce et plus libre." },
+
+  { kicker: "L’intelligence intellectuelle", lead: "Axe de reconnexion : la capacité de discernement — Blessure associée : l’injustice", text: "L’injustice rigidifie le mental, le rapport à soi et la manière de penser le réel.\nLa personne peut se couper de sa souplesse intérieure, de sa clarté, de son libre arbitre et de son esprit critique, puis rester enfermée dans le contrôle, l’exigence ou le juge intérieur.\nSe reconnecter à sa capacité de discernement, c’est retrouver une pensée juste, de la clarté, de la nuance et une lecture plus fine de ce qui est vécu." },
+
+  { kicker: "L’intelligence corporelle", lead: "Axe de reconnexion : la vie — Blessure associée : le rejet", text: "Le rejet touche profondément l’incarnation terrestre.\nLa personne peut se couper de son corps, de sa présence, de son ancrage, de sa place et de son droit d’être là.\nSe reconnecter à la vie, c’est revenir dans le corps, habiter sa présence, reprendre sa place et cesser de disparaître intérieurement." },
+
+  { kicker: "L’intelligence instinctive", lead: "Axe de reconnexion : la dignité — Blessure associée : l’humiliation", text: "L’humiliation touche la valeur personnelle, le rapport au corps, aux besoins, au plaisir, à la liberté d’être et au droit de recevoir.\nLa personne peut s’oublier, se sacrifier, se rabaisser, faire pour les autres même lorsque cela n’est pas demandé, et aller au-delà des besoins des autres comme si elle devait porter davantage qu’eux.\nSe reconnecter à sa dignité, c’est revenir au respect intérieur, au droit d’honorer ses besoins, de recevoir sans honte, de ressentir sans culpabilité et de poser ses limites avec simplicité." },
+
+  { kicker: "Conclusion", lead: "Se reconnecter, ce n’est pas devenir quelqu’un d’autre.", text: "C’est retrouver ce qui était déjà vivant en soi, mais blessé, coupé ou oublié.\nPlus la personne se reconnecte à la foi, à l’amour, à sa capacité de discernement, à la vie et à sa dignité, plus elle revient à une manière d’être alignée, libre et profondément incarnée." },
+] 
+},
+   
 {
   id: "base_croyances", slug: "bases-croyances",
   type: "BASE",
@@ -508,7 +526,7 @@ const PAGES = [
         ["Origine", "Blessure très précoce, liée au vécu de ne pas être pleinement accueilli dans son droit d’exister, d’incarner sa place et d’être là. Le rejet touche l’être même. Il peut s’imprimer dans un climat très précoce de non-accueil, de non-désir, de peur, de séparation ou d’insécurité autour de la venue au monde. La blessure du rejet touche profondément l’incarnation terrestre : exister, habiter son corps, prendre sa place, être là."],
         ["Âge d’ancrage", "Très tôt, dès la conception. C’est la première blessure à s’imprimer. Elle peut se vivre dans un climat très précoce de non-accueil, de non-désir, de refus ou d’insécurité autour de la venue au monde. Le vécu peut donc commencer avant la naissance, dans l’ambiance même de la grossesse."],
         ["Masque / fonctionnement", "Masque du fuyant. Tendance à se retirer, se couper, se rendre invisible, prendre peu de place et éviter de montrer ce qui fait mal. La personne ne sait pas toujours qu’elle est triste. Elle ne fait pas face à son mal-être, le recouvre, le minimise ou le contourne. À l’intérieur, elle peut se sentir vide, mélancolique, éteinte ou absente à elle-même. À l’extérieur, elle peut montrer une façade légère, positive, souriante ou faire bonne figure, comme si tout allait bien, pour ne pas laisser voir ce qui se vit réellement. Sa plus grande difficulté touche l’incarnation : habiter pleinement son corps, sa place et sa présence terrestre."],
-        ["Empathie blessée", "La personne peine à rester en lien avec elle-même lorsqu’elle est touchée. Elle fuit ce qu’elle ressent, se coupe de son ressenti, quitte son corps, se déconnecte de son ancrage et n’arrive pas toujours à nommer son mal-être. Quand on lui demande si ça va, elle peut détourner l’attention vers l’autre plutôt que de répondre vraiment. Elle cache ce qui ne va pas, comme si ce qu’elle vivait n’était pas important. Elle laisse aussi facilement le bénéfice du doute à l’autre, même lorsque cela la coupe encore davantage de ce qu’elle ressent."],
+        ["Empathie blessée", "La personne peine à rester en lien avec elle-même lorsqu’elle est touchée. Elle fuit ce qu’elle ressent, se coupe de son ressenti, quitte son corps, se déconnecte de son ancrage et n’arrive pas toujours à nommer son mal-être. Quand on lui demande si ça va, elle peut détourner l’attention vers l’autre plutôt que de répondre vraiment. Elle cache ce qui ne va pas, comme si ce qu’elle vivait n’était pas important. Elle laisse aussi facilement le bénéfice du doute à l’autre, même lorsque cela la coupe encore davantage de ce qu’elle ressent. Elle peut aussi vivre avec le sentiment de ne pas compter, de ne pas avoir de place ou d’être de trop, tout en paraissant ailleurs, déconnectée ou perchée, comme si habiter pleinement sa présence terrestre restait difficile."],
         ["Comportements dysfonctionnels", "Fuite silencieuse, retrait, effacement, invisibilité, suradaptation, difficulté à s’affirmer, minimisation, panique de fuite, isolement, coupure du lien, addictions solitaires, repli intérieur, déconnexion du corps, fuite terrestre. Quand la blessure s’active, la personne peut faire bonne figure, cacher son mal-être, ne rien laisser voir, puis partir, se retirer et s’isoler pour vivre seule ce qu’elle ne parvient pas à nommer. Dans cette blessure, c’est elle qui part."],
         ["Valeurs", "Foi en la vie, foi en l’humain, innocence, pureté, liberté d’être, paix, acceptation de la différence de l’autre, capacité à laisser le bénéfice du doute."],
         ["Croyances limitantes", "« Je n’ai pas ma place. » « Je suis de trop. » « Je ne suis pas importante. » « Ce que je vis n’a pas d’importance. » « Si je me montre, je serai rejeté. »"],
@@ -719,7 +737,7 @@ grid: [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
+  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_intelligences", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
   { section: "Blessures émotionnelles", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
   { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
   { section: "Références", items: ["ref_sources"] },
