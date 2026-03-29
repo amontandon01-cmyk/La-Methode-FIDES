@@ -227,23 +227,23 @@ function cardHtml({
     `;
   }
 
-  if (image) {
-    const maxWidth = imageMaxWidth || "100%";
+   if (image) {
+  const imageWidth = imageMaxWidth || "100%";
 
-    html += `
-      <img
-        src="${escapeHTML(image)}"
-        alt="${escapeHTML(imageAlt || "")}"
-        style="
-          display: block;
-          width: 100%;
-          max-width: ${escapeHTML(maxWidth)};
-          height: auto;
-          margin: 0 auto;
-        "
-      >
-    `;
-  }
+  html += `
+    <img
+      src="${escapeHTML(image)}"
+      alt="${escapeHTML(imageAlt || "")}"
+      style="
+        display: block;
+        width: ${escapeHTML(imageWidth)};
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+      "
+    >
+  `;
+}
 
   if (text) {
     html += `
