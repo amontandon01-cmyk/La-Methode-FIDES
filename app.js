@@ -228,6 +228,7 @@ function cardHtml({
       <h3>${escapeHTML(lead)}</h3>
     `;
   }
+}
 
   if (image) {
     const maxWidth = imageMaxWidth || "100%";
