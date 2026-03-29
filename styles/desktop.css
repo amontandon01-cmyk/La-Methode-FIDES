@@ -275,7 +275,8 @@ main{
   line-height: 1.25;
 }
 
-.card{
+.card,
+.heroCard{
   border: 1px solid rgba(190, 43, 86, 0.12);
   background: var(--card);
   border-radius: var(--radius);
@@ -297,7 +298,8 @@ main{
   background: rgba(255,255,255,0.96);
 }
 
-.kicker{
+.kicker,
+.heroCard .eyebrow{
   font-size: 11px;
   color: rgba(190, 43, 86, 0.78);
   letter-spacing: .16em;
@@ -305,7 +307,8 @@ main{
   margin: 0 0 8px;
 }
 
-.lead{
+.lead,
+.heroCard{
   font-family: var(--font-title);
   font-size: 20px;
   font-weight: 700;
