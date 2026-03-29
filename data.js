@@ -16,16 +16,16 @@ const SENTIMENTS = Object.freeze({
   peur: "Anxiété, Inquiétude, Stress, Doute, Crainte, Impuissance, Inconfort, Tension, Sentiment d’insécurité, Pessimisme.",
   colere: "Agacement, Irritation, Frustration, Colère, Rancune, Haine, Exaspération, Hostilité, Jalousie, Ressentiment, Envie, Dégoût.",
   tristesse: "Mélancolie, Nostalgie, Chagrin, Solitude, Découragement, Déception, Vide intérieur, Abattement, Désespoir, Impuissance, Larmes intérieures, Optimisme",
-  injustice: "Honte, Culpabilité, Sentiment d’échec, Infériorité, Dévalorisation, Indignité",
-  surprise: "Méfiance, Supériorité, Incompréhension, Impatience, Frustration, Jalousie",
+  degout: "Honte, Culpabilité, Sentiment d’échec, Dévalorisation, Indignité",
+  surprise: "Méfiance, Incompréhension, Impatience, Frustration, Jalousie",
 });
 
 const EMOTION_TO_SENTIMENTS = Object.freeze({
   joie: SENTIMENTS.joie,
   tristesse: SENTIMENTS.tristesse,
   peur: SENTIMENTS.peur,
-  degout: SENTIMENTS.injustice,
-  colere_interieure: SENTIMENTS.colere,
+  degout: SENTIMENTS.degout,
+  colere: SENTIMENTS.colere,
   surprise: SENTIMENTS.surprise,
 });
 
@@ -65,7 +65,7 @@ const PAGES = [
      kicker: "Émotions",
      image: "schema_emotions.png",
      imageAlt: "Schéma des émotions",
-     imageBottomSpace: "16px",
+     imageBottomSpace: "17px",
    },
     right: {
       layout: "tilesCard",
@@ -608,7 +608,7 @@ grid: [
     subtitle: "Comportement de supériorité",
     grid: [
       ["Émotion racine", "Colère intérieure (maintenue par peur de blesser/détruire l’autre)."],
-      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere_interieure],
+      ["Sentiments possibles", EMOTION_TO_SENTIMENTS.colere],
       ["Origine", "Éducation stricte, froide, où l’amour dépend de la performance. Jugement/comparaison."],
       ["Masque / comportement", "Masque du rigide. Perfectionnisme, hautain, dureté avec soi et les autres. Besoin de justice, refus de l’imperfection, Supériorité morale, Froideur.",],
       ["Apathie / empathie", "Rigidité : difficulté à se laisser toucher ou à montrer ses failles."],
