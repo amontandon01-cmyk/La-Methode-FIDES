@@ -67,7 +67,6 @@ const PAGES = [
      imageAlt: "Schéma des émotions",
      imageBottomSpace: "18px",
    },
-   },
     right: {
       layout: "tilesCard",
       kicker: "Repères",
