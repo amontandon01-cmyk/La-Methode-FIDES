@@ -225,6 +225,11 @@ const PAGES = [
         lead: "Comprendre ses blessures ouvre un chemin de reconnexion à soi, à l’autre et à la vie, avec plus de conscience et de justesse.",
         text: "Tout le monde porte toutes les blessures, avec une intensité différente, et leur compréhension ouvre un chemin de reconnexion. Le but est de retrouver la connexion à soi, à l’autre et à la vie avec davantage de présence, de discernement, d’acceptation et de stabilité intérieure. En comprenant les blessures, les croyances qu’elles alimentent et les comportements qu’elles autorisent, la personne accède à une lecture plus fine de son fonctionnement. Elle peut alors quitter peu à peu la fermeture émotionnelle, assouplir sa carte du monde et revenir à une relation plus consciente avec elle-même, avec les autres et avec ce qu’elle traverse. Comprendre ses blessures prédominantes aide à mieux lire ses réactions, ses croyances, ses comportements et ses blocages. C’est une porte d’entrée essentielle pour reconnaître ce qui s’active dans le présent, comprendre ce que l’on s’autorise à travers ses croyances limitantes et ouvrir un chemin de transformation plus conscient. Cette lecture prépare naturellement la compréhension de la zone de confort, de la peur, de l’apprentissage et de l’expansion.",
       },
+      {
+        kicker: "Schéma",
+        image: "schema_blessure_3.svg",
+        imageAlt: "Schéma des blessures émotionnelles",
+      },
     ],
   },
   {
