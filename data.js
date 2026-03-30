@@ -17,8 +17,8 @@ const PAGES = [
     content: [
       {
         kicker: "Vue d’ensemble",
-        lead: "Support de formation — La Méthode FIDES",
-        text: "Un support pédagogique pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
+        lead: "Support pédagogique — La Méthode FIDES",
+        text: "Un support pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
       },
       {
         kicker: "Clé de lecture",
