@@ -1096,22 +1096,30 @@ const PAGES = [
 
 const NAV = [
   { section: "Vue d’ensemble", items: ["home"], singleLink: true },
+
   {
-    section: "Bases",
+    section: "Fondations",
     items: [
       "base_blessures",
-      "base_langages_apprentissage",
       "base_croyances",
-      "base_vulnerabilites_amour",
       "base_intelligences",
       "base_confort",
+      "base_langages_apprentissage",
+    ],
+  },
+
+  {
+    section: "Approfondissements",
+    items: [
+      "base_vulnerabilites_amour",
       "base_empathie",
       "base_karpman",
       "base_culpabilite",
     ],
   },
+
   {
-    section: "Blessures émotionnelles",
+    section: "Blessures",
     items: [
       "w_joie",
       "w_trahison",
@@ -1121,10 +1129,11 @@ const NAV = [
       "w_humiliation",
     ],
   },
+
   {
-    section: "Comportements",
-    items: ["ref_addictions", "ref_valeurs", "ref_dogmes"],
-  },
+    section: "Manifestations & repères",
+items: ["ref_addictions", "ref_dogmes", "ref_valeurs"]  },
+
   { section: "Références", items: ["ref_sources"], singleLink: true },
 ];
 
