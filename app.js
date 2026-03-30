@@ -354,28 +354,6 @@ function createNavHeader() {
   return header;
 }
 
-function createNavItemButton(page, currentPageId) {
-  const itemBtn = document.createElement("button");
-
-  itemBtn.className = "navItem";
-  itemBtn.type = "button";
-  itemBtn.setAttribute(
-    "aria-current",
-    page.id === currentPageId ? "page" : "false"
-  );
-
-  itemBtn.innerHTML =
-    escapeHTML(page.title) +
-    `<span>${escapeHTML(getMenuSubtitle(page))}</span>`;
-
-  itemBtn.addEventListener("click", () => {
-    go(page.id);
-    closeMenu();
-  });
-
-  return itemBtn;
-}
-
 function renderSingleLinkSection(group, currentPageId) {
   const page = getPage(group.items[0]);
   if (!page) return null;
@@ -383,8 +361,20 @@ function renderSingleLinkSection(group, currentPageId) {
   const sectionEl = document.createElement("div");
   sectionEl.className = "navSection";
 
-  sectionEl.appendChild(createNavItemButton(page, currentPageId));
+  const itemBtn = document.createElement("button");
+  itemBtn.className = "navItem";
+  itemBtn.type = "button";
+  itemBtn.setAttribute("aria-current", page.id === currentPageId ? "page" : "false");
+  itemBtn.innerHTML =
+    escapeHTML(page.title) +
+    '<span class="navSmall">' + escapeHTML(getMenuSubtitle(page)) + "</span>";
 
+  itemBtn.addEventListener("click", () => {
+    go(page.id);
+    closeMenu();
+  });
+
+  sectionEl.appendChild(itemBtn);
   return sectionEl;
 }
 
@@ -400,7 +390,8 @@ function renderAccordionSection(group, currentPageId, activeSection) {
   sectionBtn.className = "navSectionBtn";
   sectionBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   sectionBtn.innerHTML =
-    `<span>${escapeHTML(group.section)}</span>` + '<span class="chev">›</span>';
+    "<span>" + escapeHTML(group.section) + "</span>" +
+    '<span class="navChevron">›</span>';
 
   const itemsWrap = document.createElement("div");
   itemsWrap.className = "navItems";
@@ -409,7 +400,20 @@ function renderAccordionSection(group, currentPageId, activeSection) {
     const page = getPage(pageId);
     if (!page) continue;
 
-    itemsWrap.appendChild(createNavItemButton(page, currentPageId));
+    const itemBtn = document.createElement("button");
+    itemBtn.className = "navItem";
+    itemBtn.type = "button";
+    itemBtn.setAttribute("aria-current", pageId === currentPageId ? "page" : "false");
+    itemBtn.innerHTML =
+      escapeHTML(page.title) +
+      '<span class="navSmall">' + escapeHTML(getMenuSubtitle(page)) + "</span>";
+
+    itemBtn.addEventListener("click", () => {
+      go(pageId);
+      closeMenu();
+    });
+
+    itemsWrap.appendChild(itemBtn);
   }
 
   sectionBtn.addEventListener("click", () => {
