@@ -47,7 +47,7 @@ const PAGES = [
           kicker: "L’origine de la Méthode FIDES",
           items: [
             {
-              desc: "La Méthode FIDES a émergé au fil des accompagnements, du terrain et d’un long chemin de recherche porté par une créatrice autodidacte. Elle s’est construite dans l’expérience, dans l’observation fine de l’humain et dans de nombreuses lectures en psychologie, en spiritualité et en connaissance de soi. Aujourd’hui encore, sa créatrice continue de la vivre, de l’affiner et de l’ajuster jour après jour, au contact des réalités humaines, des accompagnements et des transformations observées.",
+              desc: "La Méthode FIDES a émergé au fil des accompagnements, du terrain, des compréhensions affinées avec le temps et d’un long chemin de recherche porté par une créatrice autodidacte. Elle s’est construite dans l’expérience, dans l’observation fine de l’humain, dans la pratique vivante du quotidien et dans de nombreuses lectures en psychologie, en spiritualité et en connaissance de soi. Aujourd’hui encore, sa créatrice continue de la vivre, de l’utiliser, de l’affiner et de l’ajuster jour après jour, au contact des réalités humaines, des accompagnements et des transformations observées. Elle aide à mettre en lumière ce qui se joue dans le vécu intérieur, dans les réactions, dans les relations et dans les fonctionnements du quotidien. Elle offre des repères pour mieux comprendre les mécanismes à l’œuvre et redonner du sens à ce qui se traverse. Elle ouvre ainsi un chemin de guérison, de libération, de réalignement et de reconnexion à soi, à l’autre et à la vie.",
             },
           ],
         },
