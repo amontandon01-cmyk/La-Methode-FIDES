@@ -49,7 +49,6 @@ const PAGES = [
             {
               desc: "La Méthode FIDES a émergé au fil des accompagnements et des compréhensions affinées avec le temps. Elle aide à mettre en lumière ce qui se joue dans le vécu intérieur, dans les réactions et dans les fonctionnements du quotidien. Elle offre des repères pour mieux comprendre les mécanismes à l’œuvre, donner du sens à ce qui se traverse et ouvrir un chemin de guérison, de libération et de reconnexion à soi, à l’autre et à la vie.",
             },
-            },
           ],
         },
       },
