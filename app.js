@@ -392,11 +392,11 @@ function renderSingleLinkSection(group, currentPageId) {
   return sectionEl;
 }
 
-function renderAccordionSection(group, currentPageId, activeSection) {
+function renderAccordionSection(group, currentPageId) {
   const sectionEl = document.createElement("div");
   sectionEl.className = "navSection";
 
-  const isOpen = group.section === activeSection;
+  const isOpen = group.items.includes(currentPageId);
   sectionEl.setAttribute("data-open", isOpen ? "true" : "false");
 
   const sectionBtn = document.createElement("button");
@@ -407,7 +407,7 @@ function renderAccordionSection(group, currentPageId, activeSection) {
     "<span>" +
     escapeHTML(group.section) +
     "</span>" +
-    '<span class="navChevron">›</span>';
+    '<span aria-hidden="true">›</span>';
 
   const itemsWrap = document.createElement("div");
   itemsWrap.className = "navItems";
@@ -425,7 +425,7 @@ function renderAccordionSection(group, currentPageId, activeSection) {
     );
     itemBtn.innerHTML =
       escapeHTML(page.title) +
-      '<span class="navSmall">' +
+      '<span class="navItemSubtitle">' +
       escapeHTML(getMenuSubtitle(page)) +
       "</span>";
 
@@ -452,7 +452,6 @@ function renderAccordionSection(group, currentPageId, activeSection) {
 
   sectionEl.appendChild(sectionBtn);
   sectionEl.appendChild(itemsWrap);
-
   return sectionEl;
 }
 
@@ -462,15 +461,12 @@ function renderNav(currentPageId) {
   navEl.innerHTML = "";
   navEl.appendChild(createNavHeader());
 
-  const activeSection =
-    NAV.find((group) => group.items.includes(currentPageId))?.section || "";
-
   for (const group of NAV) {
-    const isSingleLink = group.singleLink === true && group.items.length === 1;
+    const isSingleLink = group.items.length === 1;
 
     const sectionEl = isSingleLink
       ? renderSingleLinkSection(group, currentPageId)
-      : renderAccordionSection(group, currentPageId, activeSection);
+      : renderAccordionSection(group, currentPageId);
 
     if (sectionEl) {
       navEl.appendChild(sectionEl);
