@@ -896,7 +896,7 @@ const PAGES = [
   content: [
 { kicker: "Définition", lead: "L’addiction cherche souvent à calmer ce qui paraît trop difficile à ressentir.", text: "Comportements répétitifs, consommations ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. Ils peuvent passer par une substance, une activité, une relation, une recherche de performance, un refuge mental ou une habitude apparemment banale.", },
 
-{ kicker: "Schéma", lead: "Lire le cycle aide à repérer ce qui soulage sur l’instant sans apaiser le fond.", image: "schema_addictions.svg", imageAlt: "Schéma du cycle de l'addiction", },
+{ kicker: "Schéma", image: "schema_addictions.svg", imageAlt: "Schéma du cycle de l'addiction", },
 
 { kicker: "Repère central", lead: "Le soulagement rapide donne l’illusion d’une solution durable.", text: "L’addiction ou la compulsion procure souvent un soulagement rapide, une impression de contrôle, une stimulation ou une coupure temporaire avec la douleur. En profondeur, elle ne guérit pas la blessure de fond : elle la masque, la reporte, la contourne ou l’entretient.", },
 
@@ -912,7 +912,7 @@ const PAGES = [
 
 { kicker: "Comportements addictifs ou compulsifs", lead: "L’addiction peut aussi passer par des actes, des rythmes ou des liens devenus refuges.", text: "Jeux d’argent, jeux vidéo, écrans, internet, réseaux sociaux, téléphone, achats compulsifs, travail, sport, sexualité, fusion relationnelle, dépendance affective, nourriture, restrictions alimentaires, crises de compensation, recherche d’adrénaline, répétition d’un scénario toxique.", },
 
-{ kicker: "Repères concrets (comportements)", lead: "Le mécanisme se repère souvent dans la répétition, l’urgence ou la perte de liberté intérieure.", text: "Besoin de recommencer, difficulté à s’arrêter, pensée envahissante, recherche de décharge, compensation après tension, impression de manque, perte de maîtrise, alternance entre excès et culpabilité.", },
+{ kicker: "Repères concrets (comportements)", lead: "Le mécanisme se repèr   e souvent dans la répétition, l’urgence ou la perte de liberté intérieure.", text: "Besoin de recommencer, difficulté à s’arrêter, pensée envahissante, recherche de décharge, compensation après tension, impression de manque, perte de maîtrise, alternance entre excès et culpabilité.", },
 
 { kicker: "Lien avec les blessures", lead: "Chaque blessure peut chercher son propre mode d’apaisement.", text: "L’abandon cherchera à remplir le vide ou à calmer l’angoisse de séparation. La trahison cherchera à reprendre la maîtrise, à se stimuler ou à fuir l’impuissance. Le rejet cherchera à disparaître, à se couper ou à s’anesthésier. L’injustice cherchera à tenir, contrôler, performer ou se rigidifier. L’humiliation cherchera à compenser, se punir, se suradapter, porter, se remplir ou se soulager dans le plaisir ou l’excès.", },
 
@@ -930,7 +930,7 @@ const PAGES = [
   content: [
  { kicker: "Définition", lead: "Les valeurs donnent une direction intérieure à la manière de vivre.", text: "Les valeurs sont des repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre. Elles orientent ce que nous considérons comme important, juste, désirable ou essentiel.", },
 
-{ kicker: "Schéma", lead: "Visualiser les valeurs aide à repérer ce qui structure réellement l’existence.", image: "schema_valeurs.png", imageAlt: "Schéma des valeurs", },
+{ kicker: "Schéma", image: "schema_valeurs.png", imageAlt: "Schéma des valeurs", },
 
 { kicker: "Repère central", lead: "Plus une valeur est consciente, plus elle peut devenir un appui stable.", text: "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre. Plus une personne connaît ses vraies valeurs, plus elle peut avancer avec cohérence, clarté et stabilité.", },
 
@@ -940,7 +940,7 @@ const PAGES = [
 
 { kicker: "Exemples", lead: "Certaines valeurs soutiennent le quotidien, d’autres structurent profondément l’existence.", text: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure.", },
 
-{ kicker: "4 grands piliers de vie", lead: "Certains axes reviennent souvent comme fondations majeures de l’équilibre humain.", text: "Santé, famille / proches, argent / sécurité financière, amour / relations.", },
+{ kicker: "4 grands piliers de vie", lead: "Certains repères fondamentaux reviennent souvent comme fondations majeures de l’équilibre humain.", text: "Santé, famille / proches, argent / sécurité financière, amour / relations.", },
 
 { kicker: "Valeurs personnelles", lead: "Elles soutiennent l’identité, la posture intérieure et la manière d’avancer.", text: "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.", },
 
