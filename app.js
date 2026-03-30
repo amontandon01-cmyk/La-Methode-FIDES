@@ -300,6 +300,46 @@ function woundRowHtml(label, value) {
     "</div>"
   );
 }
+function heroCardHtml({ eyebrow = "", title = "", subtitle = "" }) {
+  return (
+    '<section class="heroCard">' +
+    '<div class="eyebrow">' + escapeHTML(eyebrow) + "</div>" +
+    "<h2>" + escapeHTML(title) + "</h2>" +
+    "<p>" + escapeHTML(subtitle) + "</p>" +
+    "</section>"
+  );
+}
+
+function woundGridHtml(grid = []) {
+  return (
+    '<section class="woundGrid">' +
+    grid.map(([label, value]) => woundRowHtml(label, value)).join("") +
+    "</section>"
+  );
+}
+
+function pageBodyHtml(page) {
+  switch (page.type) {
+    case PAGE_TYPES.HOME:
+    case PAGE_TYPES.CONTENT:
+      return (page.content || []).map(contentBlockHtml).join("");
+
+    case PAGE_TYPES.GRID:
+      return (
+        heroCardHtml({
+          eyebrow: page.eyebrow ?? "",
+          title: page.title || "",
+          subtitle: page.subtitle || "",
+        }) +
+        woundGridHtml(page.grid || [])
+      );
+
+    default:
+      return (getPage(DEFAULT_PAGE_ID)?.content || [])
+        .map(contentBlockHtml)
+        .join("");
+  }
+}
 
 /* ------------------------------ Menu mobile ------------------------------ */
 
@@ -417,28 +457,6 @@ function renderNav(currentPageId) {
   }
 }
 
-function renderContentPage(page) {
-  mainEl.innerHTML = (page.content || []).map(contentBlockHtml).join("");
-}
-
-function renderGridPage(page) {
-  const eyebrow = page.eyebrow ?? "";
-
-  const headHtml =
-    '<section class="heroCard">' +
-      '<div class="eyebrow">' + escapeHTML(eyebrow) + '</div>' +
-      '<h2>' + escapeHTML(page.title) + '</h2>' +
-      '<p>' + escapeHTML(page.subtitle || "") + '</p>' +
-    '</section>';
-
-  const gridHtml =
-    '<section class="woundGrid">' +
-      (page.grid || []).map(([label, value]) => woundRowHtml(label, value)).join("") +
-    '</section>';
-
-  mainEl.innerHTML = headHtml + gridHtml;
-}
-
 function canonicalizeUrlIfNeeded(pageId) {
   const currentToken = normalizeHash(location.hash);
   const canonicalSlug = getCanonicalSlugForPageId(pageId);
@@ -458,21 +476,7 @@ function render() {
   pageSubtitleEl.textContent = page.subtitle || "";
 
   renderNav(page.id);
-
-   switch (page.type) {
-     case PAGE_TYPES.HOME:
-     case PAGE_TYPES.CONTENT:
-       renderContentPage(page);
-       break;
-   
-     case PAGE_TYPES.GRID:
-       renderGridPage(page);
-       break;
-   
-     default:
-       renderContentPage(getPage(DEFAULT_PAGE_ID));
-       break;
-   }
+  mainEl.innerHTML = pageBodyHtml(page);
 }
 
 /* ------------------------------ Events ------------------------------ */
