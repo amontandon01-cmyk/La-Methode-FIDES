@@ -1030,59 +1030,90 @@ const PAGES = [
     },
   ],
 },
-  {
-    id: "ref_dogmes",
-    slug: "comportements-dogmes",
-    type: "GRID",
-    title: "Conditionnements & dogmes",
-    subtitle: "Repères & tendances",
-    grid: [
-      [
-        "Définition",
-        "Croyances héritées (familiales, sociétales, religieuses, culturelles) qui influencent nos comportements, souvent sans que nous en ayons conscience.",
-      ],
-      [
-        "Repère central",
-        "Un conditionnement agit comme une règle intériorisée qui influence nos réactions, souvent sans que nous en ayons conscience.",
-      ],
-      [
-        "Exemples",
-        "« Il faut souffrir pour réussir. » « Un homme ne pleure pas. » « Tu dois obéir pour être aimé. » « Sois sage et tais-toi. » « L’erreur est interdite. » « Si tu dis non, on ne t’aimera plus. »",
-      ],
-      [
-        "Familiaux",
-        "« Sois sage et tais-toi. » « Un enfant doit obéir. » « On ne parle pas de nos problèmes à l’extérieur. » ...",
-      ],
-      [
-        "Sociaux et culturels",
-        "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » ...",
-      ],
-      [
-        "Religieux et spirituels",
-        "« Tu dois souffrir pour mériter le salut. » « Le plaisir est un péché. » ...",
-      ],
-      [
-        "Genre et rôle social",
-        "« Un homme ne pleure pas. » « Une femme doit être parfaite. » ...",
-      ],
-      [
-        "Éducatifs et scolaires",
-        "« Si tu échoues, tu es nul. » « L’erreur est interdite. » ...",
-      ],
-      [
-        "Psychologiques et relationnels",
-        "« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » ...",
-      ],
-      [
-        "Intérieurs (auto-dogmes)",
-        "« Je dois être parfait pour avoir de la valeur. » « Je ne suis pas assez bien. » ...",
-      ],
-      [
-        "Message clé",
-        "La liberté intérieure naît quand on met en lumière ces conditionnements et qu’on choisit consciemment de s’en détacher.",
-      ],
-    ],
-  },
+{
+  id: "ref_dogmes",
+  slug: "comportements-dogmes",
+  type: "CONTENT",
+  title: "Conditionnements & dogmes",
+  subtitle: "Repères & tendances",
+  content: [
+    {
+      kicker: "Définition",
+      lead: "Les conditionnements et les dogmes sont des croyances intégrées au fil de la vie.",
+      text: "Ils peuvent venir de la famille, de l’enfance, de l’école, de la société, de la culture, de la religion, du vécu relationnel ou de conclusions prises sur soi-même. À force d’être entendus, répétés ou redoutés, ils deviennent des repères intérieurs qui influencent la manière de penser, de ressentir, d’agir et de se relier.",
+    },
+    {
+    kicker: "Schéma",
+    image: "schema_dogmes.png",
+    imageAlt: "Schéma des conditionnements et dogmes",
+    },
+    {
+      kicker: "Repère central",
+      lead: "Un conditionnement agit comme une règle intérieure.",
+      text: "Il colore la perception, oriente les réactions et finit parfois par prendre la place d’une vérité. La personne ne voit alors plus seulement la réalité telle qu’elle est ; elle la lit aussi à travers ce qu’elle a appris, subi, cru ou intégré.",
+    },
+    {
+      kicker: "Fonction cachée",
+      lead: "Derrière un dogme, il y a souvent une tentative de protection.",
+      text: "Il peut donner une impression de sécurité, d’appartenance, de cohérence, de valeur, de maîtrise ou de survie relationnelle. Même lorsqu’il enferme, il a souvent commencé comme une adaptation utile à un moment donné.",
+    },
+    {
+      kicker: "Lien avec les blessures",
+      lead: "Lorsqu’une blessure émotionnelle s’active, le conditionnement déjà présent peut se renforcer.",
+      text: "Il vient alors justifier une réaction, soutenir une croyance limitante, protéger un mécanisme de défense ou donner l’illusion qu’un comportement est normal, logique ou nécessaire. Le dogme peut alors entretenir la peur de décevoir, la peur d’être rejeté, la peur d’être abandonné, le besoin de contrôle, le sacrifice de soi ou la fermeture émotionnelle.",
+    },
+    {
+      kicker: "Familiaux et enfance",
+      lead: "Certaines phrases deviennent de vraies lois intérieures.",
+      text: "« Sois sage et tais-toi. » « Un enfant doit obéir. » « Quand les grands parlent, tu te tais. » « T’es trop petit pour comprendre. » « Ne dérange pas. » « Prends sur toi. » « Un bon enfant écoute sans discuter. » Ces messages peuvent apprendre à l’enfant que sa parole compte peu, que son ressenti dérange, ou qu’il doit s’adapter pour être accepté.",
+    },
+    {
+      kicker: "Sociaux et culturels",
+      lead: "La société transmet aussi ses injonctions.",
+      text: "« Il faut travailler dur pour réussir. » « Il faut toujours être occupé pour avoir de la valeur. » « Il faut se battre pour sa place. » « Montrer sa vulnérabilité fragilise. » « Réussir, c’est prouver. » « Qui va à la chasse perd sa place. » « Partager, c’est le bonheur. » Ces croyances peuvent nourrir la pression, la comparaison, l’agitation, la performance et la peur de ralentir.",
+    },
+    {
+      kicker: "Religieux, fatalité et superstitions",
+      lead: "Certaines croyances donnent une lecture morale, sacrée ou fatale de la vie.",
+      text: "« Il faut souffrir pour mériter. » « Le plaisir est un péché. » « Se sacrifier rend plus pur. » « Il y a des familles maudites. » « Le destin s’acharne sur certaines personnes. » « Jamais deux sans trois. » « Casser un miroir, c’est sept ans de malheur. » « Croiser un chat noir porte malheur. » Même banales en apparence, elles peuvent entretenir la culpabilité, la peur du bonheur, l’attente du pire ou l’idée qu’une souffrance serait normale.",
+    },
+    {
+      kicker: "Genre, virilité et rôle social",
+      lead: "Les injonctions liées au féminin et au masculin marquent profondément les comportements.",
+      text: "« Un homme ne pleure pas. » « Un homme doit être fort. » « Un homme doit protéger. » « Un homme doit tenir. » « Un homme doit se débrouiller seul. » « Montrer ses émotions fragilise un homme. » « Une femme doit être parfaite. » « Une femme doit s’adapter. » « Si t’es belle, t’es automatiquement stupide. » « Trop belle pour être intelligente. » Ces croyances figent les rôles, coupent du ressenti et déforment le rapport à la valeur, à la puissance, à la vulnérabilité et au lien.",
+    },
+    {
+      kicker: "Éducatifs et scolaires",
+      lead: "L’école transmet aussi ses dogmes.",
+      text: "« Si tu échoues, tu es nul. » « Les bons élèves comprennent tout de suite. » « Si tu es lent, tu ne comprendras jamais. » « Il faut suivre le rythme. » « Il faut s’adapter à la vitesse de la classe. » « L’erreur est interdite. » « Si tu as besoin de plus de temps, c’est que tu es moins capable. » « Quand on veut, on peut. » Ces messages peuvent fabriquer de la honte, de la pression, du découragement et une confusion entre performance et valeur personnelle.",
+    },
+    {
+      kicker: "Relationnels et loyautés",
+      lead: "Dans les relations, certains dogmes enferment dans le silence, l’excuse ou le sacrifice.",
+      text: "« Si tu dis non, on ne t’aimera plus. » « Les conflits détruisent les relations. » « Il faut tout accepter pour garder le lien. » « Aimer, c’est supporter. » « Quand on aime, on pardonne tout. » « Mieux vaut se taire que créer une rupture. » « Il faut comprendre et excuser. » « C’est normal, cette personne est comme ça. » Ces croyances peuvent légitimer l’effacement de soi, la peur de poser des limites ou la confusion entre amour et souffrance.",
+    },
+    {
+      kicker: "Justice dure et rapport de force",
+      lead: "D’autres dogmes valorisent la riposte, la dureté ou la domination.",
+      text: "« Œil pour œil, dent pour dent. » « Tu me cherches, tu me trouves. » « Qui sème le vent récolte la tempête. » « Il faut rendre coup pour coup. » « On doit faire payer ce qu’on a subi. » « La meilleure défense, c’est d’attaquer. » « Si tu te laisses faire, tu perds ta valeur. » Ces croyances peuvent alimenter la méfiance, l’agressivité, la rigidité et la difficulté à sortir du combat.",
+    },
+    {
+      kicker: "Intérieurs (auto-dogmes)",
+      lead: "Avec le temps, la personne finit souvent par porter elle-même ses propres injonctions.",
+      text: "« Je dois être parfait pour avoir de la valeur. » « Je dois être fort en toutes circonstances. » « Je dois porter seul. » « Je dois tout comprendre. » « Je dois rester irréprochable. » « Je ne suis pas assez bien. » « Je dois donner beaucoup pour mériter l’amour. » « Mes blessures justifient mes comportements. » Ces auto-dogmes deviennent souvent les plus puissants, car ils semblent venir de soi alors qu’ils ont été appris, incorporés ou renforcés par le vécu.",
+    },
+    {
+      kicker: "Signes d’activation",
+      lead: "Quand un conditionnement s’active, il peut se manifester de multiples manières.",
+      text: "Culpabilité, peur de décevoir, rigidité, besoin d’approbation, difficulté à dire non, automatisme de sacrifice, fermeture émotionnelle, besoin de contrôle, exigence envers soi ou envers l’autre. Il peut aussi pousser à justifier des comportements souffrants ou à répéter des schémas anciens.",
+    },
+    {
+      kicker: "Point de vigilance",
+      lead: "Un dogme peut paraître juste, noble, logique ou protecteur alors qu’il maintient une peur, une loyauté, une blessure ancienne ou une croyance limitante.",
+      text: "Plus une règle semble évidente, plus elle mérite parfois d’être revisitée avec conscience. La liberté intérieure grandit quand les conditionnements deviennent visibles, quand leur fonction cachée est comprise, et quand la personne choisit consciemment ce qu’elle souhaite encore nourrir dans sa vie.",
+    },
+  ],
+},
   // RÉFÉRENCES
   {
     id: "ref_sources",
