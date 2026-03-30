@@ -554,12 +554,12 @@ const PAGES = [
 
   // BLESSURES
   {
-    id: "w_joie",
+    id: "ref_joie",
     slug: "blessures-joie",
     type: "GRID",
     eyebrow: "Blessure",
-    title: "État : JOIE",
-    subtitle: "Comportement neutre",
+    title: "JOIE",
+    subtitle: "Repère d'évolution ",
     grid: [
       ["Émotion racine", "Joie."],
       [
@@ -1065,31 +1065,15 @@ const PAGES = [
   ],
 },
   // RÉFÉRENCES
-  {
-    id: "ref_sources",
-    slug: "references",
-    type: "GRID",
-    title: "Références",
-    subtitle: "Source",
-    grid: [
-      [
-        "Source d’inspiration",
-        "La lecture des cinq blessures fondamentales — rejet, abandon, humiliation, trahison et injustice — ainsi que des masques relationnels qui leur sont classiquement associés, trouve un appui dans les travaux de Lise Bourbeau, en particulier dans l’ouvrage Les 5 blessures qui empêchent d’être soi-même.",
-      ],
-      [
-        "Triangle de Karpman",
-        "Le triangle de Karpman apporte une grille de lecture complémentaire des dynamiques relationnelles de survie. Son intégration dans ce site s’inscrit dans la structuration pédagogique de la Méthode FIDES, en lien avec les blessures émotionnelles et les rôles relationnels qui peuvent en découler.",
-      ],
-      [
-        "Élaboration de la Méthode FIDES",
-        "La structuration pédagogique présentée sur ce site, l’identification des émotions racines, l’articulation entre blessures, comportements compensatoires, valeurs de vie, conditionnements, dogmes de comportement et croyances limitantes relèvent de la Méthode FIDES.",
-      ],
-      [
-        "Protection et usage",
-        "Copyright, tous droits réservés. La méthode FIDES constitue une création protégée au titre de la propriété intellectuelle. Sa transmission, son enseignement et son utilisation s’inscrivent dans le cadre défini par sa fondatrice et concernent exclusivement les personnes autorisées.",
-      ],
-    ],
-  },
+  { id: "ref_sources", slug: "references", type: "GRID", title: "Références", subtitle: "Sources", grid: [
+  [ "Lise Bourbeau", "Bourbeau, L. (©2000). Les 5 blessures qui empêchent d’être soi-même : rejet, abandon, humiliation, trahison, injustice. Éditions E.T.C. (Bellefeuille, Québec). ISBN 9782920932180.", ],
+  [ "Triangle de Karpman", "Karpman, S. B. (1968). Fairy tales and script drama analysis. Transactional Analysis Bulletin, 7(26), 39–43. Notice d’archive + reproduction PDF.", ],
+  [ "Organisation mondiale de la Santé", "Organisation mondiale de la Santé. Addictive behaviour (page thématique).", ],
+  [ "American Psychological Association", "American Psychological Association. Empathy (APA Dictionary of Psychology).", ],
+  [ "Beck Institute for Cognitive Behavior Therapy", "Beck Institute for Cognitive Behavior Therapy. Understanding CBT – Cognitive Model (présentation du modèle cognitif).", ],
+  [ "Institut Fédéral de la Propriété Intellectuelle", "Institut Fédéral de la Propriété Intellectuelle (Suisse). Le droit d’auteur (protection automatique, absence de registre).", ],
+  [ "Organisation Mondiale de la Propriété Intellectuelle", "Organisation Mondiale de la Propriété Intellectuelle. Copyright (principe de protection automatique selon la Convention de Berne, sans formalités).", ],
+], },
 ];
 
 /* ---------------------------- Navigation (UI) ----------------------------- */
@@ -1121,7 +1105,6 @@ const NAV = [
   {
     section: "Blessures",
     items: [
-      "w_joie",
       "w_trahison",
       "w_abandon",
       "w_injustice",
@@ -1132,9 +1115,9 @@ const NAV = [
 
   {
     section: "Manifestations & repères",
-items: ["ref_addictions", "ref_dogmes", "ref_valeurs"]  },
+items: ["ref_joie", "ref_addictions", "ref_dogmes", "ref_valeurs"]  },
 
-  { section: "Références", items: ["ref_sources"] },
+  { section: "Repères théorique", items: ["ref_sources"] },
 ];
 
 export { PAGES, NAV };
