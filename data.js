@@ -55,7 +55,7 @@ const PAGES = [
       {
         kicker: "Mandala",
         image: "schema_mandala.svg",
-        imageAlt: "Mandala de la Méthode Fides",
+        imageAlt: "Mandala de la Méthode FIDES",
       },
     ],
   },
@@ -686,7 +686,7 @@ const PAGES = [
     slug: "blessures-humiliation",
     type: "GRID",
     eyebrow: "Blessure",
-    title: "HUMILIATION (dégout)",
+    title: "HUMILIATION (dégoût)",
     subtitle: "Comportement d’infériorité",
     grid: [
       ["Émotion racine", "Dégoût."],
@@ -762,7 +762,7 @@ const PAGES = [
       ],
       [
         "Masque / fonctionnement",
-        "Masque du contrôlant. La personne cherche à garder la main, à anticiper, à vérifier, à obtenir des garanties, à cadrer ou à influencer pour éviter d’être surprise, trompée ou déçue. Elle peut paraître forte, sûre d’elle, dominante, très réactive et jugeant. Lorsqu’elle se sent touchée, ou lorsqu’un être qu’elle considère comme sien est touché, elle peut devenir très autoritaire. Elle protège alors l’autre à travers sa blessure, en cherchant à reprendre la main et à imposer sa lecture.",
+        "Masque du contrôlant. La personne cherche à garder la main, à anticiper, à vérifier, à obtenir des garanties, à cadrer ou à influencer pour éviter d’être surprise, trompée ou déçue. Elle peut paraître forte, sûre d’elle, dominante, très réactive et jugeante. Lorsqu’elle se sent touchée, ou lorsqu’un être qu’elle considère comme sien est touché, elle peut devenir très autoritaire. Elle protège alors l’autre à travers sa blessure, en cherchant à reprendre la main et à imposer sa lecture.",
       ],
       [
         "Empathie blessée",
@@ -884,7 +884,7 @@ const PAGES = [
 
 { kicker: "Comportements addictifs ou compulsifs", lead: "L’addiction peut aussi passer par des actes, des rythmes ou des liens devenus refuges.", text: "Jeux d’argent, jeux vidéo, écrans, internet, réseaux sociaux, téléphone, achats compulsifs, travail, sport, sexualité, fusion relationnelle, dépendance affective, nourriture, restrictions alimentaires, crises de compensation, recherche d’adrénaline, répétition d’un scénario toxique.", },
 
-{ kicker: "Repères concrets (comportements)", lead: "Le mécanisme se repèr   e souvent dans la répétition, l’urgence ou la perte de liberté intérieure.", text: "Besoin de recommencer, difficulté à s’arrêter, pensée envahissante, recherche de décharge, compensation après tension, impression de manque, perte de maîtrise, alternance entre excès et culpabilité.", },
+{ kicker: "Repères concrets (comportements)", lead: "Le mécanisme se repère souvent dans la répétition, l’urgence ou la perte de liberté intérieure.", text: "Besoin de recommencer, difficulté à s’arrêter, pensée envahissante, recherche de décharge, compensation après tension, impression de manque, perte de maîtrise, alternance entre excès et culpabilité.", },
 
 { kicker: "Lien avec les blessures", lead: "Chaque blessure peut chercher son propre mode d’apaisement.", text: "L’abandon cherchera à remplir le vide ou à calmer l’angoisse de séparation. La trahison cherchera à reprendre la maîtrise, à se stimuler ou à fuir l’impuissance. Le rejet cherchera à disparaître, à se couper ou à s’anesthésier. L’injustice cherchera à tenir, contrôler, performer ou se rigidifier. L’humiliation cherchera à compenser, se punir, se suradapter, porter, se remplir ou se soulager dans le plaisir ou l’excès.", },
 
