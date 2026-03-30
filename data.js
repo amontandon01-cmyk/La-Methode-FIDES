@@ -887,28 +887,95 @@ const PAGES = [
   },
 
   // COMPORTEMENTS
-{ id: "ref_addictions", slug: "comportements-addictions", type: "GRID", title: "Addictions", subtitle: "Repères & typologies", grid: [
-  [ "Définition", "Comportements répétitifs, consommations ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. Ils peuvent passer par une substance, une activité, une relation, une recherche de performance, un refuge mental ou une habitude apparemment banale.", ],
-  [ "Repère central", "L’addiction ou la compulsion procure souvent un soulagement rapide, une impression de contrôle, une stimulation ou une coupure temporaire avec la douleur. En profondeur, elle ne guérit pas la blessure de fond : elle la masque, la reporte, la contourne ou l’entretient.", ],
-  [ "Fonction", "C’est une béquille de régulation émotionnelle. Elle peut servir à calmer un vide, une peur, une honte, une solitude, une colère intérieure, une tension psychique, une impression d’abandon, une perte de contrôle ou une douleur identitaire. Elle peut aussi donner l’illusion de remplir, tenir, oublier, se rassurer, se récompenser, se punir ou exister.", ],
-  [ "Pourquoi c’est piégeant", "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment ce refuge à une solution. Plus le comportement soulage vite, plus il risque d’être répété, jusqu’à devenir un automatisme de survie émotionnelle.", ],
-  [ "Repères de bascule", "Le comportement mérite une vraie vigilance lorsqu’il devient difficile à freiner, qu’il prend une place croissante, qu’il passe avant d’autres besoins importants, qu’il continue malgré ses conséquences, ou qu’il altère la relation à soi, aux autres, au corps, au travail, au sommeil, à l’argent ou à la vie quotidienne.", ],
-  [ "Addictions aux substances", "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, usage compulsif de caféine, recherche répétée du sucre ou d’autres produits pour modifier rapidement l’état intérieur.", ],
-  [ "Repères concrets (substances)", "Recherche d’apaisement rapide, besoin de tenir, difficulté à traverser certaines émotions sans produit, consommation liée à des déclencheurs précis, augmentation progressive de la fréquence, de la dose, de la tolérance ou de la dépendance psychologique.", ],
-  [ "Comportements addictifs ou compulsifs", "Jeux d’argent, jeux vidéo, écrans, internet, réseaux sociaux, téléphone, achats compulsifs, travail, sport, sexualité, fusion relationnelle, dépendance affective, nourriture, restrictions alimentaires, crises de compensation, recherche d’adrénaline, répétition d’un scénario toxique. Ici, ce n’est pas toujours une substance qui domine, mais la répétition d’un comportement devenu refuge.", ],
-  [ "Repères concrets (comportementaux)", "Besoin de faire, vérifier, scroller, acheter, séduire, performer, consommer, contrôler ou se distraire pour éviter de ressentir. Ces comportements apportent souvent une récompense immédiate, une impression d’exister, une coupure émotionnelle ou un faux apaisement.", ],
-  [ "Formes plus invisibles", "Perfectionnisme, hyperactivité, contrôle, besoin de reconnaissance, besoin d’être indispensable, surinvestissement professionnel, recherche d’image, rigidité, besoin de maîtrise, refuge dans le mental, refuge spirituel, besoin d’être irréprochable. Ces formes passent plus facilement pour des qualités, alors qu’elles peuvent aussi servir à éviter le contact avec une douleur profonde.", ],
-  [ "Pourquoi elles passent inaperçues", "Parce qu’elles sont souvent valorisées socialement. Être très performant, toujours occupé, très engagé, admirable, irréprochable, fort, autonome ou éveillé peut sembler positif, alors que cela peut aussi cacher une fuite émotionnelle.", ],
-  [ "Transfert d’addiction", "Il arrive qu’une personne réduise une addiction visible, puis déplace le mécanisme vers un autre refuge. Par exemple, elle arrête de fumer et compense avec la nourriture, elle arrête de boire et se jette dans le sport intensif, elle sort d’une dépendance affective et bascule dans le travail, le contrôle ou les achats compulsifs. Ce déplacement peut donner l’impression d’une amélioration, alors qu’il s’agit parfois d’une compulsion qui change simplement de forme. Ce qui semble plus sain, plus acceptable ou plus valorisé à l’extérieur peut continuer à remplir exactement la même fonction à l’intérieur : calmer, tenir, oublier, contrôler, compenser ou éviter de ressentir.", ],
-  [ "Point de vigilance", "Tout remplacement n’est pas automatiquement une nouvelle addiction. Il y a transfert addictif lorsque le nouveau comportement devient à son tour envahissant, difficile à freiner, central pour se réguler, et qu’il continue malgré ses conséquences.", ],
-  [ "Prudence de lecture", "Tout comportement répétitif ou excessif n’est pas automatiquement une addiction au sens clinique. Dans une lecture FIDES, il peut néanmoins devenir un excellent indicateur d’évitement émotionnel, de blessure activée, de croyance limitante ou de stratégie de protection.", ],
-  [ "Auto-atteinte / auto-agression", "Certaines conduites dirigées contre soi, comme se faire mal, se négliger gravement, se punir ou s’exposer volontairement à des situations destructrices, relèvent d’une souffrance profonde et demandent une lecture spécifique. Elles peuvent avoir une fonction de décharge, de punition, d’anesthésie ou de reprise de contrôle, même lorsqu’elles ne relèvent pas d’une addiction au sens strict.", ],
-  [ "Refuge spirituel", "Le spirituel peut soutenir la guérison. Il peut aussi devenir un refuge lorsqu’il sert à éviter l’émotion, contourner le trauma, nier la colère, idéaliser la souffrance, attendre un miracle à la place d’un positionnement clair, ou parler d’élévation alors que la blessure reste intacte.", ],
-  [ "Lecture pédagogique", "Plus une addiction, une compulsion ou un refuge devient nécessaire pour tenir, se calmer, se sentir vivant, aimé, important, puissant ou en sécurité, plus il mérite d’être interrogé. La vraie question devient : « Qu’est-ce que cela m’aide à ne pas ressentir ? » « Qu’est-ce que cela m’aide à ne pas voir ? » « Quelle blessure cela apaise provisoirement ? »", ],
-  [ "Lien avec les blessures", "Selon la blessure activée, la stratégie change. Le rejet cherchera plus facilement à disparaître, se couper, s’absenter ou s’anesthésier. L’abandon cherchera à remplir, fusionner, être rassuré, entendu ou retenu. La trahison cherchera à contrôler, tenir, performer, surveiller, dominer ou rester puissant. L’injustice cherchera à se maîtriser, travailler, se rigidifier, réussir ou devenir irréprochable. L’humiliation cherchera à compenser, se punir, se suradapter, porter, se remplir ou se soulager dans le plaisir ou l’excès.", ],
-  [ "Questions utiles", "Qu’est-ce qui déclenche ce comportement ? Quelle émotion est juste avant ? Quel vide, quelle peur, quelle honte ou quelle tension cherche à être calmée ? Que se passe-t-il si je retire ce refuge ? Quelle croyance limitante soutient ce mécanisme ?", ],
-  [ "Message clé", "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal de souffrance, de protection ou de survie émotionnelle. Ce qui cherche à être apaisé à travers elle demande à être vu, ressenti, compris et accompagné à la racine.", ],
-], },
+{
+  id: "ref_addictions",
+  slug: "comportements-addictions",
+  type: "CONTENT",
+  title: "Addictions",
+  subtitle: "Repères & typologies",
+  content: [
+    {
+      kicker: "Définition",
+      text: "Comportements répétitifs, consommations ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. Ils peuvent passer par une substance, une activité, une relation, une recherche de performance, un refuge mental ou une habitude apparemment banale.",
+    },
+    {
+      kicker: "Repère central",
+      text: "L’addiction ou la compulsion procure souvent un soulagement rapide, une impression de contrôle, une stimulation ou une coupure temporaire avec la douleur. En profondeur, elle ne guérit pas la blessure de fond : elle la masque, la reporte, la contourne ou l’entretient.",
+    },
+    {
+      kicker: "Fonction",
+      text: "C’est une béquille de régulation émotionnelle. Elle peut servir à calmer un vide, une peur, une honte, une solitude, une colère intérieure, une tension psychique, une impression d’abandon, une perte de contrôle ou une douleur identitaire. Elle peut aussi donner l’illusion de remplir, tenir, oublier, se rassurer, se récompenser, se punir ou exister.",
+    },
+    {
+      kicker: "Pourquoi c’est piégeant",
+      text: "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment ce refuge à une solution. Plus le comportement soulage vite, plus il risque d’être répété, jusqu’à devenir un automatisme de survie émotionnelle.",
+    },
+    {
+      kicker: "Repères de bascule",
+      text: "Le comportement mérite une vraie vigilance lorsqu’il devient difficile à freiner, qu’il prend une place croissante, qu’il passe avant d’autres besoins importants, qu’il continue malgré ses conséquences, ou qu’il altère la relation à soi, aux autres, au corps, au travail, au sommeil, à l’argent ou à la vie quotidienne.",
+    },
+    {
+      kicker: "Addictions aux substances",
+      text: "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, usage compulsif de caféine, recherche répétée du sucre ou d’autres produits pour modifier rapidement l’état intérieur.",
+    },
+    {
+      kicker: "Repères concrets (substances)",
+      text: "Recherche d’apaisement rapide, besoin de tenir, difficulté à traverser certaines émotions sans produit, consommation liée à des déclencheurs précis, augmentation progressive de la fréquence, de la dose, de la tolérance ou de la dépendance psychologique.",
+    },
+    {
+      kicker: "Comportements addictifs ou compulsifs",
+      text: "Jeux d’argent, jeux vidéo, écrans, internet, réseaux sociaux, téléphone, achats compulsifs, travail, sport, sexualité, fusion relationnelle, dépendance affective, nourriture, restrictions alimentaires, crises de compensation, recherche d’adrénaline, répétition d’un scénario toxique. Ici, ce n’est pas toujours une substance qui domine, mais la répétition d’un comportement devenu refuge.",
+    },
+    {
+      kicker: "Repères concrets (comportementaux)",
+      text: "Besoin de faire, vérifier, scroller, acheter, séduire, performer, consommer, contrôler ou se distraire pour éviter de ressentir. Ces comportements apportent souvent une récompense immédiate, une impression d’exister, une coupure émotionnelle ou un faux apaisement.",
+    },
+    {
+      kicker: "Formes plus invisibles",
+      text: "Perfectionnisme, hyperactivité, contrôle, besoin de reconnaissance, besoin d’être indispensable, surinvestissement professionnel, recherche d’image, rigidité, besoin de maîtrise, refuge dans le mental, refuge spirituel, besoin d’être irréprochable. Ces formes passent plus facilement pour des qualités, alors qu’elles peuvent aussi servir à éviter le contact avec une douleur profonde.",
+    },
+    {
+      kicker: "Pourquoi elles passent inaperçues",
+      text: "Parce qu’elles sont souvent valorisées socialement. Être très performant, toujours occupé, très engagé, admirable, irréprochable, fort, autonome ou éveillé peut sembler positif, alors que cela peut aussi cacher une fuite émotionnelle.",
+    },
+    {
+      kicker: "Transfert d’addiction",
+      text: "Il arrive qu’une personne réduise une addiction visible, puis déplace le mécanisme vers un autre refuge. Par exemple, elle arrête de fumer et compense avec la nourriture, elle arrête de boire et se jette dans le sport intensif, elle sort d’une dépendance affective et bascule dans le travail, le contrôle ou les achats compulsifs. Ce déplacement peut donner l’impression d’une amélioration, alors qu’il s’agit parfois d’une compulsion qui change simplement de forme. Ce qui semble plus sain, plus acceptable ou plus valorisé à l’extérieur peut continuer à remplir exactement la même fonction à l’intérieur : calmer, tenir, oublier, contrôler, compenser ou éviter de ressentir.",
+    },
+    {
+      kicker: "Point de vigilance",
+      text: "Tout remplacement n’est pas automatiquement une nouvelle addiction. Il y a transfert addictif lorsque le nouveau comportement devient à son tour envahissant, difficile à freiner, central pour se réguler, et qu’il continue malgré ses conséquences.",
+    },
+    {
+      kicker: "Prudence de lecture",
+      text: "Tout comportement répétitif ou excessif n’est pas automatiquement une addiction au sens clinique. Dans une lecture FIDES, il peut néanmoins devenir un excellent indicateur d’évitement émotionnel, de blessure activée, de croyance limitante ou de stratégie de protection.",
+    },
+    {
+      kicker: "Auto-atteinte / auto-agression",
+      text: "Certaines conduites dirigées contre soi, comme se faire mal, se négliger gravement, se punir ou s’exposer volontairement à des situations destructrices, relèvent d’une souffrance profonde et demandent une lecture spécifique. Elles peuvent avoir une fonction de décharge, de punition, d’anesthésie ou de reprise de contrôle, même lorsqu’elles ne relèvent pas d’une addiction au sens strict.",
+    },
+    {
+      kicker: "Refuge spirituel",
+      text: "Le spirituel peut soutenir la guérison. Il peut aussi devenir un refuge lorsqu’il sert à éviter l’émotion, contourner le trauma, nier la colère, idéaliser la souffrance, attendre un miracle à la place d’un positionnement clair, ou parler d’élévation alors que la blessure reste intacte.",
+    },
+    {
+      kicker: "Lecture pédagogique",
+      text: "Plus une addiction, une compulsion ou un refuge devient nécessaire pour tenir, se calmer, se sentir vivant, aimé, important, puissant ou en sécurité, plus il mérite d’être interrogé. La vraie question devient : « Qu’est-ce que cela m’aide à ne pas ressentir ? » « Qu’est-ce que cela m’aide à ne pas voir ? » « Quelle blessure cela apaise provisoirement ? »",
+    },
+    {
+      kicker: "Lien avec les blessures",
+      text: "Selon la blessure activée, la stratégie change. Le rejet cherchera plus facilement à disparaître, se couper, s’absenter ou s’anesthésier. L’abandon cherchera à remplir, fusionner, être rassuré, entendu ou retenu. La trahison cherchera à contrôler, tenir, performer, surveiller, dominer ou rester puissant. L’injustice cherchera à se maîtriser, travailler, se rigidifier, réussir ou devenir irréprochable. L’humiliation cherchera à compenser, se punir, se suradapter, porter, se remplir ou se soulager dans le plaisir ou l’excès.",
+    },
+    {
+      kicker: "Questions utiles",
+      text: "Qu’est-ce qui déclenche ce comportement ? Quelle émotion est juste avant ? Quel vide, quelle peur, quelle honte ou quelle tension cherche à être calmée ? Que se passe-t-il si je retire ce refuge ? Quelle croyance limitante soutient ce mécanisme ?",
+    },
+    {
+      kicker: "Message clé",
+      text: "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal de souffrance, de protection ou de survie émotionnelle. Ce qui cherche à être apaisé à travers elle demande à être vu, ressenti, compris et accompagné à la racine.",
+    },
+  ],
+},
  {
   id: "ref_valeurs",
   slug: "comportements-valeurs",
