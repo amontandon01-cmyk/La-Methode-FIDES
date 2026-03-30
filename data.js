@@ -948,67 +948,88 @@ const PAGES = [
       ],
     ],
   },
-  {
-    id: "ref_valeurs",
-    slug: "comportements-valeurs",
-    type: "GRID",
-    title: "Valeurs de vie",
-    subtitle: "Repères & piliers",
-    grid: [
-      [
-        "Définition",
-        "Repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre.",
-      ],
-      [
-        "Repère central",
-        "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre.",
-      ],
-      [
-        "Exemples",
-        "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure.",
-      ],
-      [
-        "4 piliers universels",
-        "Santé, famille/proches, argent/sécurité financière, amour/relations.",
-      ],
-      [
-        "Valeurs personnelles",
-        "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.",
-      ],
-      [
-        "Valeurs relationnelles et familiales",
-        "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.",
-      ],
-      [
-        "Valeurs matérielles et financières",
-        "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel.",
-      ],
-      [
-        "Valeurs liées à la vie et au corps",
-        "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre.",
-      ],
-      [
-        "Valeurs de réalisation et contribution",
-        "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité.",
-      ],
-      [
-        "Valeurs spirituelles et existentielles",
-        "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie.",
-      ],
-      [
-        "Travail pratique",
-        "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont alignés avec elles.",
-      ],
-      [
-        "Message clé",
-        "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités.",
-      ],
-      [
-        "Guérison",
-        "Les piliers essentiels de notre vie ne sont plus empilés les uns au-dessus des autres. Ils s’alignent à l’horizontale, et nous prenons place au centre. À partir de ce centre, nous pouvons ajuster chacun d’eux et créer l’équilibre qui permet à la sérénité et à la joie de s’installer.",
-      ],
-    ],
-  },
+ {
+  id: "ref_valeurs",
+  slug: "comportements-valeurs",
+  type: "CONTENT",
+  title: "Valeurs de vie",
+  subtitle: "Repères & piliers",
+  content: [
+    {
+      kicker: "Définition",
+      text: "Les valeurs sont des repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre. Elles orientent ce que nous considérons comme important, juste, désirable ou essentiel.",
+    },
+    {
+      kicker: "Schéma",
+      image: "schema_valeurs.png",
+      imageAlt: "Schéma des valeurs",
+    },
+    {
+      kicker: "Repère central",
+      text: "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre. Plus une personne connaît ses vraies valeurs, plus elle peut avancer avec cohérence, clarté et stabilité.",
+    },
+    {
+      kicker: "Valeurs héritées / valeurs choisies",
+      text: "Certaines valeurs nous ont été transmises par la famille, l’éducation, la culture, la religion ou le milieu social. D’autres émergent plus tard comme des choix conscients. Le travail consiste à distinguer les valeurs héritées des valeurs réellement choisies.",
+    },
+    {
+      kicker: "Valeurs en mouvement",
+      text: "Les valeurs ne sont pas figées dans le temps. Elles peuvent évoluer, changer d’ordre d’importance ou se réorganiser selon les étapes de vie, les expériences, les prises de conscience, les responsabilités et la réalité du moment. Plus la personne évolue, plus ses valeurs cessent d’être vécues dans une hiérarchie rigide. Elles trouvent progressivement un équilibre plus horizontal, plus souple et plus vivant, à partir d’un centre intérieur plus stable. Ce centre permet d’ajuster ce qui est important sans se perdre, tout en restant à l’écoute de ce qui bouge dans le présent.",
+    },
+    {
+      kicker: "Exemples",
+      text: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure.",
+    },
+    {
+      kicker: "4 grands piliers de vie",
+      text: "Santé, famille / proches, argent / sécurité financière, amour / relations.",
+    },
+    {
+      kicker: "Valeurs personnelles",
+      text: "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.",
+    },
+    {
+      kicker: "Valeurs relationnelles et familiales",
+      text: "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.",
+    },
+    {
+      kicker: "Valeurs matérielles et financières",
+      text: "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel.",
+    },
+    {
+      kicker: "Valeurs liées à la vie et au corps",
+      text: "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre.",
+    },
+    {
+      kicker: "Valeurs de réalisation et de contribution",
+      text: "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité.",
+    },
+    {
+      kicker: "Valeurs spirituelles et existentielles",
+      text: "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie.",
+    },
+    {
+      kicker: "Conflits de valeurs",
+      text: "Deux valeurs importantes peuvent parfois entrer en tension. Une personne peut vouloir à la fois la liberté et la sécurité, la paix et la vérité, l’autonomie et le lien, la réussite et la simplicité. Le chemin consiste à retrouver un ordre juste, une hiérarchie claire et un équilibre vivant.",
+    },
+    {
+      kicker: "Signaux de désalignement",
+      text: "Quand une personne vit à l’encontre de ses vraies valeurs, elle peut ressentir un malaise diffus, de la frustration, de la fatigue, de la colère, une perte de sens, un sentiment de vide ou l’impression de se trahir.",
+    },
+    {
+      kicker: "Travail pratique",
+      text: "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont réellement alignés avec elles.",
+    },
+    {
+      kicker: "Message clé",
+      text: "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités et de revenir à une vie plus cohérente.",
+    },
+    {
+      kicker: "Guérison",
+      text: "Les piliers essentiels de notre vie ne sont plus empilés les uns au-dessus des autres. Ils s’alignent à l’horizontale, et nous prenons place au centre. À partir de ce centre, nous pouvons ajuster chacun d’eux et créer l’équilibre qui permet à la sérénité et à la joie de s’installer. Plus nous évoluons, plus nos valeurs cessent d’être vécues dans une hiérarchie rigide. Elles deviennent des repères vivants, souples et équilibrés, qui s’organisent autour d’un centre intérieur plus conscient.",
+    },
+  ],
+},
   {
     id: "ref_dogmes",
     slug: "comportements-dogmes",
