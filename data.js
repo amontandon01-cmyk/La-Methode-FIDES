@@ -554,10 +554,9 @@ const PAGES = [
 
   // BLESSURES
   {
-    id: "ref_joie",
+    id: "w_joie",
     slug: "blessures-joie",
     type: "GRID",
-    eyebrow: "Blessure",
     title: "JOIE",
     subtitle: "Repère d'évolution ",
     grid: [
@@ -1110,14 +1109,15 @@ const NAV = [
       "w_injustice",
       "w_rejet",
       "w_humiliation",
+      "w_joie",
     ],
   },
 
   {
     section: "Manifestations & repères",
-items: ["ref_joie", "ref_addictions", "ref_dogmes", "ref_valeurs"]  },
+items: ["ref_addictions", "ref_dogmes", "ref_valeurs"]  },
 
-  { section: "Repères théorique", items: ["ref_sources"] },
+  { section: "Bibliographie", items: ["ref_sources"] },
 ];
 
 export { PAGES, NAV };
