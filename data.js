@@ -74,7 +74,7 @@ const PAGES = [
     id: "base_confort",
     slug: "bases-confort",
     type: "CONTENT",
-    title: "Le cercle de la zone de confort",
+    title: "Cercle de la zone de confort",
     subtitle: "Du confort à l’ouverture",
     content: [
       {
@@ -167,7 +167,7 @@ const PAGES = [
     id: "base_blessures",
     slug: "bases-blessures",
     type: "CONTENT",
-    title: "Les blessures émotionnelles",
+    title: "Blessures émotionnelles",
     subtitle: "Blessures prédominantes & personnalité",
     content: [
       {
@@ -236,7 +236,7 @@ const PAGES = [
     id: "base_vulnerabilites_amour",
     slug: "vulnerabilites-amour",
     type: "CONTENT",
-    title: "Les vulnérabilités de l’amour",
+    title: "Vulnérabilités de l’amour",
     subtitle: "Quand l’amour ouvre les zones sensibles",
     content: [
       {
@@ -290,7 +290,7 @@ const PAGES = [
     id: "base_intelligences",
     slug: "bases-intelligences",
     type: "CONTENT",
-    title: "Les intelligences de reconnexion",
+    title: "Intelligences de reconnexion",
     subtitle: "Cinq chemins intérieurs pour revenir à soi.",
     content: [
       {
@@ -384,7 +384,7 @@ const PAGES = [
     id: "base_empathie",
     slug: "bases-empathie",
     type: "CONTENT",
-    title: "L’empathie",
+    title: "Empathie",
     subtitle: "Résonance sans fusion",
     content: [
       {
@@ -417,7 +417,7 @@ const PAGES = [
     id: "base_karpman",
     slug: "bases-karpman",
     type: "CONTENT",
-    title: "Le triangle de Karpman",
+    title: "Triangle de Karpman",
     subtitle: "Repérer les dynamiques relationnelles de survie",
     content: [
       {
@@ -496,7 +496,7 @@ const PAGES = [
     id: "base_culpabilite",
     slug: "bases-culpabilite",
     type: "CONTENT",
-    title: "La culpabilité",
+    title: "Culpabilité",
     subtitle: "Quand la protection cède, place à la culpabilité",
     content: [
       {
