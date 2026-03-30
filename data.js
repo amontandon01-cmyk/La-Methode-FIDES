@@ -412,7 +412,7 @@ const PAGES = [
       },
       {
         kicker: "Schéma",
-        image: "schema_karpman.svg",
+        image: "schema_karpman.png",
         imageAlt: "Schéma du triangle de Karpman",
       },
       {
