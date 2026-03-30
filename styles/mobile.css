@@ -76,6 +76,16 @@
     background: var(--accent);
     color: var(--white);
   }
+  
+  .cardInlineImage{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(190, 43, 86, 0.10);
+  background: rgba(255,255,255,0.72);
+}
 
   /* MENU MOBILE */
   #nav{
