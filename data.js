@@ -5,10 +5,7 @@
 */
 
 "use strict";
-
-/* ----------------------------- Données sources ----------------------------- */
 /* ---------------------------- Pages (contenu) ---------------------------- */
-
 const PAGES = [
   // ACCUEIL
 {
@@ -758,11 +755,37 @@ grid: [
 /* ---------------------------- Navigation (UI) ----------------------------- */
 
 const NAV = [
-  { section: "Vue d’ensemble", items: ["home"] },
-  { section: "Bases", items: ["base_blessures", "base_langages_apprentissage", "base_croyances", "base_vulnerabilites_amour", "base_intelligences", "base_confort", "base_empathie", "base_karpman", "base_culpabilite"] },
-  { section: "Blessures émotionnelles", items: ["w_joie", "w_trahison", "w_abandon", "w_injustice", "w_rejet", "w_humiliation"] },
-  { section: "Comportements", items: ["ref_addictions", "ref_valeurs", "ref_dogmes"] },
-  { section: "Références", items: ["ref_sources"] },
+  { section: "Vue d’ensemble", items: ["home"], singleLink: true },
+  {
+    section: "Bases",
+    items: [
+      "base_blessures",
+      "base_langages_apprentissage",
+      "base_croyances",
+      "base_vulnerabilites_amour",
+      "base_intelligences",
+      "base_confort",
+      "base_empathie",
+      "base_karpman",
+      "base_culpabilite",
+    ],
+  },
+  {
+    section: "Blessures émotionnelles",
+    items: [
+      "w_joie",
+      "w_trahison",
+      "w_abandon",
+      "w_injustice",
+      "w_rejet",
+      "w_humiliation",
+    ],
+  },
+  {
+    section: "Comportements",
+    items: ["ref_addictions", "ref_valeurs", "ref_dogmes"],
+  },
+  { section: "Références", items: ["ref_sources"], singleLink: true },
 ];
 
 export { PAGES, NAV };
