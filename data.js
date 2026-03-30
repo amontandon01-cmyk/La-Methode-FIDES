@@ -13,7 +13,7 @@ const PAGES = [
     slug: "vue-densemble",
     type: "HOME",
     title: "Vue d’ensemble",
-    subtitle: "Bases • Blessures • Comportements",
+    subtitle: "La Méthode FIDES",
     content: [
       {
         kicker: "Vue d’ensemble",
@@ -44,19 +44,11 @@ const PAGES = [
         },
         right: {
           layout: "tilesCard",
-          kicker: "Repères",
+          kicker: "L’origine de la Méthode FIDES",
           items: [
             {
-              title: "Blessures",
-              desc: "Lire une blessure : émotion racine, sentiments possibles, masque, croyances associées et logiques de protection.",
+              desc: "La Méthode FIDES a émergé au fil des accompagnements et des compréhensions affinées avec le temps. Elle aide à mettre en lumière ce qui se joue dans le vécu intérieur, dans les réactions et dans les fonctionnements du quotidien. Elle offre des repères pour mieux comprendre les mécanismes à l’œuvre, donner du sens à ce qui se traverse et ouvrir un chemin de guérison, de libération et de reconnexion à soi, à l’autre et à la vie.",
             },
-            {
-              title: "Comportements",
-              desc: "Relier le vécu aux mécanismes visibles : addictions, rigidités, dogmes, évitements, contrôle, compensation ou répétition.",
-            },
-            {
-              title: "Empathie",
-              desc: "Accueillir ce que l’autre vit, ressent et perçoit, puis prendre de la hauteur.",
             },
           ],
         },
@@ -70,56 +62,16 @@ const PAGES = [
   },
 
   // BASES
-{ 
-   id: "base_confort", 
-   slug: "bases-confort", 
-   type: "CONTENT", 
-   title: "Cercle de la zone de confort", 
-   subtitle: "Du confort à l’ouverture", 
-   content: [
-  {
-     kicker: "Définition", 
-     lead: "La zone de confort ne parle pas seulement d’habitudes extérieures.", 
-     text: "La zone de confort correspond à un espace connu, prévisible et émotionnellement balisé. Elle donne une impression de sécurité, car elle évite l’inconnu, limite l’exposition et permet de rester dans des réactions déjà maîtrisées. Elle peut rassurer à court terme, mais elle entretient aussi les anciens réflexes de protection.", 
-  },
-  {
-     kicker: "Schéma", 
-     image: "schema_zone_de_confort.png", 
-     imageAlt: "Schéma de la zone de confort", 
-  },
-  {
-     kicker: "Déclencheur / Trigger", 
-     lead: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi.", 
-     text: "Un déclencheur est une situation, une parole, un silence, un engagement ou un imprévu qui active quelque chose en moi.", 
-  
-},
-  {
-     kicker: "Zone de confort", 
-     lead: "Je reste dans ce que je connais.", 
-     text: "Je reste dans ce que je connais. Cette zone correspond au connu, aux automatismes et aux repères déjà installés.", 
-  },
-  {
-     kicker: "Zone d’activation", 
-     lead: "Mon émotion et mes réflexes de protection s’activent.", 
-     text: "Mon émotion et mes réflexes de protection s’activent. Selon la blessure dominante, cette activation peut prendre la forme de la fuite, du contrôle, du repli, du figement ou de la suradaptation.", 
-  },
-  {
-     kicker: "Zone de réalignement", 
-     lead: "J’apprends à désapprendre de mes anciens schémas.", 
-     text: "J’apprends à désapprendre de mes anciens schémas. Je prends conscience de ce qui s’active, je comprends ce que je protège et je commence à choisir autrement.", 
-  },
-  {
-     kicker: "Zone d’évolution", 
-     lead: "Je prends ma place avec plus d’authenticité.", 
-     text: "Je prends ma place avec plus d’authenticité. Une manière d’être plus juste, plus vraie et plus alignée s’intègre progressivement.", 
-  },
-  {
-     kicker: "Clé de lecture", 
-     lead: "Le déclencheur réveille une émotion, active un ancien réflexe de protection et réactive souvent la croyance limitante associée.", 
-     text: "Le déclencheur réveille une émotion, active un ancien réflexe de protection et réactive souvent la croyance limitante associée. Cette dernière influence la réaction. Le réalignement permet d’apprendre à désapprendre un ancien schéma, d’ouvrir l’être à plus d’authenticité et d’ouvrir la voie à l’évolution.", 
-  },
-   ],
-},
+{ id: "base_confort", slug: "bases-confort", type: "CONTENT", title: "Cercle de la zone de confort", subtitle: "Du confort à l’ouverture", content: [
+  { kicker: "Définition", lead: "La zone de confort ne parle pas seulement d’habitudes extérieures.", text: "La zone de confort correspond à un espace connu, prévisible et émotionnellement balisé. Elle donne une impression de sécurité, car elle évite l’inconnu, limite l’exposition et permet de rester dans des réactions déjà maîtrisées. Elle peut rassurer à court terme, mais elle entretient aussi les anciens réflexes de protection.", },
+  { kicker: "Schéma", image: "schema_zone_de_confort.png", imageAlt: "Schéma de la zone de confort", },
+  { kicker: "Déclencheur / Trigger", lead: "Un déclencheur vient toucher quelque chose de déjà sensible en moi.", text: "Un déclencheur peut prendre la forme d’une situation, d’une parole, d’un silence, d’un engagement ou d’un imprévu. Il active une émotion, réveille un ancien ressenti et remet en mouvement une logique intérieure déjà présente.", },
+  { kicker: "Zone de confort", lead: "Je reste dans ce que je connais, même si cela me limite.", text: "Cette zone correspond au connu, aux automatismes et aux repères déjà installés. Elle permet de garder une impression de stabilité, tout en maintenant parfois les anciens schémas, les évitements et les réactions de protection.", },
+  { kicker: "Zone d’activation", lead: "L’émotion monte et les réflexes anciens reprennent facilement la main.", text: "Lorsque la zone de confort est bousculée, l’émotion et les mécanismes de protection s’activent. Selon la blessure dominante, cette activation peut prendre la forme de la fuite, du contrôle, du repli, du figement ou de la suradaptation.", },
+  { kicker: "Zone de réalignement", lead: "Je commence à voir ce qui s’active et à sortir du pilotage automatique.", text: "Le réalignement ouvre un espace de conscience. La personne reconnaît ce qu’elle ressent, comprend ce qu’elle protège, identifie le schéma en cours et commence à choisir une réponse plus juste au lieu de répéter un automatisme.", },
+  { kicker: "Zone d’évolution", lead: "Une autre manière d’être devient possible.", text: "La zone d’évolution s’ouvre lorsque l’être ne se contente plus de survivre à ce qui se passe, mais apprend à traverser avec plus de présence. Une manière d’être plus libre, plus stable, plus authentique et plus alignée peut alors s’intégrer progressivement.", },
+  { kicker: "Clé de lecture", lead: "Le passage d’une zone à l’autre montre comment une situation réveille un ancien fonctionnement.", text: "Le déclencheur réveille une émotion, active un ancien réflexe de protection et réactive souvent la croyance limitante associée. Cette dernière influence la réaction. Le réalignement permet d’apprendre à désapprendre un ancien schéma, d’ouvrir l’être à plus d’authenticité et d’ouvrir la voie à l’évolution.", },
+], },
   {
     id: "base_langages_apprentissage",
     slug: "bases-langages-apprentissage",
