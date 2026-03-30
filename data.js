@@ -894,91 +894,31 @@ const PAGES = [
   title: "Addictions",
   subtitle: "Repères & typologies",
   content: [
-    {
-      lead: "Définition",
-      text: "Comportements répétitifs, consommations ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. Ils peuvent passer par une substance, une activité, une relation, une recherche de performance, un refuge mental ou une habitude apparemment banale.",
-    },
-    {
-      lead: "Schéma",
-      image: "schema_addictions.svg",
-      imageAlt: "Schéma du cycle de l'addiction",
-    },
-    {
-      lead: "Repère central",
-      text: "L’addiction ou la compulsion procure souvent un soulagement rapide, une impression de contrôle, une stimulation ou une coupure temporaire avec la douleur. En profondeur, elle ne guérit pas la blessure de fond : elle la masque, la reporte, la contourne ou l’entretient.",
-    },
-    {
-      lead: "Fonction",
-      text: "C’est une béquille de régulation émotionnelle. Elle peut servir à calmer un vide, une peur, une honte, une solitude, une colère intérieure, une tension psychique, une impression d’abandon, une perte de contrôle ou une douleur identitaire. Elle peut aussi donner l’illusion de remplir, tenir, oublier, se rassurer, se récompenser, se punir ou exister.",
-    },
-    {
-      lead: "Pourquoi c’est piégeant",
-      text: "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment ce refuge à une solution. Plus le comportement soulage vite, plus il risque d’être répété, jusqu’à devenir un automatisme de survie émotionnelle.",
-    },
-    {
-      lead: "Repères de bascule",
-      text: "Le comportement mérite une vraie vigilance lorsqu’il devient difficile à freiner, qu’il prend une place croissante, qu’il passe avant d’autres besoins importants, qu’il continue malgré ses conséquences, ou qu’il altère la relation à soi, aux autres, au corps, au travail, au sommeil, à l’argent ou à la vie quotidienne.",
-    },
-    {
-      lead: "Addictions aux substances",
-      text: "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, usage compulsif de caféine, recherche répétée du sucre ou d’autres produits pour modifier rapidement l’état intérieur.",
-    },
-    {
-      lead: "Repères concrets (substances)",
-      text: "Recherche d’apaisement rapide, besoin de tenir, difficulté à traverser certaines émotions sans produit, consommation liée à des déclencheurs précis, augmentation progressive de la fréquence, de la dose, de la tolérance ou de la dépendance psychologique.",
-    },
-    {
-      lead: "Comportements addictifs ou compulsifs",
-      text: "Jeux d’argent, jeux vidéo, écrans, internet, réseaux sociaux, téléphone, achats compulsifs, travail, sport, sexualité, fusion relationnelle, dépendance affective, nourriture, restrictions alimentaires, crises de compensation, recherche d’adrénaline, répétition d’un scénario toxique. Ici, ce n’est pas toujours une substance qui domine, mais la répétition d’un comportement devenu refuge.",
-    },
-    {
-      lead: "Repères concrets (comportementaux)",
-      text: "Besoin de faire, vérifier, scroller, acheter, séduire, performer, consommer, contrôler ou se distraire pour éviter de ressentir. Ces comportements apportent souvent une récompense immédiate, une impression d’exister, une coupure émotionnelle ou un faux apaisement.",
-    },
-    {
-      lead: "Formes plus invisibles",
-      text: "Perfectionnisme, hyperactivité, contrôle, besoin de reconnaissance, besoin d’être indispensable, surinvestissement professionnel, recherche d’image, rigidité, besoin de maîtrise, refuge dans le mental, refuge spirituel, besoin d’être irréprochable. Ces formes passent plus facilement pour des qualités, alors qu’elles peuvent aussi servir à éviter le contact avec une douleur profonde.",
-    },
-    {
-      lead: "Pourquoi elles passent inaperçues",
-      text: "Parce qu’elles sont souvent valorisées socialement. Être très performant, toujours occupé, très engagé, admirable, irréprochable, fort, autonome ou éveillé peut sembler positif, alors que cela peut aussi cacher une fuite émotionnelle.",
-    },
-    {
-      lead: "Transfert d’addiction",
-      text: "Il arrive qu’une personne réduise une addiction visible, puis déplace le mécanisme vers un autre refuge. Par exemple, elle arrête de fumer et compense avec la nourriture, elle arrête de boire et se jette dans le sport intensif, elle sort d’une dépendance affective et bascule dans le travail, le contrôle ou les achats compulsifs. Ce déplacement peut donner l’impression d’une amélioration, alors qu’il s’agit parfois d’une compulsion qui change simplement de forme. Ce qui semble plus sain, plus acceptable ou plus valorisé à l’extérieur peut continuer à remplir exactement la même fonction à l’intérieur : calmer, tenir, oublier, contrôler, compenser ou éviter de ressentir.",
-    },
-    {
-      lead: "Point de vigilance",
-      text: "Tout remplacement n’est pas automatiquement une nouvelle addiction. Il y a transfert addictif lorsque le nouveau comportement devient à son tour envahissant, difficile à freiner, central pour se réguler, et qu’il continue malgré ses conséquences.",
-    },
-    {
-      lead: "Prudence de lecture",
-      text: "Tout comportement répétitif ou excessif n’est pas automatiquement une addiction au sens clinique. Dans une lecture FIDES, il peut néanmoins devenir un excellent indicateur d’évitement émotionnel, de blessure activée, de croyance limitante ou de stratégie de protection.",
-    },
-    {
-      lead: "Auto-atteinte / auto-agression",
-      text: "Certaines conduites dirigées contre soi, comme se faire mal, se négliger gravement, se punir ou s’exposer volontairement à des situations destructrices, relèvent d’une souffrance profonde et demandent une lecture spécifique. Elles peuvent avoir une fonction de décharge, de punition, d’anesthésie ou de reprise de contrôle, même lorsqu’elles ne relèvent pas d’une addiction au sens strict.",
-    },
-    {
-      lead: "Refuge spirituel",
-      text: "Le spirituel peut soutenir la guérison. Il peut aussi devenir un refuge lorsqu’il sert à éviter l’émotion, contourner le trauma, nier la colère, idéaliser la souffrance, attendre un miracle à la place d’un positionnement clair, ou parler d’élévation alors que la blessure reste intacte.",
-    },
-    {
-      lead: "Lecture pédagogique",
-      text: "Plus une addiction, une compulsion ou un refuge devient nécessaire pour tenir, se calmer, se sentir vivant, aimé, important, puissant ou en sécurité, plus il mérite d’être interrogé. La vraie question devient : « Qu’est-ce que cela m’aide à ne pas ressentir ? » « Qu’est-ce que cela m’aide à ne pas voir ? » « Quelle blessure cela apaise provisoirement ? »",
-    },
-    {
-      lead: "Lien avec les blessures",
-      text: "Selon la blessure activée, la stratégie change. Le rejet cherchera plus facilement à disparaître, se couper, s’absenter ou s’anesthésier. L’abandon cherchera à remplir, fusionner, être rassuré, entendu ou retenu. La trahison cherchera à contrôler, tenir, performer, surveiller, dominer ou rester puissant. L’injustice cherchera à se maîtriser, travailler, se rigidifier, réussir ou devenir irréprochable. L’humiliation cherchera à compenser, se punir, se suradapter, porter, se remplir ou se soulager dans le plaisir ou l’excès.",
-    },
-    {
-      lead: "Questions utiles",
-      text: "Qu’est-ce qui déclenche ce comportement ? Quelle émotion est juste avant ? Quel vide, quelle peur, quelle honte ou quelle tension cherche à être calmée ? Que se passe-t-il si je retire ce refuge ? Quelle croyance limitante soutient ce mécanisme ?",
-    },
-    {
-      lead: "Message clé",
-      text: "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal de souffrance, de protection ou de survie émotionnelle. Ce qui cherche à être apaisé à travers elle demande à être vu, ressenti, compris et accompagné à la racine.",
-    },
+{ kicker: "Définition", lead: "L’addiction cherche souvent à calmer ce qui paraît trop difficile à ressentir.", text: "Comportements répétitifs, consommations ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. Ils peuvent passer par une substance, une activité, une relation, une recherche de performance, un refuge mental ou une habitude apparemment banale.", },
+
+{ kicker: "Schéma", lead: "Lire le cycle aide à repérer ce qui soulage sur l’instant sans apaiser le fond.", image: "schema_addictions.svg", imageAlt: "Schéma du cycle de l'addiction", },
+
+{ kicker: "Repère central", lead: "Le soulagement rapide donne l’illusion d’une solution durable.", text: "L’addiction ou la compulsion procure souvent un soulagement rapide, une impression de contrôle, une stimulation ou une coupure temporaire avec la douleur. En profondeur, elle ne guérit pas la blessure de fond : elle la masque, la reporte, la contourne ou l’entretient.", },
+
+{ kicker: "Fonction", lead: "Derrière le comportement, il y a souvent une tentative de régulation intérieure.", text: "C’est une béquille de régulation émotionnelle. Elle peut servir à calmer un vide, une peur, une honte, une solitude, une colère intérieure, une tension psychique, une impression d’abandon, une perte de contrôle ou une douleur identitaire. Elle peut aussi donner l’illusion de remplir, tenir, oublier, se rassurer, se récompenser, se punir ou exister.", },
+
+{ kicker: "Pourquoi c’est piégeant", lead: "Ce qui apaise vite a tendance à s’installer vite.", text: "Le soulagement immédiat renforce le comportement. La personne associe alors inconsciemment ce refuge à une solution. Plus le comportement soulage vite, plus il risque d’être répété, jusqu’à devenir un automatisme de survie émotionnelle.", },
+
+{ kicker: "Repères de bascule", lead: "Un comportement devient préoccupant lorsqu’il commence à prendre la place du vivant.", text: "Le comportement mérite une vraie vigilance lorsqu’il devient difficile à freiner, qu’il prend une place croissante, qu’il passe avant d’autres besoins importants, qu’il continue malgré ses conséquences, ou qu’il altère la relation à soi, aux autres, au corps, au travail, au sommeil, à l’argent ou à la vie quotidienne.", },
+
+{ kicker: "Addictions aux substances", lead: "Certaines consommations modifient rapidement l’état intérieur et renforcent la recherche d’apaisement.", text: "Alcool, tabac, cannabis, cocaïne, héroïne, amphétamines, ecstasy, médicaments psychotropes, antidouleurs, usage compulsif de caféine, recherche répétée du sucre ou d’autres produits pour modifier rapidement l’état intérieur.", },
+
+{ kicker: "Repères concrets (substances)", lead: "Le produit devient un appui lorsque l’émotion paraît difficile à traverser autrement.", text: "Recherche d’apaisement rapide, besoin de tenir, difficulté à traverser certaines émotions sans produit, consommation liée à des déclencheurs précis, augmentation progressive de la fréquence, de la dose, de la tolérance ou de la dépendance psychologique.", },
+
+{ kicker: "Comportements addictifs ou compulsifs", lead: "L’addiction peut aussi passer par des actes, des rythmes ou des liens devenus refuges.", text: "Jeux d’argent, jeux vidéo, écrans, internet, réseaux sociaux, téléphone, achats compulsifs, travail, sport, sexualité, fusion relationnelle, dépendance affective, nourriture, restrictions alimentaires, crises de compensation, recherche d’adrénaline, répétition d’un scénario toxique.", },
+
+{ kicker: "Repères concrets (comportements)", lead: "Le mécanisme se repère souvent dans la répétition, l’urgence ou la perte de liberté intérieure.", text: "Besoin de recommencer, difficulté à s’arrêter, pensée envahissante, recherche de décharge, compensation après tension, impression de manque, perte de maîtrise, alternance entre excès et culpabilité.", },
+
+{ kicker: "Lien avec les blessures", lead: "Chaque blessure peut chercher son propre mode d’apaisement.", text: "L’abandon cherchera à remplir le vide ou à calmer l’angoisse de séparation. La trahison cherchera à reprendre la maîtrise, à se stimuler ou à fuir l’impuissance. Le rejet cherchera à disparaître, à se couper ou à s’anesthésier. L’injustice cherchera à tenir, contrôler, performer ou se rigidifier. L’humiliation cherchera à compenser, se punir, se suradapter, porter, se remplir ou se soulager dans le plaisir ou l’excès.", },
+
+{ kicker: "Questions utiles", lead: "Revenir à la racine permet de lire le besoin caché derrière le comportement.", text: "Qu’est-ce qui déclenche ce comportement ? Quelle émotion est juste avant ? Quel vide, quelle peur, quelle honte ou quelle tension cherche à être calmée ? Que se passe-t-il si je retire ce refuge ? Quelle croyance limitante soutient ce mécanisme ?", },
+
+{ kicker: "Message clé", lead: "L’addiction parle souvent moins d’un manque de volonté que d’une souffrance à réguler.", text: "L’addiction n’est pas seulement un excès ou un manque de volonté. C’est souvent un signal de souffrance, de protection ou de survie émotionnelle. Ce qui cherche à être apaisé à travers elle demande à être vu, ressenti, compris et accompagné à la racine.", },
   ],
 },
  {
@@ -988,79 +928,41 @@ const PAGES = [
   title: "Valeurs de vie",
   subtitle: "Repères & piliers",
   content: [
-    {
-      lead: "Définition",
-      text: "Les valeurs sont des repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre. Elles orientent ce que nous considérons comme important, juste, désirable ou essentiel.",
-    },
-    {
-      lead: "Schéma",
-      image: "schema_valeurs.png",
-      imageAlt: "Schéma des valeurs",
-    },
-    {
-      lead: "Repère central",
-      text: "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre. Plus une personne connaît ses vraies valeurs, plus elle peut avancer avec cohérence, clarté et stabilité.",
-    },
-    {
-      lead: "Valeurs héritées / valeurs choisies",
-      text: "Certaines valeurs nous ont été transmises par la famille, l’éducation, la culture, la religion ou le milieu social. D’autres émergent plus tard comme des choix conscients. Le travail consiste à distinguer les valeurs héritées des valeurs réellement choisies.",
-    },
-    {
-      lead: "Valeurs en mouvement",
-      text: "Les valeurs ne sont pas figées dans le temps. Elles peuvent évoluer, changer d’ordre d’importance ou se réorganiser selon les étapes de vie, les expériences, les prises de conscience, les responsabilités et la réalité du moment. Plus la personne évolue, plus ses valeurs cessent d’être vécues dans une hiérarchie rigide. Elles trouvent progressivement un équilibre plus horizontal, plus souple et plus vivant, à partir d’un centre intérieur plus stable. Ce centre permet d’ajuster ce qui est important sans se perdre, tout en restant à l’écoute de ce qui bouge dans le présent.",
-    },
-    {
-      lead: "Exemples",
-      text: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure.",
-    },
-    {
-      lead: "4 grands piliers de vie",
-      text: "Santé, famille / proches, argent / sécurité financière, amour / relations.",
-    },
-    {
-      lead: "Valeurs personnelles",
-      text: "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.",
-    },
-    {
-      lead: "Valeurs relationnelles et familiales",
-      text: "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.",
-    },
-    {
-      lead: "Valeurs matérielles et financières",
-      text: "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel.",
-    },
-    {
-      lead: "Valeurs liées à la vie et au corps",
-      text: "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre.",
-    },
-    {
-      lead: "Valeurs de réalisation et de contribution",
-      text: "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité.",
-    },
-    {
-      lead: "Valeurs spirituelles et existentielles",
-      text: "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie.",
-    },
-    {
-      lead: "Conflits de valeurs",
-      text: "Deux valeurs importantes peuvent parfois entrer en tension. Une personne peut vouloir à la fois la liberté et la sécurité, la paix et la vérité, l’autonomie et le lien, la réussite et la simplicité. Le chemin consiste à retrouver un ordre juste, une hiérarchie claire et un équilibre vivant.",
-    },
-    {
-      lead: "Signaux de désalignement",
-      text: "Quand une personne vit à l’encontre de ses vraies valeurs, elle peut ressentir un malaise diffus, de la frustration, de la fatigue, de la colère, une perte de sens, un sentiment de vide ou l’impression de se trahir.",
-    },
-    {
-      lead: "Travail pratique",
-      text: "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont réellement alignés avec elles.",
-    },
-    {
-      lead: "Message clé",
-      text: "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités et de revenir à une vie plus cohérente.",
-    },
-    {
-      lead: "Guérison",
-      text: "Les piliers essentiels de notre vie ne sont plus empilés les uns au-dessus des autres. Ils s’alignent à l’horizontale, et nous prenons place au centre. À partir de ce centre, nous pouvons ajuster chacun d’eux et créer l’équilibre qui permet à la sérénité et à la joie de s’installer. Plus nous évoluons, plus nos valeurs cessent d’être vécues dans une hiérarchie rigide. Elles deviennent des repères vivants, souples et équilibrés, qui s’organisent autour d’un centre intérieur plus conscient.",
-    },
+ { kicker: "Définition", lead: "Les valeurs donnent une direction intérieure à la manière de vivre.", text: "Les valeurs sont des repères intérieurs qui guident nos choix, nos priorités et notre manière de vivre. Elles orientent ce que nous considérons comme important, juste, désirable ou essentiel.", },
+
+{ kicker: "Schéma", lead: "Visualiser les valeurs aide à repérer ce qui structure réellement l’existence.", image: "schema_valeurs.png", imageAlt: "Schéma des valeurs", },
+
+{ kicker: "Repère central", lead: "Plus une valeur est consciente, plus elle peut devenir un appui stable.", text: "Une valeur profonde soutient nos choix, nos priorités et notre manière de vivre. Plus une personne connaît ses vraies valeurs, plus elle peut avancer avec cohérence, clarté et stabilité.", },
+
+{ kicker: "Valeurs héritées / valeurs choisies", lead: "Tout ce qui nous guide ne vient pas toujours d’un choix conscient.", text: "Certaines valeurs nous ont été transmises par la famille, l’éducation, la culture, la religion ou le milieu social. D’autres émergent plus tard comme des choix conscients. Le travail consiste à distinguer les valeurs héritées des valeurs réellement choisies.", },
+
+{ kicker: "Valeurs en mouvement", lead: "Les valeurs évoluent avec la conscience, les étapes de vie et l’expérience.", text: "Les valeurs ne sont pas figées dans le temps. Elles peuvent évoluer, changer d’ordre d’importance ou se réorganiser selon les étapes de vie, les expériences, les prises de conscience, les responsabilités et la réalité du moment. Plus la personne évolue, plus ses valeurs cessent d’être vécues dans une hiérarchie rigide. Elles trouvent progressivement un équilibre plus horizontal, plus souple et plus vivant, à partir d’un centre intérieur plus stable. Ce centre permet d’ajuster ce qui est important sans se perdre, tout en restant à l’écoute de ce qui bouge dans le présent.", },
+
+{ kicker: "Exemples", lead: "Certaines valeurs soutiennent le quotidien, d’autres structurent profondément l’existence.", text: "Liberté, sécurité, amour, authenticité, réussite, famille, créativité, contribution, santé, foi, justice, loyauté, autonomie, paix intérieure.", },
+
+{ kicker: "4 grands piliers de vie", lead: "Certains axes reviennent souvent comme fondations majeures de l’équilibre humain.", text: "Santé, famille / proches, argent / sécurité financière, amour / relations.", },
+
+{ kicker: "Valeurs personnelles", lead: "Elles soutiennent l’identité, la posture intérieure et la manière d’avancer.", text: "Authenticité, liberté, indépendance, responsabilité, courage, simplicité, persévérance, discipline, dépassement de soi, savoir, croissance personnelle, équilibre.", },
+
+{ kicker: "Valeurs relationnelles et familiales", lead: "Elles orientent la qualité du lien, de la présence et du vivre-ensemble.", text: "Famille, amour, couple, amitié, bienveillance, fidélité, loyauté, solidarité, transmission, respect, tolérance, partage.", },
+
+{ kicker: "Valeurs matérielles et financières", lead: "Elles touchent à la sécurité concrète, aux ressources et à la place dans le monde.", text: "Argent, sécurité matérielle, confort, abondance, stabilité économique, réussite sociale, travail, efficacité, ambition, reconnaissance, succès professionnel.", },
+
+{ kicker: "Valeurs liées à la vie et au corps", lead: "Elles concernent la vitalité, la présence incarnée et la qualité de vie.", text: "Santé, vitalité, bien-être, hygiène, sécurité physique, énergie, longévité, nature, beauté, plaisir de vivre.", },
+
+{ kicker: "Valeurs de réalisation et de contribution", lead: "Elles soutiennent l’élan de création, d’engagement et d’impact.", text: "Créativité, innovation, compétence, excellence, service, contribution, responsabilité sociale, engagement, altruisme, générosité, coopération, justice, égalité.", },
+
+{ kicker: "Valeurs spirituelles et existentielles", lead: "Elles relient au sens, à l’intériorité et à plus vaste que soi.", text: "Foi, sagesse, espoir, paix intérieure, gratitude, harmonie, pardon, connexion au sacré, transcendance, émerveillement, sens de la vie.", },
+
+{ kicker: "Conflits de valeurs", lead: "Deux repères essentiels peuvent parfois tirer la personne dans des directions différentes.", text: "Deux valeurs importantes peuvent parfois entrer en tension. Une personne peut vouloir à la fois la liberté et la sécurité, la paix et la vérité, l’autonomie et le lien, la réussite et la simplicité. Le chemin consiste à retrouver un ordre juste, une hiérarchie claire et un équilibre vivant.", },
+
+{ kicker: "Signaux de désalignement", lead: "Quand la vie s’éloigne des vraies valeurs, le malaise intérieur apparaît souvent rapidement.", text: "Quand une personne vit à l’encontre de ses vraies valeurs, elle peut ressentir un malaise diffus, de la frustration, de la fatigue, de la colère, une perte de sens, un sentiment de vide ou l’impression de se trahir.", },
+
+{ kicker: "Travail pratique", lead: "Identifier ses priorités permet de vérifier si le quotidien suit réellement l’essentiel.", text: "Identifier ses valeurs prioritaires et vérifier si ses choix, ses relations et son quotidien sont réellement alignés avec elles.", },
+
+{ kicker: "Message clé", lead: "Les valeurs deviennent fécondes lorsqu’elles se traduisent dans les choix concrets.", text: "Aligner ses actions avec ses vraies valeurs permet de sortir des schémas hérités et de revenir à une vie plus cohérente.", },
+
+{ kicker: "Guérison", lead: "L’équilibre revient lorsque les piliers cessent de s’opposer et s’organisent autour d’un centre intérieur.", text: "Les piliers essentiels de notre vie ne sont plus empilés les uns au-dessus des autres. Ils s’alignent à l’horizontale, et nous prenons place au centre. À partir de ce centre, nous pouvons ajuster chacun d’eux et créer l’équilibre qui permet à la sérénité et à la joie de s’installer. Plus nous évoluons, plus nos valeurs cessent d’être vécues dans une hiérarchie rigide. Elles deviennent des repères vivants, souples et équilibrés, qui s’organisent autour d’un centre intérieur plus conscient.", },
   ],
 },
 {
