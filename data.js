@@ -275,6 +275,8 @@ const PAGES = [
 { 
    id: "base_intelligences", slug: "bases-intelligences", type: "CONTENT", title: "Les intelligences de reconnexion", subtitle: "Cinq chemins intérieurs pour revenir à soi.", content: [
   { kicker: "Introduction", lead: "Chaque blessure émotionnelle coupe d’un appui fondamental.", text: "Quand la blessure s’active, la personne perd plus facilement l’accès à une ressource intérieure essentielle.\nLe chemin de transformation consiste alors à se reconnecter à une intelligence déjà présente en soi, mais momentanément voilée, blessée ou déformée par l’expérience.\nCes intelligences ouvrent un passage concret vers une présence plus juste, plus libre et plus incarnée." },
+  
+  { kicker: "Schéma", image: "schema_intelligences.svg", imageAlt: "Schéma des 5 intelligences",},
 
   { kicker: "L’intelligence spirituelle", lead: "Axe de reconnexion : la foi — Blessure associée : la trahison", text: "La trahison coupe de la foi profonde.\nLa personne peut perdre foi en l’autre, en la vie, en l’humain, dans le lien, et parfois en plus grand que soi.\nLe contrôle, le besoin de preuve et une lecture très cartésienne prennent alors le dessus.\nSe reconnecter à la foi, c’est retrouver une confiance plus vaste, plus profonde et plus stable." },
 
