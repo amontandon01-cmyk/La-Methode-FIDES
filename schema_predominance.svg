@@ -35,7 +35,7 @@
     .divider { stroke: rgba(190,43,86,0.12); stroke-width: 2; }
   </style>
 
-  <rect class="bg" x="0" y="0" width="1360" height="740" rx="34"></rect>
+  <rect class="bg" x="0" y="0" width="1360" height="740"</rect>
 
   <text x="680" y="70" text-anchor="middle" class="title">Polarités</text>
   <text x="680" y="104" text-anchor="middle" class="subtitle">Dans l’amour à deux · lecture FIDES</text>
