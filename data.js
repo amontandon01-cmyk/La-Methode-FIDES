@@ -899,6 +899,11 @@ const PAGES = [
       text: "Comportements répétitifs, consommations ou besoins compulsifs utilisés pour éviter, anesthésier, compenser ou calmer une émotion inconfortable. Ils peuvent passer par une substance, une activité, une relation, une recherche de performance, un refuge mental ou une habitude apparemment banale.",
     },
     {
+      lead: "Schéma",
+      image: "schema_addictions.png",
+      imageAlt: "Schéma du cycle de l'addiction",
+    },
+    {
       lead: "Repère central",
       text: "L’addiction ou la compulsion procure souvent un soulagement rapide, une impression de contrôle, une stimulation ou une coupure temporaire avec la douleur. En profondeur, elle ne guérit pas la blessure de fond : elle la masque, la reporte, la contourne ou l’entretient.",
     },
