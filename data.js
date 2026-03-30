@@ -1088,7 +1088,7 @@ const PAGES = [
 /* ---------------------------- Navigation (UI) ----------------------------- */
 
 const NAV = [
-  { section: "Vue d’ensemble", items: ["home"] },
+  { section: "Vue d’ensemble", items: ["home"], singleLink: true },
   {
     section: "Bases",
     items: [
@@ -1118,7 +1118,7 @@ const NAV = [
     section: "Comportements",
     items: ["ref_addictions", "ref_valeurs", "ref_dogmes"],
   },
-  { section: "Références", items: ["ref_sources"] },
+  { section: "Références", items: ["ref_sources"], singleLink: true },
 ];
 
 export { PAGES, NAV };

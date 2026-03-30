@@ -392,11 +392,11 @@ function renderSingleLinkSection(group, currentPageId) {
   return sectionEl;
 }
 
-function renderAccordionSection(group, currentPageId) {
+function renderAccordionSection(group, currentPageId, activeSection) {
   const sectionEl = document.createElement("div");
   sectionEl.className = "navSection";
 
-  const isOpen = group.items.includes(currentPageId);
+  const isOpen = group.section === activeSection;
   sectionEl.setAttribute("data-open", isOpen ? "true" : "false");
 
   const sectionBtn = document.createElement("button");
@@ -407,7 +407,7 @@ function renderAccordionSection(group, currentPageId) {
     "<span>" +
     escapeHTML(group.section) +
     "</span>" +
-    '<span aria-hidden="true">›</span>';
+    '<span class="navChevron">›</span>';
 
   const itemsWrap = document.createElement("div");
   itemsWrap.className = "navItems";
@@ -425,7 +425,7 @@ function renderAccordionSection(group, currentPageId) {
     );
     itemBtn.innerHTML =
       escapeHTML(page.title) +
-      '<span class="navItemSubtitle">' +
+      '<span class="navSmall">' +
       escapeHTML(getMenuSubtitle(page)) +
       "</span>";
 
@@ -452,6 +452,7 @@ function renderAccordionSection(group, currentPageId) {
 
   sectionEl.appendChild(sectionBtn);
   sectionEl.appendChild(itemsWrap);
+
   return sectionEl;
 }
 
@@ -461,12 +462,15 @@ function renderNav(currentPageId) {
   navEl.innerHTML = "";
   navEl.appendChild(createNavHeader());
 
+  const activeSection =
+    NAV.find((group) => group.items.includes(currentPageId))?.section || "";
+
   for (const group of NAV) {
-    const isSingleLink = group.items.length === 1;
+    const isSingleLink = group.singleLink === true && group.items.length === 1;
 
     const sectionEl = isSingleLink
       ? renderSingleLinkSection(group, currentPageId)
-      : renderAccordionSection(group, currentPageId);
+      : renderAccordionSection(group, currentPageId, activeSection);
 
     if (sectionEl) {
       navEl.appendChild(sectionEl);
