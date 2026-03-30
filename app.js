@@ -18,7 +18,6 @@ const PAGE_TYPES = Object.freeze({
 });
 
 const DEFAULT_PAGE_ID = "home";
-const SINGLE_LINK_SECTIONS = new Set(["Vue d’ensemble", "Références"]);
 
 /* ------------------------------ Routes ------------------------------ */
 
@@ -406,8 +405,7 @@ function renderNav(currentPageId) {
     NAV.find((group) => group.items.includes(currentPageId))?.section || "";
 
   for (const group of NAV) {
-    const isSingleLink =
-      SINGLE_LINK_SECTIONS.has(group.section) && group.items.length === 1;
+   const isSingleLink = group.singleLink === true && group.items.length === 1;
 
     const sectionEl = isSingleLink
       ? renderSingleLinkSection(group, currentPageId)
