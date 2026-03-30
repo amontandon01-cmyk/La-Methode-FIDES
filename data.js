@@ -63,8 +63,8 @@ const PAGES = [
       },
       {
         kicker: "Mandala",
-        image: "mandala.svg",
-        imageAlt: "Mandala",
+        image: "schema_mandala.svg",
+        imageAlt: "Mandala de la Méthode Fides",
       },
     ],
   },
