@@ -16,7 +16,7 @@ const PAGES = [
     subtitle: "Un chemin d'évolution",
     content: [
       {
-        kicker: "Vue d’ensemble",
+        kicker: "Panorama",
         lead: "Support pédagogique — La Méthode FIDES",
         text: "Un support pour comprendre le cadre, repérer l’émotion activée, identifier la blessure, lire les mécanismes visibles, retrouver la croyance limitante, et ouvrir un réalignement vers plus d’authenticité.",
       },
@@ -47,7 +47,7 @@ const PAGES = [
           kicker: "L’origine de la Méthode FIDES",
           items: [
             {
-              desc: "La Méthode FIDES a émergé au fil des accompagnements, du terrain, des compréhensions affinées avec le temps et d’un long chemin de recherche porté par une créatrice autodidacte. Elle s’est structurée pas à pas dans l’expérience, dans l’observation fine de l’humain, dans la pratique vivante du quotidien, ainsi que dans de nombreuses lectures en psychologie, en spiritualité, en connaissance de soi et en compréhension des liens entre émotions, blessures, croyances et comportements. Aujourd’hui encore, sa créatrice continue de l’utiliser, de la vivre, de l’approfondir et de l’ajuster jour après jour, au contact des réalités humaines, des accompagnements et des transformations observées. La Méthode FIDES aide à mettre en lumière ce qui se joue dans le vécu intérieur, dans les réactions, dans les relations et dans les fonctionnements du quotidien. Elle offre des repères pour mieux comprendre les mécanismes à l’œuvre, redonner du sens à ce qui se traverse, ouvrir la conscience et accompagner un chemin de guérison, de libération, de réalignement et de reconnexion à soi, à l’autre et à la vie.",
+              desc: "La Méthode FIDES a émergé au fil des accompagnements, du terrain et d’un long chemin de recherche porté par une créatrice autodidacte. Elle s’est construite dans l’expérience, dans l’observation fine de l’humain et dans de nombreuses lectures en psychologie, en spiritualité et en connaissance de soi. Aujourd’hui encore, sa créatrice continue de la vivre, de l’affiner et de l’ajuster jour après jour, au contact des réalités humaines, des accompagnements et des transformations observées.",
             },
           ],
         },
@@ -1036,7 +1036,7 @@ const PAGES = [
 /* ---------------------------- Navigation (UI) ----------------------------- */
 
 const NAV = [
-  { section: "Vue d’ensemble", items: ["home"] },
+  { section: "Panorama", items: ["home"] },
 
   {
     section: "Fondations",
