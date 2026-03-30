@@ -900,7 +900,7 @@ const PAGES = [
     },
     {
       lead: "Schéma",
-      image: "schema_addictions.png",
+      image: "schema_addictions.svg",
       imageAlt: "Schéma du cycle de l'addiction",
     },
     {
