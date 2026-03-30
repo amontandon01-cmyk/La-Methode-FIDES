@@ -390,3 +390,85 @@ ul{
 .backdrop{
   display:none;
 }
+.flowBox{
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.55);
+}
+
+.flowTrack{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 8px;
+  justify-content: center;
+}
+
+.flowChip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgb(245, 239, 227);
+  border: 1px solid rgba(190, 43, 86, 0.16);
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.flowArrow{
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.cardInlineImage{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 0 auto;
+}
+
+.cardInlineImage--mb18{
+  margin-bottom: 18px;
+}
+
+.tilesStack{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.tilesStackItem--separated{
+  padding-top: 16px;
+  border-top: 1px solid var(--stroke);
+}
+
+.tilesStackTitle{
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.tilesStackDesc{
+  margin: 0;
+}
+
+.splitGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.splitCol{
+  min-width: 0;
+}
