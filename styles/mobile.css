@@ -268,7 +268,7 @@
   }
 
 .lead,
-.heroCard{
+.heroCard h2{
     font-family: var(--font-title);
     font-size: 18px;
     font-weight: 700;
