@@ -151,49 +151,17 @@ function flowHtml(steps = []) {
   if (!steps.length) return "";
 
   return `
-    <div style="
-      margin-top: 18px;
-      padding: 16px;
-      border: 1px solid var(--stroke);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.55);
-    ">
-      <div style="
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 10px 8px;
-        justify-content: center;
-      ">
+    <div class="flowBox">
+      <div class="flowTrack">
         ${steps
           .map((step, index) => {
-            const chip = `
-              <span style="
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                padding: 10px 14px;
-                border-radius: 999px;
-                background: rgb(245, 239, 227);
-                border: 1px solid rgba(190, 43, 86, 0.16);
-                color: var(--text);
-                font-weight: 700;
-                line-height: 1.2;
-                text-align: center;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-              ">${escapeHTML(step)}</span>
-            `;
+            const chip = `<span class="flowChip">${escapeHTML(step)}</span>`;
 
             if (index === steps.length - 1) return chip;
 
             return `
               ${chip}
-              <span aria-hidden="true" style="
-                color: var(--muted);
-                font-size: 18px;
-                line-height: 1;
-                padding: 0 2px;
-              ">→</span>
+              <span aria-hidden="true" class="flowArrow">→</span>
             `;
           })
           .join("")}
@@ -220,24 +188,24 @@ function cardHtml({
       <div class="kicker">${escapeHTML(kicker)}</div>
     `;
   }
-   
+
   if (lead) {
-  html += `
-  <div class="lead">${escapeHTML(lead)}</div>
-  `;
- }
+    html += `
+      <div class="lead">${escapeHTML(lead)}</div>
+    `;
+  }
 
   if (image) {
+    const imageClassName =
+      imageBottomSpace === "18px"
+        ? "cardInlineImage cardInlineImage--mb18"
+        : "cardInlineImage";
+
     html += `
       <img
         src="${escapeHTML(image)}"
         alt="${escapeHTML(imageAlt || "")}"
-        style="
-          display: block;
-          width: 100%;
-          height: auto;
-          margin: 0 auto ${escapeHTML(imageBottomSpace)} auto;
-        "
+        class="${imageClassName}"
       >
     `;
   }
@@ -275,29 +243,17 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
   }
 
   html += `
-    <div style="
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 6px;
-    ">
+    <div class="tilesStack">
       ${items
         .map(
           (item, index) => `
-            <div style="
-              ${index > 0 ? "padding-top: 16px; border-top: 1px solid var(--stroke);" : ""}
-            ">
-              <div style="
-                font-weight: 700;
-                font-size: 1rem;
-                margin-bottom: 6px;
-                color: var(--text);
-              ">
+            <div class="tilesStackItem${index > 0 ? " tilesStackItem--separated" : ""}">
+              <div class="tilesStackTitle">
                 ${escapeHTML(item.title || "")}
               </div>
               ${
                 item.desc
-                  ? `<p style="margin: 0;">${escapeHTML(item.desc)}</p>`
+                  ? `<p class="tilesStackDesc">${escapeHTML(item.desc)}</p>`
                   : ""
               }
             </div>
@@ -311,16 +267,12 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
   return html;
 }
 
+
 function splitHtml({ left, right }) {
   return `
-    <div style="
-      display: grid;
-      grid-template-columns: ${isMobileViewport() ? "1fr" : "1fr 1fr"};
-      gap: 18px;
-      align-items: start;
-    ">
-      <div>${left ? contentBlockHtml(left) : ""}</div>
-      <div>${right ? contentBlockHtml(right) : ""}</div>
+    <div class="splitGrid">
+      <div class="splitCol">${left ? contentBlockHtml(left) : ""}</div>
+      <div class="splitCol">${right ? contentBlockHtml(right) : ""}</div>
     </div>
   `;
 }
