@@ -334,6 +334,11 @@ const PAGES = [
         text: "Les pensées et croyances limitantes sont des filtres intérieurs qui réduisent le champ des possibles. La pensée limitante apparaît dans l’instant, influence le ressenti immédiat et oriente souvent la réaction. La croyance limitante s’inscrit plus profondément et devient une référence intérieure durable, à partir de laquelle la personne se perçoit, perçoit les autres et interprète la vie. Lorsqu’elle s’installe, elle agit comme une vérité intérieure et influence les choix, les émotions, les relations et les comportements au quotidien. Elle peut même aller plus loin en donnant à la personne une forme d’autorisation intérieure à adopter des comportements déplacés ou dysfonctionnels, puisqu’elle rend ces comportements cohérents avec sa lecture du monde, avec ce qu’elle croit juste, légitime ou nécessaire à cet instant.",
       },
       {
+      kicker: "Schéma",
+      image: "schema_croyances.svg",
+      imageAlt: "Schéma des pensées et croyances limitantes"
+      },
+      {
         kicker: "Le filtre intérieur",
         lead: "Ce que je crois oriente ce que je vois.",
         text: "Chaque personne lit la réalité à travers sa propre carte du monde, c’est-à-dire à travers son histoire, ses repères, ses blessures, ses expériences et le sens qu’elle a donné à ce qu’elle a vécu. Les pensées et croyances limitantes viennent s’ancrer dans cette carte du monde et cherchent ensuite à la maintenir cohérente. La personne sélectionne alors ce qui confirme déjà sa vision, interprète les situations dans ce sens et peut même biaiser la réalité pour que tout continue à s’intégrer à ce qu’elle croit vrai. Dans certains cas, elle cherche aussi à faire entrer l’autre dans cette même lecture du monde, comme si sa perception était la plus juste ou la plus sécurisante. Ce mécanisme réduit l’ouverture, enferme dans des schémas connus et freine l’accès à une vision plus vaste, plus souple et plus vivante de la réalité.",
