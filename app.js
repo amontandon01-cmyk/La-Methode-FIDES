@@ -220,12 +220,12 @@ function cardHtml({
       <div class="kicker">${escapeHTML(kicker)}</div>
     `;
   }
-
+   
   if (lead) {
-    html += `
-      <h3>${escapeHTML(lead)}</h3>
-    `;
-  }
+  html += `
+  <div class="lead">${escapeHTML(lead)}</div>
+  `;
+ }
 
   if (image) {
     html += `
