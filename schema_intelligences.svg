@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000000" flood-opacity="0.10"></feDropShadow>
+    </filter>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0.08"></feDropShadow>
+    </filter>
+    <radialGradient id="centerGlow" cx="50%" cy="48%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF"></stop>
+      <stop offset="100%" stop-color="#F3E7EA"></stop>
+    </radialGradient>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#EBE5D8"></rect>
+  <g transform="translate(0 40)">
+  <circle cx="800" cy="600" r="520" fill="none" stroke="#D9B8C2" stroke-width="2" stroke-dasharray="3 11"></circle>
+  <circle cx="800" cy="600" r="470" fill="none" stroke="#D9B8C2" stroke-width="1.5" opacity="0.8"></circle>
+  <path d="M 692.5,413.8 Q 653.6,312.7 800.0,170.0 Q 946.4,312.7 907.5,413.8 Q 800.0,600.0 692.5,413.8 Z" fill="#8D355D" opacity="0.18" stroke="#8D355D" stroke-width="2"></path>
+  <path d="M 943.9,440.2 Q 1028.0,372.0 1209.0,467.1 Q 1118.5,650.5 1010.3,644.7 Q 800.0,600.0 943.9,440.2 Z" fill="#C24E74" opacity="0.18" stroke="#C24E74" stroke-width="2"></path>
+  <path d="M 996.4,687.4 Q 1087.3,746.4 1052.7,947.9 Q 850.5,918.5 822.5,813.8 Q 800.0,600.0 996.4,687.4 Z" fill="#A85B78" opacity="0.18" stroke="#A85B78" stroke-width="2"></path>
+  <path d="M 777.5,813.8 Q 749.5,918.5 547.3,947.9 Q 512.7,746.4 603.6,687.4 Q 800.0,600.0 777.5,813.8 Z" fill="#9E6A58" opacity="0.18" stroke="#9E6A58" stroke-width="2"></path>
+  <path d="M 589.7,644.7 Q 481.5,650.5 391.0,467.1 Q 572.0,372.0 656.1,440.2 Q 800.0,600.0 589.7,644.7 Z" fill="#B57967" opacity="0.18" stroke="#B57967" stroke-width="2"></path>
+
+  <line x1="800.0" y1="390.0" x2="800.0" y2="142.0" stroke="#8D355D" stroke-width="3" stroke-linecap="round" opacity="0.55"></line>
+  <circle cx="800.0" cy="288.0" r="7" fill="#8D355D"></circle>
+
+  <line x1="999.7" y1="535.1" x2="1235.6" y2="458.5" stroke="#C24E74" stroke-width="3" stroke-linecap="round" opacity="0.55"></line>
+  <circle cx="1096.7" cy="503.6" r="7" fill="#C24E74"></circle>
+
+  <line x1="923.4" y1="769.9" x2="1069.2" y2="970.5" stroke="#A85B78" stroke-width="3" stroke-linecap="round" opacity="0.55"></line>
+  <circle cx="983.4" cy="852.4" r="7" fill="#A85B78"></circle>
+
+  <line x1="676.6" y1="769.9" x2="530.8" y2="970.5" stroke="#9E6A58" stroke-width="3" stroke-linecap="round" opacity="0.55"></line>
+  <circle cx="616.6" cy="852.4" r="7" fill="#9E6A58"></circle>
+
+  <line x1="600.3" y1="535.1" x2="364.4" y2="458.5" stroke="#B57967" stroke-width="3" stroke-linecap="round" opacity="0.55"></line>
+  <circle cx="503.3" cy="503.6" r="7" fill="#B57967"></circle>
+
+  <g filter="url(#shadow)">
+    <circle cx="800" cy="600" r="178" fill="url(#centerGlow)" stroke="#BE2B56" stroke-width="4"></circle>
+    <circle cx="800" cy="600" r="154" fill="none" stroke="#D9B8C2" stroke-width="2" stroke-dasharray="6 10"></circle>
+  </g>
+
+  <text x="800" y="582" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="700" fill="#BE2B56">
+    Les 5 intelligences
+  </text>
+  <text x="800" y="624" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#241D1A">
+    et leurs axes de reconnexion
+  </text>
+
+  <g filter="url(#softShadow)">
+    <circle cx="800.0" cy="95.0" r="102" fill="#F7F2E8" stroke="#8D355D" stroke-width="3"></circle>
+  </g>
+  <text x="800.0" y="59.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    Intelligence
+  </text>
+  <text x="800.0" y="81.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    spirituelle
+  </text>
+  <text x="800.0" y="117.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="1.6" fill="#8D355D" font-weight="700">
+    AXE
+  </text>
+  <text x="800.0" y="141.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#241D1A" font-weight="700">
+    Foi
+  </text>
+
+  <g filter="url(#softShadow)">
+    <circle cx="1280.3" cy="443.9" r="102" fill="#F7F2E8" stroke="#C24E74" stroke-width="3"></circle>
+  </g>
+  <text x="1280.3" y="407.9" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    Intelligence
+  </text>
+  <text x="1280.3" y="429.9" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    émotionnelle
+  </text>
+  <text x="1280.3" y="465.9" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="1.6" fill="#C24E74" font-weight="700">
+    AXE
+  </text>
+  <text x="1280.3" y="489.9" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#241D1A" font-weight="700">
+    Amour
+  </text>
+
+  <g filter="url(#softShadow)">
+    <circle cx="1096.8" cy="1008.6" r="102" fill="#F7F2E8" stroke="#A85B78" stroke-width="3"></circle>
+  </g>
+  <text x="1096.8" y="970.6" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    Intelligence
+  </text>
+  <text x="1096.8" y="992.6" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    intellectuelle
+  </text>
+  <text x="1096.8" y="1024.6" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="1.6" fill="#A85B78" font-weight="700">
+    AXE
+  </text>
+  <text x="1096.8" y="1048.6" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#241D1A" font-weight="700">
+    Capacité de
+  </text>
+  <text x="1096.8" y="1066.6" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#241D1A" font-weight="700">
+    discernement
+  </text>
+
+  <g filter="url(#softShadow)">
+    <circle cx="503.2" cy="1008.6" r="102" fill="#F7F2E8" stroke="#9E6A58" stroke-width="3"></circle>
+  </g>
+  <text x="503.2" y="972.6" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    Intelligence
+  </text>
+  <text x="503.2" y="994.6" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    instinctive
+  </text>
+  <text x="503.2" y="1030.6" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="1.6" fill="#9E6A58" font-weight="700">
+    AXE
+  </text>
+  <text x="503.2" y="1054.6" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#241D1A" font-weight="700">
+    Dignité
+  </text>
+
+  <g filter="url(#softShadow)">
+    <circle cx="319.7" cy="443.9" r="102" fill="#F7F2E8" stroke="#B57967" stroke-width="3"></circle>
+  </g>
+  <text x="319.7" y="407.9" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    Intelligence
+  </text>
+  <text x="319.7" y="429.9" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="#BE2B56">
+    corporelle
+  </text>
+  <text x="319.7" y="465.9" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="1.6" fill="#B57967" font-weight="700">
+    AXE
+  </text>
+  <text x="319.7" y="489.9" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#241D1A" font-weight="700">
+    Vie
+  </text>
+
+  <g>
+    <rect x="726.0" y="209.0" width="148" height="38" rx="19" fill="#F7F2E8" stroke="#8D355D" stroke-width="2"></rect>
+    <text x="800.0" y="234.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#8D355D">
+      Trahison
+    </text>
+  </g>
+
+  <g>
+    <rect x="1079.8" y="466.0" width="148" height="38" rx="19" fill="#F7F2E8" stroke="#C24E74" stroke-width="2"></rect>
+    <text x="1153.8" y="491.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#C24E74">
+      Abandon
+    </text>
+  </g>
+
+  <g>
+    <rect x="944.7" y="882.0" width="148" height="38" rx="19" fill="#F7F2E8" stroke="#A85B78" stroke-width="2"></rect>
+    <text x="1018.7" y="907.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#A85B78">
+      Injustice
+    </text>
+  </g>
+
+  <g>
+    <rect x="507.3" y="882.0" width="148" height="38" rx="19" fill="#F7F2E8" stroke="#9E6A58" stroke-width="2"></rect>
+    <text x="581.3" y="907.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#9E6A58">
+      Humiliation
+    </text>
+  </g>
+
+  <g>
+    <rect x="372.2" y="466.0" width="148" height="38" rx="19" fill="#F7F2E8" stroke="#B57967" stroke-width="2"></rect>
+    <text x="446.2" y="491.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#B57967">
+      Rejet
+    </text>
+  </g>
+  </g>
+</svg>
