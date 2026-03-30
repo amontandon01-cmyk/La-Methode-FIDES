@@ -1,42 +1,53 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La Méthode FIDES — Support</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>La Méthode FIDES — Support</title>
 
-  <link rel="stylesheet" href="./styles/desktop.css" />
-  <link rel="stylesheet" href="./styles/mobile.css" />
-</head>
+    <link rel="stylesheet" href="./styles/desktop.css" />
+    <link rel="stylesheet" href="./styles/mobile.css" />
+  </head>
 
-<body>
-  <div class="app">
-    <div class="panel">
-
-      <header>
-        <div class="brand">
-         <button class="logoBtn" id="logoBtn" type="button" title="Accueil">
-          <img class="logo" src="./logo.png" alt="Logo La Méthode FIDES" />
-         </button>
-          <div class="titleBox">
-            <h1 id="pageTitle">Vue d’ensemble</h1>
-            <p id="pageSubtitle">Support de formation</p>
+  <body>
+    <div class="app">
+      <div class="panel">
+        <header>
+          <div class="brand">
+            <button class="logoBtn" id="logoBtn" type="button" title="Accueil">
+              <img class="logo" src="./logo.png" alt="Logo La Méthode FIDES" />
+            </button>
+            <div class="titleBox">
+              <h1 id="pageTitle">Vue d’ensemble</h1>
+              <p id="pageSubtitle">Support de formation</p>
+            </div>
           </div>
+
+          <button
+            class="btn"
+            id="menuBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="nav"
+          >
+            Menu
+          </button>
+        </header>
+
+        <div class="content">
+          <div class="backdrop" id="backdrop" data-open="false"></div>
+          <nav
+            class="scrollArea"
+            id="nav"
+            data-open="false"
+            aria-label="Menu"
+          ></nav>
+          <main id="main"></main>
         </div>
-
-        <button class="btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
-      </header>
-
-      <div class="content">
-        <div class="backdrop" id="backdrop" data-open="false"></div>
-        <nav class="scrollArea" id="nav" data-open="false" aria-label="Menu"></nav>
-        <main id="main"></main>
       </div>
-
     </div>
-  </div>
-  
-<!-- app.js importe data.js -->
-<script type="module" src="./app.js"></script>
-</body>
+
+    <!-- app.js importe data.js -->
+    <script type="module" src="./app.js"></script>
+  </body>
 </html>

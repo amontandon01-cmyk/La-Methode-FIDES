@@ -22,19 +22,19 @@ const DEFAULT_PAGE_ID = "home";
 /* ------------------------------ Routes ------------------------------ */
 
 const PAGE_BY_ID = Object.freeze(
-  Object.fromEntries(PAGES.map((page) => [page.id, page]))
+  Object.fromEntries(PAGES.map((page) => [page.id, page])),
 );
 
 const PAGE_BY_SLUG = Object.freeze(
   Object.fromEntries(
-    PAGES.filter((page) => page.slug).map((page) => [page.slug, page])
-  )
+    PAGES.filter((page) => page.slug).map((page) => [page.slug, page]),
+  ),
 );
 
 const PAGE_ID_TO_SLUG = Object.freeze(
   Object.fromEntries(
-    PAGES.filter((page) => page.slug).map((page) => [page.id, page.slug])
-  )
+    PAGES.filter((page) => page.slug).map((page) => [page.id, page.slug]),
+  ),
 );
 
 function getCanonicalSlugForPageId(pageId) {
@@ -72,11 +72,16 @@ function normalizeHash(rawHash) {
 }
 
 function resolveRouteToPageId(routeToken) {
-  return PAGE_BY_SLUG[routeToken]?.id || PAGE_BY_ID[routeToken]?.id || DEFAULT_PAGE_ID;
+  return (
+    PAGE_BY_SLUG[routeToken]?.id ||
+    PAGE_BY_ID[routeToken]?.id ||
+    DEFAULT_PAGE_ID
+  );
 }
 
 function getCurrentPageIdFromLocation() {
-  const token = normalizeHash(location.hash) || getCanonicalSlugForPageId(DEFAULT_PAGE_ID);
+  const token =
+    normalizeHash(location.hash) || getCanonicalSlugForPageId(DEFAULT_PAGE_ID);
   return resolveRouteToPageId(token);
 }
 
@@ -256,7 +261,7 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
                   : ""
               }
             </div>
-          `
+          `,
         )
         .join("")}
     </div>
@@ -265,7 +270,6 @@ function tilesCardHtml({ kicker, lead, text, items = [] }) {
   html += "</div>";
   return html;
 }
-
 
 function splitHtml({ left, right }) {
   return `
@@ -303,9 +307,15 @@ function woundRowHtml(label, value) {
 function heroCardHtml({ eyebrow = "", title = "", subtitle = "" }) {
   return (
     '<section class="heroCard">' +
-    '<div class="eyebrow">' + escapeHTML(eyebrow) + "</div>" +
-    "<h2>" + escapeHTML(title) + "</h2>" +
-    "<p>" + escapeHTML(subtitle) + "</p>" +
+    '<div class="eyebrow">' +
+    escapeHTML(eyebrow) +
+    "</div>" +
+    "<h2>" +
+    escapeHTML(title) +
+    "</h2>" +
+    "<p>" +
+    escapeHTML(subtitle) +
+    "</p>" +
     "</section>"
   );
 }
@@ -330,8 +340,7 @@ function pageBodyHtml(page) {
           eyebrow: page.eyebrow ?? "",
           title: page.title || "",
           subtitle: page.subtitle || "",
-        }) +
-        woundGridHtml(page.grid || [])
+        }) + woundGridHtml(page.grid || [])
       );
 
     default:
@@ -364,10 +373,15 @@ function renderSingleLinkSection(group, currentPageId) {
   const itemBtn = document.createElement("button");
   itemBtn.className = "navItem";
   itemBtn.type = "button";
-  itemBtn.setAttribute("aria-current", page.id === currentPageId ? "page" : "false");
+  itemBtn.setAttribute(
+    "aria-current",
+    page.id === currentPageId ? "page" : "false",
+  );
   itemBtn.innerHTML =
     escapeHTML(page.title) +
-    '<span class="navSmall">' + escapeHTML(getMenuSubtitle(page)) + "</span>";
+    '<span class="navSmall">' +
+    escapeHTML(getMenuSubtitle(page)) +
+    "</span>";
 
   itemBtn.addEventListener("click", () => {
     go(page.id);
@@ -390,7 +404,9 @@ function renderAccordionSection(group, currentPageId, activeSection) {
   sectionBtn.className = "navSectionBtn";
   sectionBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   sectionBtn.innerHTML =
-    "<span>" + escapeHTML(group.section) + "</span>" +
+    "<span>" +
+    escapeHTML(group.section) +
+    "</span>" +
     '<span class="navChevron">›</span>';
 
   const itemsWrap = document.createElement("div");
@@ -403,10 +419,15 @@ function renderAccordionSection(group, currentPageId, activeSection) {
     const itemBtn = document.createElement("button");
     itemBtn.className = "navItem";
     itemBtn.type = "button";
-    itemBtn.setAttribute("aria-current", pageId === currentPageId ? "page" : "false");
+    itemBtn.setAttribute(
+      "aria-current",
+      pageId === currentPageId ? "page" : "false",
+    );
     itemBtn.innerHTML =
       escapeHTML(page.title) +
-      '<span class="navSmall">' + escapeHTML(getMenuSubtitle(page)) + "</span>";
+      '<span class="navSmall">' +
+      escapeHTML(getMenuSubtitle(page)) +
+      "</span>";
 
     itemBtn.addEventListener("click", () => {
       go(pageId);
@@ -445,7 +466,7 @@ function renderNav(currentPageId) {
     NAV.find((group) => group.items.includes(currentPageId))?.section || "";
 
   for (const group of NAV) {
-   const isSingleLink = group.singleLink === true && group.items.length === 1;
+    const isSingleLink = group.singleLink === true && group.items.length === 1;
 
     const sectionEl = isSingleLink
       ? renderSingleLinkSection(group, currentPageId)
